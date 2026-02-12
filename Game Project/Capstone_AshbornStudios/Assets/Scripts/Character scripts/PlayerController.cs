@@ -9,6 +9,8 @@ public class PlayerController: MonoBehaviour
     private float rotationY;
     private float verticalVelocity;
     public climbingTest test;
+    private bool ground;
+    float prevPos = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,8 +33,15 @@ public class PlayerController: MonoBehaviour
             
             move = move * movementSpeed * Time.deltaTime;
             characterController.Move(move);
-            verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
-            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+            if (ground)
+            {
+                verticalVelocity = -0.1f;
+            }
+            else
+            {
+                verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
+            }
+            characterController.Move(new Vector3(0, Mathf.Clamp(verticalVelocity, -15f, 15f), 0) * Time.deltaTime);
         }
         
     }
@@ -40,6 +49,20 @@ public class PlayerController: MonoBehaviour
     {
         rotationY += rotationVector.x * rotationSpeed * Time.deltaTime;
         transform.localRotation = Quaternion.Euler(0, rotationY, 0);
+    }
+    private void checkGround()
+    {
+
+        float currPos = transform.position.y;
+        if(currPos == prevPos)
+        {
+            ground = true;
+        }
+        else
+        {
+            ground = false;
+        }
+        prevPos = currPos;
     }
     public void Jump()
     {

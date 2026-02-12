@@ -22,7 +22,6 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         movementVector = moveAction.ReadValue<Vector2>();
-        print(movementVector);
         controller.Move(movementVector);
 
         Vector2 lookVector = lookAction.ReadValue<Vector2>();
