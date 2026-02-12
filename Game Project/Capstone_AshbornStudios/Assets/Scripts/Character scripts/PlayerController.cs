@@ -8,6 +8,7 @@ public class PlayerController: MonoBehaviour
 
     private float rotationY;
     private float verticalVelocity;
+    public climbingTest test;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +21,17 @@ public class PlayerController: MonoBehaviour
         move = move * movementSpeed * Time.deltaTime;
         characterController.Move(move);
 
-        verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
-        characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        if (test.climbing && movementVector.y > 0)
+        {
+            verticalVelocity = jumpForce;
+            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        }
+        else
+        {
+            verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
+            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        }
+        
     }
     public void Rotate(Vector2 rotationVector)
     {
