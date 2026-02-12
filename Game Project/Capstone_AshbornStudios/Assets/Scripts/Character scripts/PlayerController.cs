@@ -4,7 +4,7 @@ public class PlayerController: MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, rotationSpeed = 5f, jumpForce = 10f, Gravity = -30f;
+    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 5f, jumpForce = 10f, climbForce = .5f, Gravity = -30f;
 
     private float rotationY;
     private float verticalVelocity;
@@ -18,16 +18,19 @@ public class PlayerController: MonoBehaviour
     public void Move(Vector2 movementVector)
     {
         Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
-        move = move * movementSpeed * Time.deltaTime;
-        characterController.Move(move);
 
         if (test.climbing && movementVector.y > 0)
         {
-            verticalVelocity = jumpForce;
+            move = move * climbMoveSpeed * Time.deltaTime;
+            characterController.Move(move);
+            verticalVelocity = climbForce;
             characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
         }
         else
         {
+            
+            move = move * movementSpeed * Time.deltaTime;
+            characterController.Move(move);
             verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
             characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
         }
