@@ -5,6 +5,7 @@ public class climbingTest : MonoBehaviour
     RaycastHit feetClimb;
     public bool climbing = false;
     public float lengthOfClimb;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

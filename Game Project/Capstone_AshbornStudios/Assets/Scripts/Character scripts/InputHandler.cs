@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     public PlayerController controller;
-    private InputAction moveAction, lookAction, jumpAction;
+    private InputAction moveAction, lookAction, jumpAction, digAction;
     Vector2 movementVector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,6 +12,9 @@ public class InputHandler : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        digAction = InputSystem.actions.FindAction("Dig");
+
+        digAction.performed += OnDigPerformed;
 
         jumpAction.performed += OnJumpPerformed;
 
@@ -35,6 +38,10 @@ public class InputHandler : MonoBehaviour
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
         controller.Jump();
+    }
+    private void OnDigPerformed(InputAction.CallbackContext context)
+    {
+        controller.Dig();
     }
     
 }

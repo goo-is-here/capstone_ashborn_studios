@@ -4,17 +4,19 @@ public class PlayerController: MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 5f, jumpForce = 10f, climbForce = .5f, Gravity = -30f;
+    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 5f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f;
 
     private float rotationY;
     private float verticalVelocity;
     public climbingTest test;
     private bool ground;
     float prevPos = 0;
+    LayerMask blocksToDig;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        blocksToDig = LayerMask.GetMask("Diggable");
     }
 
     public void Move(Vector2 movementVector)
@@ -69,6 +71,15 @@ public class PlayerController: MonoBehaviour
         if (characterController.isGrounded)
         {
             verticalVelocity = jumpForce;
+        }
+    }
+    public void Dig()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
+        {
+            print("here");
+            hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal);
         }
     }
 }
