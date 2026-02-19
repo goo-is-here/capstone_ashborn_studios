@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
         jumpAction = InputSystem.actions.FindAction("Jump");
-        digAction = InputSystem.actions.FindAction("Dig");
+        digAction = InputSystem.actions.FindAction("Attack");
 
         digAction.performed += OnDigPerformed;
 
