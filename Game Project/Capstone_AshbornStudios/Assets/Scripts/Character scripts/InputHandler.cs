@@ -43,5 +43,7 @@ public class InputHandler : MonoBehaviour
     {
         controller.Dig();
     }
+
+
     
 }
