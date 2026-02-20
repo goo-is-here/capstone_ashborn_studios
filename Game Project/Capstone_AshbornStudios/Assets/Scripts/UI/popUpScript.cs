@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class popUpScript : MonoBehaviour
 {
@@ -8,14 +9,14 @@ public class popUpScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        text = this.GetComponent<TMP_Text>();
         player = GameObject.FindGameObjectWithTag("Player");
+        text = GameObject.FindGameObjectWithTag("Interact").GetComponent<TMP_Text>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
         if (Vector3.Distance(player.transform.position, transform.position) > 5)
         {
             text.enabled = false;
@@ -29,5 +30,11 @@ public class popUpScript : MonoBehaviour
                 print("works");
             }
         }
+    }
+    IEnumerator flash()
+    {
+        text.outlineWidth = 1;
+        yield return new WaitForSeconds(1f);
+        text.outlineWidth = 0;
     }
 }
