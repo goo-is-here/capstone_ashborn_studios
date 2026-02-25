@@ -4,7 +4,7 @@ public class PlayerController: MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 5f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f;
+    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f;
 
     private float rotationY;
     private float verticalVelocity;
@@ -78,7 +78,6 @@ public class PlayerController: MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
         {
-            print("here");
             hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal);
         }
     }
