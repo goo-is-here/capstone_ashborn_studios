@@ -5,41 +5,42 @@ public class diggableBlock : MonoBehaviour
 {
     public float blockHealth = 100f;
     public float currHealth;
-    public Material test;
-    public Material outline;
-    Material outlineSize;
-    Material texture;
     Vector3 startPos;
     public float moveAmount;
     public float moveSpeed;
     GameObject player;
+    MaterialPropertyBlock outlineOn;
+    MaterialPropertyBlock outlineOff;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        texture = new Material(test);
-        this.GetComponent<MeshRenderer>().material = texture;
-        outlineSize = new Material(outline);
-        texture.color = Color.green;
+        outlineOn = new MaterialPropertyBlock();
+        outlineOn.SetFloat("_outlineScale", 1.01f);
+        outlineOff = new MaterialPropertyBlock();
+        outlineOff.SetFloat("_outlineScale", 0.0f);
         currHealth = blockHealth;
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        
     }
     private void Update()
     {
-        if(Vector3.Distance(player.transform.position, transform.position) > 5)
+        if(Vector3.Distance(player.transform.position, transform.position) > 10)
         {
-            outline.SetFloat("_outlineScale", 0);
+            this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOff, 1);
+            print(outlineOff.GetFloat("_outlineScale"));
         }
         else
         {
-            outline.SetFloat("_outlineScale", 1.05f);
+            this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOn, 1);
+            print(outlineOn.GetFloat("_outlineScale"));
         }
     }
     public void hitBlock(float damageVal)
     {
         currHealth -= damageVal;
-        texture.color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
-        StartCoroutine(shimmy());
+        //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
+        //StartCoroutine(shimmy());
     }
     IEnumerator shimmy()
     {
