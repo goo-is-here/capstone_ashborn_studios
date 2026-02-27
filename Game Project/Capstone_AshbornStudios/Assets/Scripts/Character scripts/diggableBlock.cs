@@ -28,12 +28,10 @@ public class diggableBlock : MonoBehaviour
         if(Vector3.Distance(player.transform.position, transform.position) > 10)
         {
             this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOff, 1);
-            print(outlineOff.GetFloat("_outlineScale"));
         }
         else
         {
             this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOn, 1);
-            print(outlineOn.GetFloat("_outlineScale"));
         }
     }
     public void hitBlock(float damageVal)
