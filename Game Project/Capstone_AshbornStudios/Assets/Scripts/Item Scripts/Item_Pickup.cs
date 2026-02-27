@@ -9,29 +9,25 @@ public class Item_Pickup : MonoBehaviour
 
     private void Reset()
     {
-        // Make sure this collider is a trigger
+        
         Collider col = GetComponent<Collider>();
         if (col != null) col.isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"TRIGGER ENTER: {name} touched by {other.name}");
 
-        if (!other.CompareTag("Player"))
+
+        if (other.CompareTag("Player") && item != null)
         {
-            Debug.Log("Not player, ignoring.");
-            return;
+
+            Destroy(gameObject);
         }
 
-        if (item == null)
-        {
-            Debug.LogError($"Pickup '{name}' has NO BaseItem assigned!", this);
-            return;
-        }
+       
 
         
-        Destroy(gameObject);
+       
     }
 
 
