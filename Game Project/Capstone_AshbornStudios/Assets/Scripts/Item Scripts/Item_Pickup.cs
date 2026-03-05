@@ -1,34 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 
 public class Item_Pickup : MonoBehaviour
 {
-    [Header("Assign in Inspector")]
-    public GameObject item;
-    public int amount = 1;
+    public Item item = new Item("Item Name", 1);
+    
 
-    private void Reset()
+    void OnTriggerEnter(Collider other)
     {
-        
-        Collider col = GetComponent<Collider>();
-        if (col != null) col.isTrigger = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-
-        if (other.CompareTag("Player") && item != null)
+        if (other.CompareTag("Player"))
         {
-
+            Inventory.Instance.AddItem(item);
             Destroy(gameObject);
         }
-
-       
-
-        
-       
     }
-
-
 }
