@@ -14,10 +14,10 @@ public class diggableBlock : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        outlineOn = new MaterialPropertyBlock();
+        /*outlineOn = new MaterialPropertyBlock();
         outlineOn.SetFloat("_outlineScale", 1.01f);
         outlineOff = new MaterialPropertyBlock();
-        outlineOff.SetFloat("_outlineScale", 0.0f);
+        outlineOff.SetFloat("_outlineScale", 0.0f);*/
         currHealth = blockHealth;
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,6 +25,7 @@ public class diggableBlock : MonoBehaviour
     }
     private void Update()
     {
+        /*
         if(Vector3.Distance(player.transform.position, transform.position) > 10)
         {
             this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOff, 1);
@@ -33,6 +34,7 @@ public class diggableBlock : MonoBehaviour
         {
             this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOn, 1);
         }
+        */
     }
     public void hitBlock(float damageVal)
     {

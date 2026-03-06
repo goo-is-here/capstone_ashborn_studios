@@ -5,6 +5,7 @@ public class vertexCheck : MonoBehaviour
     Vector3[] vertices;
     Mesh mesh;
     GameObject player;
+    public float digRange = 2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,25 +14,25 @@ public class vertexCheck : MonoBehaviour
         vertices = mesh.vertices;
         player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void moveVertices(Vector3 position)
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        print("oops");
+        for (int i = 0; i < vertices.Length; i++)
         {
-            int count = 0;
-            for(int i = 0; i < vertices.Length; i++)
+            if (Vector3.Distance(position, transform.TransformPoint(vertices[i])) < digRange)
             {
-                if (Vector3.Distance(player.transform.position, transform.TransformPoint(vertices[i])) < 1f)
-                {
-                    count++;
-                    vertices[i] += Vector3.up * Time.deltaTime;
-                }
 
+                vertices[i] += Vector3.up * Time.deltaTime;
+                /*
+                var direction = transform.TransformPoint(vertices[i]) - position;
+                //print("up" + (vertices[i] += Vector3.up));
+                print(direction.normalized * 0.01f);
+                vertices[i] += direction.normalized * 0.01f;
+                */
             }
-            mesh.vertices = vertices;
-            mesh.RecalculateBounds();
-            print(count);
+
         }
+        mesh.vertices = vertices;
+        mesh.RecalculateBounds();
     }
 }
