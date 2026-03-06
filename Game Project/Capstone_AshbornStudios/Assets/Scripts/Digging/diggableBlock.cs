@@ -43,45 +43,49 @@ public class diggableBlock : MonoBehaviour
     void spawnNeighbors()
     {
         size = bounds.bounds.size;
-        
-        //check left
         if (Vector3.Distance(transform.position, player.transform.position) < 50f)
         {
             Vector3 leftCheck = new Vector3(transform.position.x + size.x, transform.position.y, transform.position.z);
             Collider[] intersecting = Physics.OverlapSphere(leftCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[0] && intersecting.Length == 0)
             {
                 Instantiate(block, leftCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[0] = true;
             }
             Vector3 rightCheck = new Vector3(transform.position.x - size.x, transform.position.y, transform.position.z);
             intersecting = Physics.OverlapSphere(rightCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[1] && intersecting.Length == 0)
             {
                 Instantiate(block, rightCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[1] = true;
             }
             Vector3 frontCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z + size.z);
             intersecting = Physics.OverlapSphere(frontCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[2] && intersecting.Length == 0)
             {
                 Instantiate(block, frontCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[2] = true;
             }
             Vector3 backCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z - size.z);
             intersecting = Physics.OverlapSphere(backCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[3] && intersecting.Length == 0)
             {
                 Instantiate(block, backCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[3] = true;
             }
             Vector3 upCheck = new Vector3(transform.position.x, transform.position.y + size.y, transform.position.z);
             intersecting = Physics.OverlapSphere(upCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[4] && intersecting.Length == 0)
             {
                 Instantiate(block, upCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[4] = true;
             }
             Vector3 downCheck = new Vector3(transform.position.x, transform.position.y - size.y, transform.position.z);
             intersecting = Physics.OverlapSphere(downCheck, spawnCheck);
-            if (intersecting.Length == 0)
+            if (!spawnedBlocks[5] && intersecting.Length == 0)
             {
                 Instantiate(block, downCheck, Quaternion.identity, transform.parent);
+                spawnedBlocks[5] = true;
             }
         }
     }
@@ -101,9 +105,13 @@ public class diggableBlock : MonoBehaviour
     public void hitBlock(float damageVal, Vector3 position)
     {
         currHealth -= damageVal;
-        moveVertices(position);
+       // moveVertices(position);
         //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
         //StartCoroutine(shimmy());
+        if (currHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     IEnumerator shimmy()
     {
@@ -112,11 +120,9 @@ public class diggableBlock : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, new Vector3(startPos.x - moveAmount*2.5f, startPos.y , startPos.z), moveSpeed);
         yield return new WaitForSeconds(.1f);
         transform.position = Vector3.Lerp(transform.position, startPos, moveSpeed);
-        if(currHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
+    /*
     void moveVertices(Vector3 position)
     {
         print("oops");
@@ -131,11 +137,19 @@ public class diggableBlock : MonoBehaviour
                 //print("up" + (vertices[i] += Vector3.up));
                 print(direction.normalized * 0.01f);
                 vertices[i] += direction.normalized * 0.01f;
-                */
+                
             }
 
         }
         mesh.vertices = vertices;
         mesh.RecalculateBounds();
+    }
+    */
+    public void resetState()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            spawnedBlocks[i] = false;
+        }
     }
 }

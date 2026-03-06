@@ -12,11 +12,13 @@ public class PlayerController: MonoBehaviour
     private bool ground;
     float prevPos = 0;
     LayerMask blocksToDig;
+    GameObject cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     public void Move(Vector2 movementVector)
@@ -77,7 +79,7 @@ public class PlayerController: MonoBehaviour
     {
         print("here");
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
+        if(Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
         {
             hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
         }
