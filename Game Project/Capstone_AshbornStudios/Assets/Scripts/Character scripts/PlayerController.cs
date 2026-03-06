@@ -79,9 +79,7 @@ public class PlayerController: MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
         {
-            print("here");
-            //hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal);
-            hit.transform.gameObject.GetComponent<vertexCheck>().moveVertices(hit.point);
+            hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
         }
     }
 }
