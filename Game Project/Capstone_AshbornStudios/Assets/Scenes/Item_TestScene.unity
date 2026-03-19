@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Food
-    count: 1
+  itemName: Food
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!1 &58642645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,9 +1166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Ore
-    count: 1
+  itemName: Ore
+  itemIcon: {fileID: 0}
+  amount: 99
 --- !u!135 &655913459
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1265,7 +1265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &660015147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,9 +1400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Food
-    count: 1
+  itemName: Food
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!136 &778359109
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1530,9 +1530,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Food
-    count: 1
+  itemName: Food
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!136 &798955736
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1853,9 +1853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Food
-    count: 1
+  itemName: Food
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!136 &904312642
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2160,9 +2160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Dirt
-    count: 99
+  itemName: Dirt
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!65 &1087001826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2520,9 +2520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Dirt
-    count: 1
+  itemName: Dirt
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!1 &1614244882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,9 +2648,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  item:
-    name: Ore
-    count: 1
+  itemName: Ore
+  itemIcon: {fileID: 0}
+  amount: 1
 --- !u!1 &1837504654
 GameObject:
   m_ObjectHideFlags: 0

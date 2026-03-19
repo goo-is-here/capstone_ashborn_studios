@@ -16,34 +16,35 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item itemToAdd)
     {
-        bool itemExists = false;
+        int remaining = itemToAdd.count;
 
+        
         foreach (Item item in Items)
         {
-            if (item.name == itemToAdd.name)
+            if (item.name == itemToAdd.name && item.count < 99)
             {
-                int newCount = item.count + itemToAdd.count;
+                int spaceLeft = 99 - item.count;
 
-                if (newCount <= 99)
+                if (remaining <= spaceLeft)
                 {
-                    item.count = newCount;
+                    item.count += remaining;
+                    remaining = 0;
+                    break;
                 }
                 else
                 {
                     item.count = 99;
-                    int overflow = newCount - 99;
-
-                    Items.Add(new Item(itemToAdd.name, overflow));
+                    remaining -= spaceLeft;
                 }
-
-                itemExists = true;
-                break;
             }
         }
 
-        if (!itemExists)
+        
+        while (remaining > 0)
         {
-            Items.Add(itemToAdd);
+            int stackAmount = Mathf.Min(remaining, 99);
+            Items.Add(new Item(itemToAdd.name, itemToAdd.icon, stackAmount));
+            remaining -= stackAmount;
         }
 
         Debug.Log(itemToAdd.count + " " + itemToAdd.name + " added to inventory.");
