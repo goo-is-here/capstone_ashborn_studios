@@ -5,6 +5,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     public List<Item> Items = new List<Item>();
+    public InventoryUI inventoryUI;
 
     void Awake()
     {
@@ -48,5 +49,10 @@ public class Inventory : MonoBehaviour
         }
 
         Debug.Log(itemToAdd.count + " " + itemToAdd.name + " added to inventory.");
+
+        if (inventoryUI != null)
+        {
+            inventoryUI.UpdateInventoryUI(Items);
+        }
     }
 }
