@@ -1,38 +1,38 @@
 using UnityEngine;
-using UnityEditor;
 
 public class Item_Pickup : MonoBehaviour
 {
-    [Header("Item Data")]
     public string itemName = "Item Name";
     public Sprite itemIcon;
     public int amount = 1;
 
-    private void Reset()
+    [Header("What to destroy after pickup")]
+    public GameObject objectToDestroy;
+
+    private bool pickedUp = false;
+
+    private void Awake()
     {
-        Collider col = GetComponent<Collider>();
-        if (col != null)
-            col.isTrigger = true;
+        if (objectToDestroy == null)
+            objectToDestroy = gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (pickedUp) return;
+        if (!other.CompareTag("Player")) return;
+
+        if (Inventory.Instance == null)
         {
-            if (Inventory.Instance == null)
-            {
-                Debug.LogWarning("Inventory instance not found!");
-                return;
-            }
-
-            // Create item with correct constructor
-            Item newItem = new Item(itemName, itemIcon, amount);
-
-            // Add to inventory
-            Inventory.Instance.AddItem(newItem);
-
-            // Destroy pickup object
-            Destroy(gameObject);
+            Debug.LogWarning("Inventory instance not found!");
+            return;
         }
+
+        pickedUp = true;
+
+        Item newItem = new Item(itemName, itemIcon, amount);
+        Inventory.Instance.AddItem(newItem);
+
+        Destroy(objectToDestroy);
     }
 }

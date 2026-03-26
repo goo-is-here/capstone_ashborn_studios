@@ -19,7 +19,6 @@ public class Inventory : MonoBehaviour
     {
         int remaining = itemToAdd.count;
 
-        
         foreach (Item item in Items)
         {
             if (item.name == itemToAdd.name && item.count < 99)
@@ -40,7 +39,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        
         while (remaining > 0)
         {
             int stackAmount = Mathf.Min(remaining, 99);
