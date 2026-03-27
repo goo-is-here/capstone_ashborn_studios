@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class diggableBlock : MonoBehaviour
 {
@@ -21,11 +22,13 @@ public class diggableBlock : MonoBehaviour
     private MeshRenderer bounds;
     Vector3 size;
     public bool doSpawnNeighbors = true;
-    enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
+    public enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
+    TextMeshProUGUI text;
+    public int TESTINGONLY = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        blockType block = blockType.DIRTSTONE;
+        blockType block = blockType.CLEARSTONE;
         /*outlineOn = new MaterialPropertyBlock();
         outlineOn.SetFloat("_outlineScale", 1.01f);
         outlineOff = new MaterialPropertyBlock();
@@ -33,6 +36,8 @@ public class diggableBlock : MonoBehaviour
         
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        text = GameObject.FindGameObjectWithTag("textBox").GetComponent<TextMeshProUGUI>();
+        text.gameObject.SetActive(false);
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         mesh = meshFilter.mesh;
         vertices = mesh.vertices;
@@ -40,6 +45,28 @@ public class diggableBlock : MonoBehaviour
         if (doSpawnNeighbors)
         {
             spawnNeighbors();
+        }
+        switch (TESTINGONLY)
+        {
+            case 1:
+                block = blockType.CLAY;
+                break;
+            case 2:
+                block = blockType.CRUMBSTONE;
+                break;
+            case 3:
+                block = blockType.LEMSTONE;
+                break;
+            case 4:
+                block = blockType.ROOTSTONE;
+                break;
+            case 5:
+                block = blockType.GRAVESTONE;
+                break;
+            case 6:
+                block = blockType.CLEARSTONE;
+                break;
+
         }
         switch (block)
         {
@@ -149,6 +176,12 @@ public class diggableBlock : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else
+        {
+            text.gameObject.SetActive(true);
+            text.text = "Gah! I need an upgrade that does at least " + minDamage + " to break this!";
+            StartCoroutine(wait());
+        }
     }
     IEnumerator shimmy()
     {
@@ -158,6 +191,11 @@ public class diggableBlock : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         transform.position = Vector3.Lerp(transform.position, startPos, moveSpeed);
         
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(5f);
+        text.gameObject.SetActive(false);
     }
     /*
     void moveVertices(Vector3 position)
