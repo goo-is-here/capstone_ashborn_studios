@@ -23,7 +23,6 @@ public class diggableBlock : MonoBehaviour
     Vector3 size;
     public bool doSpawnNeighbors = true;
     public enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
-    TextMeshProUGUI text;
     public int TESTINGONLY = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,8 +35,6 @@ public class diggableBlock : MonoBehaviour
         
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
-        text = GameObject.FindGameObjectWithTag("textBox").GetComponent<TextMeshProUGUI>();
-        text.gameObject.SetActive(false);
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         mesh = meshFilter.mesh;
         vertices = mesh.vertices;
@@ -66,8 +63,12 @@ public class diggableBlock : MonoBehaviour
             case 6:
                 block = blockType.CLEARSTONE;
                 break;
+            default:
+                block = blockType.DIRTSTONE;
+                break;
 
         }
+        print(block);
         switch (block)
         {
             case blockType.DIRTSTONE:
@@ -165,7 +166,7 @@ public class diggableBlock : MonoBehaviour
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
-        if(damageVal > minDamage)
+        if(damageVal >= minDamage)
         {
             currHealth -= damageVal;
             // moveVertices(position);
@@ -178,9 +179,7 @@ public class diggableBlock : MonoBehaviour
         }
         else
         {
-            text.gameObject.SetActive(true);
-            text.text = "Gah! I need an upgrade that does at least " + minDamage + " to break this!";
-            StartCoroutine(wait());
+            player.GetComponent<PlayerController>().damageWeak(minDamage);
         }
     }
     IEnumerator shimmy()
@@ -191,11 +190,6 @@ public class diggableBlock : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         transform.position = Vector3.Lerp(transform.position, startPos, moveSpeed);
         
-    }
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(5f);
-        text.gameObject.SetActive(false);
     }
     /*
     void moveVertices(Vector3 position)

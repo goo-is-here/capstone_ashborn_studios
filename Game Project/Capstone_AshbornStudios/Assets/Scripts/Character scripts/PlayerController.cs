@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class PlayerController: MonoBehaviour
 {
@@ -13,9 +15,14 @@ public class PlayerController: MonoBehaviour
     float prevPos = 0;
     LayerMask blocksToDig;
     GameObject cam;
+
+    public TextMeshProUGUI text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        text = GameObject.FindGameObjectWithTag("textBox").GetComponent<TextMeshProUGUI>();
+        text.gameObject.SetActive(false);
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -77,11 +84,21 @@ public class PlayerController: MonoBehaviour
     }
     public void Dig()
     {
-        print("here");
         RaycastHit hit;
         if(Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
         {
             hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
         }
+    }
+    public void damageWeak(float minDamage)
+    {
+        text.gameObject.SetActive(true);
+        text.text = "Gah! I need an upgrade that does at least " + minDamage + " to break this!";
+        StartCoroutine(wait());
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(5f);
+        text.gameObject.SetActive(false);
     }
 }

@@ -866,6 +866,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1301317248}
     m_Modifications:
     - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 138180258}
+    - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: TESTINGONLY
       value: 6
       objectReference: {fileID: 0}
@@ -935,6 +939,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1301317248}
     m_Modifications:
+    - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 138180258}
     - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: TESTINGONLY
       value: 4
@@ -1386,6 +1394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1301317248}
     m_Modifications:
+    - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 138180258}
     - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: TESTINGONLY
       value: 2
@@ -2394,6 +2406,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: damageVal
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8782964976215757462, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -2414,6 +2430,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1301317248}
     m_Modifications:
+    - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 138180258}
     - target: {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: doSpawnNeighbors
       value: 0
