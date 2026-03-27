@@ -24,6 +24,7 @@ public class diggableBlock : MonoBehaviour
     public bool doSpawnNeighbors = true;
     public enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
     public int TESTINGONLY = 0;
+    PlayerController controller;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,6 +36,7 @@ public class diggableBlock : MonoBehaviour
         
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
+        controller = player.GetComponent<PlayerController>();
         MeshFilter meshFilter = GetComponent<MeshFilter>();
         mesh = meshFilter.mesh;
         vertices = mesh.vertices;
@@ -166,20 +168,27 @@ public class diggableBlock : MonoBehaviour
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
-        if(damageVal >= minDamage)
+        if(damageVal >= minDamage && controller.getDur() > 0)
         {
             currHealth -= damageVal;
             // moveVertices(position);
             //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
             //StartCoroutine(shimmy());
+            controller.durabilityChange(-1f);
             if (currHealth <= 0)
             {
                 Destroy(gameObject);
             }
         }
+        else if(controller.getDur() <= 0)
+        {
+            string print = "Gah! My tool is in need of repair!";
+            controller.printText(print);
+        }
         else
         {
-            player.GetComponent<PlayerController>().damageWeak(minDamage);
+            string print = "Gah! I need an upgrade that does " + minDamage + " to break this block!";
+            controller.printText(print);
         }
     }
     IEnumerator shimmy()

@@ -6,7 +6,7 @@ public class PlayerController: MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f;
+    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f, durability = 25f;
 
     private float rotationY;
     private float verticalVelocity;
@@ -90,11 +90,19 @@ public class PlayerController: MonoBehaviour
             hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
         }
     }
-    public void damageWeak(float minDamage)
+    public void printText(string textPrint)
     {
         text.gameObject.SetActive(true);
-        text.text = "Gah! I need an upgrade that does at least " + minDamage + " to break this!";
+        text.text = textPrint;
         StartCoroutine(wait());
+    }
+    public float getDur()
+    {
+        return durability;
+    }
+    public void durabilityChange(float dur)
+    {
+        durability += dur;
     }
     IEnumerator wait()
     {
