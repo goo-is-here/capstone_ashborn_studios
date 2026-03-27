@@ -9,6 +9,7 @@ public class diggableBlock : MonoBehaviour
     public GameObject block;
     public float digRange = 2f;
     public float blockHealth = 100f;
+    float minDamage;
     public float currHealth;
     Vector3 startPos;
     public float moveAmount;
@@ -20,14 +21,16 @@ public class diggableBlock : MonoBehaviour
     private MeshRenderer bounds;
     Vector3 size;
     public bool doSpawnNeighbors = true;
+    enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        blockType block = blockType.DIRTSTONE;
         /*outlineOn = new MaterialPropertyBlock();
         outlineOn.SetFloat("_outlineScale", 1.01f);
         outlineOff = new MaterialPropertyBlock();
         outlineOff.SetFloat("_outlineScale", 0.0f);*/
-        currHealth = blockHealth;
+        
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         MeshFilter meshFilter = GetComponent<MeshFilter>();
@@ -38,7 +41,38 @@ public class diggableBlock : MonoBehaviour
         {
             spawnNeighbors();
         }
-
+        switch (block)
+        {
+            case blockType.DIRTSTONE:
+                blockHealth = 100;
+                minDamage = 0;
+                break;
+            case blockType.CLAY:
+                blockHealth = 100;
+                minDamage = 0;
+                break;
+            case blockType.CRUMBSTONE:
+                blockHealth = 130;
+                minDamage = 10;
+                break;
+            case blockType.LEMSTONE:
+                blockHealth = 150;
+                minDamage = 20;
+                break;
+            case blockType.ROOTSTONE:
+                blockHealth = 200;
+                minDamage = 35;
+                break;
+            case blockType.GRAVESTONE:
+                blockHealth = 300;
+                minDamage = 50;
+                break;
+            case blockType.CLEARSTONE:
+                blockHealth = 600;
+                minDamage = 60;
+                break;
+        }
+         currHealth = blockHealth;
     }
     void spawnNeighbors()
     {
@@ -104,13 +138,16 @@ public class diggableBlock : MonoBehaviour
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
-        currHealth -= damageVal;
-       // moveVertices(position);
-        //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
-        //StartCoroutine(shimmy());
-        if (currHealth <= 0)
+        if(damageVal > minDamage)
         {
-            Destroy(gameObject);
+            currHealth -= damageVal;
+            // moveVertices(position);
+            //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
+            //StartCoroutine(shimmy());
+            if (currHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     IEnumerator shimmy()
