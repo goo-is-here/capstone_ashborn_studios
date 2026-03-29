@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             RemoveItemAtIndex(0, 1);
         }
@@ -42,6 +42,20 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             RemoveItemAtIndex(2, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            RemoveItemAtIndex(3, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            RemoveItemAtIndex(4, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            RemoveItemAtIndex(5, 1);
         }
     }
 
