@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
         while (remaining > 0)
         {
             int stackAmount = Mathf.Min(remaining, 99);
-            Items.Add(new Item(itemToAdd.name, itemToAdd.icon, stackAmount));
+            Items.Add(new Item(itemToAdd.name, itemToAdd.description, itemToAdd.icon, stackAmount));
             remaining -= stackAmount;
         }
 

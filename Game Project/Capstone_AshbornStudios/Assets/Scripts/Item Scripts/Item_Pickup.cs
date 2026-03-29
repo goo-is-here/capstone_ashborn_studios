@@ -3,6 +3,7 @@ using UnityEngine;
 public class Item_Pickup : MonoBehaviour
 {
     public string itemName = "Item Name";
+    public string itemdescription = "Item Description";
     public Sprite itemIcon;
     public int amount = 1;
 
@@ -30,7 +31,7 @@ public class Item_Pickup : MonoBehaviour
 
         pickedUp = true;
 
-        Item newItem = new Item(itemName, itemIcon, amount);
+        Item newItem = new Item(itemName, itemdescription, itemIcon, amount);
         Inventory.Instance.AddItem(newItem);
 
         Destroy(objectToDestroy);
