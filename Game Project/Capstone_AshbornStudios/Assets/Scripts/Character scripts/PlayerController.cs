@@ -13,8 +13,8 @@ public class PlayerController: MonoBehaviour
     public climbingTest test;
     private bool ground;
     float prevPos = 0;
-    LayerMask blocksToDig;
-    GameObject cam;
+    public LayerMask blocksToDig;
+    public GameObject cam;
 
     public TextMeshProUGUI text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +22,10 @@ public class PlayerController: MonoBehaviour
     {
 
         text = GameObject.FindGameObjectWithTag("textBox").GetComponent<TextMeshProUGUI>();
-        text.gameObject.SetActive(false);
+        if(text != null)
+        {
+            text.gameObject.SetActive(false);
+        }
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -92,9 +95,13 @@ public class PlayerController: MonoBehaviour
     }
     public void printText(string textPrint)
     {
-        text.gameObject.SetActive(true);
-        text.text = textPrint;
-        StartCoroutine(wait());
+        if(text != null)
+        {
+            text.gameObject.SetActive(true);
+            text.text = textPrint;
+            StartCoroutine(wait());
+        }
+        
     }
     public float getDur()
     {
@@ -107,6 +114,10 @@ public class PlayerController: MonoBehaviour
     IEnumerator wait()
     {
         yield return new WaitForSeconds(5f);
-        text.gameObject.SetActive(false);
+        if(text != null)
+        {
+            text.gameObject.SetActive(false);
+        }
+        
     }
 }
