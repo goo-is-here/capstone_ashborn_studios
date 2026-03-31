@@ -15,6 +15,10 @@ public class PlayerController: MonoBehaviour
     float prevPos = 0;
     public LayerMask blocksToDig;
     public GameObject cam;
+    public bool isMoving;
+    public bool isRunning;
+    public bool isJumping;
+    public bool isDigging;
 
     public TextMeshProUGUI text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,6 +38,8 @@ public class PlayerController: MonoBehaviour
     public void Move(Vector2 movementVector)
     {
         Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
+
+        isMoving = movementVector.magnitude > 0.1f;
 
         if (test.climbing && movementVector.y > 0)
         {
@@ -83,8 +89,14 @@ public class PlayerController: MonoBehaviour
         if (characterController.isGrounded)
         {
             verticalVelocity = jumpForce;
+            isJumping = true;
         }
     }
+    void Update()
+    {
+        isJumping = false;  
+    }
+
     public void Dig()
     {
         RaycastHit hit;
