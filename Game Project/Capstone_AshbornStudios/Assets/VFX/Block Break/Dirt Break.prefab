@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6265882370552711443}
   - component: {fileID: 1131879156562646344}
   m_Layer: 0
-  m_Name: Coal Break 1
+  m_Name: Dirt Break
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5715071294730724295}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.958, z: 2.763}
+  m_LocalPosition: {x: -2.10338, y: 2.135, z: -5.6048903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4842,7 +4842,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a17c66b331c177b44a9c67e4a3702a05, type: 2}
+  - {fileID: 2100000, guid: 36d6d6ec7187df547a7eedfc83f9e6c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4888,10 +4888,10 @@ ParticleSystemRenderer:
   m_VertexStreams: 00010304
   m_UseCustomTrailVertexStreams: 0
   m_TrailVertexStreams: 00010304
-  m_Mesh: {fileID: 3394895109658462151, guid: f49e20fb020aeb44382608c2416d4182, type: 3}
-  m_Mesh1: {fileID: -9022786734817180562, guid: ad21443e2b5821f46b6e85781ab14577, type: 3}
-  m_Mesh2: {fileID: 6327629356766401485, guid: 4f5d7fd6d615f594d91f95240731a78d, type: 3}
-  m_Mesh3: {fileID: -7116172307465246045, guid: 27c25462a5119634f92a12111608a451, type: 3}
+  m_Mesh: {fileID: 6740046721258509511, guid: 80e60c8d91c95724e99e95e57aace582, type: 3}
+  m_Mesh1: {fileID: -8803380487497534943, guid: 9b61fe91c93dd3a46b987cfe11c68592, type: 3}
+  m_Mesh2: {fileID: -8363632211982562968, guid: 1a6676229a2e426478d9bd04c9f0a09c, type: 3}
+  m_Mesh3: {fileID: -3685531243953098806, guid: 3281b897ab221404bb8f8e52b9a2e737, type: 3}
   m_MeshWeighting: 1
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
