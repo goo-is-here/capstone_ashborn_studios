@@ -21,11 +21,16 @@ public class PlayerController: MonoBehaviour
     public bool isDigging;
 
     public TextMeshProUGUI text;
+    GameObject textBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
-        text = GameObject.FindGameObjectWithTag("textBox").GetComponent<TextMeshProUGUI>();
+        textBox = GameObject.FindGameObjectWithTag("textBox");
+        if(textBox != null)
+        {
+            text = textBox.GetComponent<TextMeshProUGUI>();
+        }
         if(text != null)
         {
             text.gameObject.SetActive(false);
@@ -99,10 +104,17 @@ public class PlayerController: MonoBehaviour
 
     public void Dig()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
+        if(durability > 0)
         {
-            hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
+            {
+                hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
+            }
+        }
+        else
+        {
+            printText("Wait! I need to fix my tool!");
         }
     }
     public void printText(string textPrint)

@@ -25,6 +25,7 @@ public class diggableBlock : MonoBehaviour
     public enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
     public int TESTINGONLY = 0;
     PlayerController controller;
+    public GameObject particles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -177,6 +178,10 @@ public class diggableBlock : MonoBehaviour
             controller.durabilityChange(-1f);
             if (currHealth <= 0)
             {
+                this.GetComponent<MeshRenderer>().enabled = false;
+                this.GetComponent<BoxCollider>().enabled = false;
+                Vector3 pos = this.transform.position;
+                Instantiate(particles, pos, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
