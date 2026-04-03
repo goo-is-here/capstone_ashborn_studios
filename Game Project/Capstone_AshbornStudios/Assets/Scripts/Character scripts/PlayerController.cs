@@ -1,12 +1,13 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController: MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f, durability = 25f;
+    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f, durability = 25f, maxDurability = 25f;
 
     private float rotationY;
     private float verticalVelocity;
@@ -22,10 +23,12 @@ public class PlayerController: MonoBehaviour
 
     public TextMeshProUGUI text;
     GameObject textBox;
+    GameObject durabilityBar;
+    Image bar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        maxDurability = durability;
         textBox = GameObject.FindGameObjectWithTag("textBox");
         if(textBox != null)
         {
@@ -34,6 +37,11 @@ public class PlayerController: MonoBehaviour
         if(text != null)
         {
             text.gameObject.SetActive(false);
+        }
+        durabilityBar = GameObject.FindGameObjectWithTag("durability");
+        if(durabilityBar != null)
+        {
+            bar = durabilityBar.GetComponent<Image>();
         }
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
@@ -99,7 +107,11 @@ public class PlayerController: MonoBehaviour
     }
     void Update()
     {
-        isJumping = false;  
+        isJumping = false;
+        if(bar != null)
+        {
+            bar.fillAmount = durability / maxDurability;
+        }
     }
 
     public void Dig()
