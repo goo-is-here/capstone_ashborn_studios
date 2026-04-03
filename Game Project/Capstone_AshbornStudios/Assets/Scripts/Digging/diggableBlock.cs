@@ -26,6 +26,7 @@ public class diggableBlock : MonoBehaviour
     public int TESTINGONLY = 0;
     PlayerController controller;
     public GameObject particles;
+    public GameObject dropped;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -182,6 +183,7 @@ public class diggableBlock : MonoBehaviour
                 this.GetComponent<BoxCollider>().enabled = false;
                 Vector3 pos = this.transform.position;
                 Instantiate(particles, pos, Quaternion.identity);
+                Instantiate(dropped, pos, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
