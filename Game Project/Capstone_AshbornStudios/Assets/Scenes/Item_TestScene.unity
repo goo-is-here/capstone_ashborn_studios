@@ -1419,7 +1419,7 @@ MonoBehaviour:
   idleDrain: 0.2
   walkDrain: 1
   runDrain: 1.5
-  jumpDrain: 2
+  jumpDrain: 100
   digDrain: 1.5
   hungerBar: {fileID: 2032687047}
   lowHungerThreshold: 25
