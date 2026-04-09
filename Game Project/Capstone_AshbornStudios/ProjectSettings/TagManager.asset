@@ -8,6 +8,7 @@ TagManager:
   - Head
   - textBox
   - durability
+  - SetBlock
   layers:
   - Default
   - TransparentFX

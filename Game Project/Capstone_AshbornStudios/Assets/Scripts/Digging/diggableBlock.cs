@@ -46,6 +46,13 @@ public class diggableBlock : MonoBehaviour
         mesh = meshFilter.mesh;
         vertices = mesh.vertices;
         bounds = GetComponent<MeshRenderer>();
+        GameObject setterObject = GameObject.FindGameObjectWithTag("SetBlock");
+        if(setterObject != null)
+        {
+            setBlock setter = setterObject.GetComponent<setBlock>();
+            setter.setTheBlock(transform.position.y, bounds, this);
+        }
+        
         if (doSpawnNeighbors)
         {
             spawnNeighbors();
