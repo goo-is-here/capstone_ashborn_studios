@@ -18,7 +18,7 @@ public class diggableBlock : MonoBehaviour
     MaterialPropertyBlock outlineOn;
     MaterialPropertyBlock outlineOff;
     public float spawnCheck = .5f;
-    bool[] spawnedBlocks = { false, false, false, false, false, false };
+    public bool[] spawnedBlocks = { false, false, false, false, false, false };
     private MeshRenderer bounds;
     Vector3 size;
     public bool doSpawnNeighbors = true;
@@ -35,7 +35,10 @@ public class diggableBlock : MonoBehaviour
         outlineOn.SetFloat("_outlineScale", 1.01f);
         outlineOff = new MaterialPropertyBlock();
         outlineOff.SetFloat("_outlineScale", 0.0f);*/
-        
+        for(int i = 0; i < 6; i++)
+        {
+            spawnedBlocks[i] = false;
+        }
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = player.GetComponent<PlayerController>();
@@ -72,7 +75,6 @@ public class diggableBlock : MonoBehaviour
                 break;
 
         }
-        print(block);
         switch (block)
         {
             case blockType.DIRTSTONE:
@@ -109,64 +111,76 @@ public class diggableBlock : MonoBehaviour
     void spawnNeighbors()
     {
         size = bounds.bounds.size;
-        if (Vector3.Distance(transform.position, player.transform.position) < 50f)
+        if (Vector3.Distance(transform.position, player.transform.position) < 20f)
         {
             Vector3 leftCheck = new Vector3(transform.position.x + size.x, transform.position.y, transform.position.z);
             Collider[] intersecting = Physics.OverlapSphere(leftCheck, spawnCheck);
-            if (!spawnedBlocks[0] && intersecting.Length == 0)
+            if (!spawnedBlocks[0])
             {
-                Instantiate(block, leftCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, leftCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[0] = true;
             }
             Vector3 rightCheck = new Vector3(transform.position.x - size.x, transform.position.y, transform.position.z);
             intersecting = Physics.OverlapSphere(rightCheck, spawnCheck);
-            if (!spawnedBlocks[1] && intersecting.Length == 0)
+            if (!spawnedBlocks[1])
             {
-                Instantiate(block, rightCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, rightCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[1] = true;
             }
             Vector3 frontCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z + size.z);
             intersecting = Physics.OverlapSphere(frontCheck, spawnCheck);
-            if (!spawnedBlocks[2] && intersecting.Length == 0)
+            if (!spawnedBlocks[2])
             {
-                Instantiate(block, frontCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, frontCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[2] = true;
             }
             Vector3 backCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z - size.z);
             intersecting = Physics.OverlapSphere(backCheck, spawnCheck);
-            if (!spawnedBlocks[3] && intersecting.Length == 0)
+            if (!spawnedBlocks[3])
             {
-                Instantiate(block, backCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, backCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[3] = true;
             }
             Vector3 upCheck = new Vector3(transform.position.x, transform.position.y + size.y, transform.position.z);
             intersecting = Physics.OverlapSphere(upCheck, spawnCheck);
-            if (!spawnedBlocks[4] && intersecting.Length == 0)
+            if (!spawnedBlocks[4])
             {
-                Instantiate(block, upCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, upCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[4] = true;
             }
             Vector3 downCheck = new Vector3(transform.position.x, transform.position.y - size.y, transform.position.z);
             intersecting = Physics.OverlapSphere(downCheck, spawnCheck);
-            if (!spawnedBlocks[5] && intersecting.Length == 0)
+            if (!spawnedBlocks[5])
             {
-                Instantiate(block, downCheck, Quaternion.identity, transform.parent);
+                if (intersecting.Length == 0)
+                {
+                    Instantiate(block, downCheck, Quaternion.identity, transform.parent);
+                }
                 spawnedBlocks[5] = true;
             }
         }
     }
     private void Update()
     {
-        /*
-        if(Vector3.Distance(player.transform.position, transform.position) > 10)
+        if(Vector3.Distance(player.transform.position, transform.position) < 20)
         {
-            this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOff, 1);
+            spawnNeighbors();
         }
-        else
-        {
-            this.GetComponent<MeshRenderer>().SetPropertyBlock(outlineOn, 1);
-        }
-        */
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
@@ -182,8 +196,10 @@ public class diggableBlock : MonoBehaviour
                 this.GetComponent<MeshRenderer>().enabled = false;
                 this.GetComponent<BoxCollider>().enabled = false;
                 Vector3 pos = this.transform.position;
-                Instantiate(particles, pos, Quaternion.identity);
-                Instantiate(dropped, pos, Quaternion.identity);
+                GameObject part = Instantiate(particles, pos, Quaternion.identity);
+                GameObject drop = Instantiate(dropped, pos, Quaternion.identity);
+                Destroy(part, 3f);
+                Destroy(drop, 10f);
                 Destroy(gameObject);
             }
         }
