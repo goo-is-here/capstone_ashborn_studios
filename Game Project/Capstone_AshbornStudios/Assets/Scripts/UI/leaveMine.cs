@@ -15,7 +15,8 @@ public class leaveMine : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(player.transform.position, transform.position) < 5)
         {
             print("hi");
-            SceneManager.LoadScene(sceneIndex);
+            Application.Quit();
+            //SceneManager.LoadScene(sceneIndex);
         }
     }
 }

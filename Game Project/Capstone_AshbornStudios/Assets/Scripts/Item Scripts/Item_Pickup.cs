@@ -7,6 +7,7 @@ public class Item_Pickup : MonoBehaviour
     public Sprite itemIcon;
     public int amount = 1;
     public GameObject worldPrefab;
+    GameObject player;
 
     [Header("What to destroy after pickup")]
     public GameObject objectToDestroy;
@@ -18,7 +19,6 @@ public class Item_Pickup : MonoBehaviour
         if (objectToDestroy == null)
             objectToDestroy = gameObject;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (pickedUp) return;

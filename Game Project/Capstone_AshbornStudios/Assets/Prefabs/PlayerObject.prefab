@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2487784127125196563}
   - component: {fileID: 7956555298906818836}
   - component: {fileID: 2208720410419595465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8782964976215757462}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Head
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1328068235620109694}
   - component: {fileID: 8511496000363268880}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 1551206718656299589}
   - component: {fileID: 8698987365850032342}
   - component: {fileID: 2687772467895679831}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671749090078448131}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3683762419722227606}
   - component: {fileID: 7874816983317726265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
