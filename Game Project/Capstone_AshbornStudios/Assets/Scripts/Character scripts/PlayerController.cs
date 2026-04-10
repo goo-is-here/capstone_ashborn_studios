@@ -9,7 +9,7 @@ public class PlayerController: MonoBehaviour
 
     public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f, durability = 25f, maxDurability = 25f;
 
-    private float rotationY;
+    private float rotationY, rotationX;
     private float verticalVelocity;
     public climbingTest test;
     private bool ground;
@@ -77,8 +77,11 @@ public class PlayerController: MonoBehaviour
     }
     public void Rotate(Vector2 rotationVector)
     {
-        rotationY += rotationVector.x * rotationSpeed * Time.deltaTime;
+        
+        rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
+        rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
         transform.localRotation = Quaternion.Euler(0, rotationY, 0);
+        cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);
     }
     private void checkGround()
     {
