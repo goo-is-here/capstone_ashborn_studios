@@ -51,9 +51,6 @@ public class PlayerController: MonoBehaviour
     public void Move(Vector2 movementVector)
     {
         Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
-
-        isMoving = movementVector.magnitude > 0.1f;
-
         if (test.climbing && movementVector.y > 0)
         {
             move = move * climbMoveSpeed * Time.deltaTime;
@@ -63,7 +60,6 @@ public class PlayerController: MonoBehaviour
         }
         else
         {
-            
             move = move * movementSpeed * Time.deltaTime;
             characterController.Move(move);
             if (ground)
@@ -76,6 +72,7 @@ public class PlayerController: MonoBehaviour
             }
             characterController.Move(new Vector3(0, Mathf.Clamp(verticalVelocity, -15f, 15f), 0) * Time.deltaTime);
         }
+        
         
     }
     public void Rotate(Vector2 rotationVector)

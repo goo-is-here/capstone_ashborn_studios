@@ -70,7 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_Name
-      value: Dirtstone drop
+      value: CrumstoneDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 285122447725302497, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
@@ -84,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1122110093169719941}
+    - targetCorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 465721907453039169}
   m_SourcePrefab: {fileID: 100100000, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
 --- !u!1 &208503018311969847 stripped
 GameObject:
@@ -114,4 +121,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80e7e5188bba9c468390822477a96b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  despawnTime: 15
+--- !u!114 &465721907453039169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208503018311969847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
+  itemName: Crumstone
+  itemdescription: The weakest of the stone
+  itemIcon: {fileID: 21300000, guid: 0223f62a8e59ff9408f329f103449328, type: 3}
+  amount: 1
+  worldPrefab: {fileID: 208503018311969847}
+  objectToDestroy: {fileID: 0}

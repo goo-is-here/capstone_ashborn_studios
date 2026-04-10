@@ -8,15 +8,11 @@ public class diggableBlock : MonoBehaviour
     Mesh mesh;
     GameObject player;
     public GameObject block;
-    public float digRange = 2f;
-    public float blockHealth = 100f;
+    float digRange = 2f;
+    float blockHealth = 100f;
     float minDamage;
     public float currHealth;
     Vector3 startPos;
-    public float moveAmount;
-    public float moveSpeed;
-    MaterialPropertyBlock outlineOn;
-    MaterialPropertyBlock outlineOff;
     public float spawnCheck = .5f;
     public bool[] spawnedBlocks = { false, false, false, false, false, false };
     private MeshRenderer bounds;
@@ -25,12 +21,13 @@ public class diggableBlock : MonoBehaviour
     public enum blockType {DIRTSTONE, CLAY, CRUMBSTONE, LEMSTONE, ROOTSTONE, GRAVESTONE, CLEARSTONE};
     public int TESTINGONLY = 0;
     PlayerController controller;
-    public GameObject particles;
-    public GameObject dropped;
+    GameObject particles;
+    GameObject dropped;
+    blockType blockEnum;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        blockType block = blockType.CLEARSTONE;
+        blockEnum = blockType.CLEARSTONE;
         /*outlineOn = new MaterialPropertyBlock();
         outlineOn.SetFloat("_outlineScale", 1.01f);
         outlineOff = new MaterialPropertyBlock();
@@ -56,62 +53,6 @@ public class diggableBlock : MonoBehaviour
         if (doSpawnNeighbors)
         {
             spawnNeighbors();
-        }
-        switch (TESTINGONLY)
-        {
-            case 1:
-                block = blockType.CLAY;
-                break;
-            case 2:
-                block = blockType.CRUMBSTONE;
-                break;
-            case 3:
-                block = blockType.LEMSTONE;
-                break;
-            case 4:
-                block = blockType.ROOTSTONE;
-                break;
-            case 5:
-                block = blockType.GRAVESTONE;
-                break;
-            case 6:
-                block = blockType.CLEARSTONE;
-                break;
-            default:
-                block = blockType.DIRTSTONE;
-                break;
-
-        }
-        switch (block)
-        {
-            case blockType.DIRTSTONE:
-                blockHealth = 100;
-                minDamage = 0;
-                break;
-            case blockType.CLAY:
-                blockHealth = 100;
-                minDamage = 0;
-                break;
-            case blockType.CRUMBSTONE:
-                blockHealth = 130;
-                minDamage = 10;
-                break;
-            case blockType.LEMSTONE:
-                blockHealth = 150;
-                minDamage = 20;
-                break;
-            case blockType.ROOTSTONE:
-                blockHealth = 200;
-                minDamage = 35;
-                break;
-            case blockType.GRAVESTONE:
-                blockHealth = 300;
-                minDamage = 50;
-                break;
-            case blockType.CLEARSTONE:
-                blockHealth = 600;
-                minDamage = 60;
-                break;
         }
          currHealth = blockHealth;
     }
@@ -203,8 +144,8 @@ public class diggableBlock : MonoBehaviour
                 this.GetComponent<MeshRenderer>().enabled = false;
                 this.GetComponent<BoxCollider>().enabled = false;
                 Vector3 pos = this.transform.position;
-                GameObject part = Instantiate(particles, pos, Quaternion.identity);
-                GameObject drop = Instantiate(dropped, pos, Quaternion.identity);
+                GameObject part = Instantiate(particles, pos, Quaternion.identity, transform.parent);
+                GameObject drop = Instantiate(dropped, pos, Quaternion.identity, transform.parent);
                 Destroy(part, 3f);
                 Destroy(drop, 10f);
                 Destroy(gameObject);
@@ -221,43 +162,19 @@ public class diggableBlock : MonoBehaviour
             controller.printText(print);
         }
     }
-    IEnumerator shimmy()
-    {
-        transform.position = Vector3.Lerp(startPos, new Vector3(startPos.x + moveAmount, startPos.y, startPos.z), moveSpeed);
-        yield return new WaitForSeconds(.1f);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(startPos.x - moveAmount*2.5f, startPos.y , startPos.z), moveSpeed);
-        yield return new WaitForSeconds(.1f);
-        transform.position = Vector3.Lerp(transform.position, startPos, moveSpeed);
-        
-    }
-    /*
-    void moveVertices(Vector3 position)
-    {
-        print("oops");
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            if (Vector3.Distance(position, transform.TransformPoint(vertices[i])) < digRange)
-            {
-
-                vertices[i] += Vector3.up * Time.deltaTime;
-                /*
-                var direction = transform.TransformPoint(vertices[i]) - position;
-                //print("up" + (vertices[i] += Vector3.up));
-                print(direction.normalized * 0.01f);
-                vertices[i] += direction.normalized * 0.01f;
-                
-            }
-
-        }
-        mesh.vertices = vertices;
-        mesh.RecalculateBounds();
-    }
-    */
     public void resetState()
     {
         for(int i = 0; i < 6; i++)
         {
             spawnedBlocks[i] = false;
         }
+    }
+    public void setBlock(blockType enu, float health, float minDam, GameObject drop, GameObject part)
+    {
+        blockEnum = enu;
+        blockHealth = health;
+        minDamage = minDam;
+        dropped = drop;
+        particles = part;
     }
 }

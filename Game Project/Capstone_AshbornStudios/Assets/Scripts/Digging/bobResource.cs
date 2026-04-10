@@ -10,8 +10,8 @@ public class bobResource : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
-        lowPos = new Vector3(startPos.x, startPos.y - .25f, startPos.z);
-        highPos = new Vector3(startPos.x, startPos.y + .25f, startPos.z);
+        lowPos = new Vector3(startPos.x, startPos.y - .6f, startPos.z);
+        highPos = new Vector3(startPos.x, startPos.y - .85f, startPos.z);
         StartCoroutine(rotate());
         StartCoroutine(lower());
     }

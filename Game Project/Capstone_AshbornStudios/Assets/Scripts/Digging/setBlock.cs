@@ -2,8 +2,26 @@ using UnityEngine;
 
 public class setBlock : MonoBehaviour
 {
-    public Material dirt, crumStone;
+    public Material crumStone, rootStone;
     public float dirtTransStart = -10f, dirtTransMid = -20f, dirtTransEnd = -30f;
+    [Header("Crumstone Variables")]
+    [SerializeField]
+    float crumHealth = 100f;
+    [SerializeField]
+    float crumMinDamage = 10f;
+    [SerializeField]
+    GameObject crumDrop;
+    [SerializeField]
+    GameObject crumParticles;
+    [Header("Rootstone Variables")]
+    [SerializeField]
+    float rootHealth = 150f;
+    [SerializeField]
+    float rootMinDamage = 15f;
+    [SerializeField]
+    GameObject rootDrop;
+    [SerializeField]
+    GameObject rootParticles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,10 +36,10 @@ public class setBlock : MonoBehaviour
     public void setTheBlock(float yCoord, MeshRenderer mesh, diggableBlock digScript)
     {
         Material newMat;
-        print(yCoord);
         if (yCoord >= dirtTransStart)
         {
-            newMat = dirt;
+            newMat = crumStone;
+            setCrumStone(digScript);
         }
         else if(yCoord >= dirtTransMid)
         {
@@ -30,11 +48,13 @@ public class setBlock : MonoBehaviour
             float hit = Random.Range(0f, 100f);
             if(chance <= hit)
             {
-                newMat = dirt;
+                newMat = crumStone;
+                setCrumStone(digScript);
             }
             else
             {
-                newMat = crumStone;
+                newMat = rootStone;
+                setRootStone(digScript);
             }
         }
         else if(yCoord >= dirtTransEnd)
@@ -44,17 +64,28 @@ public class setBlock : MonoBehaviour
             float hit = Random.Range(0f, 100f);
             if (chance <= hit)
             {
-                newMat = crumStone;
+                newMat = rootStone;
+                setRootStone(digScript);
             }
             else
             {
-                newMat = dirt;
+                newMat = crumStone;
+                setCrumStone(digScript);
             }
         }
         else
         {
-            newMat = crumStone;
+            newMat = rootStone;
+            setRootStone(digScript);
         }
         mesh.material = newMat;
+    }
+    void setCrumStone(diggableBlock digScript)
+    {
+        digScript.setBlock(diggableBlock.blockType.CRUMBSTONE, crumHealth, crumMinDamage, crumDrop, crumParticles);
+    }
+    void setRootStone(diggableBlock digScript)
+    {
+        digScript.setBlock(diggableBlock.blockType.ROOTSTONE, rootHealth, rootMinDamage, rootDrop, rootParticles);
     }
 }
