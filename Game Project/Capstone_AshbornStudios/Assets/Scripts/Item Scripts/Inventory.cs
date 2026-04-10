@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Size")]
     public int slotCount = 14; // 6 hotbar + 8 backpack
 
+    [Header("Hotbar Selection")]
+    public int selectedSlotIndex = 0;
+
     private void Awake()
     {
         if (Instance != null)
@@ -29,34 +32,62 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        HandleHotbarSelection();
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            RemoveItemAtIndex(0, 1);
+            UseSelectedItem();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            RemoveItemAtIndex(1, 1);
+            RemoveSelectedItem();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            RemoveItemAtIndex(2, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            RemoveItemAtIndex(3, 1);
-        }
+    void HandleHotbarSelection()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) selectedSlotIndex = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) selectedSlotIndex = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) selectedSlotIndex = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) selectedSlotIndex = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha5)) selectedSlotIndex = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha6)) selectedSlotIndex = 5;
+    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            RemoveItemAtIndex(4, 1);
-        }
+    void UseSelectedItem()
+    {
+        Item selectedItem = GetItemAtIndex(selectedSlotIndex);
 
-        if (Input.GetKeyDown(KeyCode.Alpha6))
+        if (selectedItem == null)
+            return;
+
+        Food_Item foodItem = selectedItem as Food_Item;
+
+        if (foodItem != null)
         {
-            RemoveItemAtIndex(5, 1);
+            HungerScript hungerScript = FindFirstObjectByType<HungerScript>();
+
+            if (hungerScript != null)
+            {
+                hungerScript.RestoreHunger(foodItem.hungerRestoreAmount);
+                RemoveItemAtIndex(selectedSlotIndex, 1);
+                Debug.Log("Used food: " + foodItem.name);
+            }
+            else
+            {
+                Debug.LogWarning("No HungerScript found in the scene.");
+            }
         }
+        else
+        {
+            Debug.Log("Selected item is not usable.");
+        }
+    }
+
+    void RemoveSelectedItem()
+    {
+        RemoveItemAtIndex(selectedSlotIndex, 1);
     }
 
     public void AddItem(Item itemToAdd)
@@ -90,7 +121,7 @@ public class Inventory : MonoBehaviour
             if (Items[i] == null)
             {
                 int stackAmount = Mathf.Min(remaining, 99);
-                Items[i] = new Item(itemToAdd.name, itemToAdd.description, itemToAdd.icon, stackAmount, itemToAdd.worldPrefab);
+                Items[i] = CopyItem(itemToAdd, stackAmount);
                 remaining -= stackAmount;
             }
         }
@@ -101,6 +132,31 @@ public class Inventory : MonoBehaviour
         }
 
         Debug.Log(itemToAdd.count + " " + itemToAdd.name + " added to inventory.");
+    }
+
+    Item CopyItem(Item source, int count)
+    {
+        Food_Item foodSource = source as Food_Item;
+
+        if (foodSource != null)
+        {
+            return new Food_Item(
+                foodSource.name,
+                foodSource.description,
+                foodSource.icon,
+                count,
+                foodSource.worldPrefab,
+                foodSource.hungerRestoreAmount
+            );
+        }
+
+        return new Item(
+            source.name,
+            source.description,
+            source.icon,
+            count,
+            source.worldPrefab
+        );
     }
 
     public Item GetItemAtIndex(int index)

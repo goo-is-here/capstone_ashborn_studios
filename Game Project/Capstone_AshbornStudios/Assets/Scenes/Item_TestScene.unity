@@ -1402,6 +1402,7 @@ MonoBehaviour:
   Items: []
   inventoryUI: {fileID: 660015151}
   slotCount: 14
+  selectedSlotIndex: 0
 --- !u!114 &531277560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,7 +2123,7 @@ GameObject:
   - component: {fileID: 778359111}
   - component: {fileID: 778359110}
   - component: {fileID: 778359109}
-  - component: {fileID: 778359108}
+  - component: {fileID: 778359112}
   m_Layer: 0
   m_Name: Food (3)
   m_TagString: Interact
@@ -2145,24 +2146,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 278056180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &778359108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778359106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Food
-  itemdescription: Mmm Bread
-  itemIcon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
-  amount: 1
-  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
-  objectToDestroy: {fileID: 778359106}
 --- !u!136 &778359109
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2243,6 +2226,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778359106}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &778359112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778359106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb821548e4a7f34e9e86e44062e4145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food_Script
+  itemName: Food
+  description: Mmm Bread
+  icon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
+  count: 99
+  hungerRestoreAmount: 25
+  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+  objectToDestroy: {fileID: 778359106}
 --- !u!1 &798955733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,7 +2257,7 @@ GameObject:
   - component: {fileID: 798955738}
   - component: {fileID: 798955737}
   - component: {fileID: 798955736}
-  - component: {fileID: 798955735}
+  - component: {fileID: 798955739}
   m_Layer: 0
   m_Name: Food (1)
   m_TagString: Interact
@@ -2278,24 +2280,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 278056180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &798955735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798955733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Food
-  itemdescription: Mmm Bread
-  itemIcon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
-  amount: 99
-  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
-  objectToDestroy: {fileID: 798955733}
 --- !u!136 &798955736
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2376,6 +2360,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798955733}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &798955739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798955733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb821548e4a7f34e9e86e44062e4145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food_Script
+  itemName: Food
+  description: Mmm Bread
+  icon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
+  count: 99
+  hungerRestoreAmount: 25
+  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+  objectToDestroy: {fileID: 798955733}
 --- !u!1 &810763826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,7 +3168,7 @@ GameObject:
   - component: {fileID: 904312644}
   - component: {fileID: 904312643}
   - component: {fileID: 904312642}
-  - component: {fileID: 904312641}
+  - component: {fileID: 904312645}
   m_Layer: 0
   m_Name: Food (2)
   m_TagString: Interact
@@ -3188,24 +3191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 278056180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &904312641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904312639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Food
-  itemdescription: Mmm Bread
-  itemIcon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
-  amount: 1
-  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
-  objectToDestroy: {fileID: 904312639}
 --- !u!136 &904312642
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3286,6 +3271,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904312639}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &904312645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904312639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb821548e4a7f34e9e86e44062e4145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food_Script
+  itemName: Food
+  description: Mmm Bread
+  icon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
+  count: 99
+  hungerRestoreAmount: 25
+  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+  objectToDestroy: {fileID: 904312639}
 --- !u!1 &1019969976
 GameObject:
   m_ObjectHideFlags: 0
@@ -6472,6 +6476,30 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &2135800088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+  m_PrefabInstance: {fileID: 6909641089258559098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2135800093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135800088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb821548e4a7f34e9e86e44062e4145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Food_Script
+  itemName: Food
+  description: Mmm Bread
+  icon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
+  count: 99
+  hungerRestoreAmount: 25
+  worldPrefab: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+  objectToDestroy: {fileID: 2135800088}
 --- !u!1001 &1897147032268401415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6581,10 +6609,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Food
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3463143154884336930, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7995895604474098842, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2135800093}
   m_SourcePrefab: {fileID: 100100000, guid: 3af5b74e4d0ab76498c3a99484284f88, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

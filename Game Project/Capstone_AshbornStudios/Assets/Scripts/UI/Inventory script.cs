@@ -14,6 +14,8 @@ public class InventoryUI : MonoBehaviour
 
     public List<UISlot> slots = new List<UISlot>();
 
+   
+
     public void UpdateInventoryUI(List<Item> items)
     {
         for (int i = 0; i < slots.Count; i++)
@@ -48,4 +50,6 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+
+
 }

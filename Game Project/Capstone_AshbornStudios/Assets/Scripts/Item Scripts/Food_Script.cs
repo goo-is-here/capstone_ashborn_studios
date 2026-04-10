@@ -2,15 +2,56 @@ using UnityEngine;
 
 public class Food_Script : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Item Data")]
+    public string itemName = "Food";
+    public string description = "Restores hunger";
+    public Sprite icon;
+    public int count = 1;
+    public float hungerRestoreAmount = 25f;
+    public GameObject worldPrefab;
+
+    [Header("What to destroy after pickup")]
+    public GameObject objectToDestroy;
+
+    private bool pickedUp = false;
+
+    private void Awake()
     {
-        
+        if (objectToDestroy == null)
+            objectToDestroy = gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (pickedUp) return;
+        if (!other.CompareTag("Player")) return;
+
+        Pickup();
+    }
+
+    public void Pickup()
+    {
+        if (pickedUp) return;
+
+        if (Inventory.Instance == null)
+        {
+            Debug.LogWarning("Inventory.Instance is null.");
+            return;
+        }
+
+        pickedUp = true;
+
+        Food_Item food = new Food_Item(
+            itemName,
+            description,
+            icon,
+            count,
+            worldPrefab,
+            hungerRestoreAmount
+        );
+
+        Inventory.Instance.AddItem(food);
+
+        Destroy(objectToDestroy);
     }
 }

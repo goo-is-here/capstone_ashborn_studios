@@ -103,4 +103,11 @@ public class HungerScript : MonoBehaviour
             currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
         }
     }
+
+    public void RestoreHunger(float amount)
+    {
+        currentHunger += amount;
+        currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
+    }
+
 }

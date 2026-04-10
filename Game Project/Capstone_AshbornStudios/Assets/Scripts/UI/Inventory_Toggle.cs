@@ -23,6 +23,7 @@ public class Inventory_Toggle : MonoBehaviour
         }
     }
 
+
     public void ToggleInventory()
     {
         isOpen = !isOpen;
