@@ -25,10 +25,6 @@ public class popUpScript : MonoBehaviour
         else
         {
             text.enabled = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                print("works");
-            }
         }
     }
     IEnumerator flash()

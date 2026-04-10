@@ -5,6 +5,7 @@ public class climbingTest : MonoBehaviour
     RaycastHit feetClimb;
     public bool climbing = false;
     public float lengthOfClimb;
+    public LayerMask SafeZone;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,9 +14,9 @@ public class climbingTest : MonoBehaviour
     }
     private void Update()
     {
-       if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out feetClimb, 1f)){
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out feetClimb, 1f, ~SafeZone)){
             climbing = true;
-       }
+        }
         else
         {
             climbing = false;
