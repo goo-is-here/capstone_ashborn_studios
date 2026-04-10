@@ -16,10 +16,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2551273634457906938, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: ebaece6d33eb8fa4f9600531bd69becd, type: 2}
     - target: {fileID: 3241610055833021279, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31531134
@@ -74,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_Name
-      value: RootstoneDrop
+      value: CrumstoneDrop
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_Layer
@@ -137,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Rootstone
-  itemdescription: The roots have reinforced these
-  itemIcon: {fileID: 21300000, guid: de68ab8a9993a814f87a7333d3efe94d, type: 3}
+  itemName: Crumstone
+  itemdescription: The weakest of the stone
+  itemIcon: {fileID: 21300000, guid: 0223f62a8e59ff9408f329f103449328, type: 3}
   amount: 1
   worldPrefab: {fileID: 208503018311969847}
   objectToDestroy: {fileID: 0}
