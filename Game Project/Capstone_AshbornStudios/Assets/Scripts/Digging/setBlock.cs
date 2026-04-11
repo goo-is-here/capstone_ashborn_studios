@@ -3,89 +3,82 @@ using UnityEngine;
 public class setBlock : MonoBehaviour
 {
     public Material crumStone, rootStone;
-    public float dirtTransStart = -10f, dirtTransMid = -20f, dirtTransEnd = -30f;
-    [Header("Crumstone Variables")]
-    [SerializeField]
-    float crumHealth = 100f;
-    [SerializeField]
-    float crumMinDamage = 10f;
-    [SerializeField]
-    GameObject crumDrop;
-    [SerializeField]
-    GameObject crumParticles;
-    [Header("Rootstone Variables")]
-    [SerializeField]
-    float rootHealth = 150f;
-    [SerializeField]
-    float rootMinDamage = 15f;
-    [SerializeField]
-    GameObject rootDrop;
-    [SerializeField]
-    GameObject rootParticles;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float dirtTransStart = -10f, dirtTransEnd = -30f;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Cavern Blocks Information")]
+    [SerializeField]
+    BlockObject[] cavernBlocks;
+    [SerializeField]
+    float[] cavernSpawnRates;
+
+    [Header("Lush Basin Blocks Information")]
+    [SerializeField]
+    BlockObject[] lushBlocks;
+    [SerializeField]
+    float[] lushSpawnRates;
+
+    public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
-        
-    }
-    public void setTheBlock(float yCoord, MeshRenderer mesh, diggableBlock digScript)
-    {
-        Material newMat;
-        if (yCoord >= dirtTransStart)
+        int biomeSelect = Random.Range(0, 1);
+        float noise = calculateNoise(position);
+        if(noise <= .1f)
         {
-            newMat = crumStone;
-            setCrumStone(digScript);
+            spawnBlock.setAir();
         }
-        else if(yCoord >= dirtTransMid)
+        if(position.y > dirtTransStart)
         {
-            float denominator = dirtTransMid - dirtTransStart;
-            float chance = (((yCoord - dirtTransStart) / denominator) / 2) * 100;
-            float hit = Random.Range(0f, 100f);
-            if(chance <= hit)
+            cavernBiomeSet(noise, mesh, spawnBlock, block);
+        }
+        else if(position.y > dirtTransEnd)
+        {
+            if(biomeSelect == 0)
             {
-                newMat = crumStone;
-                setCrumStone(digScript);
+                cavernBiomeSet(noise, mesh, spawnBlock, block);
             }
             else
             {
-                newMat = rootStone;
-                setRootStone(digScript);
-            }
-        }
-        else if(yCoord >= dirtTransEnd)
-        {
-            float denominator = dirtTransEnd - dirtTransMid;
-            float chance = (((yCoord - dirtTransMid) / denominator) / 2) * 100;
-            float hit = Random.Range(0f, 100f);
-            if (chance <= hit)
-            {
-                newMat = rootStone;
-                setRootStone(digScript);
-            }
-            else
-            {
-                newMat = crumStone;
-                setCrumStone(digScript);
+                lushBiomeSet(noise, mesh, spawnBlock, block);
             }
         }
         else
         {
-            newMat = rootStone;
-            setRootStone(digScript);
+            lushBiomeSet(noise, mesh, spawnBlock, block);
         }
-        mesh.material = newMat;
     }
-    void setCrumStone(diggableBlock digScript)
+    float calculateNoise(Vector3 position)
     {
-        digScript.setBlock(diggableBlock.blockType.CRUMBSTONE, crumHealth, crumMinDamage, crumDrop, crumParticles);
+        float xy = Mathf.PerlinNoise(position.x, position.y);
+        float yz = Mathf.PerlinNoise(position.y, position.z);
+        float zx = Mathf.PerlinNoise(position.z, position.x);
+        float average = (xy + yz + zx) / 3;
+        return average;
     }
-    void setRootStone(diggableBlock digScript)
+    void cavernBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
-        digScript.setBlock(diggableBlock.blockType.ROOTSTONE, rootHealth, rootMinDamage, rootDrop, rootParticles);
+        int index = 0;
+        for(int i = 0; i < cavernSpawnRates.Length; i++)
+        {
+            if(cavernSpawnRates[i] - noise < cavernSpawnRates[index] - noise)
+            {
+                index = i;
+            }
+        }
+        mesh.material = cavernBlocks[index].mat;
+        spawnBlock.setBlock(cavernBlocks[index].type, cavernBlocks[index].dropped, cavernBlocks[index].particles);
+        block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage);
+    }
+    void lushBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
+    {
+        int index = 0;
+        for (int i = 0; i < lushSpawnRates.Length; i++)
+        {
+            if (lushSpawnRates[i] - noise < lushSpawnRates[index] - noise)
+            {
+                index = i;
+            }
+        }
+        mesh.material = lushBlocks[index].mat;
+        spawnBlock.setBlock(lushBlocks[index].type, lushBlocks[index].dropped, lushBlocks[index].particles);
+        block.setBlock(lushBlocks[index].blockHealth, lushBlocks[index].minDamage);
     }
 }

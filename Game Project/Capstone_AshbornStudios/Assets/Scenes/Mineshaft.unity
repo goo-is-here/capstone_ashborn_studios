@@ -428,7 +428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &112904336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1070,16 +1070,33 @@ MonoBehaviour:
   crumStone: {fileID: 2100000, guid: be22d91ac52bac04bb64818011da9818, type: 2}
   rootStone: {fileID: 2100000, guid: ebaece6d33eb8fa4f9600531bd69becd, type: 2}
   dirtTransStart: -20
-  dirtTransMid: -40
   dirtTransEnd: -60
-  crumHealth: 100
-  crumMinDamage: 10
-  crumDrop: {fileID: 208503018311969847, guid: d7de8eb3ead294246b2574d3d126f7bd, type: 3}
-  crumParticles: {fileID: 5715071294730724295, guid: 7735bda376a841b4ea371c4cbe9c8f21, type: 3}
-  rootHealth: 150
-  rootMinDamage: 15
-  rootDrop: {fileID: 208503018311969847, guid: 3f5d3c44404a09a4088bf530f1a43460, type: 3}
-  rootParticles: {fileID: 5715071294730724295, guid: 1a8b971115e61144cb9b8c10f1f43368, type: 3}
+  cavernBlocks:
+  - {fileID: 11400000, guid: cd3e1ce3fa54b4c41b014264321ef79b, type: 2}
+  - {fileID: 11400000, guid: 337c8db08682c7e408344ce4c7d7baa7, type: 2}
+  - {fileID: 11400000, guid: 78b9d23ce41543743863700a858240e2, type: 2}
+  - {fileID: 11400000, guid: 89d1ea0aab01c8a4abe772626c959b27, type: 2}
+  - {fileID: 11400000, guid: b0845fb7b41577641ba7d074b76d2707, type: 2}
+  - {fileID: 11400000, guid: 2a0a64feb7265424d81c2a5aaa1190f0, type: 2}
+  cavernSpawnRates:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  lushBlocks:
+  - {fileID: 11400000, guid: c26f745d57f1ace47814f3f7f9aea0dd, type: 2}
+  - {fileID: 11400000, guid: f8937d82c8bfdc84ba4f472003add732, type: 2}
+  - {fileID: 11400000, guid: ba9db597b111c6f45828672bbcaa57a1, type: 2}
+  - {fileID: 11400000, guid: c33d10ed8d91de043a02d4c19b7d601b, type: 2}
+  - {fileID: 11400000, guid: 4f938b1e917d195418a2091c43f57432, type: 2}
+  lushSpawnRates:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &311895721
 Transform:
   m_ObjectHideFlags: 0
@@ -1460,13 +1477,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48362064, y: 0.094847076, z: 0.56509274, w: 0.66165346}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.35596558, y: -0.5845718, z: 0.6530752, w: 0.32412526}
+  m_LocalPosition: {x: 23.54, y: 16.36, z: 14.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -131.65399, y: 860.688, z: -80.785}
+  m_LocalEulerAnglesHint: {x: -263.876, y: 953.718, z: -3.8599854}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,7 +5021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1712572634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5173,6 +5190,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753566896}
   m_CullTransparentMesh: 1
+--- !u!1 &1787220907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+  m_PrefabInstance: {fileID: 7195658767052745170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1787220908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787220907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac15e35e4c998a46b7c1f08e75b1cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  block: {fileID: 1787220907}
+  currHealth: 0
+  spawnCheck: 0.5
+  spawnedBlocks: 000000000000
+  doSpawnNeighbors: 1
+  TESTINGONLY: 0
 --- !u!1 &1789383985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,7 +6566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_Name
-      value: Cube (4)
+      value: block
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_IsActive
@@ -6535,7 +6575,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1787220908}
   m_SourcePrefab: {fileID: 100100000, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
