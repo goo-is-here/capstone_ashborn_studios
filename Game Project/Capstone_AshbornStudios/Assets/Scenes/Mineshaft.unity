@@ -428,7 +428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &112904336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1067,8 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c51ecdfed78a24795b1dd974a48adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  crumStone: {fileID: 2100000, guid: be22d91ac52bac04bb64818011da9818, type: 2}
-  rootStone: {fileID: 2100000, guid: ebaece6d33eb8fa4f9600531bd69becd, type: 2}
+  airThreshold: 0.2
   dirtTransStart: -20
   dirtTransEnd: -60
   cavernBlocks:

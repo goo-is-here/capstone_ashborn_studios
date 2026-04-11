@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class setBlock : MonoBehaviour
 {
-    public Material crumStone, rootStone;
+    public float airThreshold;
     public float dirtTransStart = -10f, dirtTransEnd = -30f;
 
     [Header("Cavern Blocks Information")]
@@ -22,7 +22,7 @@ public class setBlock : MonoBehaviour
         int biomeSelect = Random.Range(0, 1);
         float noise = calculateNoise(position);
         print(noise);
-        if(noise <= .1f)
+        if(noise <= airThreshold)
         {
             spawnBlock.setAir();
         }
