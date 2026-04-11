@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: LemstoneObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 0}
-  particles: {fileID: 0}
-  dropped: {fileID: 0}
-  blockHealth: 0
-  minDamage: 0
-  type: 0
+  mat: {fileID: 2100000, guid: 1edd7b98ac53533499d2d1e681e5b0a9, type: 2}
+  particles: {fileID: 5715071294730724295, guid: 1a8b971115e61144cb9b8c10f1f43368, type: 3}
+  dropped: {fileID: 7684466976166885979, guid: 3fab8624091de5542aff31dd591a6728, type: 3}
+  blockHealth: 160
+  minDamage: 20
+  type: 4

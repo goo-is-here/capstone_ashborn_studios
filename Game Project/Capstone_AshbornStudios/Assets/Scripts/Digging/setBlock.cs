@@ -21,6 +21,7 @@ public class setBlock : MonoBehaviour
     {
         int biomeSelect = Random.Range(0, 1);
         float noise = calculateNoise(position);
+        print(noise);
         if(noise <= .1f)
         {
             spawnBlock.setAir();
@@ -58,27 +59,27 @@ public class setBlock : MonoBehaviour
         int index = 0;
         for(int i = 0; i < cavernSpawnRates.Length; i++)
         {
-            if(cavernSpawnRates[i] - noise < cavernSpawnRates[index] - noise)
+            if(Mathf.Abs(cavernSpawnRates[i] - noise) < Mathf.Abs(cavernSpawnRates[index] - noise))
             {
                 index = i;
             }
         }
         mesh.material = cavernBlocks[index].mat;
-        spawnBlock.setBlock(cavernBlocks[index].type, cavernBlocks[index].dropped, cavernBlocks[index].particles);
-        block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage);
+        spawnBlock.setBlock(cavernBlocks[index].type);
+        block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage, cavernBlocks[index].dropped, cavernBlocks[index].particles);
     }
     void lushBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int index = 0;
         for (int i = 0; i < lushSpawnRates.Length; i++)
         {
-            if (lushSpawnRates[i] - noise < lushSpawnRates[index] - noise)
+            if (Mathf.Abs(lushSpawnRates[i] - noise) < Mathf.Abs(lushSpawnRates[index] - noise))
             {
                 index = i;
             }
         }
         mesh.material = lushBlocks[index].mat;
-        spawnBlock.setBlock(lushBlocks[index].type, lushBlocks[index].dropped, lushBlocks[index].particles);
-        block.setBlock(lushBlocks[index].blockHealth, lushBlocks[index].minDamage);
+        spawnBlock.setBlock(lushBlocks[index].type);
+        block.setBlock(lushBlocks[index].blockHealth, lushBlocks[index].minDamage, lushBlocks[index].dropped, lushBlocks[index].particles);
     }
 }

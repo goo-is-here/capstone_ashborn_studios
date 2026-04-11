@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: ClayObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 0}
-  particles: {fileID: 0}
-  dropped: {fileID: 0}
-  blockHealth: 0
+  mat: {fileID: 2100000, guid: 498ce904d3175e44d93c3354667289f8, type: 2}
+  particles: {fileID: 5715071294730724295, guid: 7735bda376a841b4ea371c4cbe9c8f21, type: 3}
+  dropped: {fileID: 6150668360226356432, guid: 31847004ce66b4f4aadfcf2551dffb88, type: 3}
+  blockHealth: 60
   minDamage: 0
   type: 2

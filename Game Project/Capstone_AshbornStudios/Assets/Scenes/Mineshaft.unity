@@ -1079,12 +1079,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0845fb7b41577641ba7d074b76d2707, type: 2}
   - {fileID: 11400000, guid: 2a0a64feb7265424d81c2a5aaa1190f0, type: 2}
   cavernSpawnRates:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.5
+  - 0.6
+  - 0.2
+  - 0.3
+  - 0.8
+  - 0.9
   lushBlocks:
   - {fileID: 11400000, guid: c26f745d57f1ace47814f3f7f9aea0dd, type: 2}
   - {fileID: 11400000, guid: f8937d82c8bfdc84ba4f472003add732, type: 2}
@@ -1092,11 +1092,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c33d10ed8d91de043a02d4c19b7d601b, type: 2}
   - {fileID: 11400000, guid: 4f938b1e917d195418a2091c43f57432, type: 2}
   lushSpawnRates:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.5
+  - 0.7
+  - 0.2
+  - 0.4
+  - 0.25
 --- !u!4 &311895721
 Transform:
   m_ObjectHideFlags: 0
@@ -5208,7 +5208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   block: {fileID: 1787220907}
-  currHealth: 0
   spawnCheck: 0.5
   spawnedBlocks: 000000000000
   doSpawnNeighbors: 1
@@ -6523,7 +6522,7 @@ PrefabInstance:
     - target: {fileID: 2551273634457906938, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ebaece6d33eb8fa4f9600531bd69becd, type: 2}
+      objectReference: {fileID: 2100000, guid: f0c26aacc4afcc54eb18aa31fd766594, type: 2}
     - target: {fileID: 3241610055833021279, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_LocalPosition.x
       value: 47.04609

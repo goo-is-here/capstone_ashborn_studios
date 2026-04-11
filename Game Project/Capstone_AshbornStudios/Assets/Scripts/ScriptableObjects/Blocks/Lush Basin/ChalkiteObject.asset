@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: ChalkiteObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 0}
-  particles: {fileID: 0}
-  dropped: {fileID: 0}
-  blockHealth: 0
-  minDamage: 0
-  type: 0
+  mat: {fileID: 2100000, guid: f0c26aacc4afcc54eb18aa31fd766594, type: 2}
+  particles: {fileID: 5715071294730724295, guid: 1a8b971115e61144cb9b8c10f1f43368, type: 3}
+  dropped: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+  blockHealth: 260
+  minDamage: 20
+  type: 11

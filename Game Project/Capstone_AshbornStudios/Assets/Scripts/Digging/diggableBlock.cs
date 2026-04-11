@@ -51,9 +51,11 @@ public class diggableBlock : MonoBehaviour
             controller.printText(print);
         }
     }
-    public void setBlock(float health, float min)
+    public void setBlock(float health, float min, GameObject drop, GameObject part)
     {
         blockHealth = health;
         minDamage = min;
+        dropped = drop;
+        particles = part;
     }
 }

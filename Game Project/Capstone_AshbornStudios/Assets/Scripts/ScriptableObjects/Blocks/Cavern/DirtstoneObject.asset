@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: DirtstoneObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 0}
-  particles: {fileID: 0}
-  dropped: {fileID: 0}
-  blockHealth: 0
+  mat: {fileID: 2100000, guid: 1efc8e8f3a528324982d5cd9267358ec, type: 2}
+  particles: {fileID: 5715071294730724295, guid: 7735bda376a841b4ea371c4cbe9c8f21, type: 3}
+  dropped: {fileID: 7202145325846076716, guid: f5793f203b8d3454f818e8c311b1ce9b, type: 3}
+  blockHealth: 80
   minDamage: 0
-  type: 0
+  type: 1

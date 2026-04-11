@@ -9,9 +9,6 @@ public class SpawnBlocks : MonoBehaviour
     GameObject player;
     public GameObject block;
     float digRange = 2f;
-    float blockHealth = 100f;
-    float minDamage;
-    public float currHealth;
     Vector3 startPos;
     public float spawnCheck = .5f;
     public bool[] spawnedBlocks = { false, false, false, false, false, false };
@@ -20,8 +17,6 @@ public class SpawnBlocks : MonoBehaviour
     public bool doSpawnNeighbors = true;
     public int TESTINGONLY = 0;
     PlayerController controller;
-    GameObject particles;
-    GameObject dropped;
     blockType blockEnum;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,7 +44,6 @@ public class SpawnBlocks : MonoBehaviour
         {
             spawnNeighbors();
         }
-        currHealth = blockHealth;
     }
     void spawnNeighbors()
     {
@@ -144,11 +138,9 @@ public class SpawnBlocks : MonoBehaviour
             spawnedBlocks[i] = false;
         }
     }
-    public void setBlock(blockType enu, GameObject drop, GameObject part)
+    public void setBlock(blockType enu)
     {
         blockEnum = enu;
-        dropped = drop;
-        particles = part;
     }
     public void setAir()
     {
