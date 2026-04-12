@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
 
         jumpAction.performed += OnJumpPerformed;
 
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

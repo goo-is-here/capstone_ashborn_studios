@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c51ecdfed78a24795b1dd974a48adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  airThreshold: 0.2
+  airThreshold: 0
   dirtTransStart: -20
   dirtTransEnd: -60
   cavernBlocks:
@@ -1079,11 +1079,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a0a64feb7265424d81c2a5aaa1190f0, type: 2}
   cavernSpawnRates:
   - 0.5
-  - 0.6
-  - 0.2
-  - 0.3
-  - 0.8
-  - 0.9
+  - 0.35
+  - 0.15
+  - 0.08
+  - 0.03
+  - 0.01
   lushBlocks:
   - {fileID: 11400000, guid: c26f745d57f1ace47814f3f7f9aea0dd, type: 2}
   - {fileID: 11400000, guid: f8937d82c8bfdc84ba4f472003add732, type: 2}
