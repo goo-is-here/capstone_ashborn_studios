@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class setBlock : MonoBehaviour
 {
-    public float airThreshold;
+    [SerializeField]
+    GameObject blockPrefab;
+    [SerializeField, Range(0, 1)]
+    float airThreshold;
+    [SerializeField]
+    float noiseScale;
     public float dirtTransStart = -10f, dirtTransEnd = -30f;
 
     [Header("Cavern Blocks Information")]
@@ -20,12 +25,14 @@ public class setBlock : MonoBehaviour
     public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int biomeSelect = Random.Range(0, 1);
-        float noise = calculateNoise(position);
+        float noise = calculateNoise(position.x * noiseScale, position.y * noiseScale, position.z * noiseScale);
         print(noise);
+        
         if(noise <= airThreshold)
         {
             spawnBlock.setAir();
         }
+        /*
         if(position.y > dirtTransStart)
         {
             cavernBiomeSet(noise, mesh, spawnBlock, block);
@@ -45,13 +52,17 @@ public class setBlock : MonoBehaviour
         {
             lushBiomeSet(noise, mesh, spawnBlock, block);
         }
+        */
     }
-    float calculateNoise(Vector3 position)
+    float calculateNoise(float x, float y, float z)
     {
-        float xy = Mathf.PerlinNoise(position.x, position.y);
-        float yz = Mathf.PerlinNoise(position.y, position.z);
-        float zx = Mathf.PerlinNoise(position.z, position.x);
-        float average = (xy + yz + zx) / 3;
+        float xy = Mathf.PerlinNoise(x, y);
+        float yz = Mathf.PerlinNoise(y, z);
+        float zx = Mathf.PerlinNoise(z, x);
+        float yx = Mathf.PerlinNoise(y, x);
+        float zy = Mathf.PerlinNoise(z, y);
+        float xz = Mathf.PerlinNoise(x, z);
+        float average = (xy + yz + zx + yx + zy + xz) / 6f;
         return average;
     }
     void cavernBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
