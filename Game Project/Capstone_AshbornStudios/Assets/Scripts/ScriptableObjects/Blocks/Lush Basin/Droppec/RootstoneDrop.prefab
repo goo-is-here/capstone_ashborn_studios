@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Rootstone
   itemIcon: {fileID: 21300000, guid: 25e89dce1bc14f54bb85512c6d2c3fe6, type: 3}
   amount: 1
+  enu: 6
   worldPrefab: {fileID: 8308295401990318128}
   objectToDestroy: {fileID: 0}

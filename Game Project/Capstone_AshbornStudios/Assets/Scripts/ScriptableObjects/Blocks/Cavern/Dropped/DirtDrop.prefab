@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Dirt
   itemIcon: {fileID: 21300000, guid: ca83389dd6671ee4fa8e42fdb83076e5, type: 3}
   amount: 1
+  enu: 1
   worldPrefab: {fileID: 2487266843201563024}
   objectToDestroy: {fileID: 0}

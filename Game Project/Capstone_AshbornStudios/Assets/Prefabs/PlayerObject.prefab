@@ -15,9 +15,6 @@ GameObject:
   - component: {fileID: 2487784127125196563}
   - component: {fileID: 7956555298906818836}
   - component: {fileID: 2208720410419595465}
-  - component: {fileID: 1635701044536762256}
-  - component: {fileID: 3021376827310445219}
-  - component: {fileID: 2236495270293918976}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Player
@@ -196,56 +193,6 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   slotCount: 14
   selectedSlotIndex: 0
---- !u!114 &1635701044536762256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234764343334364607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088bcc824f1f73446bdc6fcd924565a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HungerScript
-  maxHunger: 100
-  currentHunger: 100
-  idleDrain: 1
-  walkDrain: 1.5
-  runDrain: 1.5
-  jumpDrain: 2
-  digDrain: 1.5
-  hungerBar: {fileID: 0}
-  lowHungerThreshold: 25
-  reducedMoveSpeed: 2
---- !u!114 &3021376827310445219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234764343334364607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9e9093145cfc642bbbe7e10592b987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Treasure_Manager
-  collectedTreasures: []
-  collectedTreasureIDs: []
-  totalTreasuresInGame: 5
---- !u!114 &2236495270293918976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234764343334364607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11fff5a5787350e4b989bb940b7c3026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TreasureUI
-  treasureRoom: {fileID: 0}
 --- !u!1 &2221181228733416813
 GameObject:
   m_ObjectHideFlags: 0

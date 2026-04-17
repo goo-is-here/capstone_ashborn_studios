@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Lemstone
   itemIcon: {fileID: 21300000, guid: a61626dee93baff41a4cc779cba2597e, type: 3}
   amount: 1
+  enu: 5
   worldPrefab: {fileID: 7684466976166885979}
   objectToDestroy: {fileID: 0}

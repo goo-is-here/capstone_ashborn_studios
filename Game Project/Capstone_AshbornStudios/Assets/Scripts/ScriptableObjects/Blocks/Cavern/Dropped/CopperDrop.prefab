@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Copper Ore
   itemIcon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
   amount: 1
+  enu: 9
   worldPrefab: {fileID: 612138122833290065}
   objectToDestroy: {fileID: 0}

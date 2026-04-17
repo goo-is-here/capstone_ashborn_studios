@@ -25,14 +25,11 @@ public class setBlock : MonoBehaviour
     public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int biomeSelect = Random.Range(0, 1);
-        float noise = calculateNoise(position.x * noiseScale, position.y * noiseScale, position.z * noiseScale);
-        print(noise);
-        
+        float noise = calculateNoise(position.x, position.y, position.z);
         if(noise <= airThreshold)
         {
             spawnBlock.setAir();
         }
-        /*
         if(position.y > dirtTransStart)
         {
             cavernBiomeSet(noise, mesh, spawnBlock, block);
@@ -52,7 +49,6 @@ public class setBlock : MonoBehaviour
         {
             lushBiomeSet(noise, mesh, spawnBlock, block);
         }
-        */
     }
     float calculateNoise(float x, float y, float z)
     {

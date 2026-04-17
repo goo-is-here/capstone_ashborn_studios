@@ -145,6 +145,7 @@ public class Inventory : MonoBehaviour
                 foodSource.description,
                 foodSource.icon,
                 count,
+                source.enu,
                 foodSource.worldPrefab,
                 foodSource.hungerRestoreAmount
             );
@@ -155,6 +156,7 @@ public class Inventory : MonoBehaviour
             source.description,
             source.icon,
             count,
+            source.enu,
             source.worldPrefab
         );
     }

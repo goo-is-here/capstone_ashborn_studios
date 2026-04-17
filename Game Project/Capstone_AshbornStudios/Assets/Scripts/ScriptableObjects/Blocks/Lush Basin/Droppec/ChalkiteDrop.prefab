@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Chalkite
   itemIcon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}
   amount: 1
+  enu: 12
   worldPrefab: {fileID: 2509750084051463296}
   objectToDestroy: {fileID: 0}

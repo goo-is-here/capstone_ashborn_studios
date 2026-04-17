@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Crumbstone
   itemIcon: {fileID: 21300000, guid: ab7fc866992346d438e5052f35588f21, type: 3}
   amount: 1
+  enu: 3
   worldPrefab: {fileID: 1330074392253576279}
   objectToDestroy: {fileID: 0}

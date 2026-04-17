@@ -6,6 +6,7 @@ public class Item_Pickup : MonoBehaviour
     public string itemdescription = "Item Description";
     public Sprite itemIcon;
     public int amount = 1;
+    public ItemEnum enu;
     public GameObject worldPrefab;
     GameObject player;
 
@@ -32,7 +33,7 @@ public class Item_Pickup : MonoBehaviour
 
         pickedUp = true;
 
-        Item newItem = new Item(itemName, itemdescription, itemIcon, amount, worldPrefab);
+        Item newItem = new Item(itemName, itemdescription, itemIcon, amount, enu, worldPrefab);
         Inventory.Instance.AddItem(newItem);
 
         Destroy(objectToDestroy);

@@ -7,6 +7,7 @@ public class Food_Script : MonoBehaviour
     public string description = "Restores hunger";
     public Sprite icon;
     public int count = 1;
+    public ItemEnum enu;
     public float hungerRestoreAmount = 25f;
     public GameObject worldPrefab;
 
@@ -46,6 +47,7 @@ public class Food_Script : MonoBehaviour
             description,
             icon,
             count,
+            enu,
             worldPrefab,
             hungerRestoreAmount
         );

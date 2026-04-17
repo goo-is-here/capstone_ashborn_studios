@@ -8,7 +8,6 @@ public class SpawnBlocks : MonoBehaviour
     Mesh mesh;
     GameObject player;
     public GameObject block;
-    float digRange = 2f;
     Vector3 startPos;
     public float spawnCheck = .5f;
     public bool[] spawnedBlocks = { false, false, false, false, false, false };

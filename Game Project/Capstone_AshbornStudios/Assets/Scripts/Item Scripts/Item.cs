@@ -9,14 +9,16 @@ public class Item
     public Sprite icon;
     public int count;
     public GameObject worldPrefab;
+    public ItemEnum enu;
 
 
-    public Item(string name, string description, Sprite icon,  int count, GameObject worldPrefab = null )
+    public Item(string name, string description, Sprite icon,  int count, ItemEnum en, GameObject worldPrefab = null)
     {
         this.name = name;
         this.description = description;
         this.icon = icon;
         this.count = count;
         this.worldPrefab = worldPrefab;
+        enu = en;
 }
 }

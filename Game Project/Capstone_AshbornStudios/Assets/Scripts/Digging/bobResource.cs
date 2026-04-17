@@ -36,7 +36,6 @@ public class bobResource : MonoBehaviour
             
             if (Vector3.Distance(transform.position, player.transform.position) < 2f)
             {
-                print("down");
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
             }
             else
@@ -57,7 +56,6 @@ public class bobResource : MonoBehaviour
         while (time < duration)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < 2f) {
-                print("up");
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
             }
             else

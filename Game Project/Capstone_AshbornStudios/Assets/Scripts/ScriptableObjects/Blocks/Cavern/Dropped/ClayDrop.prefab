@@ -142,5 +142,6 @@ MonoBehaviour:
   itemdescription: Clay
   itemIcon: {fileID: 21300000, guid: 6f6c4b1355ce69f4691581332ea1229d, type: 3}
   amount: 1
+  enu: 2
   worldPrefab: {fileID: 6150668360226356432}
   objectToDestroy: {fileID: 0}
