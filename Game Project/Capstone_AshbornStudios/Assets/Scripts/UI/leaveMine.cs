@@ -12,7 +12,7 @@ public class leaveMine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(player.transform.position, transform.position) < 5)
+        if (Input.GetKeyDown(KeyCode.Tab) && Vector3.Distance(player.transform.position, transform.position) < 5)
         {
             print("hi");
             Application.Quit();

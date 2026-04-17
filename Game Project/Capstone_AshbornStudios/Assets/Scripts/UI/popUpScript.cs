@@ -17,7 +17,7 @@ public class popUpScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) > 5)
+        if (Vector3.Distance(player.transform.position, transform.position) > 2)
         {
             text.enabled = false;
             
