@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: CrumbstoneObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 2100000, guid: ebaece6d33eb8fa4f9600531bd69becd, type: 2}
+  mat: {fileID: 2100000, guid: 20bd479d438e1b142b55c738485debf8, type: 2}
   particles: {fileID: 5715071294730724295, guid: 1a8b971115e61144cb9b8c10f1f43368, type: 3}
   dropped: {fileID: 1330074392253576279, guid: c02f738c125f92d44899283ffd1962d1, type: 3}
   blockHealth: 90
