@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: RootstoneObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 2100000, guid: b865cc447c2bb914aa98ee521f187dd7, type: 2}
+  mat: {fileID: 2100000, guid: 2b5265fb07033a94b999040527559b1c, type: 2}
   particles: {fileID: 5715071294730724295, guid: 1a8b971115e61144cb9b8c10f1f43368, type: 3}
   dropped: {fileID: 8308295401990318128, guid: fcc4ff40b5d4b57438c31ecb8701f3d6, type: 3}
   blockHealth: 130
