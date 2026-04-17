@@ -3928,6 +3928,9 @@ MonoBehaviour:
   player: {fileID: 0}
   invent: {fileID: 0}
   allItems: []
+  recipes:
+  - recipeList: {fileID: 11400000, guid: 06b113232664e9c4894f6ade5ad105f4, type: 2}
+    found: 0
 --- !u!1 &1232212355
 GameObject:
   m_ObjectHideFlags: 0

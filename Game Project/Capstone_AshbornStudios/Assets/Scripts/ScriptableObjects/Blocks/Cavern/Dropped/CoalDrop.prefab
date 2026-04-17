@@ -142,6 +142,6 @@ MonoBehaviour:
   itemdescription: Coal Ore
   itemIcon: {fileID: 21300000, guid: 7a636181751caae419449a1569b64868, type: 3}
   amount: 1
-  enu: 8
+  enu: 9
   worldPrefab: {fileID: 7963215976860092175}
   objectToDestroy: {fileID: 0}
