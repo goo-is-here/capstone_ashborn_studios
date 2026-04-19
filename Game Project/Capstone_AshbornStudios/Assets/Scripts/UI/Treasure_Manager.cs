@@ -19,6 +19,7 @@ public class Treasure_Manager : MonoBehaviour
     }
 
     public GameObject winScreenPanel;
+    public GameObject Player;
 
     private void Awake()
     {
