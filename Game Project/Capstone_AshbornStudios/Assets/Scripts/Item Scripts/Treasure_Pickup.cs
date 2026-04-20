@@ -19,20 +19,36 @@ public class Treasure_Pickup : MonoBehaviour
             objectToDestroy = gameObject;
     }
 
+    private void Start()
+    {
+        CheckIfAlreadyCollected();
+    }
+
+    private void CheckIfAlreadyCollected()
+    {
+        if (Treasure_Manager.Instance == null) return;
+
+        if (Treasure_Manager.Instance.HasTreasure(treasureID))
+        {
+            Debug.Log("Treasure already collected, removing: " + treasureID);
+            Destroy(objectToDestroy);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Treasure trigger hit by: " + other.name);
-
         if (pickedUp) return;
-        if (!other.CompareTag("Player"))
-        {
-            Debug.Log("Not tagged Player");
-            return;
-        }
+        if (!other.CompareTag("Player")) return;
 
         if (Treasure_Manager.Instance == null)
         {
-            Debug.LogWarning("Treasure manager instance not found!");
+            Debug.LogWarning("Treasure_Manager instance not found!");
+            return;
+        }
+
+        if (Treasure_Manager.Instance.HasTreasure(treasureID))
+        {
+            Destroy(objectToDestroy);
             return;
         }
 
@@ -46,7 +62,7 @@ public class Treasure_Pickup : MonoBehaviour
 
         Treasure_Manager.Instance.AddTreasure(newTreasure);
 
-        Debug.Log("Collected treasure: " + treasureName);
+        Debug.Log("Collected treasure: " + treasureID);
 
         Destroy(objectToDestroy);
     }

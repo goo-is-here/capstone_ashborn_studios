@@ -82,9 +82,13 @@ public class Treasure_Manager : MonoBehaviour
 
     public bool HasAllTreasures()
     {
-        int total = GetTotalTreasureCount();
-        Debug.Log("Collected IDs: " + collectedTreasureIDs.Count + " / " + total);
-        return collectedTreasureIDs.Count >= total && total > 0;
+        int totalCollectables = collectableTreasures != null ? collectableTreasures.Length : 0;
+        int collectedCount = collectedTreasureIDs.Count;
+
+        Debug.Log("CollectedTreasureIDs Count = " + collectedCount);
+        Debug.Log("CollectableTreasures Length = " + totalCollectables);
+
+        return totalCollectables > 0 && collectedCount >= totalCollectables;
     }
 
     public void RefreshPedestalTreasures()

@@ -14,23 +14,30 @@ public class WinScreen : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered win trigger: " + other.name);
+        Debug.Log("Win trigger entered by: " + other.name);
 
-        if (hasActivated) return;
+        if (hasActivated)
+        {
+            Debug.Log("Win screen already activated.");
+            return;
+        }
+
+        Debug.Log("Root object tag: " + other.transform.root.tag);
 
         if (!other.transform.root.CompareTag("Player"))
         {
-            Debug.Log("Not the player.");
+            Debug.Log("Entered object is not the player.");
             return;
         }
 
         if (Treasure_Manager.Instance == null)
         {
-            Debug.LogWarning("Treasure_Manager not found.");
+            Debug.LogWarning("Treasure_Manager.Instance is NULL.");
             return;
         }
 
-        Debug.Log("HasAllTreasures result: " + Treasure_Manager.Instance.HasAllTreasures());
+        Debug.Log("Collected IDs right now: " + Treasure_Manager.Instance.collectedTreasureIDs.Count);
+        Debug.Log("HasAllTreasures() returns: " + Treasure_Manager.Instance.HasAllTreasures());
 
         if (Treasure_Manager.Instance.HasAllTreasures())
         {
@@ -48,16 +55,16 @@ public class WinScreen : MonoBehaviour
 
         if (winScreenPanel == null)
         {
-            Debug.LogWarning("Win screen panel is not assigned.");
+            Debug.LogWarning("winScreenPanel is not assigned.");
             return;
         }
 
+        Debug.Log("Activating win screen now.");
         winScreenPanel.SetActive(true);
+
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        Debug.Log("Win screen activated.");
     }
 
     public void ContinueGame()
