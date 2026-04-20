@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Treasure_Manager : MonoBehaviour
@@ -11,15 +12,11 @@ public class Treasure_Manager : MonoBehaviour
     [Header("Treasure State Variable")]
     public List<string> collectedTreasureIDs = new List<string>();
 
-    public int totalTreasuresInGame = 5; // set this manually for now
+    [Header("Collectable Treasure Items")]
+    public Treasure_Pickup[] collectableTreasures;
 
-    public bool HasAllTreasures()
-    {
-        return collectedTreasureIDs.Count >= totalTreasuresInGame;
-    }
-
-    public GameObject winScreenPanel;
-    public GameObject Player;
+    [Header("Pedestal Treasure Items")]
+    public Pedestal_Treasure_Item[] pedestalItems;
 
     private void Awake()
     {
@@ -30,8 +27,7 @@ public class Treasure_Manager : MonoBehaviour
         }
 
         Instance = this;
-
-        winScreenPanel.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddTreasure(Treasure_Item newTreasure)
@@ -42,6 +38,9 @@ public class Treasure_Manager : MonoBehaviour
             collectedTreasures.Add(newTreasure);
 
             Debug.Log("Collected treasure: " + newTreasure.treasureName);
+            Debug.Log("Collected IDs count now: " + collectedTreasureIDs.Count);
+
+            RefreshPedestalTreasures();
         }
         else
         {
@@ -54,34 +53,49 @@ public class Treasure_Manager : MonoBehaviour
         return collectedTreasureIDs.Contains(treasureID);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public int GetTotalTreasureCount()
     {
-        if (!other.CompareTag("Player")) return;
+        HashSet<string> uniqueIDs = new HashSet<string>();
 
-        if (Treasure_Manager.Instance == null) return;
+        if (collectableTreasures != null)
+        {
+            foreach (Treasure_Pickup treasure in collectableTreasures)
+            {
+                if (treasure == null) continue;
+                if (!string.IsNullOrEmpty(treasure.treasureID))
+                    uniqueIDs.Add(treasure.treasureID);
+            }
+        }
 
-        if (Treasure_Manager.Instance.HasAllTreasures())
+        if (pedestalItems != null)
         {
-            ShowWinPrompt();
+            foreach (Pedestal_Treasure_Item item in pedestalItems)
+            {
+                if (item == null) continue;
+                if (!string.IsNullOrEmpty(item.treasureID))
+                    uniqueIDs.Add(item.treasureID);
+            }
         }
-        else
-        {
-            Debug.Log("Player entered trophy room but not all treasures collected.");
-        }
+
+        return uniqueIDs.Count;
     }
-    void ShowWinPrompt()
+
+    public bool HasAllTreasures()
     {
-        if (winScreenPanel != null)
-            winScreenPanel.SetActive(true);
+        int total = GetTotalTreasureCount();
+        Debug.Log("Collected IDs: " + collectedTreasureIDs.Count + " / " + total);
+        return collectedTreasureIDs.Count >= total && total > 0;
+    }
 
-        // Pause game
-        Time.timeScale = 0f;
+    public void RefreshPedestalTreasures()
+    {
+        if (pedestalItems == null) return;
 
-        // Unlock cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        Debug.Log("Win condition reached!");
+        foreach (Pedestal_Treasure_Item item in pedestalItems)
+        {
+            if (item == null) continue;
+            item.RefreshState();
+        }
     }
 }
 

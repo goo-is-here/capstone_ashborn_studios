@@ -7,7 +7,7 @@ public class Treasure_Script : MonoBehaviour
     public string treasureID = "Treasure ID";
     public string treasureName = "Treasure Name";
     public string description = "Treasure Description.";
-    public Sprite icon;
+    
 
     [Header("What to destroy after pickup")]
     public GameObject objectToDestroy;
@@ -17,8 +17,8 @@ public class Treasure_Script : MonoBehaviour
         Treasure_Item treasure = new Treasure_Item(
             treasureID,
             treasureName,
-            description,
-            icon
+            description
+          
         );
 
         if (Treasure_Manager.Instance != null)

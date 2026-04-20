@@ -6,7 +6,7 @@ public class Treasure_Pickup : MonoBehaviour
     public string treasureID = "ancient_relic";
     public string treasureName = "Ancient Relic";
     public string treasureDescription = "A valuable relic recovered from deep underground.";
-    public Sprite treasureIcon;
+    
 
     [Header("What to destroy after pickup")]
     public GameObject objectToDestroy;
@@ -41,8 +41,7 @@ public class Treasure_Pickup : MonoBehaviour
         Treasure_Item newTreasure = new Treasure_Item(
             treasureID,
             treasureName,
-            treasureDescription,
-            treasureIcon
+            treasureDescription
         );
 
         Treasure_Manager.Instance.AddTreasure(newTreasure);
