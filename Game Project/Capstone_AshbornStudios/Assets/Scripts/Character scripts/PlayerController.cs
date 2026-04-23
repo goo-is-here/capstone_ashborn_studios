@@ -3,11 +3,35 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController: MonoBehaviour
+public enum ToolTier
+{
+    Crumbstone,
+    Rootstone,
+    Fungstone,
+    Gravestone,
+    Clearstone,
+    Ashstone
+}
+
+public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
 
-    public float movementSpeed = 10f, climbMoveSpeed = 2f, rotationSpeed = 1f, jumpForce = 10f, climbForce = .5f, Gravity = -30f, diggingReach = 3f, damageVal = 10f, durability = 25f, maxDurability = 25f;
+    public float movementSpeed = 10f;
+    public float climbMoveSpeed = 2f;
+    public float rotationSpeed = 1f;
+    public float jumpForce = 10f;
+    public float climbForce = .5f;
+    public float Gravity = -30f;
+    public float diggingReach = 3f;
+
+    [Header("Tool Tier")]
+    public ToolTier currentToolTier = ToolTier.Crumbstone;
+
+    [Header("Tool Stats")]
+    public float damageVal = 10f;
+    public float durability = 225f;
+    public float maxDurability = 225f;
 
     private float rotationY, rotationX;
     private float verticalVelocity;
@@ -25,78 +49,122 @@ public class PlayerController: MonoBehaviour
     GameObject textBox;
     GameObject durabilityBar;
     Image bar;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        maxDurability = durability;
+        ApplyToolTier();
+
         textBox = GameObject.FindGameObjectWithTag("textBox");
-        if(textBox != null)
+        if (textBox != null)
         {
             text = textBox.GetComponent<TextMeshProUGUI>();
         }
-        if(text != null)
+
+        if (text != null)
         {
             text.gameObject.SetActive(false);
         }
+
         durabilityBar = GameObject.FindGameObjectWithTag("durability");
-        if(durabilityBar != null)
+        if (durabilityBar != null)
         {
             bar = durabilityBar.GetComponent<Image>();
         }
+
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
+    private void OnValidate()
+    {
+        ApplyToolTier();
+    }
+
+    public void ApplyToolTier()
+    {
+        switch (currentToolTier)
+        {
+            case ToolTier.Crumbstone:
+                damageVal = 10f;
+                maxDurability = 50f;
+                break;
+
+            case ToolTier.Rootstone:
+                damageVal = 25f;
+                maxDurability = 75f;
+                break;
+
+            case ToolTier.Fungstone:
+                damageVal = 35f;
+                maxDurability = 100f;
+                break;
+
+            case ToolTier.Gravestone:
+                damageVal = 50f;
+                maxDurability = 125f;
+                break;
+
+            case ToolTier.Clearstone:
+                damageVal = 65f;
+                maxDurability = 150f;
+                break;
+
+            case ToolTier.Ashstone:
+                damageVal = 85f;
+                maxDurability = 200f;
+                break;
+        }
+
+        durability = maxDurability;
+    }
+
     public void Move(Vector2 movementVector)
     {
+        checkGround();
+
         Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
+
         if (test.climbing && movementVector.y > 0)
         {
             move = move * climbMoveSpeed * Time.deltaTime;
             characterController.Move(move);
+
             verticalVelocity = climbForce;
-            characterController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
         }
         else
         {
             move = move * movementSpeed * Time.deltaTime;
             characterController.Move(move);
-            if (ground)
+
+            if (ground && verticalVelocity < 0)
             {
-                verticalVelocity = -0.1f;
+                verticalVelocity = -2f;
             }
             else
             {
-                verticalVelocity = verticalVelocity + Gravity * Time.deltaTime;
+                verticalVelocity += Gravity * Time.deltaTime;
             }
-            characterController.Move(new Vector3(0, Mathf.Clamp(verticalVelocity, -15f, 15f), 0) * Time.deltaTime);
+
+            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
         }
-        
-        
     }
+
     public void Rotate(Vector2 rotationVector)
     {
-        
         rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
         rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
+
         transform.localRotation = Quaternion.Euler(0, rotationY, 0);
         cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);
     }
+
     private void checkGround()
     {
-
-        float currPos = transform.position.y;
-        if(currPos == prevPos)
-        {
-            ground = true;
-        }
-        else
-        {
-            ground = false;
-        }
-        prevPos = currPos;
+        ground = characterController.isGrounded;
     }
+
     public void Jump()
     {
         if (characterController.isGrounded)
@@ -105,10 +173,13 @@ public class PlayerController: MonoBehaviour
             isJumping = true;
         }
     }
+
     void Update()
     {
         isJumping = false;
-        if(bar != null)
+        checkGround();
+
+        if (bar != null)
         {
             bar.fillAmount = durability / maxDurability;
         }
@@ -116,10 +187,10 @@ public class PlayerController: MonoBehaviour
 
     public void Dig()
     {
-        if(durability > 0)
+        if (durability > 0)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, diggingReach, blocksToDig))
+            if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
             {
                 hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
             }
@@ -129,31 +200,49 @@ public class PlayerController: MonoBehaviour
             printText("Wait! I need to fix my tool!");
         }
     }
+
     public void printText(string textPrint)
     {
-        if(text != null)
+        if (text != null)
         {
             text.gameObject.SetActive(true);
             text.text = textPrint;
             StartCoroutine(wait());
         }
-        
     }
+
     public float getDur()
     {
         return durability;
     }
+
     public void durabilityChange(float dur)
     {
         durability += dur;
+        durability = Mathf.Clamp(durability, 0f, maxDurability);
     }
+
+    public float GetToolTierValue()
+    {
+        return damageVal;
+    }
+
+    public string GetToolTierName()
+    {
+        return currentToolTier.ToString();
+    }
+
+    public int GetToolTierLevel()
+    {
+        return (int)currentToolTier + 1;
+    }
+
     IEnumerator wait()
     {
         yield return new WaitForSeconds(5f);
-        if(text != null)
+        if (text != null)
         {
             text.gameObject.SetActive(false);
         }
-        
     }
 }
