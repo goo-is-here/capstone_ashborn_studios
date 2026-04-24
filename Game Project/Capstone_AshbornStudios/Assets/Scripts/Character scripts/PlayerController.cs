@@ -3,15 +3,6 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 
-public enum ToolTier
-{
-    Crumbstone,
-    Rootstone,
-    Fungstone,
-    Gravestone,
-    Clearstone,
-    Ashstone
-}
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,9 +16,6 @@ public class PlayerController : MonoBehaviour
     public float climbForce = .5f;
     public float Gravity = -30f;
     public float diggingReach = 3f;
-
-    [Header("Tool Tier")]
-    public ToolTier currentToolTier = ToolTier.Crumbstone;
 
     [Header("Tool Stats")]
     public float damageVal;
@@ -57,7 +45,6 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ApplyToolTier();
 
         textBox = GameObject.FindGameObjectWithTag("textBox");
         if (textBox != null)
@@ -74,65 +61,6 @@ public class PlayerController : MonoBehaviour
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
     }
-
-    private void OnValidate()
-    {
-        ApplyToolTier();
-    }
-
-    public void ApplyToolTier()
-    {
-        switch (currentToolTier)
-        {
-            case ToolTier.Crumbstone:
-                damageVal = 10f;
-                maxDurability = 50f;
-                break;
-
-            case ToolTier.Rootstone:
-                damageVal = 25f;
-                maxDurability = 75f;
-                break;
-
-            case ToolTier.Fungstone:
-                damageVal = 35f;
-                maxDurability = 100f;
-                break;
-
-            case ToolTier.Gravestone:
-                damageVal = 50f;
-                maxDurability = 125f;
-                break;
-
-            case ToolTier.Clearstone:
-                damageVal = 65f;
-                maxDurability = 150f;
-                break;
-
-            case ToolTier.Ashstone:
-                damageVal = 85f;
-                maxDurability = 200f;
-                break;
-        }
-
-        durability = maxDurability; 
-    }
-
-    public float GetToolTierValue()
-    {
-        return damageVal;
-    }
-
-    public string GetToolTierName()
-    {
-        return currentToolTier.ToString();
-    }
-
-    public int GetToolTierLevel()
-    {
-        return (int)currentToolTier + 1;
-    }
-
     public int GetUsesLeft()
     {
         return Mathf.RoundToInt(durability);
@@ -198,9 +126,6 @@ public class PlayerController : MonoBehaviour
             bar.fillAmount = durability / maxDurability;
     }
 
-    // =========================
-    // DIGGING
-    // =========================
     public void Dig()
     {
         if (durability > 0)

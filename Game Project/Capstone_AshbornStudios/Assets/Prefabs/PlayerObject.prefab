@@ -164,9 +164,10 @@ MonoBehaviour:
   climbForce: 5
   Gravity: -30
   diggingReach: 3
+  currentToolTier: 0
   damageVal: 10
-  durability: 25
-  maxDurability: 25
+  durability: 50
+  maxDurability: 50
   test: {fileID: 7874816983317726265}
   blocksToDig:
     serializedVersion: 2
@@ -193,6 +194,11 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   slotCount: 14
   selectedSlotIndex: 0
+  dropPoint: {fileID: 0}
+  dropForwardForce: 2
+  dropUpForce: 1
+  dropDistance: 1.5
+  worldPrefab: {fileID: 0}
 --- !u!1 &2221181228733416813
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +437,7 @@ GameObject:
   - component: {fileID: 1671749090078448131}
   m_Layer: 3
   m_Name: PlayerObject
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
