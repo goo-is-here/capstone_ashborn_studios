@@ -7,6 +7,11 @@ public class Depth_Tracker : MonoBehaviour
     [Header("Depth Settings")]
     public float surfaceY = 0f;
     public float currentDepth;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        surfaceY = player.position.y;
+    }
 
     private void Update()
     {

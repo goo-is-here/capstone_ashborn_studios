@@ -7,7 +7,7 @@ public class SpawnBlocks : MonoBehaviour
     Vector3[] vertices;
     Mesh mesh;
     GameObject player;
-    public GameObject block;
+    GameObject block;
     Vector3 startPos;
     public float spawnCheck = .5f;
     public bool[] spawnedBlocks = { false, false, false, false, false, false };
@@ -20,6 +20,7 @@ public class SpawnBlocks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        block = this.gameObject;
         blockEnum = blockType.CLEARSTONE;
         for (int i = 0; i < 6; i++)
         {

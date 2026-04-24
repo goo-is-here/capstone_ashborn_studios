@@ -9,6 +9,7 @@ TagManager:
   - textBox
   - durability
   - SetBlock
+  - PlayerStart
   layers:
   - Default
   - TransparentFX
