@@ -105,6 +105,7 @@ public class craftingBench : MonoBehaviour
     public void Make(int recipeIndex)
     {
         Item adding = new Item(recipes[recipeIndex].recipeList.madeName, recipes[recipeIndex].recipeList.description, recipes[recipeIndex].recipeList.icon, recipes[recipeIndex].recipeList.makeCount, recipes[recipeIndex].recipeList.itemEnum, recipes[recipeIndex].recipeList.worldPrefab);
+        bool breaking = false;
         for (int i = 0; i < recipes[recipeIndex].recipeList.recipe.Length; i++)
         {
             bool found = false;
@@ -112,10 +113,18 @@ public class craftingBench : MonoBehaviour
             {
                 if(!found && invent.Items[j] != null && recipes[recipeIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
                 {
+                    if(invent.Items[j].count - recipes[recipeIndex].recipeList.recipe[i].count <= 0)
+                    {
+                        breaking = true;
+                    }
                     found = true;
                     invent.RemoveItemAtIndex(j, recipes[recipeIndex].recipeList.recipe[i].count);
                 }
             }
+        }
+        if (breaking)
+        {
+            Destroy(slots[recipeIndex]);
         }
         invent.AddItem(adding);
     }
