@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (characterController.isGrounded)
+        if (characterController.isGrounded && canMove)
         {
             verticalVelocity = jumpForce;
             isJumping = true;
@@ -137,17 +137,21 @@ public class PlayerController : MonoBehaviour
 
     public void Dig()
     {
-        if (durability > 0)
+        if (canMove)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
+
+            if (durability > 0)
             {
-                hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
+                {
+                    hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
+                }
             }
-        }
-        else
-        {
-            printText("My tool is broken!");
+            else
+            {
+                printText("My tool is broken!");
+            }
         }
     }
 
