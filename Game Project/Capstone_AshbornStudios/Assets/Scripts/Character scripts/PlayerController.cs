@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping;
     public bool isDigging;
 
+    public bool canMove = true;
     public TextMeshProUGUI text;
     GameObject textBox;
 
@@ -74,39 +75,47 @@ public class PlayerController : MonoBehaviour
    
     public void Move(Vector2 movementVector)
     {
-        ground = characterController.isGrounded;
-
-        Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
-
-        if (test.climbing && movementVector.y > 0)
+        if (canMove)
         {
-            move *= climbMoveSpeed * Time.deltaTime;
-            characterController.Move(move);
+            ground = characterController.isGrounded;
 
-            verticalVelocity = climbForce;
-            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
-        }
-        else
-        {
-            move *= movementSpeed * Time.deltaTime;
-            characterController.Move(move);
+            Vector3 move = transform.forward * movementVector.y + transform.right * movementVector.x;
 
-            if (ground && verticalVelocity < 0)
-                verticalVelocity = -2f;
+            if (test.climbing && movementVector.y > 0)
+            {
+                move *= climbMoveSpeed * Time.deltaTime;
+                characterController.Move(move);
+
+                verticalVelocity = climbForce;
+                characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+            }
             else
-                verticalVelocity += Gravity * Time.deltaTime;
+            {
+                move *= movementSpeed * Time.deltaTime;
+                characterController.Move(move);
 
-            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+                if (ground && verticalVelocity < 0)
+                    verticalVelocity = -2f;
+                else
+                    verticalVelocity += Gravity * Time.deltaTime;
+
+                characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+            }
         }
+        
     }
 
     public void Rotate(Vector2 rotationVector)
     {
-        rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
-        rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
+        if (canMove)
+        {
+            rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
+            rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
 
-        transform.localRotation = Quaternion.Euler(0, rotationY, 0);
-        cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);
+            transform.localRotation = Quaternion.Euler(0, rotationY, 0);
+            cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);
+        }
+        
     }
 
     public void Jump()

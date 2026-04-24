@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2551273634457906938}
   - component: {fileID: 2514337444745260624}
   - component: {fileID: 112346590993870702}
+  - component: {fileID: 235995332841510946}
+  - component: {fileID: 8315510807738270830}
   m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -126,3 +128,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::vertexCheck
   digRange: 2
+--- !u!114 &235995332841510946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182901417664285545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7fcad2d0f2e6a409c72515277e3435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::diggableBlock
+  currHealth: 0
+  particles: {fileID: 0}
+  dropped: {fileID: 0}
+--- !u!114 &8315510807738270830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182901417664285545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac15e35e4c998a46b7c1f08e75b1cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnBlocks
+  spawnCheck: 0.25
+  spawnedBlocks: 000000000000
+  doSpawnNeighbors: 1
+  TESTINGONLY: 0

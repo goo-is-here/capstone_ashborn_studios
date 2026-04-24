@@ -10,6 +10,7 @@ TagManager:
   - durability
   - SetBlock
   - PlayerStart
+  - Pause
   layers:
   - Default
   - TransparentFX

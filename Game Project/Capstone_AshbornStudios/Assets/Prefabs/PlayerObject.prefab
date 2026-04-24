@@ -164,7 +164,6 @@ MonoBehaviour:
   climbForce: 5
   Gravity: -30
   diggingReach: 3
-  currentToolTier: 0
   damageVal: 10
   durability: 50
   maxDurability: 50

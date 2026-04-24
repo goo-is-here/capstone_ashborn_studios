@@ -942,11 +942,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac15e35e4c998a46b7c1f08e75b1cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  block: {fileID: 1787220907}
   spawnCheck: 0.5
   spawnedBlocks: 000000000000
   doSpawnNeighbors: 1
   TESTINGONLY: 0
+--- !u!114 &1787220909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787220907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7fcad2d0f2e6a409c72515277e3435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::diggableBlock
+  currHealth: 0
+  particles: {fileID: 0}
+  dropped: {fileID: 0}
 --- !u!1 &1789383985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1438,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: durability
       value: 125
       objectReference: {fileID: 0}
@@ -1535,6 +1553,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1787220908}
+    - targetCorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1787220909}
   m_SourcePrefab: {fileID: 100100000, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
 --- !u!1001 &8678092430102807404
 PrefabInstance:
@@ -1555,6 +1576,10 @@ PrefabInstance:
     - target: {fileID: 2492730291101242056, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: toolTierText
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676436090687439585, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4699718696673604428, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: depthTracker
