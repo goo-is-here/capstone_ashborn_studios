@@ -4,8 +4,8 @@ using UnityEngine;
 public class Recipe : ScriptableObject
 {
     public Node[] recipe;
-    string madeName;
-    string description;
+    public string madeName;
+    public string description;
     public Sprite icon;
     public int makeCount;
     public GameObject worldPrefab;
@@ -16,5 +16,6 @@ public class Recipe : ScriptableObject
 public class Node
 {
     public ItemEnum enu;
+    public string Name;
     public int count;
 }

@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
     }
     public void QuitGame()
     {
-        print("here");
         Application.Quit();
     }
 }

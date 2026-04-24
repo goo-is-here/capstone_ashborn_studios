@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class craftingBench : MonoBehaviour
 {
@@ -7,11 +8,17 @@ public class craftingBench : MonoBehaviour
     public Inventory invent;
     public List<Item> allItems = new List<Item>();
     public recipeNode[] recipes;
+    public GameObject uiSlot;
+    public Transform container;
+    public GameObject craftingUi;
+    public GameObject text;
+    GameObject[] slots;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         invent = player.GetComponent<Inventory>();
+        slots = new GameObject[recipes.Length];
     }
 
     // Update is called once per frame
@@ -19,6 +26,24 @@ public class craftingBench : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.transform.position) < 5f && Input.GetKeyDown(KeyCode.E))
         {
+            craftingUi.SetActive(!craftingUi.activeSelf);
+            if (craftingUi.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                player.GetComponent<PlayerController>().canMove = false;
+            }
+            else
+            {
+                for(int i = 0; i < slots.Length; i++)
+                {
+                    if (slots[i] != null)
+                    {
+                        Destroy(slots[i]);
+                    }
+                }
+                Cursor.lockState = CursorLockMode.Locked;
+                player.GetComponent<PlayerController>().canMove = true;
+            }
             allItems.Clear();
             List<Item> inventory = invent.Items;
             for(int i = 0; i < inventory.Count; i++)
@@ -63,9 +88,36 @@ public class craftingBench : MonoBehaviour
                     }
                 }
                 recipes[i].found = makeable;
+                if (makeable)
+                {
+                    GameObject newSlot = Instantiate(uiSlot, container);
+                    slots[i] = newSlot;
+                    newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                    for(int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
+                    {
+                        GameObject ingredient = Instantiate(text, newSlot.transform);
+                        ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                    }
+                }
             }
-            print(recipes[0].found);
         }
+    }
+    public void Make(int recipeIndex)
+    {
+        Item adding = new Item(recipes[recipeIndex].recipeList.madeName, recipes[recipeIndex].recipeList.description, recipes[recipeIndex].recipeList.icon, recipes[recipeIndex].recipeList.makeCount, recipes[recipeIndex].recipeList.itemEnum, recipes[recipeIndex].recipeList.worldPrefab);
+        for (int i = 0; i < recipes[recipeIndex].recipeList.recipe.Length; i++)
+        {
+            bool found = false;
+            for (int j = 0; j < invent.Items.Count; j++)
+            {
+                if(!found && invent.Items[j] != null && recipes[recipeIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
+                {
+                    found = true;
+                    invent.RemoveItemAtIndex(j, recipes[recipeIndex].recipeList.recipe[i].count);
+                }
+            }
+        }
+        invent.AddItem(adding);
     }
 }
 [System.Serializable]

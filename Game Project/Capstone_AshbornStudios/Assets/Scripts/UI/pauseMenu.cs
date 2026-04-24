@@ -15,6 +15,7 @@ public class pauseMenu : MonoBehaviour
     public float targetValue = 0;
     public CanvasRenderer elementToFade;
     public float resetVal;
+    public GameObject crafting;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,7 +29,7 @@ public class pauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !crafting.activeSelf)
         {
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
