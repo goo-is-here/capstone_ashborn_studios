@@ -9,10 +9,16 @@ public class Inventory : MonoBehaviour
     public InventoryUI inventoryUI;
 
     [Header("Inventory Size")]
-    public int slotCount = 14; // 6 hotbar + 8 backpack
+    public int slotCount = 14;
 
     [Header("Hotbar Selection")]
     public int selectedSlotIndex = 0;
+
+    [Header("Drop Settings")]
+    public Transform dropPoint;
+    public float dropForwardForce = 2f;
+    public float dropUpForce = 1f;
+    public float dropDistance = 1.5f;
 
     private void Awake()
     {
@@ -42,6 +48,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             RemoveSelectedItem();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropSelectedItem();
         }
     }
 
@@ -92,6 +103,9 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item itemToAdd)
     {
+        if (itemToAdd == null)
+            return;
+
         int remaining = itemToAdd.count;
 
         // Fill existing stacks first
@@ -105,6 +119,13 @@ public class Inventory : MonoBehaviour
                 int amountToAdd = Mathf.Min(remaining, spaceLeft);
 
                 Items[i].count += amountToAdd;
+
+                // Keep prefab data for dropping
+                if (Items[i].worldPrefab == null)
+                {
+                    Items[i].worldPrefab = itemToAdd.worldPrefab;
+                }
+
                 remaining -= amountToAdd;
 
                 if (remaining <= 0)
@@ -126,10 +147,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (inventoryUI != null)
-        {
-            inventoryUI.UpdateInventoryUI(Items);
-        }
+        UpdateUI();
 
         Debug.Log(itemToAdd.count + " " + itemToAdd.name + " added to inventory.");
     }
@@ -145,7 +163,7 @@ public class Inventory : MonoBehaviour
                 foodSource.description,
                 foodSource.icon,
                 count,
-                source.enu,
+                foodSource.enu,
                 foodSource.worldPrefab,
                 foodSource.hungerRestoreAmount
             );
@@ -184,31 +202,71 @@ public class Inventory : MonoBehaviour
             Items[index] = null;
         }
 
+        UpdateUI();
+    }
+
+    public void DropSelectedItem()
+    {
+        if (dropPoint == null)
+        {
+            Debug.LogWarning("DropPoint is not assigned.");
+            return;
+        }
+
+        if (selectedSlotIndex < 0 || selectedSlotIndex >= Items.Count)
+        {
+            Debug.LogWarning("Selected slot index invalid: " + selectedSlotIndex);
+            return;
+        }
+
+        Item itemToDrop = Items[selectedSlotIndex];
+
+        if (itemToDrop == null)
+        {
+            Debug.LogWarning("Selected item is null.");
+            return;
+        }
+
+        if (itemToDrop.worldPrefab == null)
+        {
+            Debug.LogWarning("No world prefab assigned for: " + itemToDrop.enu);
+            return;
+        }
+
+        Vector3 spawnPos = dropPoint.position + dropPoint.forward * dropDistance + Vector3.up * 0.5f;
+
+        GameObject droppedItem = Instantiate(
+            itemToDrop.worldPrefab,
+            spawnPos,
+            Quaternion.identity
+        );
+
+        Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddForce(
+                dropPoint.forward * dropForwardForce + Vector3.up * dropUpForce,
+                ForceMode.Impulse
+            );
+        }
+
+        itemToDrop.count--;
+
+        if (itemToDrop.count <= 0)
+        {
+            Items[selectedSlotIndex] = null;
+        }
+
+        UpdateUI();
+
+        Debug.Log("Dropped item: " + itemToDrop.enu);
+    }
+
+    void UpdateUI()
+    {
         if (inventoryUI != null)
         {
             inventoryUI.UpdateInventoryUI(Items);
         }
-    }
-
-    public void DropItemAtIndex(int index, int amount, Vector3 dropPosition)
-    {
-        if (index < 0 || index >= Items.Count)
-            return;
-
-        Item item = Items[index];
-        if (item == null)
-            return;
-
-        int amountToDrop = Mathf.Min(amount, item.count);
-
-        if (item.worldPrefab != null)
-        {
-            for (int i = 0; i < amountToDrop; i++)
-            {
-                Instantiate(item.worldPrefab, dropPosition + new Vector3(i * 0.2f, 0f, 0f), Quaternion.identity);
-            }
-        }
-
-        RemoveItemAtIndex(index, amountToDrop);
     }
 }

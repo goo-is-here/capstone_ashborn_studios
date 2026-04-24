@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Durability_UI : MonoBehaviour
+public class DurabilityUI : MonoBehaviour
 {
     public PlayerController player;
     public TMP_Text usesText;
