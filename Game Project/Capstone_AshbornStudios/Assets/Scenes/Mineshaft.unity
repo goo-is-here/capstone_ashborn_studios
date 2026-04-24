@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &120948753 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9033639143891996305, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
-  m_PrefabInstance: {fileID: 8678092430102807404}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &138180258 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8766960645349105212, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
@@ -144,6 +133,11 @@ MonoBehaviour:
 --- !u!1 &275702730 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6142835144036939255, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 4218721442534786265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &275702731 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
   m_PrefabInstance: {fileID: 4218721442534786265}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &311895719
@@ -1362,9 +1356,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2208720410419595465, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: dropPoint
+      value: 
+      objectReference: {fileID: 275702731}
+    - target: {fileID: 2208720410419595465, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 425774650}
+    - target: {fileID: 2208720410419595465, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: worldPrefab
+      value: 
+      objectReference: {fileID: 1787220907}
     - target: {fileID: 2236495270293918976, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1423,11 +1425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: durability
-      value: 100
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: maxDurability
-      value: 525
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: toolTierLevel
@@ -1553,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 2492730291101242056, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: toolTierText
       value: 
-      objectReference: {fileID: 120948753}
+      objectReference: {fileID: 0}
     - target: {fileID: 4699718696673604428, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: depthTracker
       value: 
