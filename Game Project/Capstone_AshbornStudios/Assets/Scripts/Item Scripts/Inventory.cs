@@ -20,6 +20,8 @@ public class Inventory : MonoBehaviour
     public float dropUpForce = 1f;
     public float dropDistance = 1.5f;
 
+    public GameObject worldPrefab;
+
     private void Awake()
     {
         if (Instance != null)
