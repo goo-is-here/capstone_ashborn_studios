@@ -19,6 +19,7 @@ public class craftingBench : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         invent = player.GetComponent<Inventory>();
         slots = new GameObject[recipes.Length];
+        craftingUi.SetActive(false);
     }
 
     // Update is called once per frame

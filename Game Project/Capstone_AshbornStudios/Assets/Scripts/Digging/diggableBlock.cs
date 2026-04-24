@@ -12,6 +12,9 @@ public class diggableBlock : MonoBehaviour
     PlayerController controller;
     public GameObject particles;
     public GameObject dropped;
+    //public AudioSource audioSource;
+    AudioClip breaaking;
+    AudioClip broke;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

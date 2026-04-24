@@ -29,7 +29,7 @@ public class pauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !crafting.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && crafting != null && !crafting.activeSelf)
         {
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
