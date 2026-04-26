@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class ItemDropPrefab
+{
+    public ItemEnum enu;
+    public GameObject prefab;
+}
+
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
@@ -20,7 +27,8 @@ public class Inventory : MonoBehaviour
     public float dropUpForce = 1f;
     public float dropDistance = 1.5f;
 
-    public GameObject worldPrefab;
+    [Header("Drop Prefab Lookup")]
+    public List<ItemDropPrefab> dropPrefabs = new List<ItemDropPrefab>();
 
     private void Awake()
     {
@@ -47,10 +55,6 @@ public class Inventory : MonoBehaviour
             UseSelectedItem();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RemoveSelectedItem();
-        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -110,11 +114,10 @@ public class Inventory : MonoBehaviour
 
         int remaining = itemToAdd.count;
 
-        // Fill existing stacks first
         for (int i = 0; i < Items.Count; i++)
         {
             if (Items[i] != null &&
-                Items[i].name == itemToAdd.name &&
+                Items[i].enu == itemToAdd.enu &&
                 Items[i].count < 99)
             {
                 int spaceLeft = 99 - Items[i].count;
@@ -122,7 +125,6 @@ public class Inventory : MonoBehaviour
 
                 Items[i].count += amountToAdd;
 
-                // Keep prefab data for dropping
                 if (Items[i].worldPrefab == null)
                 {
                     Items[i].worldPrefab = itemToAdd.worldPrefab;
@@ -135,7 +137,6 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // Put remaining items into empty slots
         for (int i = 0; i < Items.Count; i++)
         {
             if (remaining <= 0)
@@ -207,6 +208,22 @@ public class Inventory : MonoBehaviour
         UpdateUI();
     }
 
+    GameObject GetDropPrefab(Item item)
+    {
+        if (item == null)
+            return null;
+
+        for (int i = 0; i < dropPrefabs.Count; i++)
+        {
+            if (dropPrefabs[i] != null && dropPrefabs[i].enu == item.enu)
+            {
+                return dropPrefabs[i].prefab;
+            }
+        }
+
+        return null;
+    }
+
     public void DropSelectedItem()
     {
         if (dropPoint == null)
@@ -229,16 +246,38 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        if (itemToDrop.worldPrefab == null)
+        // First try to use the prefab stored inside the item data
+        GameObject prefabToDrop = itemToDrop.worldPrefab;
+
+        // If the item somehow lost its prefab, use the fallback lookup
+        if (prefabToDrop == null)
         {
-            Debug.LogWarning("No world prefab assigned for: " + itemToDrop.enu);
+            prefabToDrop = GetDropPrefab(itemToDrop);
+        }
+
+        if (prefabToDrop == null)
+        {
+            Debug.LogWarning("No drop prefab found for: " + itemToDrop.enu);
             return;
         }
 
-        Vector3 spawnPos = dropPoint.position + dropPoint.forward * dropDistance + Vector3.up * 0.5f;
+        Camera cam = Camera.main;
+
+        Vector3 spawnPos;
+
+        if (cam != null)
+        {
+            spawnPos = cam.transform.position + cam.transform.forward * dropDistance;
+        }
+        else
+        {
+            spawnPos = transform.position + transform.forward * dropDistance;
+        }
+
+        spawnPos += Vector3.up * 0.2f;
 
         GameObject droppedItem = Instantiate(
-            itemToDrop.worldPrefab,
+            prefabToDrop,
             spawnPos,
             Quaternion.identity
         );
@@ -263,6 +302,8 @@ public class Inventory : MonoBehaviour
 
         Debug.Log("Dropped item: " + itemToDrop.enu);
     }
+
+
 
     void UpdateUI()
     {

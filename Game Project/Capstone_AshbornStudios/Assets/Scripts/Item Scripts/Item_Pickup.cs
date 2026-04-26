@@ -7,10 +7,11 @@ public class Item_Pickup : MonoBehaviour
     public Sprite itemIcon;
     public int amount = 1;
     public ItemEnum enu;
-    public GameObject worldPrefab;
-    GameObject player;
 
-    [Header("What to destroy after pickup")]
+    [Header("Prefab used when dropping this item again")]
+    public GameObject worldPrefab;
+
+    [Header("Scene object to destroy after pickup")]
     public GameObject objectToDestroy;
 
     private bool pickedUp = false;
@@ -20,6 +21,7 @@ public class Item_Pickup : MonoBehaviour
         if (objectToDestroy == null)
             objectToDestroy = gameObject;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (pickedUp) return;
@@ -31,9 +33,23 @@ public class Item_Pickup : MonoBehaviour
             return;
         }
 
+        if (worldPrefab == null)
+        {
+            Debug.LogWarning("World prefab is not assigned for: " + itemName);
+            return;
+        }
+
         pickedUp = true;
 
-        Item newItem = new Item(itemName, itemdescription, itemIcon, amount, enu, worldPrefab);
+        Item newItem = new Item(
+            itemName,
+            itemdescription,
+            itemIcon,
+            amount,
+            enu,
+            worldPrefab
+        );
+
         Inventory.Instance.AddItem(newItem);
 
         Destroy(objectToDestroy);
