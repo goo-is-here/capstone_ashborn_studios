@@ -13,7 +13,7 @@ public class growPlant : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 scaleTarget = new Vector3(1, 1, 1)
+        Vector3 scaleTarget = new Vector3(1, 1, 1);
         if(Vector3.Distance(player.position, transform.position) < .2f && Vector3.Distance(transform.localScale, scaleTarget) <= .1f)
         {
             resetScale();
