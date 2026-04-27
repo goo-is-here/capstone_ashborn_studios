@@ -3452,8 +3452,9 @@ GameObject:
   - component: {fileID: 445455893892645681}
   - component: {fileID: 6868139686600810306}
   - component: {fileID: 2832984887900436429}
+  - component: {fileID: 4361657083840620411}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CraftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3556,11 +3557,36 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 6868139686600810306}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4361657083840620411}
+        m_TargetAssemblyTypeName: craftingAdd, Assembly-CSharp
+        m_MethodName: add
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4361657083840620411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183616422188694967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c94408273826c3429208a6bd3441c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::craftingAdd
+  recipeToMake: 0
 --- !u!1 &3328505740147089386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5289,7 +5315,7 @@ GameObject:
   - component: {fileID: 4453327813635715305}
   - component: {fileID: 2828795364573905354}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5342,7 +5368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: ' '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6870,7 +6896,7 @@ GameObject:
   - component: {fileID: 6486147636567508395}
   - component: {fileID: 6630993969081989687}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ItemDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6923,7 +6949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: ' '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7546,7 +7572,7 @@ GameObject:
   - component: {fileID: 4986626234805016458}
   - component: {fileID: 841122649578829394}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Craft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

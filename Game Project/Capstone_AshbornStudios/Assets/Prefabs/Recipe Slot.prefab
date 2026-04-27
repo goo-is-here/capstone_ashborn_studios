@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4530537096280533824}
         m_TargetAssemblyTypeName: craftingAdd, Assembly-CSharp
-        m_MethodName: add
+        m_MethodName: select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   recipeToMake: 0
+  craftName: 
+  description: 
+  make: 0
 --- !u!114 &2674017386680305553
 MonoBehaviour:
   m_ObjectHideFlags: 0
