@@ -267,20 +267,22 @@ public class Inventory : MonoBehaviour
 
         if (cam != null)
         {
-            spawnPos = cam.transform.position + cam.transform.forward * dropDistance;
+            spawnPos = cam.transform.position + cam.transform.forward * 3f;
         }
         else
         {
-            spawnPos = transform.position + transform.forward * dropDistance;
+            spawnPos = transform.position + transform.forward * 3f;
         }
 
-        spawnPos += Vector3.up * 0.2f;
+        spawnPos += Vector3.up * 1f;
 
         GameObject droppedItem = Instantiate(
             prefabToDrop,
             spawnPos,
             Quaternion.identity
         );
+
+        Destroy(droppedItem, 10f);
 
         Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
         if (rb != null)
