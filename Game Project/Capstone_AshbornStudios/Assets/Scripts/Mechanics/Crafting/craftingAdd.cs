@@ -12,4 +12,8 @@ public class craftingAdd : MonoBehaviour
     {
         bench.Make(recipeToMake);
     }
+    public void select(string name, string description)
+    {
+
+    }
 }

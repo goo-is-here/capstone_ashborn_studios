@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b444cd877a234ca6296c9a479c3e8, type: 3}
+  m_Name: Impossible
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  recipe:
+  - enu: 13
+    Name: Iron
+    count: 99999
+  madeName: nbuh
+  description: asd
+  icon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}
+  makeCount: 10
+  worldPrefab: {fileID: 7963215976860092175, guid: af8444c0654d9e54a8e9e0cc5a727101, type: 3}
+  itemEnum: 9

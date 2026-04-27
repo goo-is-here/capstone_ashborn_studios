@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 
 public class craftingBench : MonoBehaviour
 {
@@ -27,11 +28,80 @@ public class craftingBench : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.transform.position) < 5f && Input.GetKeyDown(KeyCode.E))
         {
-            craftingUi.SetActive(!craftingUi.activeSelf);
-            if (craftingUi.activeSelf)
+            //craftingUi.SetActive(!craftingUi.activeSelf);
+            if (!craftingUi.activeSelf)
             {
+                craftingUi.SetActive(true);
+                allItems.Clear();
+                List<Item> inventory = invent.Items;
                 Cursor.lockState = CursorLockMode.None;
                 player.GetComponent<PlayerController>().canMove = false;
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    bool found = false;
+                    for (int j = 0; j < allItems.Count; j++)
+                    {
+                        if (inventory[i] != null && allItems[j] != null && allItems[j].enu == inventory[i].enu)
+                        {
+                            allItems[j].count += inventory[i].count;
+                            found = true;
+                        }
+                    }
+                    if (!found && inventory[i] != null)
+                    {
+                        allItems.Add(inventory[i]);
+                    }
+                }
+                for (int i = 0; i < recipes.Length; i++)
+                {
+                    bool makeable = true;
+                    bool[] recipeArr = new bool[recipes[i].recipeList.recipe.Length];
+                    for (int j = 0; j < recipes[i].recipeList.recipe.Length; j++)
+                    {
+                        recipeArr[j] = false;
+                        if (allItems.Count >= 1)
+                        {
+                            for (int k = 0; k < allItems.Count; k++)
+                            {
+                                if ((allItems[k].enu == recipes[i].recipeList.recipe[j].enu) && (allItems[k].count >= recipes[i].recipeList.recipe[j].count))
+                                {
+                                    recipeArr[j] = true;
+                                }
+                            }
+                        }
+                    }
+                    for (int n = 0; n < recipeArr.Length; n++)
+                    {
+                        if (recipeArr[n] == false)
+                        {
+                            makeable = false;
+                        }
+                    }
+                    recipes[i].found = makeable;
+                    if (makeable)
+                    {
+                        GameObject newSlot = Instantiate(uiSlot, container);
+                        slots[i] = newSlot;
+                        newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                        for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
+                        {
+                            GameObject ingredient = Instantiate(text, newSlot.transform);
+                            ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                        }
+                    }
+                    else
+                    {
+                        GameObject newSlot = Instantiate(uiSlot, container);
+                        slots[i] = newSlot;
+                        newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                        for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
+                        {
+                            GameObject ingredient = Instantiate(text, newSlot.transform);
+                            ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                        }
+                        newSlot.GetComponent<Button>().interactable = false;
+                    }
+                }
             }
             else
             {
@@ -44,63 +114,11 @@ public class craftingBench : MonoBehaviour
                 }
                 Cursor.lockState = CursorLockMode.Locked;
                 player.GetComponent<PlayerController>().canMove = true;
+                allItems.Clear();
+                craftingUi.SetActive(false);
             }
-            allItems.Clear();
-            List<Item> inventory = invent.Items;
-            for(int i = 0; i < inventory.Count; i++)
-            {
-                bool found = false;
-                for(int j = 0; j < allItems.Count; j++)
-                {
-                    if(inventory[i] != null && allItems[j] != null && allItems[j].enu == inventory[i].enu)
-                    {
-                        allItems[j].count += inventory[i].count;
-                        found = true;
-                    }
-                }
-                if (!found && inventory[i] != null)
-                {
-                    allItems.Add(inventory[i]);
-                }
-            }
-            for(int i = 0; i < recipes.Length; i++)
-            {
-                bool makeable = true;
-                bool[] recipeArr = new bool[recipes[i].recipeList.recipe.Length];
-                for (int j = 0; j < recipes[i].recipeList.recipe.Length; j++)
-                {
-                    recipeArr[j] = false;
-                    if (allItems.Count >= 1)
-                    {
-                        for (int k = 0; k < allItems.Count; k++)
-                        {
-                            if((allItems[k].enu == recipes[i].recipeList.recipe[j].enu) && (allItems[k].count >= recipes[i].recipeList.recipe[j].count))
-                            {
-                                recipeArr[j] = true;
-                            }
-                        }
-                    }
-                }
-                for(int n = 0; n < recipeArr.Length; n++)
-                {
-                    if(recipeArr[n] == false)
-                    {
-                        makeable = false;
-                    }
-                }
-                recipes[i].found = makeable;
-                if (makeable)
-                {
-                    GameObject newSlot = Instantiate(uiSlot, container);
-                    slots[i] = newSlot;
-                    newSlot.GetComponent<craftingAdd>().recipeToMake = i;
-                    for(int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
-                    {
-                        GameObject ingredient = Instantiate(text, newSlot.transform);
-                        ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
-                    }
-                }
-            }
+            
+            
         }
     }
     public void Make(int recipeIndex)
@@ -125,7 +143,7 @@ public class craftingBench : MonoBehaviour
         }
         if (breaking)
         {
-            Destroy(slots[recipeIndex]);
+            slots[recipeIndex].GetComponent<Button>().interactable = false;
         }
         invent.AddItem(adding);
     }
