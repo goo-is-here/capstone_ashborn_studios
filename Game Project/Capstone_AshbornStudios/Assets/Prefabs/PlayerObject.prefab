@@ -176,6 +176,7 @@ MonoBehaviour:
   isRunning: 0
   isJumping: 0
   isDigging: 0
+  canMove: 1
   text: {fileID: 0}
 --- !u!114 &2208720410419595465
 MonoBehaviour:
@@ -193,11 +194,37 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   slotCount: 14
   selectedSlotIndex: 0
-  dropPoint: {fileID: 0}
+  dropPoint: {fileID: 1671749090078448131}
   dropForwardForce: 2
   dropUpForce: 1
   dropDistance: 1.5
-  worldPrefab: {fileID: 0}
+  dropPrefabs:
+  - enu: 1
+    prefab: {fileID: 2487266843201563024, guid: edf9d91bc39de674997c73305d1fbacb, type: 3}
+  - enu: 2
+    prefab: {fileID: 7202145325846076716, guid: f5793f203b8d3454f818e8c311b1ce9b, type: 3}
+  - enu: 3
+    prefab: {fileID: 6150668360226356432, guid: 31847004ce66b4f4aadfcf2551dffb88, type: 3}
+  - enu: 4
+    prefab: {fileID: 1330074392253576279, guid: c02f738c125f92d44899283ffd1962d1, type: 3}
+  - enu: 5
+    prefab: {fileID: 7684466976166885979, guid: 3fab8624091de5542aff31dd591a6728, type: 3}
+  - enu: 6
+    prefab: {fileID: 8308295401990318128, guid: fcc4ff40b5d4b57438c31ecb8701f3d6, type: 3}
+  - enu: 7
+    prefab: {fileID: 0}
+  - enu: 8
+    prefab: {fileID: 0}
+  - enu: 9
+    prefab: {fileID: 7963215976860092175, guid: af8444c0654d9e54a8e9e0cc5a727101, type: 3}
+  - enu: 10
+    prefab: {fileID: 612138122833290065, guid: d4790290adc042c40ac8b95d1465c42e, type: 3}
+  - enu: 11
+    prefab: {fileID: 8274722980629589059, guid: b7b911215ae34664dae03a5703ce6fd6, type: 3}
+  - enu: 12
+    prefab: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+  - enu: 13
+    prefab: {fileID: 7062857715819053318, guid: afb0f484be3535c44a5b6f5228b5b2be, type: 3}
 --- !u!1 &2221181228733416813
 GameObject:
   m_ObjectHideFlags: 0
