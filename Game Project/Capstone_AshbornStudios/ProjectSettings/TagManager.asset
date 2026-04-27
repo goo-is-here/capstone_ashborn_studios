@@ -12,6 +12,7 @@ TagManager:
   - PlayerStart
   - Pause
   - Crafting
+  - plant
   layers:
   - Default
   - TransparentFX
