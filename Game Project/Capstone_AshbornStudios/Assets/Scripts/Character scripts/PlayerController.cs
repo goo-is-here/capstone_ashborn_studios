@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
             if (durability > 0)
             {
+                print("here");
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
                 {

@@ -5,8 +5,8 @@ using TMPro;
 public class diggableBlock : MonoBehaviour
 {
     GameObject player;
-    float blockHealth = 100f;
-    float minDamage;
+    public float blockHealth = 100f;
+    public float minDamage;
     public float currHealth;
     
     PlayerController controller;
@@ -24,6 +24,7 @@ public class diggableBlock : MonoBehaviour
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
+        print("here1");
         if(damageVal >= minDamage && controller.getDur() > 0)
         {
             currHealth -= damageVal;
@@ -34,12 +35,17 @@ public class diggableBlock : MonoBehaviour
             if (currHealth <= 0)
             {
                 this.GetComponent<MeshRenderer>().enabled = false;
-                this.GetComponent<BoxCollider>().enabled = false;
+                this.GetComponent<Collider>().enabled = false;
                 Vector3 pos = this.transform.position;
-                GameObject part = Instantiate(particles, pos, Quaternion.identity, transform.parent);
-                GameObject drop = Instantiate(dropped, pos, Quaternion.identity, transform.parent);
-                Destroy(part, 3f);
-                Destroy(drop, 10f);
+                if(particles != null)
+                {
+                    GameObject part = Instantiate(particles, pos, Quaternion.identity, transform.parent);
+                    Destroy(part, 3f);
+                }
+                if(dropped != null){
+                    GameObject drop = Instantiate(dropped, pos, Quaternion.identity, transform.parent);
+                    Destroy(drop, 10f);
+                }
                 Destroy(gameObject);
             }
         }
