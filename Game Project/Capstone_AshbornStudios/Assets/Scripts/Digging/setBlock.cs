@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class setBlock : MonoBehaviour
+public class setBlock : MonoBehaviour, IDataPersistence
 {
     [SerializeField]
     GameObject blockPrefab;
@@ -21,33 +23,56 @@ public class setBlock : MonoBehaviour
     BlockObject[] lushBlocks;
     [SerializeField]
     float[] lushSpawnRates;
+    public List<Vector3> blockPosition;
 
     public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int biomeSelect = Random.Range(0, 1);
         float noise = calculateNoise(position.x, position.y, position.z);
-        if(noise <= airThreshold)
+        if (blockPosition.Contains(position))
         {
             spawnBlock.setAir();
         }
-        if(position.y > dirtTransStart)
+        else
         {
-            cavernBiomeSet(noise, mesh, spawnBlock, block);
-        }
-        else if(position.y > dirtTransEnd)
-        {
-            if(biomeSelect == 0)
+            if (noise <= airThreshold)
+            {
+                spawnBlock.setAir();
+            }
+            if (position.y > dirtTransStart)
             {
                 cavernBiomeSet(noise, mesh, spawnBlock, block);
+            }
+            else if (position.y > dirtTransEnd)
+            {
+                if (biomeSelect == 0)
+                {
+                    cavernBiomeSet(noise, mesh, spawnBlock, block);
+                }
+                else
+                {
+                    lushBiomeSet(noise, mesh, spawnBlock, block);
+                }
             }
             else
             {
                 lushBiomeSet(noise, mesh, spawnBlock, block);
             }
         }
-        else
+        
+    }
+    public void LoadData(GameData data)
+    {
+        foreach(Vector3 pos in data.minedBlocks)
         {
-            lushBiomeSet(noise, mesh, spawnBlock, block);
+            blockPosition.Add(pos);
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        foreach (Vector3 pos in blockPosition)
+        {
+            data.minedBlocks.Add(pos);
         }
     }
     float calculateNoise(float x, float y, float z)

@@ -73,7 +73,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
-        print("here2");
+        data.inventory.Clear();
         foreach(Item it in Items)
         {
             if (it != null && it.enu != ItemEnum.NULL)

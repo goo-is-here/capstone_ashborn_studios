@@ -15,12 +15,14 @@ public class diggableBlock : MonoBehaviour
     //public AudioSource audioSource;
     AudioClip breaaking;
     AudioClip broke;
+    setBlock setter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         controller = player.GetComponent<PlayerController>();
         currHealth = blockHealth;
+        setter = GameObject.FindGameObjectWithTag("SetBlock").GetComponent<setBlock>();
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
@@ -37,6 +39,7 @@ public class diggableBlock : MonoBehaviour
                 this.GetComponent<MeshRenderer>().enabled = false;
                 this.GetComponent<Collider>().enabled = false;
                 Vector3 pos = this.transform.position;
+                setter.blockPosition.Add(pos);
                 if(particles != null)
                 {
                     GameObject part = Instantiate(particles, pos, Quaternion.identity, transform.parent);
