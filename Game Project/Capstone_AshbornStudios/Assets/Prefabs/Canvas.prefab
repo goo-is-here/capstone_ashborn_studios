@@ -2723,6 +2723,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f8ac1af0b0b464abd8ecb906fc6329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  recipeToMake: 0
+  craftName: 
+  description: 
+  make: 0
+  upgrade: 0
+  repairAmt: 0
+  damageUpgrade: 0
 --- !u!1 &2619971027759875280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,6 +3610,10 @@ MonoBehaviour:
   craftName: 
   description: 
   make: 0
+  repairAmt: 0
+  damageUpgrade: 0
+  upgrade: 0
+  repair: 0
 --- !u!1 &3328505740147089386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,8 +5422,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -2,9 +2,9 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     private CharacterController characterController;
 
@@ -67,6 +67,35 @@ public class PlayerController : MonoBehaviour
         return Mathf.RoundToInt(durability);
     }
 
+    public void LoadData(GameData data)
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            this.transform.position = data.hubPosition;
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            this.transform.position = data.minePosition;
+        }
+        this.damageVal = data.damageVal;
+        this.durability = data.durability;
+        this.maxDurability = data.maxDurability;
+    }
+    public void SaveData(ref GameData data)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            data.hubPosition = this.transform.position;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            data.minePosition = this.transform.position;
+        }
+        data.scenceIndex = SceneManager.GetActiveScene().buildIndex;
+        data.damageVal = this.damageVal;
+        data.durability = this.durability;
+        data.maxDurability = this.maxDurability;
+    }
     public int GetMaxUses()
     {
         return Mathf.RoundToInt(maxDurability);
