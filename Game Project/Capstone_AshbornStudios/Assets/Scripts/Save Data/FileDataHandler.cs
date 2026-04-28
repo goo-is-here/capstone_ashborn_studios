@@ -7,10 +7,13 @@ public class FileDataHandler
 {
     private string dataDirPath = "";
     private string dataFileName = "";
-    public FileDataHandler(string dataDirPath, string dataFileName)
+    private bool useEncryption = false;
+    private readonly string encryptionCodeWord = "Hippopotomonstrosesquipedaliophobia";
+    public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
         this.dataFileName = dataFileName;
+        this.useEncryption = useEncryption;
     }
     public GameData Load()
     {
@@ -28,6 +31,10 @@ public class FileDataHandler
                         dataToLoad = reader.ReadToEnd();
                     }
                 }
+                if (useEncryption)
+                {
+                    dataToLoad = EncryptDecrypt(dataToLoad);
+                }
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
             catch (Exception e)
@@ -35,7 +42,6 @@ public class FileDataHandler
                 Debug.LogError("Error when trying to load from " + fullPath + "\n" + e);
             }
         }
-        Debug.Log(loadedData.maxDurability);
         return loadedData;
     }
     public void Save(GameData data)
@@ -45,6 +51,10 @@ public class FileDataHandler
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             string dataToStore = JsonUtility.ToJson(data, true);
+            if (useEncryption)
+            {
+                dataToStore = EncryptDecrypt(dataToStore);
+            }
             using(FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
                 using(StreamWriter writer = new StreamWriter(stream))
@@ -58,5 +68,14 @@ public class FileDataHandler
             Debug.LogError("Error when trying to save to " + fullPath + "\n" + e);
         }
         Debug.Log(fullPath);
+    }
+    private string EncryptDecrypt(string data)
+    {
+        string modifiedData = "";
+        for(int i = 0; i< data.Length; i++)
+        {
+            modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
+        }
+        return modifiedData;
     }
 }

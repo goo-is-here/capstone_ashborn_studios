@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        print(data.maxDurability);
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             this.transform.position = data.hubPosition;
@@ -84,18 +83,22 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if(data != null)
         {
-            data.hubPosition = this.transform.position;
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                data.hubPosition = this.transform.position;
+            }
+            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                data.minePosition = this.transform.position;
+            }
+            data.scenceIndex = SceneManager.GetActiveScene().buildIndex;
+            data.damageVal = this.damageVal;
+            data.durability = this.durability;
+            data.maxDurability = this.maxDurability;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            data.minePosition = this.transform.position;
-        }
-        data.scenceIndex = SceneManager.GetActiveScene().buildIndex;
-        data.damageVal = this.damageVal;
-        data.durability = this.durability;
-        data.maxDurability = this.maxDurability;
+        
     }
     public int GetMaxUses()
     {

@@ -56,7 +56,11 @@ public class Treasure_Manager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
-        data.treasureHolder.Clear();
+        if(data != null)
+        {
+
+            data.treasureHolder.Clear();
+        }
         foreach (string tre in collectedTreasureIDs)
         {
             data.treasureHolder.Add(tre);
