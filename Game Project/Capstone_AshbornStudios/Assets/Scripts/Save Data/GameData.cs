@@ -13,9 +13,10 @@ public class GameData
     public Vector3 minePosition;
     public List<Item> inventory;
     public List<Vector3> minedBlocks;
+    public List<string> treasureHolder;
     public GameData()
     {
-        
+        treasureHolder = new List<string>();
         this.inventory = new List<Item>();
         this.minedBlocks = new List<Vector3>();
         this.minePosition = new Vector3(0, 0, 0);

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Treasure_Manager : MonoBehaviour
+public class Treasure_Manager : MonoBehaviour, IDataPersistence
 {
     public static Treasure_Manager Instance;
 
@@ -47,7 +47,21 @@ public class Treasure_Manager : MonoBehaviour
             Debug.Log("Treasure already collected: " + newTreasure.treasureName);
         }
     }
-
+    public void LoadData(GameData data)
+    {
+        foreach(string tre in data.treasureHolder)
+        {
+            collectedTreasureIDs.Add(tre);
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.treasureHolder.Clear();
+        foreach (string tre in collectedTreasureIDs)
+        {
+            data.treasureHolder.Add(tre);
+        }
+    }
     public bool HasTreasure(string treasureID)
     {
         return collectedTreasureIDs.Contains(treasureID);
