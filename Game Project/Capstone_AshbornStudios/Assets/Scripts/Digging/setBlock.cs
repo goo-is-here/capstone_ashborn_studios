@@ -70,6 +70,7 @@ public class setBlock : MonoBehaviour, IDataPersistence
     }
     public void SaveData(ref GameData data)
     {
+        data.minedBlocks.Clear();
         foreach (Vector3 pos in blockPosition)
         {
             data.minedBlocks.Add(pos);

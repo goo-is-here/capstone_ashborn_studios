@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour, IDataPersistence
 
     [Header("Drop Prefab Lookup")]
     public List<ItemDropPrefab> dropPrefabs = new List<ItemDropPrefab>();
+    public List<Item_Pickup> sprites = new List<Item_Pickup>();
 
     private void Awake()
     {
@@ -67,6 +68,14 @@ public class Inventory : MonoBehaviour, IDataPersistence
         {
             if(it.enu != ItemEnum.NULL)
             {
+                foreach(Item_Pickup ite in sprites)
+                {
+                    if(it.enu == ite.enu)
+                    {
+                        it.icon = ite.itemIcon;
+                        it.worldPrefab = ite.worldPrefab;
+                    }
+                }
                 AddItem(it);
             }
         }
