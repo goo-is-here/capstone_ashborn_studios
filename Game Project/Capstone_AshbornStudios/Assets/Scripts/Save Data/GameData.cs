@@ -15,10 +15,11 @@ public class GameData
     public List<Vector3> minedBlocks;
     public GameData()
     {
-        inventory = new List<Item>();
-        minedBlocks = new List<Vector3>();
-        minePosition = new Vector3(2, 1, 9);
-        hubPosition = new Vector3(4, 16, -13);
+        
+        this.inventory = new List<Item>();
+        this.minedBlocks = new List<Vector3>();
+        this.minePosition = new Vector3(0, 0, 0);
+        this.hubPosition = new Vector3(4, 16, -13);
         this.scenceIndex = 1;
         this.damageVal = 10;
         this.maxDurability = 100;

@@ -7,9 +7,13 @@ public class MainMenu : MonoBehaviour, IDataPersistence
     {
         SceneManager.LoadScene(indexToLoad);
     }
+    public void newGameStart()
+    {
+        DataPersistenceManager.instance.NewGame();
+        SceneManager.LoadScene(indexToLoad);
+    }
     public void LoadData(GameData data)
     {
-        print("loading " + data.scenceIndex);
         this.indexToLoad = data.scenceIndex;
     }
     public void SaveData(ref GameData data)

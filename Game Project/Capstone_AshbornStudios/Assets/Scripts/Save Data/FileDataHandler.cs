@@ -35,6 +35,7 @@ public class FileDataHandler
                 Debug.LogError("Error when trying to load from " + fullPath + "\n" + e);
             }
         }
+        Debug.Log(loadedData.maxDurability);
         return loadedData;
     }
     public void Save(GameData data)

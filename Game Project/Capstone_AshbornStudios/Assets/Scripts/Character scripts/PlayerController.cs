@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        print(data.maxDurability);
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             this.transform.position = data.hubPosition;
