@@ -13,13 +13,16 @@ public class craftingBench : MonoBehaviour
     public Transform container;
     public GameObject craftingUi;
     public GameObject text;
+    public recipeNode[] tools;
     GameObject[] slots;
+    GameObject[] toolSlots;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         invent = player.GetComponent<Inventory>();
         slots = new GameObject[recipes.Length];
+        toolSlots = new GameObject[tools.Length];
         craftingUi.SetActive(false);
     }
 
@@ -52,61 +55,8 @@ public class craftingBench : MonoBehaviour
                         allItems.Add(inventory[i]);
                     }
                 }
-                for (int i = 0; i < recipes.Length; i++)
-                {
-                    bool makeable = true;
-                    bool[] recipeArr = new bool[recipes[i].recipeList.recipe.Length];
-                    for (int j = 0; j < recipes[i].recipeList.recipe.Length; j++)
-                    {
-                        recipeArr[j] = false;
-                        if (allItems.Count >= 1)
-                        {
-                            for (int k = 0; k < allItems.Count; k++)
-                            {
-                                if ((allItems[k].enu == recipes[i].recipeList.recipe[j].enu) && (allItems[k].count >= recipes[i].recipeList.recipe[j].count))
-                                {
-                                    recipeArr[j] = true;
-                                }
-                            }
-                        }
-                    }
-                    for (int n = 0; n < recipeArr.Length; n++)
-                    {
-                        if (recipeArr[n] == false)
-                        {
-                            makeable = false;
-                        }
-                    }
-                    recipes[i].found = makeable;
-                    if (makeable)
-                    {
-                        GameObject newSlot = Instantiate(uiSlot, container);
-                        slots[i] = newSlot;
-                        newSlot.GetComponent<craftingAdd>().recipeToMake = i;
-                        newSlot.GetComponent<craftingAdd>().craftName = recipes[i].recipeList.madeName;
-                        newSlot.GetComponent<craftingAdd>().description = recipes[i].recipeList.description;
-                        newSlot.GetComponent<craftingAdd>().make = true;
-                        for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
-                        {
-                            GameObject ingredient = Instantiate(text, newSlot.transform);
-                            ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
-                        }
-                    }
-                    else
-                    {
-                        GameObject newSlot = Instantiate(uiSlot, container);
-                        slots[i] = newSlot;
-                        newSlot.GetComponent<craftingAdd>().recipeToMake = i;
-                        newSlot.GetComponent<craftingAdd>().craftName = recipes[i].recipeList.madeName;
-                        newSlot.GetComponent<craftingAdd>().description = recipes[i].recipeList.description;
-                        newSlot.GetComponent<craftingAdd>().make = false;
-                        for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
-                        {
-                            GameObject ingredient = Instantiate(text, newSlot.transform);
-                            ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
-                        }
-                    }
-                }
+                checkTools();
+                checkRecipes();
             }
             else
             {
@@ -117,6 +67,20 @@ public class craftingBench : MonoBehaviour
                         Destroy(slots[i]);
                     }
                 }
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    if (slots[i] != null)
+                    {
+                        Destroy(slots[i]);
+                    }
+                }
+                for (int i = 0; i < toolSlots.Length; i++)
+                {
+                    if (toolSlots[i] != null)
+                    {
+                        Destroy(toolSlots[i]);
+                    }
+                }
                 Cursor.lockState = CursorLockMode.Locked;
                 player.GetComponent<PlayerController>().canMove = true;
                 allItems.Clear();
@@ -124,6 +88,21 @@ public class craftingBench : MonoBehaviour
             }
             
             
+        }
+    }
+    public void upgradeRepair(int toolIndex)
+    {
+        for (int i = 0; i < tools[toolIndex].recipeList.recipe.Length; i++)
+        {
+            bool found = false;
+            for (int j = 0; j < invent.Items.Count; j++)
+            {
+                if (!found && invent.Items[j] != null && tools[toolIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
+                {
+                    found = true;
+                    invent.RemoveItemAtIndex(j, tools[toolIndex].recipeList.recipe[i].count);
+                }
+            }
         }
     }
     public void Make(int recipeIndex)
@@ -143,6 +122,145 @@ public class craftingBench : MonoBehaviour
             }
         }
         invent.AddItem(adding);
+    }
+    private void checkTools()
+    {
+        for (int i = 0; i < tools.Length; i++)
+        {
+            bool makeable = true;
+            bool[] recipeArr = new bool[tools[i].recipeList.recipe.Length];
+            for (int j = 0; j < tools[i].recipeList.recipe.Length; j++)
+            {
+                recipeArr[j] = false;
+                if (allItems.Count >= 1)
+                {
+                    for (int k = 0; k < allItems.Count; k++)
+                    {
+                        if ((allItems[k].enu == tools[i].recipeList.recipe[j].enu) && (allItems[k].count >= tools[i].recipeList.recipe[j].count))
+                        {
+                            recipeArr[j] = true;
+                        }
+                    }
+                }
+            }
+            for (int n = 0; n < recipeArr.Length; n++)
+            {
+                if (recipeArr[n] == false)
+                {
+                    makeable = false;
+                }
+            }
+            tools[i].found = makeable;
+            if (makeable)
+            {
+                GameObject newSlot = Instantiate(uiSlot, container);
+                toolSlots[i] = newSlot;
+                if(tools[i].recipeList.itemEnum == ItemEnum.REPAIR)
+                {
+                    newSlot.GetComponent<craftingAdd>().damageUpgrade = 0;
+                    newSlot.GetComponent<craftingAdd>().repair = true;
+                    newSlot.GetComponent<craftingAdd>().upgrade = false;
+                }
+                else if(tools[i].recipeList.itemEnum == ItemEnum.UPGRADE)
+                {
+                    print(tools[i].recipeList.makeCount);
+                    newSlot.GetComponent<craftingAdd>().damageUpgrade = tools[i].recipeList.makeCount;
+                    newSlot.GetComponent<craftingAdd>().repair = false;
+                    newSlot.GetComponent<craftingAdd>().upgrade = true;
+                }
+                newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                newSlot.GetComponent<craftingAdd>().craftName = tools[i].recipeList.madeName;
+                newSlot.GetComponent<craftingAdd>().description = tools[i].recipeList.description;
+                newSlot.GetComponent<craftingAdd>().make = true;
+                
+                for (int n = 0; n < tools[i].recipeList.recipe.Length; n++)
+                {
+                    GameObject ingredient = Instantiate(text, newSlot.transform);
+                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
+                }
+            }
+            else
+            {
+                GameObject newSlot = Instantiate(uiSlot, container);
+                toolSlots[i] = newSlot;
+                newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                newSlot.GetComponent<craftingAdd>().damageUpgrade = 0;
+                newSlot.GetComponent<craftingAdd>().craftName = tools[i].recipeList.madeName;
+                newSlot.GetComponent<craftingAdd>().description = tools[i].recipeList.description;
+                newSlot.GetComponent<craftingAdd>().make = false;
+                newSlot.GetComponent<craftingAdd>().repair = false;
+                newSlot.GetComponent<craftingAdd>().upgrade = false;
+                for (int n = 0; n < tools[i].recipeList.recipe.Length; n++)
+                {
+                    GameObject ingredient = Instantiate(text, newSlot.transform);
+                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
+                }
+            }
+        }
+    }
+    private void checkRecipes()
+    {
+        for (int i = 0; i < recipes.Length; i++)
+        {
+            bool makeable = true;
+            bool[] recipeArr = new bool[recipes[i].recipeList.recipe.Length];
+            for (int j = 0; j < recipes[i].recipeList.recipe.Length; j++)
+            {
+                recipeArr[j] = false;
+                if (allItems.Count >= 1)
+                {
+                    for (int k = 0; k < allItems.Count; k++)
+                    {
+                        if ((allItems[k].enu == recipes[i].recipeList.recipe[j].enu) && (allItems[k].count >= recipes[i].recipeList.recipe[j].count))
+                        {
+                            recipeArr[j] = true;
+                        }
+                    }
+                }
+            }
+            for (int n = 0; n < recipeArr.Length; n++)
+            {
+                if (recipeArr[n] == false)
+                {
+                    makeable = false;
+                }
+            }
+            recipes[i].found = makeable;
+            if (makeable)
+            {
+                GameObject newSlot = Instantiate(uiSlot, container);
+                slots[i] = newSlot;
+                newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                newSlot.GetComponent<craftingAdd>().craftName = recipes[i].recipeList.madeName;
+                newSlot.GetComponent<craftingAdd>().description = recipes[i].recipeList.description;
+                newSlot.GetComponent<craftingAdd>().make = true;
+                newSlot.GetComponent<craftingAdd>().damageUpgrade = 0;
+                newSlot.GetComponent<craftingAdd>().repair = false;
+                newSlot.GetComponent<craftingAdd>().upgrade = false;
+                for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
+                {
+                    GameObject ingredient = Instantiate(text, newSlot.transform);
+                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                }
+            }
+            else
+            {
+                GameObject newSlot = Instantiate(uiSlot, container);
+                slots[i] = newSlot;
+                newSlot.GetComponent<craftingAdd>().recipeToMake = i;
+                newSlot.GetComponent<craftingAdd>().craftName = recipes[i].recipeList.madeName;
+                newSlot.GetComponent<craftingAdd>().description = recipes[i].recipeList.description;
+                newSlot.GetComponent<craftingAdd>().make = false;
+                newSlot.GetComponent<craftingAdd>().damageUpgrade = 0;
+                newSlot.GetComponent<craftingAdd>().repair = false;
+                newSlot.GetComponent<craftingAdd>().upgrade = false;
+                for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
+                {
+                    GameObject ingredient = Instantiate(text, newSlot.transform);
+                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                }
+            }
+        }
     }
     public bool checkMade(int i)
     {

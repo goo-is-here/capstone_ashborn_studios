@@ -631,6 +631,11 @@ MonoBehaviour:
   container: {fileID: 633910164}
   craftingUi: {fileID: 1672588552}
   text: {fileID: 6505555894693439782, guid: 2433e264d05bde841a9cac973eb9e37f, type: 3}
+  tools:
+  - recipeList: {fileID: 11400000, guid: 4660774ca4ed6f144bc175d71f2f97fb, type: 2}
+    found: 0
+  - recipeList: {fileID: 11400000, guid: c2b332789483cda4c9bac1cb057524aa, type: 2}
+    found: 0
 --- !u!1 &1232212355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: damageVal
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: durability
