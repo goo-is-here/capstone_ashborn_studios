@@ -8,7 +8,7 @@ public class ItemDropPrefab
     public GameObject prefab;
 }
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IDataPersistence
 {
     public static Inventory Instance;
 
@@ -61,7 +61,28 @@ public class Inventory : MonoBehaviour
             DropSelectedItem();
         }
     }
-
+    public void LoadData(GameData data)
+    {
+        foreach(Item it in data.inventory)
+        {
+            if(it.enu != ItemEnum.NULL)
+            {
+                AddItem(it);
+            }
+        }
+    }
+    public void SaveData(ref GameData data)
+    {
+        print("here2");
+        foreach(Item it in Items)
+        {
+            if (it != null && it.enu != ItemEnum.NULL)
+            {
+                data.inventory.Add(it);
+            }
+        }
+        
+    }
     void HandleHotbarSelection()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) selectedSlotIndex = 0;
