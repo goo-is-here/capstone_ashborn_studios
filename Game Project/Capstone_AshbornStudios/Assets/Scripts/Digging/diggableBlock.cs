@@ -22,7 +22,11 @@ public class diggableBlock : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         controller = player.GetComponent<PlayerController>();
         currHealth = blockHealth;
-        setter = GameObject.FindGameObjectWithTag("SetBlock").GetComponent<setBlock>();
+        GameObject set = GameObject.FindGameObjectWithTag("SetBlock");
+        if(set != null)
+        {
+            setter = set.GetComponent<setBlock>();
+        }
     }
     public void hitBlock(float damageVal, Vector3 position)
     {

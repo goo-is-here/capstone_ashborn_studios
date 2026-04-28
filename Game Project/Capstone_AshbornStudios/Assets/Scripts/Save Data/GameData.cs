@@ -17,8 +17,8 @@ public class GameData
     {
         inventory = new List<Item>();
         minedBlocks = new List<Vector3>();
-        minePosition = new Vector3(0, 0, 0);
-        hubPosition = new Vector3(0, 0, 0);
+        minePosition = new Vector3(2, 1, 9);
+        hubPosition = new Vector3(4, 16, -13);
         this.scenceIndex = 1;
         this.damageVal = 10;
         this.maxDurability = 100;
