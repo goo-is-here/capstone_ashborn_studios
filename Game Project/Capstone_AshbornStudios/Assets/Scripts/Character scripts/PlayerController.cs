@@ -42,11 +42,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     GameObject durabilityBar;
     Image bar;
-
+    enum sceneType { HUB, MINE};
+    sceneType thisEnum = sceneType.HUB;
+    public Vector3 pos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         textBox = GameObject.FindGameObjectWithTag("textBox");
         if (textBox != null)
             text = textBox.GetComponent<TextMeshProUGUI>();
@@ -61,7 +62,17 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         characterController = GetComponent<CharacterController>();
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            this.thisEnum = sceneType.HUB;
+        }
+        else
+        {
+            this.thisEnum = sceneType.MINE;
+        }
+        this.transform.localPosition = pos;
     }
+     
     public int GetUsesLeft()
     {
         return Mathf.RoundToInt(durability);
@@ -71,11 +82,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
-            this.transform.position = data.hubPosition;
+            pos = data.hubPosition;
         }
         else if(SceneManager.GetActiveScene().buildIndex == 2)
         {
-            this.transform.position = data.minePosition;
+            pos = data.minePosition;
+            print(pos);
         }
         this.damageVal = data.damageVal;
         this.durability = data.durability;
@@ -85,18 +97,20 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if(data != null)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
-            {
-                data.hubPosition = this.transform.position;
-            }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
-            {
-                data.minePosition = this.transform.position;
-            }
+            
             data.scenceIndex = SceneManager.GetActiveScene().buildIndex;
             data.damageVal = this.damageVal;
             data.durability = this.durability;
             data.maxDurability = this.maxDurability;
+            if (thisEnum == sceneType.HUB)
+            {
+                data.hubPosition = pos;
+            }
+            else if (thisEnum == sceneType.MINE)
+            {
+                data.minePosition = pos;
+                print(data.minePosition);
+            }
         }
         
     }
@@ -162,6 +176,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        pos = this.transform.localPosition;
         isJumping = false;
 
         if (bar != null)
@@ -175,7 +190,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
             if (durability > 0)
             {
-                print("here");
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
                 {

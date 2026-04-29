@@ -30,7 +30,6 @@ public class diggableBlock : MonoBehaviour
     }
     public void hitBlock(float damageVal, Vector3 position)
     {
-        print("here1");
         if(damageVal >= minDamage && controller.getDur() > 0)
         {
             currHealth -= damageVal;

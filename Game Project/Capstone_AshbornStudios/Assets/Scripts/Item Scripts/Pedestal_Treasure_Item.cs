@@ -21,6 +21,6 @@ public class Pedestal_Treasure_Item : MonoBehaviour
         bool collected = Treasure_Manager.Instance.HasTreasure(treasureID);
         gameObject.SetActive(collected);
 
-        Debug.Log("Treasure item " + treasureID + " set to " + collected);
+        //Debug.Log("Treasure item " + treasureID + " set to " + collected);
     }
 }

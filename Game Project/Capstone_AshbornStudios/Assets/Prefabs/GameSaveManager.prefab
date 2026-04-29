@@ -44,4 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fe42e5154f4264fb42742040001c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataPersistenceManager
+  initializeGame: 1
   fileName: DiglinSaveData
+  useEncryption: 0
+  gameData:
+    damageVal: 10
+    durability: 100
+    maxDurability: 100
+    scenceIndex: 1
+    hubPosition: {x: 4, y: 16, z: -13}
+    minePosition: {x: 0, y: 0, z: 0}
+    inventory: []
+    minedBlocks: []
+    treasureHolder: []

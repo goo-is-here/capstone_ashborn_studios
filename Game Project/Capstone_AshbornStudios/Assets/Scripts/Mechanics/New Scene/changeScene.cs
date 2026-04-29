@@ -14,7 +14,7 @@ public class changeScene : MonoBehaviour
     {
         if(Vector3.Distance(player.transform.position, transform.position) < dist && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(index);
+            SceneManager.LoadSceneAsync(index);
         }
     }
 }
