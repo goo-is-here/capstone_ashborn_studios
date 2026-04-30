@@ -16,12 +16,9 @@ public class pauseMenu : MonoBehaviour
     public CanvasRenderer elementToFade;
     public float resetVal;
     public GameObject crafting;
-    [SerializeField] AudioClip quitGame;
-    AudioSource source;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        source = gameObject.GetComponent<AudioSource>();
         resetVal = elementToFade.GetAlpha();
         cont = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         stuckPos = cont.transform.position;
