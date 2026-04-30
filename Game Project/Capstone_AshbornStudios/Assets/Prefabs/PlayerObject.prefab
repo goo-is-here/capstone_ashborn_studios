@@ -257,10 +257,10 @@ MonoBehaviour:
   maxHunger: 100
   currentHunger: 100
   idleDrain: 0
-  walkDrain: 0.1
+  walkDrain: 0.75
   runDrain: 1
-  jumpDrain: 0.5
-  digDrain: 0.5
+  jumpDrain: 1
+  digDrain: 1
   hungerBar: {fileID: 0}
   lowHungerThreshold: 25
   reducedMoveSpeed: 2

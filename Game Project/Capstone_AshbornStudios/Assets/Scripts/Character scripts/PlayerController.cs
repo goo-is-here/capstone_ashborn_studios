@@ -126,6 +126,14 @@ public class PlayerController : MonoBehaviour, IDataPersistence
    
     public void Move(Vector2 movementVector)
     {
+        if(movementVector.x == 0f && movementVector.y == 0f)
+        {
+            isMoving = false;
+        }
+        else
+        {
+            isMoving = true;
+        }
         if (canMove)
         {
             ground = characterController.isGrounded;
