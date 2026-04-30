@@ -16,6 +16,7 @@ public class pauseMenu : MonoBehaviour
     public CanvasRenderer elementToFade;
     public float resetVal;
     public GameObject crafting;
+    [SerializeField] GameObject stuckbag;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -72,7 +73,11 @@ public class pauseMenu : MonoBehaviour
         }
         elementToFade.SetAlpha(endValue);
         StartCoroutine(LerpFunction(0, 3));
+        Vector3 holder = cont.transform.position;
         cont.transform.position = stuckPos;
+        stuckbag.SetActive(true);
+        stuckbag.transform.position = holder;
+        stuckbag.GetComponent<pickUpBag>().addItems();
     }
     IEnumerator LerpFunction(float endValue, float duration)
     {
