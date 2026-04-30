@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         else if(SceneManager.GetActiveScene().buildIndex == 2)
         {
             pos = data.minePosition;
-            print(pos);
         }
         this.damageVal = data.damageVal;
         this.durability = data.durability;

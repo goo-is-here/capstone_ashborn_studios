@@ -114,7 +114,7 @@ public class SpawnBlocks : MonoBehaviour
     }
     private void Update()
     {
-        if (doSpawnNeighbors && Vector3.Distance(player.transform.position, transform.position) < 20)
+        if (doSpawnNeighbors && Vector3.Distance(player.transform.position, transform.position) < 50)
         {
             spawnNeighbors();
         }
