@@ -14,6 +14,7 @@ public class GameData
     public List<Item> inventory;
     public List<Vector3> minedBlocks;
     public List<string> treasureHolder;
+    public int ruinsLocation;
     public GameData()
     {
         treasureHolder = new List<string>();
@@ -25,5 +26,6 @@ public class GameData
         this.damageVal = 10;
         this.maxDurability = 100;
         this.durability = maxDurability;
+        this.ruinsLocation = -1;
     }
 }
