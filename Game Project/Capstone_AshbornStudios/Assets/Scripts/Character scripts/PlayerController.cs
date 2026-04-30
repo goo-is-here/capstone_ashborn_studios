@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             this.thisEnum = sceneType.MINE;
         }
+        print(pos);
         this.transform.localPosition = pos;
         audioSource = this.gameObject.GetComponent<AudioSource>();
     }

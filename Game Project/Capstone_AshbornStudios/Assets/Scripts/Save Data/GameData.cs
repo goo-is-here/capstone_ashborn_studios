@@ -19,6 +19,7 @@ public class GameData
     public List<Item> droppedContents;
     public Vector3 droppedPosition;
     public bool growRoomEntered;
+    public float hungerValue;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -35,5 +36,6 @@ public class GameData
         this.ruinsLocation = -1;
         this.droppedInventory = false;
         this.growRoomEntered = false;
+        this.hungerValue = 100f;
     }
 }

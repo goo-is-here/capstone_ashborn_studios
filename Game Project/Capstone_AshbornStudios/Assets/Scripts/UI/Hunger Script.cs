@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class HungerScript : MonoBehaviour
+public class HungerScript : MonoBehaviour, IDataPersistence
 {
     [Header("Hunger")]
     public float maxHunger = 100f;
@@ -41,8 +41,14 @@ public class HungerScript : MonoBehaviour
             hungerBar.value = currentHunger;
         }
     }
-
-
+    public void LoadData(GameData data)
+    {
+        currentHunger = data.hungerValue;
+    }
+    public void SaveData(ref GameData data)
+    {
+        data.hungerValue = currentHunger;
+    }
     void Update()
     {
         DrainHunger();
