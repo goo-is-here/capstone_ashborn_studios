@@ -63,7 +63,6 @@ public class HungerScript : MonoBehaviour
         if (playerController == null)
         {
             return idleDrain;
-            print("fuck");
         }
         if (playerController.isRunning)
             return runDrain;
@@ -78,7 +77,6 @@ public class HungerScript : MonoBehaviour
     {
         if (hungerBar == null) return;
         hungerBar.value = currentHunger;
-        print("bithc");
     }
 
     void HandleLowHungerSpeed()

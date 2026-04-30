@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Item_Pickup : MonoBehaviour
 {
+    public bool pickUp = true;
     public string itemName = "Item Name";
     public string itemdescription = "Item Description";
     public Sprite itemIcon;
@@ -24,6 +25,7 @@ public class Item_Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!pickUp) return;
         if (pickedUp) return;
         if (!other.CompareTag("Player")) return;
 

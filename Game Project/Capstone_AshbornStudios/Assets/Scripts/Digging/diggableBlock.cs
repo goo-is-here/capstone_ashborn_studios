@@ -36,13 +36,19 @@ public class diggableBlock : MonoBehaviour
             // moveVertices(position);
             //blockMaterials[0].color = new Color(1f - (currHealth / blockHealth), 1f + (currHealth / blockHealth), 0);
             //StartCoroutine(shimmy());
-            controller.durabilityChange(-1f);
+            if(damageVal <= 1000)
+            {
+                controller.durabilityChange(-1f);
+            }
             if (currHealth <= 0)
             {
                 this.GetComponent<MeshRenderer>().enabled = false;
                 this.GetComponent<Collider>().enabled = false;
                 Vector3 pos = this.transform.position;
-                setter.blockPosition.Add(pos);
+                if(setter != null)
+                {
+                    setter.blockPosition.Add(pos);
+                }
                 if(particles != null)
                 {
                     GameObject part = Instantiate(particles, pos, Quaternion.identity, transform.parent);

@@ -18,6 +18,7 @@ public class GameData
     public bool droppedInventory;
     public List<Item> droppedContents;
     public Vector3 droppedPosition;
+    public bool growRoomEntered;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -33,5 +34,6 @@ public class GameData
         this.durability = maxDurability;
         this.ruinsLocation = -1;
         this.droppedInventory = false;
+        this.growRoomEntered = false;
     }
 }

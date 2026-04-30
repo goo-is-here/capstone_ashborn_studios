@@ -7,11 +7,7 @@ public class climbingTest : MonoBehaviour
     public float lengthOfClimb;
     public LayerMask SafeZone;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    
     private void Update()
     {
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out feetClimb, 1f, ~SafeZone)){

@@ -230,6 +230,8 @@ MonoBehaviour:
     prefab: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
   - enu: 13
     prefab: {fileID: 7062857715819053318, guid: afb0f484be3535c44a5b6f5228b5b2be, type: 3}
+  - enu: 16
+    prefab: {fileID: 8200835410039467919, guid: a36b4f0824be9c343aac9bee1558bc58, type: 3}
   sprites:
   - {fileID: 3031943723518686401, guid: 31847004ce66b4f4aadfcf2551dffb88, type: 3}
   - {fileID: 1247205868437493818, guid: af8444c0654d9e54a8e9e0cc5a727101, type: 3}
@@ -242,6 +244,7 @@ MonoBehaviour:
   - {fileID: 6787824521417109138, guid: 3fab8624091de5542aff31dd591a6728, type: 3}
   - {fileID: 3732099945729924960, guid: b7b911215ae34664dae03a5703ce6fd6, type: 3}
   - {fileID: 7679276606770384983, guid: fcc4ff40b5d4b57438c31ecb8701f3d6, type: 3}
+  - {fileID: 4530207104955082790, guid: a36b4f0824be9c343aac9bee1558bc58, type: 3}
 --- !u!114 &4140642563456938259
 MonoBehaviour:
   m_ObjectHideFlags: 0
