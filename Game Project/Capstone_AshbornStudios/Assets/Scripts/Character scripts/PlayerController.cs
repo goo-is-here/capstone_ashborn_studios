@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     GameObject durabilityBar;
     Image bar;
+
+    [SerializeField] AudioClip defaultDig;
+    [SerializeField] AudioClip toolBreak;
+    AudioSource audioSource;
     enum sceneType { HUB, MINE};
     sceneType thisEnum = sceneType.HUB;
     public Vector3 pos;
@@ -71,6 +75,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             this.thisEnum = sceneType.MINE;
         }
         this.transform.localPosition = pos;
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
      
     public int GetUsesLeft()
@@ -193,6 +198,15 @@ public class PlayerController : MonoBehaviour, IDataPersistence
                 if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
                 {
                     hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
+                    AudioClip clip = hit.transform.gameObject.GetComponent<diggableBlock>().getDigClip();
+                    if(clip == null)
+                    {
+                        audioSource.PlayOneShot(defaultDig);
+                    }
+                    else
+                    {
+                        audioSource.PlayOneShot(clip);
+                    }
                 }
             }
             else
@@ -206,6 +220,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         durability += dur;
         durability = Mathf.Clamp(durability, 0f, maxDurability);
+        if(durability == 0)
+        {
+            audioSource.PlayOneShot(toolBreak);
+        }
     }
 
  

@@ -9,4 +9,6 @@ public class BlockObject : ScriptableObject
     public float blockHealth;
     public float minDamage;
     public blockType type;
+    public AudioClip breaking;
+    public AudioClip broke;
 }

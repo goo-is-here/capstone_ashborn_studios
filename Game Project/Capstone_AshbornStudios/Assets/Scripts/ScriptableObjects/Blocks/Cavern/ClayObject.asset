@@ -18,3 +18,5 @@ MonoBehaviour:
   blockHealth: 60
   minDamage: 0
   type: 2
+  breaking: {fileID: 8300000, guid: 72dc33b65e423f7409a8a74036f5f8e0, type: 3}
+  broke: {fileID: 0}

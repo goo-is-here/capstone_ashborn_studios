@@ -99,7 +99,7 @@ public class setBlock : MonoBehaviour, IDataPersistence
         }
         mesh.material = cavernBlocks[index].mat;
         spawnBlock.setBlock(cavernBlocks[index].type);
-        block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage, cavernBlocks[index].dropped, cavernBlocks[index].particles);
+        block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage, cavernBlocks[index].dropped, cavernBlocks[index].particles, cavernBlocks[index].breaking, cavernBlocks[index].broke);
     }
     void lushBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
@@ -113,6 +113,6 @@ public class setBlock : MonoBehaviour, IDataPersistence
         }
         mesh.material = lushBlocks[index].mat;
         spawnBlock.setBlock(lushBlocks[index].type);
-        block.setBlock(lushBlocks[index].blockHealth, lushBlocks[index].minDamage, lushBlocks[index].dropped, lushBlocks[index].particles);
+        block.setBlock(lushBlocks[index].blockHealth, lushBlocks[index].minDamage, lushBlocks[index].dropped, lushBlocks[index].particles, lushBlocks[index].breaking, lushBlocks[index].broke);
     }
 }

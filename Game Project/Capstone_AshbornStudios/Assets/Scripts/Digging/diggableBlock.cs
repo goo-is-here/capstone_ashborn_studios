@@ -13,7 +13,7 @@ public class diggableBlock : MonoBehaviour
     public GameObject particles;
     public GameObject dropped;
     //public AudioSource audioSource;
-    AudioClip breaaking;
+    AudioClip breaking;
     AudioClip broke;
     setBlock setter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,11 +66,17 @@ public class diggableBlock : MonoBehaviour
             controller.printText(print);
         }
     }
-    public void setBlock(float health, float min, GameObject drop, GameObject part)
+    public AudioClip getDigClip()
+    {
+        return breaking;
+    }
+    public void setBlock(float health, float min, GameObject drop, GameObject part, AudioClip clip, AudioClip broke2)
     {
         blockHealth = health;
         minDamage = min;
         dropped = drop;
         particles = part;
+        breaking = clip;
+        broke = broke2;
     }
 }
