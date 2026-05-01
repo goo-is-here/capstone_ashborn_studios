@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: MossObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 2100000, guid: 5a95841959ffb2442a504808818e12cd, type: 2}
+  mat: {fileID: 2100000, guid: bef1bdaa7aa1d8048969dffd092c935b, type: 2}
   particles: {fileID: 5715071294730724295, guid: 7735bda376a841b4ea371c4cbe9c8f21, type: 3}
   dropped: {fileID: 8274722980629589059, guid: b7b911215ae34664dae03a5703ce6fd6, type: 3}
   blockHealth: 50

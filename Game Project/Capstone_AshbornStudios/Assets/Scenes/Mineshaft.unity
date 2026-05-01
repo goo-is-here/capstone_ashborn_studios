@@ -262,8 +262,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd3e1ce3fa54b4c41b014264321ef79b, type: 2}
   - {fileID: 11400000, guid: 337c8db08682c7e408344ce4c7d7baa7, type: 2}
   - {fileID: 11400000, guid: 78b9d23ce41543743863700a858240e2, type: 2}
-  - {fileID: 11400000, guid: f8937d82c8bfdc84ba4f472003add732, type: 2}
   - {fileID: 11400000, guid: b0845fb7b41577641ba7d074b76d2707, type: 2}
+  - {fileID: 11400000, guid: f8937d82c8bfdc84ba4f472003add732, type: 2}
   - {fileID: 11400000, guid: 2a0a64feb7265424d81c2a5aaa1190f0, type: 2}
   cavernSpawnRates:
   - 0

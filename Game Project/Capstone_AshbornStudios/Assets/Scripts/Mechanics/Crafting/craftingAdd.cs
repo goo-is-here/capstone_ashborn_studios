@@ -30,16 +30,22 @@ public class craftingAdd : MonoBehaviour
         
         if (repair)
         {
-            controller.durability = controller.maxDurability;
+            if(!(controller.durability == controller.maxDurability))
+            {
+                controller.durability = controller.maxDurability;
+                bench.upgradeRepair(recipeToMake);
+            }
             craft.GetComponent<Button>().interactable = false;
-            bench.upgradeRepair(recipeToMake);
         }
         else if(upgrade)
         {
-            controller.durability = controller.maxDurability;
-            controller.damageVal = damageUpgrade;
+            if(!(controller.damageVal == damageUpgrade))
+            {
+                controller.durability = controller.maxDurability;
+                controller.damageVal = damageUpgrade;
+                bench.upgradeRepair(recipeToMake);
+            }
             craft.GetComponent<Button>().interactable = false;
-            bench.upgradeRepair(recipeToMake);
         }
         else
         {

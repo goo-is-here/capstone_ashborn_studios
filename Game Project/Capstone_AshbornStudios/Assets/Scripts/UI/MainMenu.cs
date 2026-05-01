@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour, IDataPersistence
     private void Start()
     {
         source = gameObject.GetComponent<AudioSource>();
-        if (DataPersistenceManager.instance.hasData())
+        if (DataPersistenceManager.instance.hasData() && contine != null)
         {
             print("here");
             contine.interactable = true;

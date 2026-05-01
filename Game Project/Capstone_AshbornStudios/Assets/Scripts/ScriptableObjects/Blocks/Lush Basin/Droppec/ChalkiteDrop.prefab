@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0c26aacc4afcc54eb18aa31fd766594, type: 2}
+  - {fileID: 2100000, guid: bfb7ccc19c904f14b88707761d0eefdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
+  pickUp: 1
   itemName: Chalkite
   itemdescription: Chalkite
   itemIcon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}

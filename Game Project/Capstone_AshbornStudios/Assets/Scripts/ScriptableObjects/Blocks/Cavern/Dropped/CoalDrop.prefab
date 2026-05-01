@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e48350570b46d6c47a8e50611ca21a14, type: 2}
+  - {fileID: 2100000, guid: 7f08d0307a9e9654991e6a16923a4285, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
+  pickUp: 1
   itemName: Coal Ore
   itemdescription: Coal Ore
   itemIcon: {fileID: 21300000, guid: 7a636181751caae419449a1569b64868, type: 3}
