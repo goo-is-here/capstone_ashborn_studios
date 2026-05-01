@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if(movementVector.x == 0f && movementVector.y == 0f)
         {
             isMoving = false;
-            audioSource.Stop();
             playSound = true;
         }
         else
@@ -213,7 +212,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if (canMove && canDig)
         {
-
             if (durability > 0)
             {
                 RaycastHit hit;
@@ -239,7 +237,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             else
             {
                 printText("My tool is broken!");
-                damageVal = 0;
+                damageVal = 7;
             }
         }
     }

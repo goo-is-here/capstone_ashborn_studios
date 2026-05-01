@@ -144,7 +144,11 @@ public class Inventory : MonoBehaviour, IDataPersistence
     public void AddItem(Item itemToAdd)
     {
         if (itemToAdd == null)
+        {
+            print("hate this");
             return;
+        }
+            
 
         int remaining = itemToAdd.count;
 
@@ -175,9 +179,12 @@ public class Inventory : MonoBehaviour, IDataPersistence
         {
             if (remaining <= 0)
                 break;
-
+            //DONT ASK ME WHY BUT THESE ARE VITALLY IMPORTANT
+            print(Items[i]);
+            print(Items[i] == null);
             if (Items[i] == null)
             {
+                print(itemToAdd.enu);
                 int stackAmount = Mathf.Min(remaining, 99);
                 Items[i] = CopyItem(itemToAdd, stackAmount);
                 remaining -= stackAmount;

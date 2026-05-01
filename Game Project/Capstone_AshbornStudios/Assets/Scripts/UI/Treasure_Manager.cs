@@ -102,7 +102,7 @@ public class Treasure_Manager : MonoBehaviour, IDataPersistence
     {
         int totalCollectables = collectableTreasures != null ? collectableTreasures.Length : 0;
         int collectedCount = collectedTreasureIDs.Count;
-
+        print(collectedCount);
         Debug.Log("CollectedTreasureIDs Count = " + collectedCount);
         Debug.Log("CollectableTreasures Length = " + totalCollectables);
 

@@ -41,6 +41,7 @@ public class craftingAdd : MonoBehaviour
         {
             if(!(controller.damageVal == damageUpgrade))
             {
+                controller.maxDurability *= 2;
                 controller.durability = controller.maxDurability;
                 controller.damageVal = damageUpgrade;
                 bench.upgradeRepair(recipeToMake);

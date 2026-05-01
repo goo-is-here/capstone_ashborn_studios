@@ -24,7 +24,7 @@ public class WinScreen : MonoBehaviour
 
         Debug.Log("Root object tag: " + other.transform.root.tag);
 
-        if (!other.transform.root.CompareTag("Player"))
+        if (!other.transform.CompareTag("Player"))
         {
             Debug.Log("Entered object is not the player.");
             return;
