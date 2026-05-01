@@ -17,10 +17,14 @@ public class SpawnBlocks : MonoBehaviour
     public int TESTINGONLY = 0;
     PlayerController controller;
     blockType blockEnum;
+    setBlock setter;
+    bool setYet = false;
+    bool isBeingDestroyed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         block = this.gameObject;
+        block.GetComponent<diggableBlock>().enabled = true;
         blockEnum = blockType.CLEARSTONE;
         for (int i = 0; i < 6; i++)
         {
@@ -36,8 +40,7 @@ public class SpawnBlocks : MonoBehaviour
         GameObject setterObject = GameObject.FindGameObjectWithTag("SetBlock");
         if (setterObject != null)
         {
-            setBlock setter = setterObject.GetComponent<setBlock>();
-            setter.setTheBlock(transform.position, bounds, this, gameObject.GetComponent<diggableBlock>());
+            setter = setterObject.GetComponent<setBlock>();
         }
 
         if (doSpawnNeighbors)
@@ -45,10 +48,19 @@ public class SpawnBlocks : MonoBehaviour
             spawnNeighbors();
         }
     }
-    void spawnNeighbors()
+    private void Setter()
+    {
+        if (!setYet)
+        {
+            setter.setTheBlock(transform.position, bounds, this, gameObject.GetComponent<diggableBlock>());
+            setYet = true;
+        }
+    }
+    public void spawnNeighbors()
     {
         size = bounds.bounds.size;
-        if (Vector3.Distance(transform.position, player.transform.position) < 20f)
+        Setter();
+        if (Vector3.Distance(transform.position, player.transform.position) < 50f || Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
             Vector3 leftCheck = new Vector3(transform.position.x + size.x, transform.position.y, transform.position.z);
             Collider[] intersecting = Physics.OverlapSphere(leftCheck, spawnCheck);
@@ -111,10 +123,14 @@ public class SpawnBlocks : MonoBehaviour
                 spawnedBlocks[5] = true;
             }
         }
+        if (setter.blockPosition.Contains(transform.position))
+        {
+            setAir();
+        }
     }
     private void Update()
     {
-        if (doSpawnNeighbors && Vector3.Distance(player.transform.position, transform.position) < 50)
+        if (doSpawnNeighbors && Vector3.Distance(player.transform.position, transform.position) < 50 || Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
             spawnNeighbors();
         }
@@ -144,6 +160,14 @@ public class SpawnBlocks : MonoBehaviour
     }
     public void setAir()
     {
-        Destroy(this.gameObject);
+        if (isBeingDestroyed) return;
+        isBeingDestroyed = true;
+
+        if (doSpawnNeighbors)
+        {
+            spawnNeighbors();
+        }
+
+        Destroy(gameObject);
     }
 }

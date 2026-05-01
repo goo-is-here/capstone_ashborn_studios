@@ -9,7 +9,11 @@ public class setBlock : MonoBehaviour, IDataPersistence
     [SerializeField, Range(0, 1)]
     float airThreshold;
     [SerializeField]
-    float noiseScale;
+    float orenNiseScale;
+    [SerializeField]
+    float airNoiseScale;
+    [SerializeField]
+    float rarityNoiseScale;
     public float dirtTransStart = -10f, dirtTransEnd = -30f;
 
     [Header("Cavern Blocks Information")]
@@ -28,36 +32,37 @@ public class setBlock : MonoBehaviour, IDataPersistence
     public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int biomeSelect = Random.Range(0, 1);
-        float noise = calculateNoise(position.x, position.y, position.z);
-        if (blockPosition.Contains(position))
+        float noise = calculateNoise(airNoiseScale, position.x, position.y, position.z);
+        print(noise);
+        if(noise <= airThreshold)
         {
+            print("here");
             spawnBlock.setAir();
+            return;
         }
-        else
+        
+        if (position.y > dirtTransStart)
         {
-            if (noise <= airThreshold)
-            {
-                spawnBlock.setAir();
-            }
-            if (position.y > dirtTransStart)
+            cavernBiomeSet(noise, mesh, spawnBlock, block);
+        }
+        else if (position.y > dirtTransEnd)
+        {
+            if (biomeSelect == 0)
             {
                 cavernBiomeSet(noise, mesh, spawnBlock, block);
-            }
-            else if (position.y > dirtTransEnd)
-            {
-                if (biomeSelect == 0)
-                {
-                    cavernBiomeSet(noise, mesh, spawnBlock, block);
-                }
-                else
-                {
-                    lushBiomeSet(noise, mesh, spawnBlock, block);
-                }
             }
             else
             {
                 lushBiomeSet(noise, mesh, spawnBlock, block);
             }
+        }
+        else
+        {
+            lushBiomeSet(noise, mesh, spawnBlock, block);
+        }
+        if (blockPosition.Contains(position))
+        {
+            spawnBlock.setAir();
         }
         
     }
@@ -76,8 +81,11 @@ public class setBlock : MonoBehaviour, IDataPersistence
             data.minedBlocks.Add(pos);
         }
     }
-    float calculateNoise(float x, float y, float z)
+    float calculateNoise(float nosie, float x, float y, float z)
     {
+        x = (float)x * (float)nosie;
+        y = (float)y * (float)nosie;
+        z = (float)z * (float)nosie;
         float xy = Mathf.PerlinNoise(x, y);
         float yz = Mathf.PerlinNoise(y, z);
         float zx = Mathf.PerlinNoise(z, x);
