@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
   m_Name: CoalObject
   m_EditorClassIdentifier: Assembly-CSharp::BlockObject
-  mat: {fileID: 2100000, guid: e48350570b46d6c47a8e50611ca21a14, type: 2}
+  mat: {fileID: 2100000, guid: 7f08d0307a9e9654991e6a16923a4285, type: 2}
   particles: {fileID: 5715071294730724295, guid: c804a8f524decc24291f31eeadbb6133, type: 3}
   dropped: {fileID: 7963215976860092175, guid: af8444c0654d9e54a8e9e0cc5a727101, type: 3}
   blockHealth: 70

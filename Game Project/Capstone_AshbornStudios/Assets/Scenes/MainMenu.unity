@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7414087667422019858, guid: 91e77d7c98da41341af17f2cc353dee7, type: 3}
       propertyPath: initializeGame
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -278,7 +278,7 @@ MonoBehaviour:
   contine: {fileID: 1166429245}
   quit: {fileID: 1756783886}
   quitGame: {fileID: 8300000, guid: 888bfb9957f7dfb478bfdf46e5f00484, type: 3}
-  playGame: {fileID: 8300000, guid: 86b7aedc73cb69448bb11fe870e35d48, type: 3}
+  playGame: {fileID: 8300000, guid: 5c7de4e33f92d844e96e3cc7ce68bd39, type: 3}
 --- !u!114 &162870432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1166429246}
   m_OnClick:
     m_PersistentCalls:

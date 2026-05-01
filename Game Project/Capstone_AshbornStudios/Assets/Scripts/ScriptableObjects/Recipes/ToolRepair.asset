@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: ToolRepair
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 1
-    Name: Dirt
-    count: 1
+  - enu: 6
+    Name: Rootstone
+    count: 5
+  - enu: 4
+    Name: Crumbstone
+    count: 5
   madeName: Repair Tool
-  description: Repair
+  description: Repairs your broken tool!
   icon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}
   makeCount: 0
   worldPrefab: {fileID: 0}

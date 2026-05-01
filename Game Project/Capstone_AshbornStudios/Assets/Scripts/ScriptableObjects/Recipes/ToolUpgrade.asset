@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: ToolUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 2
-    Name: Dirstone
-    count: 1
+  - enu: 4
+    Name: Crumbstone
+    count: 10
+  - enu: 6
+    Name: Rootstone
+    count: 15
   madeName: Crumbstone Tool
   description: tool upgrade
   icon: {fileID: 21300000, guid: 4cd3f13931ad1204192d063f88947201, type: 3}

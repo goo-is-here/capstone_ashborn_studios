@@ -13,15 +13,12 @@ MonoBehaviour:
   m_Name: testEasyObject
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 1
-    Name: Dirt
-    count: 1
-  - enu: 2
-    Name: Dirtstone
-    count: 1
-  madeName: Test
-  description: blah
+  - enu: 11
+    Name: Moss
+    count: 10
+  madeName: Moss Soup
+  description: Moss soup to fill your belly
   icon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
   makeCount: 1
-  worldPrefab: {fileID: 7062857715819053318, guid: afb0f484be3535c44a5b6f5228b5b2be, type: 3}
-  itemEnum: 13
+  worldPrefab: {fileID: 8274722980629589059, guid: afe9d68c8f1b786459ac203ff1f32af3, type: 3}
+  itemEnum: 16

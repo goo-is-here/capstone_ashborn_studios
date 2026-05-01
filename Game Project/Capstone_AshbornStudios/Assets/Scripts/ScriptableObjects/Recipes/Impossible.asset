@@ -16,7 +16,7 @@ MonoBehaviour:
   - enu: 13
     Name: Iron
     count: 99999
-  madeName: nbuh
+  madeName: 
   description: asd
   icon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}
   makeCount: 10
