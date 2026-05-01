@@ -252,11 +252,11 @@ RectTransform:
   - {fileID: 3223952220262160565}
   - {fileID: 2308693340325091564}
   - {fileID: 7700324420458526957}
-  - {fileID: 1378305989643090358}
   - {fileID: 832803397700248258}
   - {fileID: 2550412997129936251}
   - {fileID: 5557437336961906649}
   - {fileID: 1629677579465123431}
+  - {fileID: 1378305989643090358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1491,7 +1491,7 @@ MonoBehaviour:
   m_text: CONTINUE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -3810054583784590145, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8566505484995322721}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WinScreen, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1
@@ -3902,7 +3902,7 @@ MonoBehaviour:
     Quit."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -3810054583784590145, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4808,7 +4808,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8566505484995322721}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WinScreen, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -6528,14 +6528,13 @@ GameObject:
   - component: {fileID: 1378305989643090358}
   - component: {fileID: 2236445238619969935}
   - component: {fileID: 8212089386200404424}
-  - component: {fileID: 8566505484995322721}
   m_Layer: 5
   m_Name: Win Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1378305989643090358
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6596,19 +6595,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8566505484995322721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417588967868995168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ae925687a01f646a957b12e2611e5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WinScreen
-  winScreenPanel: {fileID: 6417588967868995168}
 --- !u!1 &6507202093498337185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7626,7 +7612,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -3810054583784590145, guid: d987ea542e0796149849178c4cc8ff73, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

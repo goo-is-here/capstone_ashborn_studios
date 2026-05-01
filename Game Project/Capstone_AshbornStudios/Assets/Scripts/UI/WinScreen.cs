@@ -14,6 +14,7 @@ public class WinScreen : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         Debug.Log("Win trigger entered by: " + other.name);
 
         if (hasActivated)
@@ -51,18 +52,19 @@ public class WinScreen : MonoBehaviour
 
     public void ActivateWinScreen()
     {
+
         hasActivated = true;
 
         if (winScreenPanel == null)
         {
-            Debug.LogWarning("winScreenPanel is not assigned.");
+            Debug.Log("Panel is NULL");
             return;
         }
 
-        Debug.Log("Activating win screen now.");
         winScreenPanel.SetActive(true);
 
         Time.timeScale = 0f;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -73,8 +75,6 @@ public class WinScreen : MonoBehaviour
             winScreenPanel.SetActive(false);
 
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     public void QuitGame()

@@ -23,6 +23,10 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(controller == null || !controller.canMove)
+        {
+            return;
+        }
         movementVector = moveAction.ReadValue<Vector2>();
         controller.Move(movementVector);
 
@@ -46,10 +50,11 @@ public class InputHandler : MonoBehaviour
     }
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        controller.Jump();
+        if(controller.canMove) controller.Jump();
+
     }
     private void OnDigPerformed(InputAction.CallbackContext context)
     {
-        controller.Dig();
+        if(controller.canMove) controller.Dig();
     }
 }

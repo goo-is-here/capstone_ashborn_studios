@@ -26,7 +26,6 @@ public class Treasure_Pickup : MonoBehaviour
     }
     private void Update()
     {
-        print(Vector3.Distance(transform.position, player.transform.position));
         if(Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
             if (pickedUp) return;

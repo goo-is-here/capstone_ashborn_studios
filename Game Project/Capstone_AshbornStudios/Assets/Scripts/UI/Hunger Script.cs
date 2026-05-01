@@ -27,7 +27,6 @@ public class HungerScript : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        currentHunger = maxHunger;
         playerController = GetComponent<PlayerController>();
 
         if (playerController != null)

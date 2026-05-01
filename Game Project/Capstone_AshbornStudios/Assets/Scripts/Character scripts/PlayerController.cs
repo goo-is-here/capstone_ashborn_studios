@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public bool isJumping;
     public bool isDigging;
 
-    public bool canMove = true;
+    public bool canMove = false;
     public TextMeshProUGUI text;
     GameObject textBox;
 
@@ -52,7 +52,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public Vector3 pos;
     bool canDig = true;
     bool playSound = true;
+    bool tele = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
     void Start()
     {
         textBox = GameObject.FindGameObjectWithTag("textBox");
@@ -66,7 +71,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if (durabilityBar != null)
             bar = durabilityBar.GetComponent<Image>();
 
-        characterController = GetComponent<CharacterController>();
+        
         blocksToDig = LayerMask.GetMask("Diggable");
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         if(SceneManager.GetActiveScene().buildIndex == 1)
@@ -78,10 +83,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             this.thisEnum = sceneType.MINE;
         }
         print(pos);
-        this.transform.localPosition = pos;
         audioSource = this.gameObject.GetComponent<AudioSource>();
+        Debug.Log("Player instance ID: " + gameObject.GetInstanceID());
     }
-     
     public int GetUsesLeft()
     {
         return Mathf.RoundToInt(durability);
@@ -89,17 +93,20 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             pos = data.hubPosition;
         }
-        else if(SceneManager.GetActiveScene().buildIndex == 2)
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             pos = data.minePosition;
         }
-        this.damageVal = data.damageVal;
-        this.durability = data.durability;
-        this.maxDurability = data.maxDurability;
+
+        damageVal = data.damageVal;
+        durability = data.durability;
+        maxDurability = data.maxDurability;
+        print(pos);
+        StartCoroutine(ApplyLoadedPosition());
     }
     public void SaveData(ref GameData data)
     {
@@ -198,16 +205,17 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             isJumping = true;
         }
     }
-
     void Update()
     {
-        pos = this.transform.localPosition;
         isJumping = false;
 
         if (bar != null)
             bar.fillAmount = durability / maxDurability;
     }
-
+    private void LateUpdate()
+    {
+        pos = transform.localPosition;
+    }
     public void Dig()
     {
         if (canMove && canDig)
@@ -282,5 +290,28 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         yield return new WaitForSeconds(length);
         playSound = true;
+    }
+    IEnumerator ApplyLoadedPosition()
+    {
+            canMove = false;
+
+            characterController.enabled = false;
+
+            yield return null;
+
+            transform.localPosition = pos;
+            verticalVelocity = 0f;
+
+            yield return null;
+
+            characterController.enabled = true;
+            transform.localPosition = pos;
+
+            yield return null;
+
+            canMove = true;
+
+            Debug.Log("Final position after CC settle: " + transform.position);
+        
     }
 }

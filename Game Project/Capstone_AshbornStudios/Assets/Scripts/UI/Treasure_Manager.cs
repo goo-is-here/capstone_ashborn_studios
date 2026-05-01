@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections;
 
-public class Treasure_Manager : MonoBehaviour, IDataPersistence
+public class Treasure_Manager : MonoBehaviour
 {
     public static Treasure_Manager Instance;
 
@@ -45,25 +46,6 @@ public class Treasure_Manager : MonoBehaviour, IDataPersistence
         else
         {
             Debug.Log("Treasure already collected: " + newTreasure.treasureName);
-        }
-    }
-    public void LoadData(GameData data)
-    {
-        foreach(string tre in data.treasureHolder)
-        {
-            collectedTreasureIDs.Add(tre);
-        }
-    }
-    public void SaveData(ref GameData data)
-    {
-        if(data != null)
-        {
-
-            data.treasureHolder.Clear();
-        }
-        foreach (string tre in collectedTreasureIDs)
-        {
-            data.treasureHolder.Add(tre);
         }
     }
     public bool HasTreasure(string treasureID)
@@ -118,6 +100,17 @@ public class Treasure_Manager : MonoBehaviour, IDataPersistence
             if (item == null) continue;
             item.RefreshState();
         }
+    }
+    IEnumerator ApplyTreasureState()
+    {
+        yield return null;
+
+        collectableTreasures = FindObjectsOfType<Treasure_Pickup>();
+        pedestalItems = FindObjectsOfType<Pedestal_Treasure_Item>();
+
+        RefreshPedestalTreasures();
+
+        Debug.Log("Treasure state applied. Count: " + collectedTreasureIDs.Count);
     }
 }
 
