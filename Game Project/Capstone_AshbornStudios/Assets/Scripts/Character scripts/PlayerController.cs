@@ -45,10 +45,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     [SerializeField] AudioClip defaultDig;
     [SerializeField] AudioClip toolBreak;
+    [SerializeField] AudioClip walking;
     AudioSource audioSource;
     enum sceneType { HUB, MINE};
     sceneType thisEnum = sceneType.HUB;
     public Vector3 pos;
+    bool canDig = true;
+    bool playSound = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -130,9 +133,19 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if(movementVector.x == 0f && movementVector.y == 0f)
         {
             isMoving = false;
+            audioSource.Stop();
+            playSound = true;
         }
         else
         {
+            if (playSound)
+            {
+                playSound = false;
+                audioSource.PlayOneShot(walking);
+                StartCoroutine(soundRepeat(walking.length));
+
+            }
+            
             isMoving = true;
         }
         if (canMove)
@@ -198,7 +211,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void Dig()
     {
-        if (canMove)
+        if (canMove && canDig)
         {
 
             if (durability > 0)
@@ -206,21 +219,27 @@ public class PlayerController : MonoBehaviour, IDataPersistence
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
                 {
+                    canDig = false;
                     hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
                     AudioClip clip = hit.transform.gameObject.GetComponent<diggableBlock>().getDigClip();
                     if(clip == null)
                     {
                         audioSource.PlayOneShot(defaultDig);
+                        float clipLength = defaultDig.length;
+                        StartCoroutine(canDigTrue(clipLength/3));
                     }
                     else
                     {
                         audioSource.PlayOneShot(clip);
+                        float clipLength = clip.length;
+                        StartCoroutine(canDigTrue(clipLength/3));
                     }
                 }
             }
             else
             {
                 printText("My tool is broken!");
+                damageVal = 0;
             }
         }
     }
@@ -255,5 +274,15 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(5f);
         if (text != null)
             text.gameObject.SetActive(false);
+    }
+    IEnumerator canDigTrue(float length)
+    {
+        yield return new WaitForSeconds(length);
+        canDig = true;
+    }
+    IEnumerator soundRepeat(float length)
+    {
+        yield return new WaitForSeconds(length);
+        playSound = true;
     }
 }

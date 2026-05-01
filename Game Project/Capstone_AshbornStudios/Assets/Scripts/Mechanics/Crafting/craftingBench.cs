@@ -176,7 +176,7 @@ public class craftingBench : MonoBehaviour
                 for (int n = 0; n < tools[i].recipeList.recipe.Length; n++)
                 {
                     GameObject ingredient = Instantiate(text, newSlot.transform);
-                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
+                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.name + ": " + tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
                 }
             }
             else
@@ -193,7 +193,7 @@ public class craftingBench : MonoBehaviour
                 for (int n = 0; n < tools[i].recipeList.recipe.Length; n++)
                 {
                     GameObject ingredient = Instantiate(text, newSlot.transform);
-                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
+                    ingredient.GetComponent<TextMeshProUGUI>().text = tools[i].recipeList.name + ": " + tools[i].recipeList.recipe[n].Name + " " + tools[i].recipeList.recipe[n].count;
                 }
             }
         }
@@ -240,7 +240,7 @@ public class craftingBench : MonoBehaviour
                 for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
                 {
                     GameObject ingredient = Instantiate(text, newSlot.transform);
-                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.name + ": " + recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
                 }
             }
             else
@@ -257,7 +257,7 @@ public class craftingBench : MonoBehaviour
                 for (int n = 0; n < recipes[i].recipeList.recipe.Length; n++)
                 {
                     GameObject ingredient = Instantiate(text, newSlot.transform);
-                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
+                    ingredient.GetComponent<TextMeshProUGUI>().text = recipes[i].recipeList.name + ": " + recipes[i].recipeList.recipe[n].Name + " " + recipes[i].recipeList.recipe[n].count;
                 }
             }
         }

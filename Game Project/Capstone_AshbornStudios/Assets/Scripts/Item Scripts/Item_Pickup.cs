@@ -25,6 +25,7 @@ public class Item_Pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("here");
         if (!pickUp) return;
         if (pickedUp) return;
         if (!other.CompareTag("Player")) return;

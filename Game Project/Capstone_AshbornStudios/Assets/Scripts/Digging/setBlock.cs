@@ -8,8 +8,10 @@ public class setBlock : MonoBehaviour, IDataPersistence
     GameObject blockPrefab;
     [SerializeField, Range(0, 1)]
     float airThreshold;
+    [SerializeField, Range(0, 1)]
+    float rarityThreshold;
     [SerializeField]
-    float orenNiseScale;
+    float oreNoiseScale;
     [SerializeField]
     float airNoiseScale;
     [SerializeField]
@@ -28,19 +30,18 @@ public class setBlock : MonoBehaviour, IDataPersistence
     [SerializeField]
     float[] lushSpawnRates;
     public List<Vector3> blockPosition;
-
+    Vector3 pos;
     public void setTheBlock(Vector3 position, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
-        int biomeSelect = Random.Range(0, 1);
+        pos = position;
+        int biomeSelect = Random.Range(0, 2);
         float noise = calculateNoise(airNoiseScale, position.x, position.y, position.z);
-        print(noise);
         if(noise <= airThreshold)
         {
-            print("here");
             spawnBlock.setAir();
             return;
         }
-        
+        noise = calculateNoise(rarityNoiseScale, position.x, position.y, position.z);
         if (position.y > dirtTransStart)
         {
             cavernBiomeSet(noise, mesh, spawnBlock, block);
@@ -59,10 +60,6 @@ public class setBlock : MonoBehaviour, IDataPersistence
         else
         {
             lushBiomeSet(noise, mesh, spawnBlock, block);
-        }
-        if (blockPosition.Contains(position))
-        {
-            spawnBlock.setAir();
         }
         
     }
@@ -98,13 +95,19 @@ public class setBlock : MonoBehaviour, IDataPersistence
     void cavernBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int index = 0;
-        for(int i = 0; i < cavernSpawnRates.Length; i++)
+        if (noise > rarityThreshold)
         {
-            if(Mathf.Abs(cavernSpawnRates[i] - noise) < Mathf.Abs(cavernSpawnRates[index] - noise))
+            noise = calculateNoise(oreNoiseScale, pos.x, pos.y, pos.z);
+            for (int i = 0; i < cavernSpawnRates.Length; i++)
             {
-                index = i;
+                if (Mathf.Abs(cavernSpawnRates[i] - noise) < Mathf.Abs(cavernSpawnRates[index] - noise))
+                {
+                    index = i;
+                }
             }
         }
+
+        
         mesh.material = cavernBlocks[index].mat;
         spawnBlock.setBlock(cavernBlocks[index].type);
         block.setBlock(cavernBlocks[index].blockHealth, cavernBlocks[index].minDamage, cavernBlocks[index].dropped, cavernBlocks[index].particles, cavernBlocks[index].breaking, cavernBlocks[index].broke);
@@ -112,11 +115,16 @@ public class setBlock : MonoBehaviour, IDataPersistence
     void lushBiomeSet(float noise, MeshRenderer mesh, SpawnBlocks spawnBlock, diggableBlock block)
     {
         int index = 0;
-        for (int i = 0; i < lushSpawnRates.Length; i++)
+        if(noise > rarityThreshold)
         {
-            if (Mathf.Abs(lushSpawnRates[i] - noise) < Mathf.Abs(lushSpawnRates[index] - noise))
+
+            noise = calculateNoise(oreNoiseScale, pos.x, pos.y, pos.z);
+            for (int i = 0; i < lushSpawnRates.Length; i++)
             {
-                index = i;
+                if (Mathf.Abs(lushSpawnRates[i] - noise) < Mathf.Abs(lushSpawnRates[index] - noise))
+                {
+                    index = i;
+                }
             }
         }
         mesh.material = lushBlocks[index].mat;

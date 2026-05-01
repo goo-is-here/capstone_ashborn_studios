@@ -167,8 +167,8 @@ MonoBehaviour:
   Gravity: -30
   diggingReach: 3
   damageVal: 10
-  durability: 50
-  maxDurability: 50
+  durability: 250
+  maxDurability: 250
   test: {fileID: 7874816983317726265}
   blocksToDig:
     serializedVersion: 2
@@ -182,6 +182,7 @@ MonoBehaviour:
   text: {fileID: 0}
   defaultDig: {fileID: 8300000, guid: bc3a4d95533fd4f4a8bbaa01b868ebd4, type: 3}
   toolBreak: {fileID: 8300000, guid: c94de1abee53d9346a36d2db1ee580a6, type: 3}
+  walking: {fileID: 8300000, guid: 5fb2cfb7bb9b18349a87f1c5072b4fdb, type: 3}
   pos: {x: 0, y: 0, z: 0}
 --- !u!114 &2208720410419595465
 MonoBehaviour:

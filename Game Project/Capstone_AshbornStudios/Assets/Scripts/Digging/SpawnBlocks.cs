@@ -20,6 +20,7 @@ public class SpawnBlocks : MonoBehaviour
     setBlock setter;
     bool setYet = false;
     bool isBeingDestroyed = false;
+    public GameObject root;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,10 +44,7 @@ public class SpawnBlocks : MonoBehaviour
             setter = setterObject.GetComponent<setBlock>();
         }
 
-        if (doSpawnNeighbors)
-        {
-            spawnNeighbors();
-        }
+        Setter();
     }
     private void Setter()
     {
@@ -59,82 +57,101 @@ public class SpawnBlocks : MonoBehaviour
     public void spawnNeighbors()
     {
         size = bounds.bounds.size;
-        Setter();
-        if (Vector3.Distance(transform.position, player.transform.position) < 50f || Vector3.Distance(transform.position, player.transform.position) < 2f)
+        if (Vector3.Distance(transform.position, player.transform.position) < 20f)
         {
             Vector3 leftCheck = new Vector3(transform.position.x + size.x, transform.position.y, transform.position.z);
             Collider[] intersecting = Physics.OverlapSphere(leftCheck, spawnCheck);
-            if (!spawnedBlocks[0])
+            if (!setter.blockPosition.Contains(leftCheck))
             {
-                if (intersecting.Length == 0)
+                if (!spawnedBlocks[0])
                 {
-                    Instantiate(block, leftCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, leftCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[0] = true;
                 }
-                spawnedBlocks[0] = true;
             }
             Vector3 rightCheck = new Vector3(transform.position.x - size.x, transform.position.y, transform.position.z);
             intersecting = Physics.OverlapSphere(rightCheck, spawnCheck);
-            if (!spawnedBlocks[1])
+            if (!setter.blockPosition.Contains(rightCheck))
             {
-                if (intersecting.Length == 0)
+                if (!spawnedBlocks[1])
                 {
-                    Instantiate(block, rightCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, rightCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[1] = true;
                 }
-                spawnedBlocks[1] = true;
             }
             Vector3 frontCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z + size.z);
             intersecting = Physics.OverlapSphere(frontCheck, spawnCheck);
-            if (!spawnedBlocks[2])
+            if (!setter.blockPosition.Contains(frontCheck))
             {
-                if (intersecting.Length == 0)
+                if (!spawnedBlocks[2])
                 {
-                    Instantiate(block, frontCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, frontCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[2] = true;
                 }
-                spawnedBlocks[2] = true;
             }
             Vector3 backCheck = new Vector3(transform.position.x, transform.position.y, transform.position.z - size.z);
             intersecting = Physics.OverlapSphere(backCheck, spawnCheck);
-            if (!spawnedBlocks[3])
+            if (!setter.blockPosition.Contains(backCheck))
             {
-                if (intersecting.Length == 0)
+                if (!spawnedBlocks[3])
                 {
-                    Instantiate(block, backCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, backCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[3] = true;
                 }
-                spawnedBlocks[3] = true;
             }
             Vector3 upCheck = new Vector3(transform.position.x, transform.position.y + size.y, transform.position.z);
             intersecting = Physics.OverlapSphere(upCheck, spawnCheck);
-            if (!spawnedBlocks[4])
+            if (!setter.blockPosition.Contains(upCheck))
             {
-                if (intersecting.Length == 0)
+                if (!spawnedBlocks[4])
                 {
-                    Instantiate(block, upCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, upCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[4] = true;
                 }
-                spawnedBlocks[4] = true;
             }
             Vector3 downCheck = new Vector3(transform.position.x, transform.position.y - size.y, transform.position.z);
-            intersecting = Physics.OverlapSphere(downCheck, spawnCheck);
-            if (!spawnedBlocks[5])
+            if (!setter.blockPosition.Contains(downCheck))
             {
-                if (intersecting.Length == 0)
+                intersecting = Physics.OverlapSphere(downCheck, spawnCheck);
+                if (!spawnedBlocks[5])
                 {
-                    Instantiate(block, downCheck, Quaternion.identity, transform.parent);
+                    if (intersecting.Length == 0)
+                    {
+                        Instantiate(block, downCheck, Quaternion.identity, transform.parent);
+                    }
+                    spawnedBlocks[5] = true;
                 }
-                spawnedBlocks[5] = true;
             }
+            
         }
         if (setter.blockPosition.Contains(transform.position))
         {
-            setAir();
+            Destroy(gameObject);
         }
     }
     private void Update()
     {
-        if (doSpawnNeighbors && Vector3.Distance(player.transform.position, transform.position) < 50 || Vector3.Distance(transform.position, player.transform.position) < 2f)
+        
+        bool done = true;
+        if (Vector3.Distance(transform.position, player.transform.position) < 20f)
         {
             spawnNeighbors();
         }
-        bool done = true;
         for(int i = 0; i < 6; i++)
         {
             if (!spawnedBlocks[i])
@@ -162,12 +179,6 @@ public class SpawnBlocks : MonoBehaviour
     {
         if (isBeingDestroyed) return;
         isBeingDestroyed = true;
-
-        if (doSpawnNeighbors)
-        {
-            spawnNeighbors();
-        }
-
         Destroy(gameObject);
     }
 }
