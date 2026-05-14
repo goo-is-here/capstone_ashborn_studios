@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         print(pos);
         audioSource = this.gameObject.GetComponent<AudioSource>();
-        Debug.Log("Player instance ID: " + gameObject.GetInstanceID());
     }
     public int GetUsesLeft()
     {
@@ -311,7 +310,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
             canMove = true;
 
-            Debug.Log("Final position after CC settle: " + transform.position);
         
     }
 }
