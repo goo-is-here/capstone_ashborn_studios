@@ -3,9 +3,11 @@ using System.Collections;
 
 public class bobResource : MonoBehaviour
 {
+    //positions to swap between
     Vector3 startPos;
     Vector3 lowPos;
     Vector3 highPos;
+    //gets player
     GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,7 @@ public class bobResource : MonoBehaviour
         StartCoroutine(rotate());
         StartCoroutine(lower());
     }
+    //rotates it
     IEnumerator rotate()
     {
         while (true)
@@ -27,6 +30,7 @@ public class bobResource : MonoBehaviour
 
         }
     }
+    //lowers the block
     IEnumerator lower()
     {
         float time = 0;
@@ -48,6 +52,7 @@ public class bobResource : MonoBehaviour
         StartCoroutine(raise());
         
     }
+    //raises the block
     IEnumerator raise()
     {
         float time = 0;
