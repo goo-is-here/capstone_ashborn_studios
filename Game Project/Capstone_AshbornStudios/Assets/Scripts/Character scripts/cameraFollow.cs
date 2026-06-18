@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour
 {
+    //used in a separate script for cutscene camera movements
     Transform headLocation;
-    private float startTime;
+    [Header("Camera Follow Speed")]
     public float moveSpeed;
-    float vertCam;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //gets the location to follow
         headLocation = GameObject.FindGameObjectWithTag("Head").transform;
     }
-
-    // Update is called once per frame
+    //using late update to have physics completed first
     void LateUpdate()
     {
+        //lerps to head position
         transform.position = Vector3.Lerp(transform.position, headLocation.position, moveSpeed);
     }
 

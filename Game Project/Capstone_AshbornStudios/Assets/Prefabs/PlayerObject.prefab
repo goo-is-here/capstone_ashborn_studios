@@ -165,11 +165,11 @@ MonoBehaviour:
   jumpForce: 10
   climbForce: 5
   Gravity: -30
-  diggingReach: 3
   damageVal: 10
   durability: 250
   maxDurability: 250
-  test: {fileID: 7874816983317726265}
+  diggingReach: 3
+  climbingObject: {fileID: 7874816983317726265}
   blocksToDig:
     serializedVersion: 2
     m_Bits: 0

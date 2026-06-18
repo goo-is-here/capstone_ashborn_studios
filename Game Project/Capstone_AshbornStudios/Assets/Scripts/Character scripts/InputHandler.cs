@@ -3,10 +3,11 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    [Header("Player Controller Script")]
     public PlayerController controller;
     private InputAction moveAction, lookAction, jumpAction, digAction;
     Vector2 movementVector;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Gets the actions to look for
     private void Awake()
     {
         moveAction = InputSystem.actions.FindAction("Move");
@@ -16,6 +17,7 @@ public class InputHandler : MonoBehaviour
     }
     void Start()
     {
+        //assigns finds player object. It should ALWAYS be tagged with player. It should also be the only object tagged this way
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -23,17 +25,28 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks edge cases or if in menu
         if(controller == null || !controller.canMove)
         {
             return;
         }
-        movementVector = moveAction.ReadValue<Vector2>();
-        controller.Move(movementVector);
+        
+        if (controller == null)
+        {
+            print("fuck");
+        }
+        else
+        {
+            movementVector = moveAction.ReadValue<Vector2>();
+            controller.Move(movementVector);
+        }
+        
 
         Vector2 lookVector = lookAction.ReadValue<Vector2>();
         controller.Rotate(lookVector);
 
     }
+    //prevents the errors when changing scenes. Don't remove
     private void OnEnable()
     {
         digAction.performed += OnDigPerformed;
