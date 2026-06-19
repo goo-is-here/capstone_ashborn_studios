@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//TODO replace
+//item drop class
 [System.Serializable]
 public class ItemDropPrefab
 {

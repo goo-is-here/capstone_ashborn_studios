@@ -3,6 +3,7 @@ using System.Collections;
 
 public class growPlant : MonoBehaviour
 {
+    //TODO replace
     public float targetScale;
     public float timeToLerp = 0.25f;
     float scaleModifier = 1;
