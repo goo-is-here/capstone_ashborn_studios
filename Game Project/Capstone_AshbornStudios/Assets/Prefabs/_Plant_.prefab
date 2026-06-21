@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1065145787927805538}
   - component: {fileID: 358665086752570044}
   - component: {fileID: 5655537447700378971}
-  - component: {fileID: 4530207104955082790}
   m_Layer: 0
   m_Name: _Plant_
   m_TagString: Untagged
@@ -603,23 +602,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &4530207104955082790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8200835410039467919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  pickUp: 0
-  itemName: Lichen
-  itemdescription: Item Description
-  itemIcon: {fileID: 21300000, guid: 1f42c4376ec7f0048aa08711aedbfc70, type: 3}
-  amount: 1
-  enu: 16
-  worldPrefab: {fileID: 8200835410039467919}
-  objectToDestroy: {fileID: 0}

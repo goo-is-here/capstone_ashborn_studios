@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class craftingBench : MonoBehaviour
 {
     public GameObject player;
-    public Inventory invent;
+    //public Inventory invent;
     public List<Item> allItems = new List<Item>();
     public recipeNode[] recipes;
     public GameObject uiSlot;
@@ -20,7 +20,7 @@ public class craftingBench : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        invent = player.GetComponent<Inventory>();
+        //invent = player.GetComponent<Inventory>();
         slots = new GameObject[recipes.Length];
         toolSlots = new GameObject[tools.Length];
         craftingUi.SetActive(false);
@@ -36,7 +36,8 @@ public class craftingBench : MonoBehaviour
             {
                 craftingUi.SetActive(true);
                 allItems.Clear();
-                List<Item> inventory = invent.Items;
+                //TODO FIX
+                List<Item> inventory = null;
                 Cursor.lockState = CursorLockMode.None;
                 player.GetComponent<PlayerController>().canMove = false;
                 for (int i = 0; i < inventory.Count; i++)
@@ -95,6 +96,7 @@ public class craftingBench : MonoBehaviour
         for (int i = 0; i < tools[toolIndex].recipeList.recipe.Length; i++)
         {
             bool found = false;
+            /*
             for (int j = 0; j < invent.Items.Count; j++)
             {
                 if (!found && invent.Items[j] != null && tools[toolIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
@@ -103,6 +105,7 @@ public class craftingBench : MonoBehaviour
                     invent.RemoveItemAtIndex(j, tools[toolIndex].recipeList.recipe[i].count);
                 }
             }
+            */
         }
     }
     public void Make(int recipeIndex)
@@ -111,6 +114,7 @@ public class craftingBench : MonoBehaviour
 
         for (int i = 0; i < recipes[recipeIndex].recipeList.recipe.Length; i++)
         {
+            /*
             bool found = false;
             for (int j = 0; j < invent.Items.Count; j++)
             {
@@ -122,6 +126,8 @@ public class craftingBench : MonoBehaviour
             }
         }
         invent.AddItem(adding);
+            */
+        }
     }
     private void checkTools()
     {

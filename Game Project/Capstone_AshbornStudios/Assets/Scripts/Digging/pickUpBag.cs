@@ -9,7 +9,7 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
     //if the bag is present on the level
     public bool active;
     //the player inventory
-    public Inventory invent;
+    //public Inventory invent;
     //position of the bag
     Vector3 pos;
     
@@ -17,7 +17,7 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
     {
         //sets it based on loaded data and the player inventory
         gameObject.SetActive(active);
-        invent = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        //invent = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         transform.position = pos;
     }
     //loading the position, invetory, and active bool
@@ -46,20 +46,22 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
     //adds item to the bag
     public void addItems()
     {
+        /*
         //for each item in the inventory
         for(int i = 0; i < invent.Items.Count; i++)
         {
             //gets the item from inventory
-            Item ite = invent.GetItemAtIndex(i);
+            //Item ite = invent.GetItemAtIndex(i);
             //if not null
             if(ite != null)
             {
                 //add the item to this list and remove it from the player inventory
                 Item itemToAdd = new Item(ite.name, ite.description, ite.icon, ite.count, ite.enu, ite.worldPrefab);
                 inventoryHold.Add(itemToAdd);
-                invent.RemoveItemAtIndex(i, ite.count);
+                //invent.RemoveItemAtIndex(i, ite.count);
             }
         }
+        */
         //activate it and record the position
         active = true;
         pos = transform.position;
@@ -75,7 +77,7 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
             //adds each item to the player inventory
             foreach (Item ite in inventoryHold)
             {
-                invent.AddItem(ite);
+                //invent.AddItem(ite);
             }
         }
         //clears the bag inventory and set to false
