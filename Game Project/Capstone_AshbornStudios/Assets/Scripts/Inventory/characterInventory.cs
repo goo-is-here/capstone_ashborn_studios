@@ -45,18 +45,32 @@ public class characterInventory : MonoBehaviour
     }
     private void displayInventory()
     {
-        for (int i = hotBarSlots; i < numSlots; i++)
+        showingInventory = true;
+        int slotNumber = 6;
+        int rows = numSlots / hotBarSlots;
+        for(int j = 0; j < rows; j++)
         {
-            GameObject slot = Instantiate(slotPrefab, inventorySlotParent[numSlots / hotBarSlots - 1].transform);
-            inventorySlotArray[i] = slot;
+            for(int i = 0; i < hotBarSlots; i++)
+            {
+                GameObject slot = Instantiate(slotPrefab, inventorySlotParent[j].transform);
+                inventorySlotArray[slotNumber] = slot;
+                slotNumber++;
+            }
         }
+        
     }
     private void hideInventory()
     {
-        for(int i = hotBarSlots; i < numSlots; i++)
+        showingInventory = false;
+        
+        int rows = numSlots / hotBarSlots;
+        int slotNumber = 6;
+        for (int i = 0; i < numSlots; i++)
         {
-            inventorySlotArray[i].GetComponent<InventorySlot>().emptySlot();
-            Destroy(inventorySlotArray[i].gameObject);
+            inventorySlotArray[slotNumber].GetComponent<InventorySlot>().emptySlot();
+            Destroy(inventorySlotArray[slotNumber].gameObject);
+            inventorySlotArray[slotNumber] = null;
+            slotNumber++;
         }
     }
     public void addItem(Item ite)

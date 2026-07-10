@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
     public TextMeshProUGUI countNumber;
-    public Sprite itemSprite;
+    public Image itemSprite;
     public Item itemStored;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -15,12 +16,12 @@ public class InventorySlot : MonoBehaviour
     {
         if (ite == null) return;
         itemStored = ite;
-        itemSprite = itemStored.icon;
+        itemSprite.sprite = itemStored.icon;
         countNumber.text = "" + itemStored.count;
     }
     public void setSprite()
     {
-        itemSprite = itemStored.icon;
+        itemSprite.sprite = itemStored.icon;
     }
     public void setCount()
     {
@@ -28,7 +29,7 @@ public class InventorySlot : MonoBehaviour
     }
     public void emptySlot()
     {
-        itemSprite = null;
+        itemSprite.sprite = null;
         countNumber.text = "0";
     }
 }
