@@ -5,9 +5,9 @@ using System.Collections;
 public class characterInventory : MonoBehaviour
 {
     [SerializeField] List<Item> inventoryItemList;
-    [SerializeField] GameObject[] inventorySlotArray;
-    [SerializeField] int numSlots = 12;
+    [SerializeField] List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
+    [SerializeField] int numSlots = 12;
     public GameObject slotPrefab;
     public GameObject hotBarSlotParent;
     public GameObject[] inventorySlotParent; 
@@ -20,12 +20,12 @@ public class characterInventory : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         //sets intial amount for array
-        inventorySlotArray = new GameObject[numSlots + hotBarSlots];
+        inventorySlotArray = new List<GameObject>();
         //creates hotbar slots
         for(int i = 0; i < hotBarSlots; i++)
         {
             GameObject slot = Instantiate(slotPrefab, hotBarSlotParent.transform);
-            inventorySlotArray[i] = slot;
+            inventorySlotArray.Add(slot);
         }
     }
 
@@ -47,14 +47,17 @@ public class characterInventory : MonoBehaviour
     {
         showingInventory = true;
         int slotNumber = 6;
-        int rows = numSlots / hotBarSlots;
+        int rows = Mathf.CeilToInt((float)numSlots / (float)hotBarSlots);
         for(int j = 0; j < rows; j++)
         {
             for(int i = 0; i < hotBarSlots; i++)
             {
-                GameObject slot = Instantiate(slotPrefab, inventorySlotParent[j].transform);
-                inventorySlotArray[slotNumber] = slot;
-                slotNumber++;
+                if(slotNumber < numSlots)
+                {
+                    GameObject slot = Instantiate(slotPrefab, inventorySlotParent[j].transform);
+                    inventorySlotArray.Add(slot);
+                    slotNumber++;
+                }
             }
         }
         
@@ -62,16 +65,12 @@ public class characterInventory : MonoBehaviour
     private void hideInventory()
     {
         showingInventory = false;
-        
-        int rows = numSlots / hotBarSlots;
-        int slotNumber = 6;
-        for (int i = 0; i < numSlots; i++)
+        for (int i = hotBarSlots; i < inventorySlotArray.Count; i++)
         {
-            inventorySlotArray[slotNumber].GetComponent<InventorySlot>().emptySlot();
-            Destroy(inventorySlotArray[slotNumber].gameObject);
-            inventorySlotArray[slotNumber] = null;
-            slotNumber++;
+            Destroy(inventorySlotArray[i].gameObject);
         }
+        print(numSlots);
+        inventorySlotArray.RemoveRange(hotBarSlots, numSlots-hotBarSlots);
     }
     public void addItem(Item ite)
     {
