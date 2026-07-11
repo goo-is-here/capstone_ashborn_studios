@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4073140600898808671}
   - component: {fileID: 698089511728417691}
   - component: {fileID: 6551174247801977813}
-  - component: {fileID: 4949626906283111212}
   m_Layer: 0
   m_Name: CrumbDrop
   m_TagString: Untagged
@@ -126,22 +125,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &4949626906283111212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330074392253576279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Crumbstone
-  itemdescription: Crumbstone
-  itemIcon: {fileID: 21300000, guid: ab7fc866992346d438e5052f35588f21, type: 3}
-  amount: 1
-  enu: 4
-  worldPrefab: {fileID: 1330074392253576279}
-  objectToDestroy: {fileID: 0}

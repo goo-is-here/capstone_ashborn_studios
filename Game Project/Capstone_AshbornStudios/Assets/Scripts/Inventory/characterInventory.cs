@@ -5,7 +5,7 @@ using System.Collections;
 public class characterInventory : MonoBehaviour
 {
     [SerializeField] List<Item> inventoryItemList;
-    [SerializeField] List<GameObject> inventorySlotArray;
+    List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
     [SerializeField] int numSlots = 12;
     public GameObject slotPrefab;
@@ -74,16 +74,53 @@ public class characterInventory : MonoBehaviour
     }
     public void addItem(Item ite)
     {
-        foreach(Item obj in inventoryItemList)
+        if (inventoryItemList.Count == 0)
         {
-            if (inventoryItemList.Count == 0)
+            if (ite.count > maxItem)
             {
-                if(ite.count > maxItem)
+                int overFlow = ite.count - maxItem;
+                ite.count = maxItem;
+                inventoryItemList.Add(ite);
+                Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                addItem(overFlowItem);
+            }
+            else
+            {
+                inventoryItemList.Add(ite);
+            }
+        }
+        else
+        {
+            bool added = false;
+            int indexList = 0;
+            while(!added && indexList < inventoryItemList.Count)
+            {
+                if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count <= maxItem)
+                {
+                    int newCount = inventoryItemList[indexList].count + ite.count;
+                    if (newCount > maxItem)
+                    {
+                        int overFlow = newCount - maxItem;
+                        inventoryItemList[indexList].count = maxItem;
+                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                        addItem(overFlowItem);
+                    }
+                    else
+                    {
+                        inventoryItemList[indexList].count = newCount;
+                    }
+                    added = true;
+                }
+                indexList++;
+            }
+            if(indexList < numSlots && !added)
+            {
+                if (ite.count > maxItem)
                 {
                     int overFlow = ite.count - maxItem;
                     ite.count = maxItem;
                     inventoryItemList.Add(ite);
-                    Item overFlowItem = new Item(ite.name, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                    Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
                     addItem(overFlowItem);
                 }
                 else
@@ -91,22 +128,9 @@ public class characterInventory : MonoBehaviour
                     inventoryItemList.Add(ite);
                 }
             }
-            else if(obj.enu == ite.enu && obj.count >= maxItem)
-            {
-                int newCount = obj.count + ite.count;
-                if(newCount > maxItem)
-                {
-                    int overFlow = newCount - maxItem;
-                    obj.count = maxItem;
-                    Item overFlowItem = new Item(ite.name, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                    addItem(overFlowItem);
-                }
-                else
-                {
-                    obj.count = newCount;
-                }
-            }
+            
         }
+        
     }
     public void removeItem(Item ite, int amount)
     {

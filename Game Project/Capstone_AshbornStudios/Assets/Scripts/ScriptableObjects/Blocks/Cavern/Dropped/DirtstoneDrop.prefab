@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 20740051658361010}
   - component: {fileID: 8555415750431839849}
   - component: {fileID: 3149883387202404956}
-  - component: {fileID: 6596389156370720571}
   m_Layer: 0
   m_Name: DirtstoneDrop
   m_TagString: Untagged
@@ -126,23 +125,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &6596389156370720571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202145325846076716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  pickUp: 1
-  itemName: Dirtstone
-  itemdescription: Dirtstone
-  itemIcon: {fileID: 21300000, guid: 7a48d5942c84de047afc37f87f95eda9, type: 3}
-  amount: 1
-  enu: 2
-  worldPrefab: {fileID: 7202145325846076716}
-  objectToDestroy: {fileID: 0}

@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [Header("Camera Object")]
     public GameObject cam;
 
+    public characterInventory inventory;
+
     [HideInInspector]
     public bool isMoving;
     [HideInInspector]
@@ -314,6 +316,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public float getDur()
     {
         return durability;
+    }
+
+    public void addItemInventory(Item ite)
+    {
+        inventory.addItem(ite);
     }
     //a set wait time for functions, default time is 5 seconds
     IEnumerator wait(float time = 5)

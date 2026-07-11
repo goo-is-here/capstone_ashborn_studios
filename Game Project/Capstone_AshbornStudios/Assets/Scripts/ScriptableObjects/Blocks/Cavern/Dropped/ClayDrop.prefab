@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3758918815127313708}
   - component: {fileID: 4462812995272473934}
   - component: {fileID: 6061581299125038273}
-  - component: {fileID: 3031943723518686401}
   m_Layer: 0
   m_Name: ClayDrop
   m_TagString: Untagged
@@ -126,22 +125,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &3031943723518686401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6150668360226356432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  itemName: Clay
-  itemdescription: Clay
-  itemIcon: {fileID: 21300000, guid: 6f6c4b1355ce69f4691581332ea1229d, type: 3}
-  amount: 1
-  enu: 3
-  worldPrefab: {fileID: 6150668360226356432}
-  objectToDestroy: {fileID: 0}
