@@ -95,19 +95,19 @@ public class characterInventory : MonoBehaviour
             int indexList = 0;
             while(!added && indexList < inventoryItemList.Count)
             {
-                if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count <= maxItem)
+                if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
                 {
                     int newCount = inventoryItemList[indexList].count + ite.count;
-                    if (newCount > maxItem)
+                    if (newCount < maxItem)
+                    {
+                        inventoryItemList[indexList].count = newCount;
+                    }
+                    else
                     {
                         int overFlow = newCount - maxItem;
                         inventoryItemList[indexList].count = maxItem;
                         Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
                         addItem(overFlowItem);
-                    }
-                    else
-                    {
-                        inventoryItemList[indexList].count = newCount;
                     }
                     added = true;
                 }
@@ -130,7 +130,7 @@ public class characterInventory : MonoBehaviour
             }
             
         }
-        
+        updateDisplayedInventory();
     }
     public void removeItem(Item ite, int amount)
     {
@@ -149,6 +149,14 @@ public class characterInventory : MonoBehaviour
                     amount = -1;
                 }
             }
+        }
+        updateDisplayedInventory();
+    }
+    private void updateDisplayedInventory()
+    {
+        for(int i = 0; i < inventoryItemList.Count; i++)
+        {
+            inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
         }
     }
 }
