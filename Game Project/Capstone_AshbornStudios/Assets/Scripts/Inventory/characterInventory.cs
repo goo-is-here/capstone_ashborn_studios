@@ -8,6 +8,7 @@ public class characterInventory : MonoBehaviour
     List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
     [SerializeField] int numSlots = 12;
+    [SerializeField] int numSlotsPerRow = 6;
     public GameObject slotPrefab;
     public GameObject hotBarSlotParent;
     public GameObject[] inventorySlotParent; 
@@ -47,10 +48,10 @@ public class characterInventory : MonoBehaviour
     {
         showingInventory = true;
         int slotNumber = 6;
-        int rows = Mathf.CeilToInt((float)numSlots / (float)hotBarSlots);
+        int rows = Mathf.CeilToInt((float)numSlots / (float)numSlotsPerRow);
         for(int j = 0; j < rows; j++)
         {
-            for(int i = 0; i < hotBarSlots; i++)
+            for(int i = 0; i < numSlotsPerRow; i++)
             {
                 if(slotNumber < numSlots)
                 {
