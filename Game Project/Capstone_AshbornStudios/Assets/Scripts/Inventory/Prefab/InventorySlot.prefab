@@ -205,12 +205,13 @@ MonoBehaviour:
   countNumber: {fileID: 5527793443964202048}
   itemSprite: {fileID: 5968763503831258560}
   itemStored:
-    name: 
+    itemName: 
     description: 
     icon: {fileID: 0}
     count: 0
     enu: 0
     worldPrefab: {fileID: 0}
+  selectedSlot: {fileID: 8330718734181685982}
 --- !u!1 &8330718734181685982
 GameObject:
   m_ObjectHideFlags: 0

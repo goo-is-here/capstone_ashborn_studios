@@ -15,7 +15,7 @@ public class characterInventory : MonoBehaviour
     PlayerController player;
     bool showingInventory = false;
     [SerializeField] int maxItem = 99;
-
+    int selectedSlotNum = -1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +42,64 @@ public class characterInventory : MonoBehaviour
             {
                 hideInventory();
             }
+        }
+        processSlot();
+    }
+    private void processSlot()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(!inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.activeSelf);
+            inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
         }
     }
     private void displayInventory()

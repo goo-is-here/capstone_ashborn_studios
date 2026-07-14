@@ -21,5 +21,9 @@ public class Item
         this.enu = enu;
         this.worldPrefab = worldPrefab;
     }
+    public void use()
+    {
+        return;
+    }
 
 }

@@ -7,6 +7,7 @@ public class InventorySlot : MonoBehaviour
     public TextMeshProUGUI countNumber;
     public Image itemSprite;
     public Item itemStored;
+    public GameObject selectedSlot;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
