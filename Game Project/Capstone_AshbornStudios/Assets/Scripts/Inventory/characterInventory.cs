@@ -44,6 +44,10 @@ public class characterInventory : MonoBehaviour
             }
         }
         processSlot();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            dropItem();
+        }
     }
     private void processSlot()
     {
@@ -55,6 +59,10 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 0;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -64,6 +72,10 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[1].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 1;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -73,6 +85,10 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[2].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 2;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
@@ -82,6 +98,10 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 3;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
@@ -91,6 +111,10 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 4;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -100,7 +124,16 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray[3].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[4].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
             inventorySlotArray[0].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+            if (inventorySlotArray[5].GetComponent<InventorySlot>().selectedSlot.activeSelf)
+            {
+                selectedSlotNum = 5;
+            }
         }
+    }
+    private void dropItem()
+    {
+        inventoryItemList[selectedSlotNum] = null;
+        updateDisplayedInventory();
     }
     private void displayInventory()
     {
@@ -170,6 +203,23 @@ public class characterInventory : MonoBehaviour
                     }
                     added = true;
                 }
+                else if(inventoryItemList[indexList].enu == ItemEnum.NULL)
+                {
+                    print("here");
+                    if (ite.count > maxItem)
+                    {
+                        int overFlow = ite.count - maxItem;
+                        ite.count = maxItem;
+                        inventoryItemList[indexList] = ite;
+                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                        addItem(overFlowItem);
+                    }
+                    else
+                    {
+                        inventoryItemList[indexList] = ite;
+                    }
+                    added = true;
+                }
                 indexList++;
             }
             if(indexList < numSlots && !added)
@@ -216,6 +266,10 @@ public class characterInventory : MonoBehaviour
         for(int i = 0; i < inventoryItemList.Count; i++)
         {
             inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
+            if(inventoryItemList[i] == null)
+            {
+                inventorySlotArray[i].GetComponent<InventorySlot>().emptySlot();
+            }
         }
     }
 }
