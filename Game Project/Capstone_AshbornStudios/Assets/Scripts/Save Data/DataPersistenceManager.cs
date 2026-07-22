@@ -53,7 +53,6 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame()
     {
-        Debug.Log("made it2");
         this.gameData = dataHandler.Load();
         if(initializeGame && this.gameData == null)
         {

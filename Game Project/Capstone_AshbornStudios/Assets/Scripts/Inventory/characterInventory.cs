@@ -4,7 +4,7 @@ using System.Collections;
 
 public class characterInventory : MonoBehaviour
 {
-    [SerializeField] List<Item> inventoryItemList;
+    [SerializeField] Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
     [SerializeField] int numSlots = 12;
@@ -15,10 +15,11 @@ public class characterInventory : MonoBehaviour
     PlayerController player;
     bool showingInventory = false;
     [SerializeField] int maxItem = 99;
-    int selectedSlotNum = -1;
+    public int selectedSlotNum = -1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inventoryItemList = new Item[hotBarSlots + numSlots];
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         //sets intial amount for array
         inventorySlotArray = new List<GameObject>();
@@ -166,46 +167,32 @@ public class characterInventory : MonoBehaviour
     }
     public void addItem(Item ite)
     {
-        if (inventoryItemList.Count == 0)
+        print(ite.count);
+        if (countInventory() == 0)
         {
             if (ite.count > maxItem)
             {
                 int overFlow = ite.count - maxItem;
                 ite.count = maxItem;
-                inventoryItemList.Add(ite);
+                inventoryItemList[0] = ite;
                 Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
                 addItem(overFlowItem);
             }
             else
             {
-                inventoryItemList.Add(ite);
+                inventoryItemList[0] = ite;
             }
         }
         else
         {
+            print("made it");
             bool added = false;
             int indexList = 0;
-            while(!added && indexList < inventoryItemList.Count)
+            while(!added && indexList < inventoryItemList.Length)
             {
-                if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
+                print(indexList);
+                if (inventoryItemList[indexList] == null || inventoryItemList[indexList].enu == ItemEnum.NULL)
                 {
-                    int newCount = inventoryItemList[indexList].count + ite.count;
-                    if (newCount < maxItem)
-                    {
-                        inventoryItemList[indexList].count = newCount;
-                    }
-                    else
-                    {
-                        int overFlow = newCount - maxItem;
-                        inventoryItemList[indexList].count = maxItem;
-                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                        addItem(overFlowItem);
-                    }
-                    added = true;
-                }
-                else if(inventoryItemList[indexList].enu == ItemEnum.NULL)
-                {
-                    print("here");
                     if (ite.count > maxItem)
                     {
                         int overFlow = ite.count - maxItem;
@@ -220,55 +207,72 @@ public class characterInventory : MonoBehaviour
                     }
                     added = true;
                 }
+                else if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
+                {
+                    print("Here");
+                    int newCount = inventoryItemList[indexList].count + ite.count;
+                    if (newCount < maxItem)
+                    {
+                        inventoryItemList[indexList].count = newCount;
+                    }
+                    else
+                    {
+                        int overFlow = newCount - maxItem;
+                        inventoryItemList[indexList].count = maxItem;
+                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                        addItem(overFlowItem);
+                    }
+                    added = true;
+                }
+                
                 indexList++;
             }
-            if(indexList < numSlots && !added)
-            {
-                if (ite.count > maxItem)
-                {
-                    int overFlow = ite.count - maxItem;
-                    ite.count = maxItem;
-                    inventoryItemList.Add(ite);
-                    Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                    addItem(overFlowItem);
-                }
-                else
-                {
-                    inventoryItemList.Add(ite);
-                }
-            }
-            
         }
         updateDisplayedInventory();
     }
     public void removeItem(Item ite, int amount)
     {
-        foreach(Item obj in inventoryItemList)
+        for(int i = 0; i < inventoryItemList.Length; i++)
         {
-            if(obj.enu == ite.enu && amount > 0)
+            if (inventoryItemList[i].enu == ite.enu && amount >= 0)
             {
-                if(amount >= obj.count)
+                if (amount >= inventoryItemList[i].count)
                 {
-                    amount -= obj.count;
-                    inventoryItemList.Remove(obj);
+                    amount -= inventoryItemList[i].count;
+                    inventoryItemList[i] = null;
                 }
                 else
                 {
-                    obj.count -= amount;
+                    inventoryItemList[i].count -= amount;
                     amount = -1;
                 }
             }
         }
         updateDisplayedInventory();
     }
+    private int countInventory()
+    {
+        int capacity = 0;
+        for(int i = 0; i < inventoryItemList.Length; i++)
+        {
+            if(inventoryItemList[i] != null && inventoryItemList[i].enu != ItemEnum.NULL)
+            {
+                capacity++;
+            }
+        }
+        return capacity;
+    }
     private void updateDisplayedInventory()
     {
-        for(int i = 0; i < inventoryItemList.Count; i++)
+        for(int i = 0; i < inventorySlotArray.Count; i++)
         {
-            inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
-            if(inventoryItemList[i] == null)
+            if(inventoryItemList[i] == null || inventoryItemList[i].enu == ItemEnum.NULL)
             {
                 inventorySlotArray[i].GetComponent<InventorySlot>().emptySlot();
+            }
+            else
+            {
+                inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
             }
         }
     }
