@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 5471129886287712129}
   - component: {fileID: 3808389383384327519}
   - component: {fileID: 5434899031275680500}
-  - component: {fileID: 4691825088499967086}
-  - component: {fileID: 7679276606770384983}
+  - component: {fileID: 3145296313378255877}
   m_Layer: 0
   m_Name: RootstoneDrop
   m_TagString: Untagged
@@ -114,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4691825088499967086
+--- !u!114 &3145296313378255877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,25 +122,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8308295401990318128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &7679276606770384983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8308295401990318128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Rootstone
-  itemdescription: Rootstone
-  itemIcon: {fileID: 21300000, guid: 25e89dce1bc14f54bb85512c6d2c3fe6, type: 3}
-  amount: 1
+  description: Rootstone
+  icon: {fileID: 21300000, guid: 25e89dce1bc14f54bb85512c6d2c3fe6, type: 3}
+  count: 1
   enu: 6
   worldPrefab: {fileID: 8308295401990318128}
-  objectToDestroy: {fileID: 0}
+  collectionTimer: 10

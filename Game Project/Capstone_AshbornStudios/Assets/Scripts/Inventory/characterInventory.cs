@@ -288,7 +288,6 @@ public class characterInventory : MonoBehaviour
             }
             else
             {
-                print(inventoryItemList[i].enu + " " + i);
                 inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
             }
         }

@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 7923901738168308258}
   - component: {fileID: 7599586016281507971}
   - component: {fileID: 8865755725084700378}
-  - component: {fileID: 2563077136523230658}
-  - component: {fileID: 6787824521417109138}
+  - component: {fileID: 5386349507008006457}
   m_Layer: 0
   m_Name: LemstoneDrop
   m_TagString: Untagged
@@ -114,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2563077136523230658
+--- !u!114 &5386349507008006457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,26 +122,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7684466976166885979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &6787824521417109138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7684466976166885979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  pickUp: 1
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Lemstone
-  itemdescription: Lemstone
-  itemIcon: {fileID: 21300000, guid: a61626dee93baff41a4cc779cba2597e, type: 3}
-  amount: 1
+  description: Lemstone
+  icon: {fileID: 21300000, guid: a61626dee93baff41a4cc779cba2597e, type: 3}
+  count: 1
   enu: 5
   worldPrefab: {fileID: 7684466976166885979}
-  objectToDestroy: {fileID: 0}
+  collectionTimer: 10

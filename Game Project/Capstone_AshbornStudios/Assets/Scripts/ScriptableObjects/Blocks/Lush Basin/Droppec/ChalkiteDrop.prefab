@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3781491422673761418}
   - component: {fileID: 6728216172327208925}
   - component: {fileID: 7778781990704538449}
-  - component: {fileID: 1961476926250403978}
+  - component: {fileID: 2539871866524165618}
   m_Layer: 0
   m_Name: ChalkiteDrop
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1961476926250403978
+--- !u!114 &2539871866524165618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2509750084051463296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bobResource
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
+  itemName: Chalkite
+  description: Chalkite
+  icon: {fileID: 21300000, guid: 8bcf18dbdb9b29d4b8a9eae51a801578, type: 3}
+  count: 1
+  enu: 12
+  worldPrefab: {fileID: 2509750084051463296}
+  collectionTimer: 10
+  collected: 0

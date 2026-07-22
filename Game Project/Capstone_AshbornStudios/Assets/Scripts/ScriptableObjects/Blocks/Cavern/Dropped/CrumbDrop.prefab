@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4593478245812893452}
   - component: {fileID: 4073140600898808671}
   - component: {fileID: 698089511728417691}
-  - component: {fileID: 6551174247801977813}
+  - component: {fileID: 3615005424285671726}
   m_Layer: 0
   m_Name: CrumbDrop
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6551174247801977813
+--- !u!114 &3615005424285671726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330074392253576279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bobResource
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
+  itemName: Crumbstone
+  description: Crumbstone
+  icon: {fileID: 21300000, guid: ab7fc866992346d438e5052f35588f21, type: 3}
+  count: 1
+  enu: 4
+  worldPrefab: {fileID: 1330074392253576279}
+  collectionTimer: 10

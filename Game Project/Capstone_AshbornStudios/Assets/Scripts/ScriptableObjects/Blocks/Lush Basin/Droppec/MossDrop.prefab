@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1013114614004529641}
   - component: {fileID: 8705293999809386442}
   - component: {fileID: 6878009678666023722}
-  - component: {fileID: 688076575420304131}
-  - component: {fileID: 3732099945729924960}
+  - component: {fileID: 643147345561495447}
   m_Layer: 0
   m_Name: MossDrop
   m_TagString: Untagged
@@ -114,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &688076575420304131
+--- !u!114 &643147345561495447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,26 +122,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8274722980629589059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b93ecfb56ecb40a975078baeb507e, type: 3}
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::bobResource
---- !u!114 &3732099945729924960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8274722980629589059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d0767290fb72e40b231d4a2c85fea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item_Pickup
-  pickUp: 1
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Moss
-  itemdescription: Moss
-  itemIcon: {fileID: 21300000, guid: 4cd3f13931ad1204192d063f88947201, type: 3}
-  amount: 1
+  description: Moss
+  icon: {fileID: 21300000, guid: 4cd3f13931ad1204192d063f88947201, type: 3}
+  count: 1
   enu: 11
   worldPrefab: {fileID: 8274722980629589059}
-  objectToDestroy: {fileID: 0}
+  collectionTimer: 10
