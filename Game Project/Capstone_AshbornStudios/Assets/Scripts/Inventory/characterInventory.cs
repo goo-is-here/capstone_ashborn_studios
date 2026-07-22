@@ -29,12 +29,13 @@ public class characterInventory : MonoBehaviour
             GameObject slot = Instantiate(slotPrefab, hotBarSlotParent.transform);
             inventorySlotArray.Add(slot);
         }
+        updateSlotNumber();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.canMove && Input.GetKeyDown(KeyCode.I)){
+        if(Input.GetKeyDown(KeyCode.I)){
             if (!showingInventory)
             {
                 displayInventory();
@@ -133,11 +134,17 @@ public class characterInventory : MonoBehaviour
     }
     private void dropItem()
     {
-        inventoryItemList[selectedSlotNum] = null;
-        updateDisplayedInventory();
+        if(selectedSlotNum >= 0 || selectedSlotNum < inventoryItemList.Length)
+        {
+            inventoryItemList[selectedSlotNum] = null;
+            updateDisplayedInventory();
+        }
     }
     private void displayInventory()
     {
+        player.canMove = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         showingInventory = true;
         int slotNumber = 6;
         int rows = Mathf.CeilToInt((float)numSlots / (float)numSlotsPerRow);
@@ -153,21 +160,23 @@ public class characterInventory : MonoBehaviour
                 }
             }
         }
-        
+        updateSlotNumber();
+        updateDisplayedInventory();
     }
     private void hideInventory()
     {
+        player.canMove = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         showingInventory = false;
         for (int i = hotBarSlots; i < inventorySlotArray.Count; i++)
         {
             Destroy(inventorySlotArray[i].gameObject);
         }
-        print(numSlots);
         inventorySlotArray.RemoveRange(hotBarSlots, numSlots-hotBarSlots);
     }
     public void addItem(Item ite)
     {
-        print(ite.count);
         if (countInventory() == 0)
         {
             if (ite.count > maxItem)
@@ -185,12 +194,10 @@ public class characterInventory : MonoBehaviour
         }
         else
         {
-            print("made it");
             bool added = false;
             int indexList = 0;
             while(!added && indexList < inventoryItemList.Length)
             {
-                print(indexList);
                 if (inventoryItemList[indexList] == null || inventoryItemList[indexList].enu == ItemEnum.NULL)
                 {
                     if (ite.count > maxItem)
@@ -209,7 +216,6 @@ public class characterInventory : MonoBehaviour
                 }
                 else if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
                 {
-                    print("Here");
                     int newCount = inventoryItemList[indexList].count + ite.count;
                     if (newCount < maxItem)
                     {
@@ -266,14 +272,32 @@ public class characterInventory : MonoBehaviour
     {
         for(int i = 0; i < inventorySlotArray.Count; i++)
         {
+            
             if(inventoryItemList[i] == null || inventoryItemList[i].enu == ItemEnum.NULL)
             {
                 inventorySlotArray[i].GetComponent<InventorySlot>().emptySlot();
             }
             else
             {
+                print(inventoryItemList[i].enu + " " + i);
                 inventorySlotArray[i].GetComponent<InventorySlot>().setSlot(inventoryItemList[i]);
             }
         }
+    }
+    private void updateSlotNumber()
+    {
+        for(int i = 0; i < inventorySlotArray.Count; i++)
+        {
+            inventorySlotArray[i].GetComponent<InventorySlot>().slotIndex = i;
+        }
+    }
+    public void swapItems(int targetSlot)
+    {
+        Item tempItem = inventoryItemList[targetSlot];
+        inventoryItemList[targetSlot] = inventoryItemList[selectedSlotNum];
+        inventoryItemList[selectedSlotNum] = tempItem;
+        inventorySlotArray[selectedSlotNum].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
+        selectedSlotNum = -1;
+        updateDisplayedInventory();
     }
 }
