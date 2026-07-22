@@ -30,6 +30,7 @@ public class characterInventory : MonoBehaviour
             inventorySlotArray.Add(slot);
         }
         updateSlotNumber();
+        updateDisplayedInventory();
     }
 
     // Update is called once per frame
@@ -175,8 +176,10 @@ public class characterInventory : MonoBehaviour
         }
         inventorySlotArray.RemoveRange(hotBarSlots, numSlots-hotBarSlots);
     }
-    public void addItem(Item ite)
+    public void addItem(GameObject obj)
     {
+        pickUpItem iteTemp = obj.GetComponent<pickUpItem>();
+        Item ite = new Item(iteTemp.itemName, iteTemp.description, iteTemp.icon, iteTemp.count, iteTemp.enu, iteTemp.worldPrefab);
         if (countInventory() == 0)
         {
             if (ite.count > maxItem)
@@ -184,13 +187,15 @@ public class characterInventory : MonoBehaviour
                 int overFlow = ite.count - maxItem;
                 ite.count = maxItem;
                 inventoryItemList[0] = ite;
-                Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                addItem(overFlowItem);
+                iteTemp.count = overFlow;
+                addItem(obj);
             }
             else
             {
                 inventoryItemList[0] = ite;
+                Destroy(obj);
             }
+            
         }
         else
         {
@@ -205,14 +210,16 @@ public class characterInventory : MonoBehaviour
                         int overFlow = ite.count - maxItem;
                         ite.count = maxItem;
                         inventoryItemList[indexList] = ite;
-                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                        addItem(overFlowItem);
+                        iteTemp.count = overFlow;
+                        addItem(obj);
                     }
                     else
                     {
                         inventoryItemList[indexList] = ite;
+                        Destroy(obj);
                     }
                     added = true;
+                    
                 }
                 else if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
                 {
@@ -220,15 +227,17 @@ public class characterInventory : MonoBehaviour
                     if (newCount < maxItem)
                     {
                         inventoryItemList[indexList].count = newCount;
+                        Destroy(obj);
                     }
                     else
                     {
                         int overFlow = newCount - maxItem;
                         inventoryItemList[indexList].count = maxItem;
-                        Item overFlowItem = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
-                        addItem(overFlowItem);
+                        iteTemp.count = overFlow;
+                        addItem(obj);
                     }
                     added = true;
+                    
                 }
                 
                 indexList++;

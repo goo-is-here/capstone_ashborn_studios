@@ -13,11 +13,9 @@ public class pickUpItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !collected)
         {
-
             collected = true;
             Item addThis = new Item(itemName, description, icon, count, enu, worldPrefab);
-            other.gameObject.GetComponent<PlayerController>().addItemInventory(addThis);
-            Destroy(this.gameObject);
+            other.gameObject.GetComponent<PlayerController>().addItemInventory(gameObject);
         }
     }
 }

@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         return durability;
     }
 
-    public void addItemInventory(Item ite)
+    public void addItemInventory(GameObject ite)
     {
         inventory.addItem(ite);
     }
