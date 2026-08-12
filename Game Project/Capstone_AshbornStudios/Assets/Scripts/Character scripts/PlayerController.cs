@@ -318,9 +318,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         return durability;
     }
 
-    public void addItemInventory(GameObject ite)
+    public void addItemInventory(Item ite, pickUpItem obj = null)
     {
-        inventory.addItem(ite);
+        inventory.addItem(ite, obj);
     }
     //a set wait time for functions, default time is 5 seconds
     IEnumerator wait(float time = 5)

@@ -9,6 +9,7 @@ public class characterInventory : MonoBehaviour
     [SerializeField] int hotBarSlots = 6;
     [SerializeField] int numSlots = 12;
     [SerializeField] int numSlotsPerRow = 6;
+    [SerializeField] float spawnDistance = 5f;
     public GameObject slotPrefab;
     public GameObject hotBarSlotParent;
     public GameObject[] inventorySlotParent; 
@@ -137,6 +138,8 @@ public class characterInventory : MonoBehaviour
     {
         if(selectedSlotNum >= 0 || selectedSlotNum < inventoryItemList.Length)
         {
+            Vector3 pos = player.cam.transform.TransformPoint(Vector3.forward * spawnDistance);
+            GameObject drop = Instantiate(inventoryItemList[selectedSlotNum].worldPrefab, pos, player.transform.rotation);
             inventoryItemList[selectedSlotNum] = null;
             updateDisplayedInventory();
         }
@@ -176,10 +179,9 @@ public class characterInventory : MonoBehaviour
         }
         inventorySlotArray.RemoveRange(hotBarSlots, numSlots-hotBarSlots);
     }
-    public void addItem(GameObject obj)
+    //to be rewritten and condensed
+    public void addItem(Item ite, pickUpItem obj = null)
     {
-        pickUpItem iteTemp = obj.GetComponent<pickUpItem>();
-        Item ite = new Item(iteTemp.itemName, iteTemp.description, iteTemp.icon, iteTemp.count, iteTemp.enu, iteTemp.worldPrefab);
         if (countInventory() == 0)
         {
             if (ite.count > maxItem)
@@ -187,13 +189,16 @@ public class characterInventory : MonoBehaviour
                 int overFlow = ite.count - maxItem;
                 ite.count = maxItem;
                 inventoryItemList[0] = ite;
-                iteTemp.count = overFlow;
-                addItem(obj);
+                Item itemTemp = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                addItem(itemTemp, obj);
             }
             else
             {
                 inventoryItemList[0] = ite;
-                Destroy(obj);
+                if(obj != null)
+                {
+                    obj.itemDestroy();
+                }
             }
             
         }
@@ -210,13 +215,16 @@ public class characterInventory : MonoBehaviour
                         int overFlow = ite.count - maxItem;
                         ite.count = maxItem;
                         inventoryItemList[indexList] = ite;
-                        iteTemp.count = overFlow;
-                        addItem(obj);
+                        Item itemTemp = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                        addItem(itemTemp, obj);
                     }
                     else
                     {
                         inventoryItemList[indexList] = ite;
-                        Destroy(obj);
+                        if (obj != null)
+                        {
+                            obj.itemDestroy();
+                        }
                     }
                     added = true;
                     
@@ -224,17 +232,20 @@ public class characterInventory : MonoBehaviour
                 else if (inventoryItemList[indexList].enu == ite.enu && inventoryItemList[indexList].count < maxItem)
                 {
                     int newCount = inventoryItemList[indexList].count + ite.count;
-                    if (newCount < maxItem)
+                    if (newCount <= maxItem)
                     {
                         inventoryItemList[indexList].count = newCount;
-                        Destroy(obj);
+                        if (obj != null)
+                        {
+                            obj.itemDestroy();
+                        }
                     }
                     else
                     {
                         int overFlow = newCount - maxItem;
                         inventoryItemList[indexList].count = maxItem;
-                        iteTemp.count = overFlow;
-                        addItem(obj);
+                        Item itemTemp = new Item(ite.itemName, ite.description, ite.icon, overFlow, ite.enu, ite.worldPrefab);
+                        addItem(itemTemp, obj);
                     }
                     added = true;
                     

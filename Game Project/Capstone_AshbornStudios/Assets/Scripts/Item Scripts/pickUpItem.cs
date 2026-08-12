@@ -7,7 +7,7 @@ public class pickUpItem : MonoBehaviour
     public Sprite icon;
     public int count = 1;
     public ItemEnum enu;
-    public GameObject worldPrefab;
+    public BlockObject worldPrefab;
     public float collectionTimer = 10;
     bool collected = false;
     //positions to swap between
@@ -88,8 +88,13 @@ public class pickUpItem : MonoBehaviour
         {
             collected = true;
             StartCoroutine(resetCollectionTimer(collectionTimer));
-            other.gameObject.GetComponent<PlayerController>().addItemInventory(gameObject);
+            Item ite = new Item(itemName, description, icon, count, enu, worldPrefab.dropped);
+            other.gameObject.GetComponent<PlayerController>().addItemInventory(ite, this);
         }
+    }
+    public void itemDestroy()
+    {
+        Destroy(this.gameObject);
     }
     IEnumerator resetCollectionTimer(float amount)
     {

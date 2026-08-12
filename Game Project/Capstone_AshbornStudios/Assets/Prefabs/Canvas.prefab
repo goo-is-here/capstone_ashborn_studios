@@ -173,8 +173,8 @@ RectTransform:
   - {fileID: 588756063164401527}
   - {fileID: 3223952220262160565}
   - {fileID: 2308693340325091564}
-  - {fileID: 832803397700248258}
   - {fileID: 329948744616744458}
+  - {fileID: 832803397700248258}
   - {fileID: 2550412997129936251}
   - {fileID: 5557437336961906649}
   - {fileID: 1629677579465123431}
@@ -1328,13 +1328,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::characterInventory
   inventoryItemList: []
-  inventorySlotArray: []
-  numSlots: 12
   hotBarSlots: 6
+  numSlots: 12
+  numSlotsPerRow: 6
   slotPrefab: {fileID: 6478262260705558053, guid: 75a8f019e92000d4084599af9a79f498, type: 3}
   hotBarSlotParent: {fileID: 7724796452878400673}
   inventorySlotParent: []
   maxItem: 99
+  selectedSlotNum: -1
 --- !u!1 &3183616422188694967
 GameObject:
   m_ObjectHideFlags: 0
