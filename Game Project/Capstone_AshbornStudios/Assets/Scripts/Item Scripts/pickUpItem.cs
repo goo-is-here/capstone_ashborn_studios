@@ -10,6 +10,9 @@ public class pickUpItem : MonoBehaviour
     public BlockObject worldPrefab;
     public float collectionTimer = 10;
     bool collected = false;
+    public float bobHeight = 0.5f;
+    public float gravity = 5f;
+    public float bobSpeed = 2f;
     //positions to swap between
     Vector3 startPos;
     Vector3 lowPos;
@@ -20,11 +23,8 @@ public class pickUpItem : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        startPos = transform.position;
-        lowPos = new Vector3(startPos.x, startPos.y - .6f, startPos.z);
-        highPos = new Vector3(startPos.x, startPos.y - .85f, startPos.z);
         StartCoroutine(rotate());
-        StartCoroutine(lower());
+        StartCoroutine(dropToGround());
     }
     //rotates it
     IEnumerator rotate()
@@ -37,12 +37,10 @@ public class pickUpItem : MonoBehaviour
 
         }
     }
-    //lowers the block
-    IEnumerator lower()
+    IEnumerator dropToGround()
     {
         float time = 0;
-        float duration = 2f;
-        while (time < duration)
+        while (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), bobHeight))
         {
 
             if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
@@ -51,7 +49,31 @@ public class pickUpItem : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.Lerp(highPos, lowPos, time / duration);
+                Vector3 lowering = new Vector3(transform.position.x, transform.position.y - bobHeight, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, lowering, Mathf.Clamp(time / gravity, 0, gravity));
+                time += Time.deltaTime;
+            }
+            yield return null;
+        }
+        startPos = transform.position;
+        lowPos = new Vector3(startPos.x, startPos.y - bobHeight/2.5f, startPos.z);
+        highPos = new Vector3(startPos.x, startPos.y + bobHeight/2.5f, startPos.z);
+        StartCoroutine(lower());
+    }
+    //lowers the block
+    IEnumerator lower()
+    {
+        float time = 0;
+        while (time < bobSpeed)
+        {
+
+            if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(highPos, lowPos, time / bobSpeed);
                 time += Time.deltaTime;
             }
             yield return null;
@@ -63,9 +85,8 @@ public class pickUpItem : MonoBehaviour
     IEnumerator raise()
     {
         float time = 0;
-        float duration = 2f;
 
-        while (time < duration)
+        while (time < bobSpeed)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
             {
@@ -73,7 +94,7 @@ public class pickUpItem : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.Lerp(lowPos, highPos, time / duration);
+                transform.position = Vector3.Lerp(lowPos, highPos, time / bobSpeed);
                 time += Time.deltaTime;
             }
             yield return null;
