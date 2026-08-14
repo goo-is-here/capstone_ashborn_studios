@@ -483,15 +483,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.71
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.19
+      value: 5.941
       objectReference: {fileID: 0}
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.88
+      value: 8.99
       objectReference: {fileID: 0}
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -533,15 +533,38 @@ PrefabInstance:
       propertyPath: bobHeight
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: collectionTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641425915504381619, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4313618974153141779, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: count
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778781990704538449, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778781990704538449, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4313618974153141779, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1032733209}
   m_SourcePrefab: {fileID: 100100000, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
 --- !u!1 &410087039
 GameObject:
@@ -927,11 +950,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.208
+      value: 2.94
       objectReference: {fileID: 0}
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.19
+      value: 5.67
       objectReference: {fileID: 0}
     - target: {fileID: 1640507639870553059, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -973,9 +996,25 @@ PrefabInstance:
       propertyPath: bobHeight
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: collectionTimer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4313618974153141779, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: count
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605859861092014311, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605859861092014311, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4313618974153141779, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
@@ -1073,6 +1112,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 450198640228779694, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
   m_PrefabInstance: {fileID: 8678092430102807404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1032733202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+  m_PrefabInstance: {fileID: 402551349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1032733209
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032733202}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 1
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!114 &1085251757 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
@@ -2571,8 +2642,16 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: throwSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: hotBarSlots
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: spawnDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: numSlotsPerRow

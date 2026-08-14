@@ -10,6 +10,7 @@ public class characterInventory : MonoBehaviour
     [SerializeField] int numSlots = 12;
     [SerializeField] int numSlotsPerRow = 6;
     [SerializeField] float spawnDistance = 5f;
+    [SerializeField] float throwSpeed = 2f;
     public GameObject slotPrefab;
     public GameObject hotBarSlotParent;
     public GameObject[] inventorySlotParent; 
@@ -17,6 +18,7 @@ public class characterInventory : MonoBehaviour
     bool showingInventory = false;
     [SerializeField] int maxItem = 99;
     public int selectedSlotNum = -1;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -138,8 +140,12 @@ public class characterInventory : MonoBehaviour
     {
         if(selectedSlotNum >= 0 || selectedSlotNum < inventoryItemList.Length)
         {
-            Vector3 pos = player.cam.transform.TransformPoint(Vector3.forward * spawnDistance);
+            print(player.gameObject);
+            Vector3 pos = player.transform.TransformPoint(Vector3.forward * spawnDistance);
             GameObject drop = Instantiate(inventoryItemList[selectedSlotNum].worldPrefab, pos, player.transform.rotation);
+            drop.GetComponent<Rigidbody>().AddForce(player.transform.forward * throwSpeed);
+            pickUpItem dropVariables = drop.GetComponent<pickUpItem>();
+            dropVariables.count = inventoryItemList[selectedSlotNum].count;
             inventoryItemList[selectedSlotNum] = null;
             updateDisplayedInventory();
         }

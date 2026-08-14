@@ -9,20 +9,21 @@ public class pickUpItem : MonoBehaviour
     public ItemEnum enu;
     public BlockObject worldPrefab;
     public float collectionTimer = 10;
-    bool collected = false;
+    bool collected = true;
+    public float heightOffGround = 0.5f;
     public float bobHeight = 0.5f;
     public float gravity = 5f;
     public float bobSpeed = 2f;
     //positions to swap between
-    Vector3 startPos;
-    Vector3 lowPos;
-    Vector3 highPos;
+    float lowPos;
+    float highPos;
     //gets player
     GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(startBlock(collectionTimer));
         StartCoroutine(rotate());
         StartCoroutine(dropToGround());
     }
@@ -39,26 +40,25 @@ public class pickUpItem : MonoBehaviour
     }
     IEnumerator dropToGround()
     {
-        float time = 0;
-        while (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), bobHeight))
+        while (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), heightOffGround))
         {
-
-            if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
+            if(Vector3.Distance(transform.position, player.transform.position) < 1f && !collected)
+            {
+                collect();
+            }
+            else if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
             }
-            else
-            {
-                Vector3 lowering = new Vector3(transform.position.x, transform.position.y - bobHeight, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, lowering, Mathf.Clamp(time / gravity, 0, gravity));
-                time += Time.deltaTime;
-            }
             yield return null;
         }
-        startPos = transform.position;
-        lowPos = new Vector3(startPos.x, startPos.y - bobHeight/2.5f, startPos.z);
-        highPos = new Vector3(startPos.x, startPos.y + bobHeight/2.5f, startPos.z);
-        StartCoroutine(lower());
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        RaycastHit hit;
+        Ray downHit = new Ray(transform.position, Vector3.down);
+        Physics.Raycast(downHit, out hit);
+        highPos = hit.point.y + heightOffGround + bobHeight / 2.5f;
+        lowPos = hit.point.y + heightOffGround - bobHeight / 2.5f;
+        StartCoroutine(raise());
     }
     //lowers the block
     IEnumerator lower()
@@ -67,13 +67,17 @@ public class pickUpItem : MonoBehaviour
         while (time < bobSpeed)
         {
 
-            if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
+            if (Vector3.Distance(transform.position, player.transform.position) < 1f && !collected)
+            {
+                collect();
+            }
+            else if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
             }
             else
             {
-                transform.position = Vector3.Lerp(highPos, lowPos, time / bobSpeed);
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(highPos, lowPos, time / bobSpeed), transform.position.z);
                 time += Time.deltaTime;
             }
             yield return null;
@@ -88,13 +92,17 @@ public class pickUpItem : MonoBehaviour
 
         while (time < bobSpeed)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
+            if (Vector3.Distance(transform.position, player.transform.position) < 1f && !collected)
+            {
+                collect();
+            }
+            else if (Vector3.Distance(transform.position, player.transform.position) < 2f && !collected)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
             }
             else
             {
-                transform.position = Vector3.Lerp(lowPos, highPos, time / bobSpeed);
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(lowPos, highPos, time / bobSpeed), transform.position.z);
                 time += Time.deltaTime;
             }
             yield return null;
@@ -103,15 +111,12 @@ public class pickUpItem : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
+    private void collect()
     {
-        if (other.gameObject.CompareTag("Player") && !collected)
-        {
-            collected = true;
-            StartCoroutine(resetCollectionTimer(collectionTimer));
-            Item ite = new Item(itemName, description, icon, count, enu, worldPrefab.dropped);
-            other.gameObject.GetComponent<PlayerController>().addItemInventory(ite, this);
-        }
+        collected = true;
+        StartCoroutine(resetCollectionTimer(collectionTimer));
+        Item ite = new Item(itemName, description, icon, count, enu, worldPrefab.dropped);
+        player.gameObject.GetComponent<PlayerController>().addItemInventory(ite, this);
     }
     public void itemDestroy()
     {
@@ -119,10 +124,17 @@ public class pickUpItem : MonoBehaviour
     }
     IEnumerator resetCollectionTimer(float amount)
     {
-        lowPos = new Vector3(transform.position.x, startPos.y - .6f, transform.position.z);
-        highPos = new Vector3(transform.position.x, startPos.y - .85f, transform.position.z);
+        RaycastHit hit;
+        Ray downHit = new Ray(transform.position, Vector3.down);
+        Physics.Raycast(downHit, out hit);
+        highPos = hit.point.y + heightOffGround + bobHeight / 2.5f;
+        lowPos = hit.point.y + heightOffGround - bobHeight / 2.5f;
         yield return new WaitForSeconds(amount);
         collected = false;
-        
+    }
+    IEnumerator startBlock(float amount)
+    {
+        yield return new WaitForSeconds(amount);
+        collected = false;
     }
 }
