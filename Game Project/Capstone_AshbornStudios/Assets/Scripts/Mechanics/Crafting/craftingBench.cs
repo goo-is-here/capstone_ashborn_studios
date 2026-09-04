@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class craftingBench : MonoBehaviour
 {
     public GameObject player;
-    //public Inventory invent;
+    public characterInventory invent;
     public List<Item> allItems = new List<Item>();
     public recipeNode[] recipes;
     public GameObject uiSlot;
@@ -20,7 +20,7 @@ public class craftingBench : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //invent = player.GetComponent<Inventory>();
+        invent = player.GetComponent<characterInventory>();
         slots = new GameObject[recipes.Length];
         toolSlots = new GameObject[tools.Length];
         craftingUi.SetActive(false);
@@ -96,16 +96,15 @@ public class craftingBench : MonoBehaviour
         for (int i = 0; i < tools[toolIndex].recipeList.recipe.Length; i++)
         {
             bool found = false;
-            /*
-            for (int j = 0; j < invent.Items.Count; j++)
+            
+            for (int j = 0; j < invent.inventoryItemList.Length; j++)
             {
-                if (!found && invent.Items[j] != null && tools[toolIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
+                if (!found && invent.inventoryItemList[j] != null && tools[toolIndex].recipeList.recipe[i].enu == invent.inventoryItemList[j].enu)
                 {
                     found = true;
-                    invent.RemoveItemAtIndex(j, tools[toolIndex].recipeList.recipe[i].count);
+                    invent.removeItem(invent.inventoryItemList[j], tools[toolIndex].recipeList.recipe[i].count);
                 }
             }
-            */
         }
     }
     public void Make(int recipeIndex)
@@ -114,21 +113,21 @@ public class craftingBench : MonoBehaviour
 
         for (int i = 0; i < recipes[recipeIndex].recipeList.recipe.Length; i++)
         {
-            /*
+            
             bool found = false;
-            for (int j = 0; j < invent.Items.Count; j++)
+            for (int j = 0; j < invent.inventoryItemList.Length; j++)
             {
-                if(!found && invent.Items[j] != null && recipes[recipeIndex].recipeList.recipe[i].enu == invent.Items[j].enu)
+                if(!found && invent.inventoryItemList[j] != null && recipes[recipeIndex].recipeList.recipe[i].enu == invent.inventoryItemList[j].enu)
                 {
                     found = true;
-                    invent.RemoveItemAtIndex(j, recipes[recipeIndex].recipeList.recipe[i].count);
+                    invent.removeItem(invent.inventoryItemList[j], recipes[recipeIndex].recipeList.recipe[i].count);
                 }
             }
         }
-        invent.AddItem(adding);
-            */
-        }
+        invent.addItem(adding);
+         
     }
+    
     private void checkTools()
     {
         for (int i = 0; i < tools.Length; i++)

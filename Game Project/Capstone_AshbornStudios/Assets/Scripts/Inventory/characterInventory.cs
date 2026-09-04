@@ -4,7 +4,7 @@ using System.Collections;
 
 public class characterInventory : MonoBehaviour
 {
-    [SerializeField] Item[] inventoryItemList;
+    public Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
     [SerializeField] int numSlots = 12;
