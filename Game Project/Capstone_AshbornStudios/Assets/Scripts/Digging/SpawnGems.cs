@@ -49,6 +49,7 @@ public class SpawnGems : MonoBehaviour
 
     private void spawnNewGems(int biomeIndex)
     {
+        //spawn gems
         for(int i = 0; i < gemsPerBiome + 1; i++)
         {
             Vector2 initialDirection = (Random.insideUnitCircle * origin).normalized;
