@@ -7,7 +7,9 @@ public class SpawnGems : MonoBehaviour
 {
     [Header("Spawn Params")]
     public int gemsPerBiome = 3;
+    [Tooltip("Units in blocks")]
     public float minSpawnRadius;
+    [Tooltip("Units in blocks")]
     public float maxSpawnRadius;
     public float maxVerticleOffset;
     public Vector3 origin = Vector3.zero;
@@ -16,6 +18,13 @@ public class SpawnGems : MonoBehaviour
     public GameObject[] biomeOneGems = new GameObject[3];
     public GameObject[] biomeTwoGems = new GameObject[3];
     public GameObject[] biomeThreeGems = new GameObject[3];
+
+    private void Start()
+    {
+        origin = transform.position;
+        spawnNewGems(1);
+
+    }
 
     public void startGemSpawning(int biomeIndex)
     {
@@ -46,13 +55,13 @@ public class SpawnGems : MonoBehaviour
 
             Vector3 finalDirection = new Vector3(initialDirection.x, initialDirection.y, 0);
 
-            float randomDistance = Random.Range(minSpawnRadius, maxSpawnRadius);
+            float randomDistance = Random.Range(minSpawnRadius * 3, maxSpawnRadius * 3);
 
             float verticleOffset = Random.Range(-maxVerticleOffset, maxVerticleOffset);
 
             var point = origin + finalDirection * randomDistance;
 
-            Vector3 finalSpawnLocation = new Vector3(point.x, point.y, verticleOffset);
+            Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.y);
 
             GameObject newGem = null;
 
@@ -72,10 +81,7 @@ public class SpawnGems : MonoBehaviour
                     break;
             }
 
-            if (newGem != null)
-            {
-                newGem.transform.position = finalSpawnLocation;
-            }
+            newGem.transform.position = finalSpawnLocation;
 
 
         }
