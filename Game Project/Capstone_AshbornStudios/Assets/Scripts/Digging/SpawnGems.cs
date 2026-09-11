@@ -12,33 +12,22 @@ public class SpawnGems : MonoBehaviour
     [Tooltip("Units in blocks")]
     public float maxSpawnRadius;
     public float maxVerticleOffset;
-    public Vector3 origin = Vector3.zero;
+    [Tooltip("Center point of each Biome. # OF ORIGINS MUST BE EQUAL TO # OF BIOMES")]
+    public Vector3[] biomeOrigins = new Vector3[3];
+
 
     [Header("Gems")]
-    public GameObject[] biomeOneGems = new GameObject[3];
-    public GameObject[] biomeTwoGems = new GameObject[3];
-    public GameObject[] biomeThreeGems = new GameObject[3];
+    public GameObject[,] gems = new GameObject[3,3];
 
     private void Start()
     {
-        origin = transform.position;
-        spawnNewGems(1);
+        startGemSpawning(1);
 
     }
 
     public void startGemSpawning(int biomeIndex)
     {
-        bool gemsHaveSaveData = false;
-
-        //check save file to see if gems have spawn positions
-        if(gemsHaveSaveData) //not gems have spawn positions// 
-        {
-            spawnNewGems(biomeIndex);
-        }
-        else
-        {
-            loadGemPositions();
-        }
+        spawnNewGems(biomeIndex);
     }
 
     private void loadGemPositions()
@@ -48,45 +37,33 @@ public class SpawnGems : MonoBehaviour
     }
     public void LoadData(GameData data)
     {
-        for(int i = 0; i < biomeOneGems.Length; i++)
+
+        for(int i = 0; i < gems.Length; i++)
         {
-            biomeOneGems[i].transform.position = data.gemPositions[0, i];
-        }
-        for (int i = 0; i < biomeTwoGems.Length; i++)
-        {
-            biomeTwoGems[i].transform.position = data.gemPositions[1, i];
-        }
-        for (int i = 0; i < biomeThreeGems.Length; i++)
-        {
-            biomeThreeGems[i].transform.position = data.gemPositions[2, i];
+            for (int j = 0; j < gems.GetLength(i); j++)
+            {
+                gems[i,j].transform.position = data.gemPositions[i,j];
+            }
         }
     }
     //save variables into game data
     public void SaveData(ref GameData data)
     {
-        if(data != null)
+        for (int i = 0; i < gems.Length; i++)
         {
-            for (int i = 0; i < biomeOneGems.Length; i++)
+            for (int j = 0; j < gems.GetLength(i); j++)
             {
-                data.gemPositions[0, i] = biomeOneGems[i].transform.position;
-            }
-            for (int i = 0; i < biomeTwoGems.Length; i++)
-            {
-                data.gemPositions[1, i] = biomeTwoGems[i].transform.position;
-            }
-            for (int i = 0; i < biomeThreeGems.Length; i++)
-            {
-                data.gemPositions[2, i] = biomeThreeGems[i].transform.position;
+                data.gemPositions[i, j] = gems[i, j].transform.position;
             }
         }
-
     }
+
     private void spawnNewGems(int biomeIndex)
     {
         //spawn gems
         for(int i = 0; i < gemsPerBiome + 1; i++)
         {
-            Vector2 initialDirection = (Random.insideUnitCircle * origin).normalized;
+            Vector2 initialDirection = (Random.insideUnitCircle * biomeOrigins[biomeIndex]).normalized;
 
             Vector3 finalDirection = new Vector3(initialDirection.x, initialDirection.y, 0);
 
@@ -94,11 +71,13 @@ public class SpawnGems : MonoBehaviour
 
             float verticleOffset = Random.Range(-maxVerticleOffset, maxVerticleOffset);
 
-            var point = origin + finalDirection * randomDistance;
+            var point = biomeOrigins[biomeIndex] + finalDirection * randomDistance;
 
             Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.y);
 
-            GameObject newGem = null;
+            GameObject newGem = gems[biomeIndex,i];
+
+            
 
             switch (biomeIndex)
             {
@@ -113,6 +92,7 @@ public class SpawnGems : MonoBehaviour
                     break;
                 default:
                     Debug.Log("Don't forget to keep biome index between 1 and 3");
+                    newGem = Instantiate(biomeOneGems[i]);
                     break;
             }
 
