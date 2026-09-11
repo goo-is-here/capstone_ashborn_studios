@@ -46,7 +46,41 @@ public class SpawnGems : MonoBehaviour
         //get spawn positions from save file and spawn them there
         return;
     }
+    public void LoadData(GameData data)
+    {
+        for(int i = 0; i < biomeOneGems.Length; i++)
+        {
+            biomeOneGems[i].transform.position = data.gemPositions[0, i];
+        }
+        for (int i = 0; i < biomeTwoGems.Length; i++)
+        {
+            biomeTwoGems[i].transform.position = data.gemPositions[1, i];
+        }
+        for (int i = 0; i < biomeThreeGems.Length; i++)
+        {
+            biomeThreeGems[i].transform.position = data.gemPositions[2, i];
+        }
+    }
+    //save variables into game data
+    public void SaveData(ref GameData data)
+    {
+        if(data != null)
+        {
+            for (int i = 0; i < biomeOneGems.Length; i++)
+            {
+                data.gemPositions[0, i] = biomeOneGems[i].transform.position;
+            }
+            for (int i = 0; i < biomeTwoGems.Length; i++)
+            {
+                data.gemPositions[1, i] = biomeTwoGems[i].transform.position;
+            }
+            for (int i = 0; i < biomeThreeGems.Length; i++)
+            {
+                data.gemPositions[2, i] = biomeThreeGems[i].transform.position;
+            }
+        }
 
+    }
     private void spawnNewGems(int biomeIndex)
     {
         //spawn gems
