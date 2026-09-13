@@ -23,25 +23,27 @@ public class SpawnGems : MonoBehaviour
     public GameObject[] biomeThreeGems = new GameObject[3];
 
     //the above arrays get added to the gems array
-    public GameObject[,] gems = new GameObject[3,3];
+    public GameObject[,] gemReferences = new GameObject[3,3];
+    public GameObject[,] spawnedGems = new GameObject[3,3];
+
     private bool[,] collectedGems = new bool[3,3];
     
     private void Start()
     {
-        for (int i = 0; i < gems.Length; i++)
+        for (int i = 0; i < gemReferences.Length; i++)
         {
-            for (int j = 0; j < gems.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(i); j++)
             {
                 switch (i)
                 {
                     case 1:
-                        gems[i, j] = biomeOneGems[j];
+                        gemReferences[i, j] = biomeOneGems[j];
                         break;
                     case 2:
-                        gems[i, j] = biomeTwoGems[j];
+                        gemReferences[i, j] = biomeTwoGems[j];
                         break;
                     case 3:
-                        gems[i, j] = biomeThreeGems[j];
+                        gemReferences[i, j] = biomeThreeGems[j];
                         break;
                 }
             }
@@ -55,17 +57,17 @@ public class SpawnGems : MonoBehaviour
 
         collectedGems = data.collectedGems;
 
-        for(int i = 0; i < gems.Length; i++)
+        for(int i = 0; i < gemReferences.Length; i++)
         {
-            for (int j = 0; j < gems.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(i); j++)
             {
                 if (!collectedGems[i, j])
                 {
-                    gems[i, j].transform.position = data.gemPositions[i, j];
+                    spawnedGems[i, j].transform.position = data.gemPositions[i, j];
                 }
                 else
                 {
-                    Destroy(gems[i, j].gameObject);
+                    Destroy(spawnedGems[i, j].gameObject);
                 }
             }
         }
@@ -75,11 +77,11 @@ public class SpawnGems : MonoBehaviour
     public void SaveData(ref GameData data)
     {
         data.collectedGems = collectedGems;
-        for (int i = 0; i < gems.Length; i++)
+        for (int i = 0; i < gemReferences.Length; i++)
         {
-            for (int j = 0; j < gems.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(i); j++)
             {
-                data.gemPositions[i, j] = gems[i, j].transform.position;
+                data.gemPositions[i, j] = spawnedGems[i, j].transform.position;
 
             }
         }
@@ -102,9 +104,10 @@ public class SpawnGems : MonoBehaviour
 
             Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.y);
 
-            GameObject newGem = gems[biomeIndex,i];
+            GameObject newGem = gemReferences[biomeIndex,i];
 
             newGem.transform.position = finalSpawnLocation;
+            spawnedGems[biomeIndex, i] = newGem;
 
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
