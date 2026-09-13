@@ -21,6 +21,7 @@ public class GameData
     public bool growRoomEntered;
     public float hungerValue;
     public Vector3[,] gemPositions;
+    public bool[,] collectedGems;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -39,5 +40,7 @@ public class GameData
         this.growRoomEntered = false;
         this.hungerValue = 100f;
         this.gemPositions = new Vector3[3,3];
+        this.collectedGems = new bool[3, 3];
+
     }
 }
