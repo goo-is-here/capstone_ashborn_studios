@@ -6,8 +6,6 @@ using static UnityEngine.UI.Image;
 
 public class SpawnGems : MonoBehaviour
 {
-    [Header("Spawn Params")]
-    public int gemsPerBiome = 3;
     [Tooltip("Units in blocks")]
     public float minSpawnRadius;
     [Tooltip("Units in blocks")]
@@ -30,22 +28,24 @@ public class SpawnGems : MonoBehaviour
     
     private void Start()
     {
-        for (int i = 0; i < gemReferences.Length; i++)
+        for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
-            for (int j = 0; j < gemReferences.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 switch (i)
                 {
-                    case 1:
+                    case 0:
                         gemReferences[i, j] = biomeOneGems[j];
                         break;
-                    case 2:
+                    case 1:
                         gemReferences[i, j] = biomeTwoGems[j];
                         break;
-                    case 3:
+                    case 2:
                         gemReferences[i, j] = biomeThreeGems[j];
                         break;
                 }
+                
+                collectedGems[i, j] = false;
             }
         }
         spawnNewGems(1);
@@ -54,20 +54,23 @@ public class SpawnGems : MonoBehaviour
     //loads gems positions and created gems
     public void LoadData(GameData data)
     {
+        
 
         collectedGems = data.collectedGems;
 
-        for(int i = 0; i < gemReferences.Length; i++)
+        for(int i = 0; i < gemReferences.GetLength(0); i++)
         {
-            for (int j = 0; j < gemReferences.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(1) - 1; j++)
             {
                 if (!collectedGems[i, j])
                 {
                     spawnedGems[i, j].transform.position = data.gemPositions[i, j];
+                    Debug.Log("Changing local");
                 }
                 else
                 {
                     Destroy(spawnedGems[i, j].gameObject);
+                    Debug.Log("Killing");
                 }
             }
         }
@@ -77,9 +80,9 @@ public class SpawnGems : MonoBehaviour
     public void SaveData(ref GameData data)
     {
         data.collectedGems = collectedGems;
-        for (int i = 0; i < gemReferences.Length; i++)
+        for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
-            for (int j = 0; j < gemReferences.GetLength(i); j++)
+            for (int j = 0; j < gemReferences.GetLength(1) - 1; j++)
             {
                 data.gemPositions[i, j] = spawnedGems[i, j].transform.position;
 
@@ -90,24 +93,27 @@ public class SpawnGems : MonoBehaviour
     //spawns in the gems
     private void spawnNewGems(int biomeIndex)
     {
-        for(int i = 0; i < gemsPerBiome + 1; i++)
+        
+        for(int i = 0; i < gemReferences.GetLength(1); i++)
         {
-            Vector2 initialDirection = (Random.insideUnitCircle * biomeOrigins[biomeIndex]).normalized;
+           
+            Vector2 initialDirection = (Random.insideUnitCircle).normalized;
 
-            Vector3 finalDirection = new Vector3(initialDirection.x, initialDirection.y, 0);
+            Vector3 finalDirection = new Vector3(initialDirection.x, 0, initialDirection.y);
 
             float randomDistance = Random.Range(minSpawnRadius * 3, maxSpawnRadius * 3);
 
             float verticleOffset = Random.Range(-maxVerticleOffset, maxVerticleOffset);
 
-            var point = biomeOrigins[biomeIndex] + finalDirection * randomDistance;
+            var point = biomeOrigins[biomeIndex - 1] + finalDirection * randomDistance;
 
-            Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.y);
+            Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.z);
 
-            GameObject newGem = gemReferences[biomeIndex,i];
+            GameObject newGem = Instantiate(gemReferences[biomeIndex - 1,i]);
+            Debug.Log(finalDirection);
 
             newGem.transform.position = finalSpawnLocation;
-            spawnedGems[biomeIndex, i] = newGem;
+            spawnedGems[biomeIndex - 1, i] = newGem;
 
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
