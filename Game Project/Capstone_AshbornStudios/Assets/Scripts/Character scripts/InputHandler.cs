@@ -5,7 +5,7 @@ public class InputHandler : MonoBehaviour
 {
     [Header("Player Controller Script")]
     public PlayerController controller;
-    private InputAction moveAction, lookAction, jumpAction, digAction;
+    private InputAction moveAction, lookAction, jumpAction, digAction, journalAction;
     Vector2 movementVector;
     // Gets the actions to look for
     private void Awake()
@@ -14,6 +14,7 @@ public class InputHandler : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         jumpAction = InputSystem.actions.FindAction("Jump");
         digAction = InputSystem.actions.FindAction("Attack");
+        journalAction = InputSystem.actions.FindAction("OpenJournal");
     }
     void Start()
     {

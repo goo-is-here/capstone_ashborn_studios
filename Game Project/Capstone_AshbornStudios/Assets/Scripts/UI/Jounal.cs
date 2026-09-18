@@ -56,5 +56,9 @@ public class Jounal : MonoBehaviour
         leftGemNameText.text = journalDatabase.getGemName(gemIndex);
         leftGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
         leftGemDescriptionText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+        gemIndex += 1;
+        rightGemNameText.text = journalDatabase.getGemName(gemIndex);
+        rightGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
+        rightGemDescriptionText.text = journalDatabase.getGemAbilityDescription(gemIndex);
     }
 }
