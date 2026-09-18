@@ -16,12 +16,22 @@ public class MarchingCubes : MonoBehaviour
 
     private List<Vector3> vertices = new List<Vector3>();
     private List<int> triangles = new List<int>();
+    private MeshCollider collider;
+    [Range(1.5f, 5f)]
+    public float radius = 2f;
+    [Range(0.5f, 5f)]
+    public float deformStr = 2f;
+    private Vector3[] modifiedVerts;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        collider = GetComponent<MeshCollider>();
         meshFilter = GetComponent<MeshFilter>();
-        StartCoroutine(UpdateAll());
+        setHeights();
+        MarchCubes();
+        SetMesh();
+        //StartCoroutine(UpdateAll());
     }
     private IEnumerator UpdateAll()
     {
@@ -51,14 +61,15 @@ public class MarchingCubes : MonoBehaviour
                         cubeCorners[i] = heights[corner.x, corner.y, corner.z];
                     }
 
-                    MarchCube(new Vector3(x, y, z), GetConfig(cubeCorners));
+                    MarchCube(new Vector3(x, y, z), cubeCorners);
                 }
             }
         }
     }
 
-    private void MarchCube(Vector3 pos, int index)
+    private void MarchCube(Vector3 pos, float[] cubeCorners)
     {
+        int index = GetConfig(cubeCorners);
         if(index == 0 || index == 255)
         {
             return;
@@ -66,22 +77,33 @@ public class MarchingCubes : MonoBehaviour
         int edgeIndex = 0;
         for(int i = 0; i < 5; i++)
         {
-            for(int j = 0; j < 3; j++)
+            for (int j = 0; j < 3; j++)
             {
                 int triTable = MarchingTable.Triangles[index, edgeIndex];
-                if(triTable == -1)
+                if (triTable == -1)
                 {
                     return;
                 }
                 Vector3 start = pos + MarchingTable.Edges[triTable, 0];
                 Vector3 end = pos + MarchingTable.Edges[triTable, 1];
-                Vector3 vertex = (start + end) / 2;
+                Vector3 vertex = Vector3.Lerp(start, end, (heightThreshold - cubeCorners[GetEnd(MarchingTable.Edges[triTable, 0])]) / (cubeCorners[GetEnd(MarchingTable.Edges[triTable, 1])] - cubeCorners[GetEnd(MarchingTable.Edges[triTable, 0])]));
                 vertices.Add(vertex);
                 triangles.Add(vertices.Count - 1);
 
                 edgeIndex++;
             }
         }
+    }
+    private int GetEnd(Vector3 pos)
+    {
+        for(int i = 0; i<MarchingTable.Corners.Length; i++)
+        {
+            if(pos == MarchingTable.Corners[i])
+            {
+                return i;
+            }
+        }
+        return default;
     }
     private int GetConfig(float[] cubeCorners)
     {
@@ -101,10 +123,15 @@ public class MarchingCubes : MonoBehaviour
     private void SetMesh()
     {
         Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
-        meshFilter.mesh = mesh;
+        mesh.RecalculateBounds();
+        meshFilter.sharedMesh = mesh;
+        MeshCollider collider = GetComponent<MeshCollider>();
+        collider.sharedMaterial = null;
+        collider.sharedMesh = mesh;
     }
     private void setHeights()
     {
@@ -115,18 +142,10 @@ public class MarchingCubes : MonoBehaviour
             {
                 for(int z = 0; z <= width; z++)
                 {
-                    float currentHeight = height * calculateNoise(noise, x, y, z);
+                    float currentHeight = calculateNoise(noise, x, y, z);
                     
-                    float newHeight;
-                    if(y > currentHeight)
-                    {
-                        newHeight = y - currentHeight;
-                    }
-                    else
-                    {
-                        newHeight = currentHeight - y;
-                    }
-                    heights[x, y, z] = newHeight;
+                    
+                    heights[x, y, z] = currentHeight;
                 }
             }
         }
@@ -159,6 +178,34 @@ public class MarchingCubes : MonoBehaviour
                 {
                     Gizmos.color = new Color(heights[x, y, z], heights[x, y, z], heights[x, y, z]);
                     Gizmos.DrawSphere(new Vector3(x, y, z), 0.2f);
+                }
+            }
+        }
+    }
+    void Update()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                print("here");
+                for (int i = 0; i < vertices.Count; i++)
+                {
+                    print(i);
+                    Vector3 distance = vertices[i] - hit.point;
+                    float smoothingFactor = 2f;
+
+                    float force = deformStr / (1f + hit.point.sqrMagnitude);
+
+                    if (distance.sqrMagnitude < radius)
+                    {
+                        print("here");
+                        vertices[i] = vertices[i] + (Vector3.forward * force) / smoothingFactor;
+                        SetMesh();
+                        
+                    }
                 }
             }
         }
