@@ -5,51 +5,51 @@
             "gemName":"Insert coolish name here",
             "gemDescription":"The gem was the coolest gem to ever gem. Some say this gem has coolioed since gems began geming",
             "gemAbilityDescription":"Cool Points + 10"
-        }
+        },
         {
             "gemNumber":2,
             "gemName":"Insert stylish name here",
             "gemDescription":"The gem was the stylishist gem to ever gem. Some say this gem has Stlyed since gems began geming",
             "gemAbilityDescription":"Style Points + 10"
-        }
+        },
         {
             "gemNumber":3,
             "gemName":"Insert wacky name here",
             "gemDescription":"The gem was the wackiest gem to ever gem. Some say this gem has wacked since gems began geming",
             "gemAbilityDescription":"Wack Points + 10"
-        }
+        },
         {
             "gemNumber":4,
             "gemName":"Insert zany name here",
             "gemDescription":"The gem was the zaniest gem to ever gem. Some say this gem has existed since gems began geming",
             "gemAbilityDescription":"Zane Points + 10"
-        }
+        },
         {
             "gemNumber":5,
             "gemName":"Insert Stinkiest name here",
             "gemDescription":"The gem was the Stinkiest gem to ever gem. Some say this gem has Stinked since gems began geming",
             "gemAbilityDescription":"Stink Points + 10"
-        }
+        },
         {
             "gemNumber":6,
             "gemName":"Insert goofiest name here",
             "gemDescription":"The gem was the goofiest gem to ever gem. Some say this gem has goofed since gems began geming",
             "gemAbilityDescription":"Goof Points + 10"
-        }
+        },
         {
             "gemNumber":7,
             "gemName":"Insert Luckiest name here",
             "gemDescription":"The gem was the Luckiest gem to ever gem. Some say this gem has Lucked since gems began geming",
             "gemAbilityDescription":"Luck Points + 10"
-        }
+        },
         {
-            "gemNumber": 8,
+            "gemNumber":8,
             "gemName": "Insert Hungry name here",
             "gemDescription": "The gem was the Hungriest gem to ever gem. Some say this gem has Hungered since gems began geming",
             "gemAbilityDescription": "Hunger Points + 10"
-        }
+        },
         {
-            "gemNumber": 9,
+            "gemNumber":9,
             "gemName": "Insert Skilliest name here",
             "gemDescription": "The gem was the Skillediestist gem to ever gem. Some say this gem has skilled since gems began geming",
             "gemAbilityDescription": "Skill Points + 10"

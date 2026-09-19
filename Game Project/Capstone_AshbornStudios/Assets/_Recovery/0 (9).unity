@@ -407,51 +407,6 @@ RectTransform:
   m_AnchoredPosition: {x: 11, y: 13}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &406320588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 406320589}
-  - component: {fileID: 406320590}
-  m_Layer: 0
-  m_Name: JournalData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &406320589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406320588}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1121238576}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &406320590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406320588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 201c4c9fd8eb1c243a302392b23a0aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Journal.JournalDatabase
-  jsonData: {fileID: 4900000, guid: 14a037f097e992c4b85ecf4677d8336d, type: 3}
 --- !u!1 &761518543
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 330, y: -188}
+  m_AnchoredPosition: {x: 380, y: -260}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024451535
@@ -824,19 +779,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1024451536}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1121238577}
-        m_TargetAssemblyTypeName: Jounal, Assembly-CSharp
-        m_MethodName: FlipPageRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1024451536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,7 +837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1121238573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,7 +885,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121238572}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -971,7 +914,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1422420775}
-  - {fileID: 406320589}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -998,15 +940,15 @@ MonoBehaviour:
   gemThumbnails: []
   leftImage: {fileID: 990786016}
   rightImage: {fileID: 1769624953}
-  rightGemNameText: {fileID: 238592940}
-  leftGemNameText: {fileID: 1221222569}
+  rightGemNameText: {fileID: 1221222569}
+  leftGemNameText: {fileID: 238592940}
   leftGemDescriptionText: {fileID: 1365115506}
   rightGemDescriptionText: {fileID: 1290483757}
   leftGemAbilityText: {fileID: 1155612841}
   rightGemAbilityText: {fileID: 879082763}
-  journalDatabase: {fileID: 406320590}
-  leftButton: {fileID: 1516520023}
-  rightButton: {fileID: 1024451535}
+  journalDatabase: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
   isOpen: 0
 --- !u!1 &1155612839
 GameObject:
@@ -1670,7 +1612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -330, y: -188}
+  m_AnchoredPosition: {x: -380, y: -260}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1516520023
@@ -1716,19 +1658,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1516520024}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1121238577}
-        m_TargetAssemblyTypeName: Jounal, Assembly-CSharp
-        m_MethodName: FlipPageLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1516520024
 MonoBehaviour:
   m_ObjectHideFlags: 0

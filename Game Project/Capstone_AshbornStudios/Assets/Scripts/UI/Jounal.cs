@@ -29,49 +29,59 @@ public class Jounal : MonoBehaviour
     int currentPage = 0;
     [HideInInspector]
     public bool isOpen = false;
+    private Canvas canvas;
+
+    private void Awake()
+    {
+        canvas = GetComponent<Canvas>();
+    }
 
     public void OpenJournal()
     {
         currentPage = 0;
-        gameObject.SetActive(true);
+        canvas.enabled = true;
         isOpen = true;
         UpdateText();
         UpdateShowButtons();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void FlipPageLeft()
     {
         currentPage -= 1;
         UpdateText();
+        UpdateShowButtons();
     }
 
     public void FlipPageRight()
     {
         currentPage += 1;
         UpdateText();
+        UpdateShowButtons();
     }
 
     public void CloseJournal()
     {
         currentPage = 0;
-        gameObject.SetActive(false);
+        canvas.enabled = false;
         isOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void UpdateText()
     {
 
-        int gemIndex = currentPage * 2;
+        int gemIndex = (currentPage * 2) + 1;
         leftGemNameText.text = journalDatabase.getGemName(gemIndex);
         leftGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
-        leftGemDescriptionText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+        leftGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
         gemIndex += 1;
         if(!(gemIndex > numGems))
         {
             rightPage.SetActive(true);
             rightGemNameText.text = journalDatabase.getGemName(gemIndex);
             rightGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
-            rightGemDescriptionText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+            rightGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
         }
         else
         {
@@ -82,22 +92,22 @@ public class Jounal : MonoBehaviour
 
     public void UpdateShowButtons()
     {
-        if(currentPage <= 0)
+        if(currentPage == 0)
         {
-            leftButton.enabled = false;
+            leftButton.gameObject.SetActive(false);
         }
         else
         {
-            leftButton.enabled = true;
+            leftButton.gameObject.SetActive(true);
         }
 
-        if(currentPage > numGems / 2)
+        if(currentPage >= numGems / 2)
         {
-            rightButton.enabled = false;
+            rightButton.gameObject.SetActive(false);
         }
         else
         {
-            rightButton.enabled = true;
+            rightButton.gameObject.SetActive(true);
         }
     }
 }

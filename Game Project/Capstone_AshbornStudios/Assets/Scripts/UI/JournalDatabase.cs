@@ -18,7 +18,7 @@ namespace Journal
     [System.Serializable]
     public class JournalDataJSON
     {
-        public JournalDataEntry[] journalPage;
+        public JournalDataEntry[] journalPages;
     }
 
     //Stores and retrieves data from JSON
@@ -36,11 +36,11 @@ namespace Journal
 
         public string getGemName(int gemNumber)
         {
-            for(int i = 0; i < journalData.journalPage.Length; i++)
+            for(int i = 0; i < journalData.journalPages.Length; i++)
             {
-                if(journalData.journalPage[i].gemNumber == gemNumber)
+                if(journalData.journalPages[i].gemNumber == gemNumber)
                 {
-                    return journalData.journalPage[i].gemName;
+                    return journalData.journalPages[i].gemName;
                 }
             }
             return "[GEM NAME NOT FOUND]";
@@ -48,11 +48,11 @@ namespace Journal
 
         public string getGemDescription(int gemNumber)
         {
-            for (int i = 0; i < journalData.journalPage.Length; i++)
+            for (int i = 0; i < journalData.journalPages.Length; i++)
             {
-                if (journalData.journalPage[i].gemNumber == gemNumber)
+                if (journalData.journalPages[i].gemNumber == gemNumber)
                 {
-                    return journalData.journalPage[i].gemDescription;
+                    return journalData.journalPages[i].gemDescription;
                 }
             }
             return "[GEM DESCRIPTION NOT FOUND]";
@@ -60,11 +60,11 @@ namespace Journal
 
         public string getGemAbilityDescription(int gemNumber)
         {
-            for (int i = 0; i < journalData.journalPage.Length; i++)
+            for (int i = 0; i < journalData.journalPages.Length; i++)
             {
-                if (journalData.journalPage[i].gemNumber == gemNumber)
+                if (journalData.journalPages[i].gemNumber == gemNumber)
                 {
-                    return journalData.journalPage[i].gemAbilityDescription;
+                    return journalData.journalPages[i].gemAbilityDescription;
                 }
             }
             return "[GEM ABILITY NOT FOUND]";

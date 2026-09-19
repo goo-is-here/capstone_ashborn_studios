@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public bool isDigging;
     [HideInInspector]
     public bool canMove = false;
+    [HideInInspector]
+    public bool canLook = false;
 
     [Header("Text Box Object")]
     public TextMeshProUGUI text;
@@ -218,7 +220,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     //rotates the player object and camera
     public void Rotate(Vector2 rotationVector)
     {
-        if (canMove)
+        if (canMove && canLook)
         {
             rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
             rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
@@ -346,6 +348,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     IEnumerator ApplyLoadedPosition()
     {
             canMove = false;
+            canLook = false;
 
             characterController.enabled = false;
 
@@ -362,7 +365,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             yield return null;
 
             canMove = true;
-
+            canLook = true;
         
     }
 }
