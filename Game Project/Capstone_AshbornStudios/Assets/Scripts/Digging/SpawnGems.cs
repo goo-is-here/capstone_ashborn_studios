@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class SpawnGems : MonoBehaviour
+public class SpawnGems : MonoBehaviour, IDataPersistence
 {
     [Tooltip("Units in blocks")]
     public float minSpawnRadius;
@@ -74,6 +74,7 @@ public class SpawnGems : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Ran");
     }
 
     //save gems positions
