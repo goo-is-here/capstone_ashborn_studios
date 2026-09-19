@@ -5,6 +5,8 @@ public class InputHandler : MonoBehaviour
 {
     [Header("Player Controller Script")]
     public PlayerController controller;
+    [Header("Journal Reference")]
+    public Jounal journal;
     private InputAction moveAction, lookAction, jumpAction, digAction, journalAction;
     Vector2 movementVector;
     // Gets the actions to look for
@@ -52,11 +54,14 @@ public class InputHandler : MonoBehaviour
     {
         digAction.performed += OnDigPerformed;
         jumpAction.performed += OnJumpPerformed;
+        journalAction.performed += OnOpenJournalPerformed;
+
     }
     private void OnDisable()
     {
         digAction.performed -= OnDigPerformed;
         jumpAction.performed -= OnJumpPerformed;
+        journalAction.performed -= OnOpenJournalPerformed;
     }
     public float getForward()
     {
@@ -70,5 +75,17 @@ public class InputHandler : MonoBehaviour
     private void OnDigPerformed(InputAction.CallbackContext context)
     {
         if(controller.canMove) controller.Dig();
+    }
+
+    private void OnOpenJournalPerformed(InputAction.CallbackContext context)
+    {
+        if (!journal.isOpen)
+        {
+            journal.OpenJournal();
+        }
+        else
+        {
+            journal.CloseJournal();
+        }
     }
 }

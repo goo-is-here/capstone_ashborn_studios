@@ -266,7 +266,7 @@ MonoBehaviour:
   width: 64
   height: 64
   heightThreshold: 0.5
-  noise: 0.07
+  noise: 0.1
   visualizeNoise: 0
   radius: 2
   deformStr: 2
