@@ -82,12 +82,12 @@ public class InputHandler : MonoBehaviour
         if (!journal.isOpen)
         {
             journal.OpenJournal();
-            controller.canLook = false;
+            controller.canMove = false;
         }
         else
         {
             journal.CloseJournal();
-            controller.canLook = true;
+            controller.canMove = true;
         }
     }
 }
