@@ -41,8 +41,11 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
             {
                 if (!collectedGems[i, j])
                 {
-                    spawnedGems[i, j].transform.position = data.gemPositions[i, j];
-                    Debug.Log("Changing local");
+                    if (data.gemPositions[i, j] != Vector3.zero)
+                    {
+                        spawnedGems[i, j].transform.position = data.gemPositions[i, j];
+                        Debug.Log("Changing local");
+                    }
                 }
                 else
                 {
@@ -60,8 +63,9 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         data.collectedGems = collectedGems;
         for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
-            for (int j = 0; j < gemReferences.GetLength(1) - 1; j++)
+            for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
+
                 data.gemPositions[i, j] = spawnedGems[i, j].transform.position;
 
             }
