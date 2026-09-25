@@ -9,7 +9,7 @@ public class PassiveHolder : MonoBehaviour, IInteractable
     public void Interact(InteractionHandler interactor)
     {
         interactor.gameObject.GetComponent<PassivesManager>().EquipPassive(passive);
-        print("InteractedWith");
+        print("Interacted With");
     }
 
 }

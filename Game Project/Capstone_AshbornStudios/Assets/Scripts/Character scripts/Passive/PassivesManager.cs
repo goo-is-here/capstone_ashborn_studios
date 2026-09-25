@@ -20,7 +20,10 @@ public class PassivesManager : MonoBehaviour
 
     public void EquipPassive(GemPassive newPassive)
     {
-        if(!(equippedPassives.Count >= maxPassives))
+        if (equippedPassives.Contains(newPassive))
+            UnequipPassive(newPassive);
+
+        else if (!(equippedPassives.Count >= maxPassives))
         {
             equippedPassives.Add(newPassive);
             newPassive.Initialize(player);
@@ -29,13 +32,9 @@ public class PassivesManager : MonoBehaviour
 
     public void UnequipPassive(GemPassive passiveToRemove)
     {
-        if (equippedPassives.Contains(passiveToRemove))
-        {
-            equippedPassives.Remove(passiveToRemove);
-            passiveToRemove.Unequip();
-        }
-
-
+        print("Unequip");
+        equippedPassives.Remove(passiveToRemove);
+        passiveToRemove.Unequip();
     }
 
 }

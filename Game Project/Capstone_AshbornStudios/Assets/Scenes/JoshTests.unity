@@ -310,6 +310,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &764301618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 234764343334364607, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 1693824959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &764301626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764301618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1345c4dcb499f42b263d3adadc34d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionHandler
+  interactDistance: 3
+  cam: {fileID: 1400208458}
+  interactableLayermask:
+    serializedVersion: 2
+    m_Bits: 4096
+  canInteract: 1
+--- !u!114 &764301627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764301618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237890f35b4779a4d9bed97af8b5fad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassivesManager
+  equippedPassives: []
+  maxPassives: 1
+--- !u!4 &1400208458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6003821158861696665, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 1693824959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1546930877
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,10 +531,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 7738791531071856979, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511496000363268880, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: interactor
+      value: 
+      objectReference: {fileID: 764301626}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 234764343334364607, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 764301626}
+    - targetCorrespondingSourceObject: {fileID: 234764343334364607, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 764301627}
   m_SourcePrefab: {fileID: 100100000, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
 --- !u!1 &1719372087
 GameObject:
@@ -506,6 +562,7 @@ GameObject:
   - component: {fileID: 1719372090}
   - component: {fileID: 1719372089}
   - component: {fileID: 1719372088}
+  - component: {fileID: 1719372092}
   m_Layer: 12
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -606,6 +663,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719372092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719372087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
+  passive: {fileID: 11400000, guid: 51b41385658e82f40a74f4a7311aed51, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
