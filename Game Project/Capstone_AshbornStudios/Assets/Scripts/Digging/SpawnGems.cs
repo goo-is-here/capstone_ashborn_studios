@@ -24,7 +24,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public GameObject[,] gemReferences = new GameObject[3,3];
     public GameObject[,] spawnedGems = new GameObject[3,3];
 
-    private bool[,] collectedGems = new bool[3,3];
+    private bool[] collectedGems = new bool[9];
 
     //loads gems positions and created gems
     public void LoadData(GameData data)
@@ -37,13 +37,14 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
         for(int i = 0; i < gemReferences.GetLength(0); i++)
         {
-            for (int j = 0; j < gemReferences.GetLength(1) - 1; j++)
+            for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
-                if (!collectedGems[i, j])
+                
+                if (!collectedGems[i * 3 + j])
                 {
-                    if (data.gemPositions[i, j] != Vector3.zero)
+                    if (data.gemPositions[i * 3 + j] != Vector3.zero)
                     {
-                        spawnedGems[i, j].transform.position = data.gemPositions[i, j];
+                        spawnedGems[i, j].transform.position = data.gemPositions[i * 3 + j];
                         Debug.Log("Changing local");
                     }
                 }
@@ -65,9 +66,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
-
-                data.gemPositions[i, j] = spawnedGems[i, j].transform.position;
-
+                data.gemPositions[i * 3 + j] = spawnedGems[i, j].transform.position;
             }
         }
     }
@@ -92,8 +91,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                         gemReferences[i, j] = biomeThreeGems[j];
                         break;
                 }
-
-                collectedGems[i, j] = false;
+                collectedGems[i * 3 + j] = false;
             }
         }
 
@@ -117,7 +115,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
             newGem.transform.position = finalSpawnLocation;
             spawnedGems[biomeIndex - 1, i] = newGem;
 
-            print(spawnedGems[biomeIndex - 1, i]);
 
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
@@ -135,6 +132,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         int horizontalCoord = gemID / 10;
         int verticalCoord = gemID % 10;
 
-        collectedGems[horizontalCoord, verticalCoord] = true;
+        collectedGems[horizontalCoord * 3 + verticalCoord] = true;
     }
 }

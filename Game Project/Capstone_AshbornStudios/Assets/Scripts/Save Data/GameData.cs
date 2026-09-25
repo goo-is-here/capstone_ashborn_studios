@@ -19,9 +19,10 @@ public class GameData
     public List<Item> droppedContents;
     public Vector3 droppedPosition;
     public bool growRoomEntered;
+    public Vector3[] gemPositions;
+    public bool[] collectedGems;
     public float hungerValue;
-    public Vector3[,] gemPositions;
-    public bool[,] collectedGems;
+    
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -38,9 +39,9 @@ public class GameData
         this.ruinsLocation = -1;
         this.droppedInventory = false;
         this.growRoomEntered = false;
+        this.gemPositions = new Vector3[9];
+        this.collectedGems = new bool[9];
         this.hungerValue = 100f;
-        this.gemPositions = new Vector3[3,3];
-        this.collectedGems = new bool[3, 3];
-
+       
     }
 }

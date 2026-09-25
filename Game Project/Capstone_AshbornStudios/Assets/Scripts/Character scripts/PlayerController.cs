@@ -150,7 +150,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             else if (thisEnum == sceneType.MINE)
             {
                 data.minePosition = pos;
-                print(data.minePosition);
             }
         }
         
