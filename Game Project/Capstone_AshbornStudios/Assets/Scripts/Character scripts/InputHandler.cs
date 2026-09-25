@@ -5,9 +5,10 @@ public class InputHandler : MonoBehaviour
 {
     [Header("Player Controller Script")]
     public PlayerController controller;
+    public InteractionHandler interactor;
     [Header("Journal Reference")]
     public Jounal journal;
-    private InputAction moveAction, lookAction, jumpAction, digAction, journalAction;
+    private InputAction moveAction, lookAction, jumpAction, digAction, journalAction, interactAction;
     Vector2 movementVector;
     // Gets the actions to look for
     private void Awake()
@@ -17,11 +18,13 @@ public class InputHandler : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         digAction = InputSystem.actions.FindAction("Attack");
         journalAction = InputSystem.actions.FindAction("OpenJournal");
+        interactAction = InputSystem.actions.FindAction("Interact");
     }
     void Start()
     {
         //assigns finds player object. It should ALWAYS be tagged with player. It should also be the only object tagged this way
         controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        interactor = GameObject.FindGameObjectWithTag("Player").GetComponent<InteractionHandler>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -55,6 +58,7 @@ public class InputHandler : MonoBehaviour
         digAction.performed += OnDigPerformed;
         jumpAction.performed += OnJumpPerformed;
         journalAction.performed += OnOpenJournalPerformed;
+        interactAction.performed += OnInteractionPerformed;
 
     }
     private void OnDisable()
@@ -62,6 +66,7 @@ public class InputHandler : MonoBehaviour
         digAction.performed -= OnDigPerformed;
         jumpAction.performed -= OnJumpPerformed;
         journalAction.performed -= OnOpenJournalPerformed;
+        interactAction.performed -= OnInteractionPerformed;
     }
     public float getForward()
     {
@@ -89,5 +94,10 @@ public class InputHandler : MonoBehaviour
             journal.CloseJournal();
             controller.canMove = true;
         }
+    }
+
+    private void OnInteractionPerformed(InputAction.CallbackContext context)
+    {
+        if (interactor.canInteract) interactor.Interact();
     }
 }
