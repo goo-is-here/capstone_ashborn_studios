@@ -22,9 +22,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public float durability;      
     public float maxDurability;
     public float diggingReach = 3f;
-
+    public float diggingRange = 5f;
     private float rotationY, rotationX;
     private float verticalVelocity;
+    public float mineSpeed = 1f;
 
     [Header("Foot Object")]
     public climbingTest climbingObject;

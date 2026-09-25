@@ -4,11 +4,17 @@ using System.Collections.Generic;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class MarchingCubes : MonoBehaviour
 {
-    [SerializeField] private int width = 10;
-    [SerializeField] private int height = 10;
+    [SerializeField] public int width = 10;
+    [SerializeField] public int height = 10;
     [SerializeField] private float heightThreshold = 0.5f;
     [SerializeField] private float noise = 1;
     [SerializeField] private bool visualizeNoise;
+    [SerializeField] private int biomeOneSize = 10;
+    [SerializeField] private int biomeOneHeight = 4;
+    [SerializeField] private GameObject chunkPrefab;
+    [SerializeField] private Transform player;
+    [SerializeField] private int renderRange;
+    private GameObject[,,] chunks;
 
     private float[,,] heights;
 
@@ -16,17 +22,11 @@ public class MarchingCubes : MonoBehaviour
 
     private List<Vector3> vertices = new List<Vector3>();
     private List<int> triangles = new List<int>();
-    private MeshCollider collider;
-    [Range(1.5f, 5f)]
-    public float radius = 2f;
-    [Range(0.5f, 5f)]
-    public float deformStr = 2f;
-    private Vector3[] modifiedVerts;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        collider = GetComponent<MeshCollider>();
+        chunks = new GameObject[biomeOneHeight, biomeOneSize, biomeOneSize];
         meshFilter = GetComponent<MeshFilter>();
         setHeights();
         MarchCubes();
@@ -182,32 +182,5 @@ public class MarchingCubes : MonoBehaviour
             }
         }
     }
-    void Update()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                print("here");
-                for (int i = 0; i < vertices.Count; i++)
-                {
-                    print(i);
-                    Vector3 distance = vertices[i] - hit.point;
-                    float smoothingFactor = 2f;
 
-                    float force = deformStr / (1f + hit.point.sqrMagnitude);
-
-                    if (distance.sqrMagnitude < radius)
-                    {
-                        print("here");
-                        vertices[i] = vertices[i] + (Vector3.forward * force) / smoothingFactor;
-                        SetMesh();
-                        
-                    }
-                }
-            }
-        }
-    }
 }

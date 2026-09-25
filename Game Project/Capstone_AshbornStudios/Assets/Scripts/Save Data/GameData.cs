@@ -33,7 +33,7 @@ public class GameData
         this.hubPosition = new Vector3(0, 0, 0);
         this.droppedPosition = new Vector3(0, 0, 0);
         this.scenceIndex = 1;
-        this.damageVal = 10;
+        this.damageVal = 1;
         this.maxDurability = 500;
         this.durability = maxDurability;
         this.ruinsLocation = -1;
