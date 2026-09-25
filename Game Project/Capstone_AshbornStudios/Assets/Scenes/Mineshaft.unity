@@ -629,6 +629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChalkiteDrop
       objectReference: {fileID: 0}
+    - target: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: count
       value: 99
@@ -1044,6 +1048,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e77d7c98da41341af17f2cc353dee7, type: 3}
+--- !u!1001 &787483989
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132096346005886041, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4684131494842607061, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1748438735}
+    - target: {fileID: 4684131494842607061, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: renderRange
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4684131494842607061, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: biomeOneSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492654515179741721, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 8492654515179741721, guid: 293eb35ed56ada04283519c868418551, type: 3}
+      propertyPath: m_Name
+      value: World Generation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 293eb35ed56ada04283519c868418551, type: 3}
 --- !u!1001 &807344417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1095,6 +1172,10 @@ PrefabInstance:
     - target: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: m_Name
       value: ChalkiteDrop (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509750084051463296, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2539871866524165618, guid: e59a3e55a05a706438301cefc3365ad3, type: 3}
       propertyPath: bobHeight
@@ -1705,6 +1786,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1748438735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2636042543698098537, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 4218721442534786265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1787220907 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
@@ -2276,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2533,7 +2619,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 5fb2cfb7bb9b18349a87f1c5072b4fdb, type: 3}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: damageVal
-      value: 10
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: inventory
@@ -2670,7 +2756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182901417664285545, guid: 11d37d62500bc504dacd986c99f68780, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3742,3 +3828,4 @@ SceneRoots:
   - {fileID: 173289452}
   - {fileID: 402551349}
   - {fileID: 807344417}
+  - {fileID: 787483989}

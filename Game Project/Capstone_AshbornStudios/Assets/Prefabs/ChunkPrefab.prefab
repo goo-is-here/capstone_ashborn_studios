@@ -147,6 +147,10 @@ MonoBehaviour:
   width: 10
   height: 10
   heightThreshold: 0.5
-  noise: 0.3
+  noise: 0.7
   visualizeNoise: 0
+  biomeOneSize: 10
+  biomeOneHeight: 4
+  chunkPrefab: {fileID: 0}
   player: {fileID: 0}
+  renderRange: 0

@@ -158,9 +158,10 @@ public class MarchingCubes : MonoBehaviour
         {
             return 0;
         }
-        float newx = (float)x * (float)nosie;
-        float newy = (float)y * (float)nosie;
-        float newz = (float)z * (float)nosie;
+        
+        float newx = ((float)x + transform.position.x)* (float)nosie;
+        float newy = ((float)y + transform.position.y) * (float)nosie;
+        float newz = ((float)z + transform.position.z) * (float)nosie;
         float xy = Mathf.PerlinNoise(newx, newy);
         float yz = Mathf.PerlinNoise(newy, newz);
         float zx = Mathf.PerlinNoise(newz, newx);

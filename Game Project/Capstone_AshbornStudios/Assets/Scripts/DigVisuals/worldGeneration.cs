@@ -26,12 +26,14 @@ public class worldGeneration : MonoBehaviour
                 for (int k = 0; k < biomeOneSize; k++)
                 {
                     Vector3 position = new Vector3(j * width, -i * height, k * width);
-                    chunks[i, j, k] = Instantiate(chunkPrefab, position, Quaternion.identity, transform);
-
+                    Vector3 offset = new Vector3(biomeOneSize / 2, 0, 10.5f);
+                    chunks[i, j, k] = Instantiate(chunkPrefab, transform);
+                    chunks[i, j, k].transform.position = position + offset;
                     chunks[i, j, k].SetActive(false);
                 }
             }
         }
+        transform.position += (Vector3.left * (float)biomeOneSize/2 * (float)width);
     }
     
     private void Update()

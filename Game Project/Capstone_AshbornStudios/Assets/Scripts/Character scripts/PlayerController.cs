@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool canDig = true;
     bool playSound = true;
     bool tele = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -244,6 +245,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
         if (bar != null)
             bar.fillAmount = durability / maxDurability;
+        if (Input.GetMouseButton(0) && canMine)
+        {
+            StartCoroutine(mineCooldown());
+        }
     }
     //late update for movement to assist with camera stuttering
     private void LateUpdate()
@@ -253,41 +258,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     //dig function
     public void Dig()
     {
-        //must be able to both move and dig. digging may be disabled when tool is broken
-        if (canMove && canDig)
-        {
-            //checks durability
-            if (durability > 0)
-            {
-                RaycastHit hit;
-                //uses a raycast to find the block to dig
-                if (Physics.Raycast(transform.position, cam.transform.forward, out hit, diggingReach, blocksToDig))
-                {
-                    canDig = false;
-                    hit.transform.gameObject.GetComponent<diggableBlock>().hitBlock(damageVal, hit.point);
-                    //plays the digging audio
-                    AudioClip clip = hit.transform.gameObject.GetComponent<diggableBlock>().getDigClip();
-                    if(clip == null)
-                    {
-                        audioSource.PlayOneShot(defaultDig);
-                        float clipLength = defaultDig.length;
-                        StartCoroutine(canDigTrue(clipLength/3));
-                    }
-                    else
-                    {
-                        audioSource.PlayOneShot(clip);
-                        float clipLength = clip.length;
-                        StartCoroutine(canDigTrue(clipLength/3));
-                    }
-                }
-            }
-            //announces that the tool is broken and sets the dig value lower
-            else
-            {
-                printText("My tool is broken!");
-                damageVal = 7;
-            }
-        }
+        
     }
     //updates the tool durability
     public void durabilityChange(float dur)
@@ -363,5 +334,22 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
             canMove = true;
         
+    }
+    bool canMine = true;
+    private Mesh mesh;
+    private Vector3[] vertices;
+    private IEnumerator mineCooldown()
+    {
+        canMine = false;
+        yield return new WaitForSeconds(mineSpeed / 2);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, diggingRange, blocksToDig))
+        {
+            //terraform(hitInfo.point, cont.damageVal, cont.diggingRange);
+            GetComponent<MarchingCubes>().digging(hitInfo.point, diggingRange);
+        }
+        yield return new WaitForSeconds(mineSpeed / 2);
+        canMine = true;
     }
 }
