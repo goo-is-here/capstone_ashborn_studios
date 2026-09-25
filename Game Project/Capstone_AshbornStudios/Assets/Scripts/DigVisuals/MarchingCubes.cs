@@ -8,6 +8,9 @@ public class MarchingCubes : MonoBehaviour
     [SerializeField] public int height = 10;
     [SerializeField] private float heightThreshold = 0.5f;
     [SerializeField] private float noise = 1;
+    [SerializeField] private float airNoise = 1;
+    [SerializeField] private int airOffset = 1;
+    [SerializeField] private float airThreshold = 1;
     [SerializeField] private bool visualizeNoise;
     [SerializeField] private int biomeOneSize = 10;
     [SerializeField] private int biomeOneHeight = 4;
@@ -144,22 +147,27 @@ public class MarchingCubes : MonoBehaviour
             {
                 for(int z = 0; z <= width; z++)
                 {
-                    float currentHeight = calculateNoise(noise, x, y, z);
+                    if (deleted[x, y, z] == true)
+                    {
+                        heights[x, y, z] = 0;
+                    }
+                    else if (calculateNoise(airNoise, x + airOffset, y + airOffset, z + airOffset) > airThreshold)
+                    {
+                        heights[x, y, z] = 0;
+                    }
+                    else
+                    {
+                        float currentHeight = calculateNoise(noise, x, y, z);
+                        heights[x, y, z] = currentHeight;
+                    }
                     
-                    
-                    heights[x, y, z] = currentHeight;
                 }
             }
         }
     }
     float calculateNoise(float nosie, int x, int y, int z)
     {
-        if (deleted[x, y, z] == true)
-        {
-            return 0;
-        }
-        
-        float newx = ((float)x + transform.position.x)* (float)nosie;
+        float newx = ((float)x + transform.position.x) * (float)nosie;
         float newy = ((float)y + transform.position.y) * (float)nosie;
         float newz = ((float)z + transform.position.z) * (float)nosie;
         float xy = Mathf.PerlinNoise(newx, newy);
@@ -200,7 +208,7 @@ public class MarchingCubes : MonoBehaviour
             {
                 for (int z = 0; z <= width; z++)
                 {
-                    if(Vector3.Distance(position, vertices[i]) < range)
+                    if(i < vertices.Count && Vector3.Distance(position, vertices[i]) < range)
                     {
                         deleted[x, y, z] = true;
                     }

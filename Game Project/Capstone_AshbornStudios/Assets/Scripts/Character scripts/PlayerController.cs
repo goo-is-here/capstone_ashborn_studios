@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool canDig = true;
     bool playSound = true;
     bool tele = false;
-
+    bool canMine = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             canMove = true;
         
     }
-    bool canMine = true;
+    
     private Mesh mesh;
     private Vector3[] vertices;
     private IEnumerator mineCooldown()
@@ -344,10 +344,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(mineSpeed / 2);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, diggingRange, blocksToDig))
+        if (Physics.Raycast(ray, out hitInfo, diggingRange))
         {
-            //terraform(hitInfo.point, cont.damageVal, cont.diggingRange);
-            GetComponent<MarchingCubes>().digging(hitInfo.point, diggingRange);
+            Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
+            foreach(Collider col in intersecting)
+            {
+                print(col.gameObject);
+                if (col.gameObject.GetComponent<MarchingCubes>() != null)
+                {
+                    col.gameObject.GetComponent<MarchingCubes>().digging(hitInfo.point, diggingRange);
+                }
+            }
+            
         }
         yield return new WaitForSeconds(mineSpeed / 2);
         canMine = true;
