@@ -15,7 +15,7 @@ public class MarchingCubes : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private int renderRange;
     private GameObject[,,] chunks;
-
+    bool[,,] deleted;
     private float[,,] heights;
 
     private MeshFilter meshFilter;
@@ -26,6 +26,7 @@ public class MarchingCubes : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        deleted = new bool[width + 1, height + 1, width + 1];
         chunks = new GameObject[biomeOneHeight, biomeOneSize, biomeOneSize];
         meshFilter = GetComponent<MeshFilter>();
         setHeights();
@@ -59,6 +60,7 @@ public class MarchingCubes : MonoBehaviour
                     {
                         Vector3Int corner = new Vector3Int(x, y, z) + MarchingTable.Corners[i];
                         cubeCorners[i] = heights[corner.x, corner.y, corner.z];
+
                     }
 
                     MarchCube(new Vector3(x, y, z), cubeCorners);
@@ -150,17 +152,21 @@ public class MarchingCubes : MonoBehaviour
             }
         }
     }
-    float calculateNoise(float nosie, float x, float y, float z)
+    float calculateNoise(float nosie, int x, int y, int z)
     {
-        x = (float)x * (float)nosie;
-        y = (float)y * (float)nosie;
-        z = (float)z * (float)nosie;
-        float xy = Mathf.PerlinNoise(x, y);
-        float yz = Mathf.PerlinNoise(y, z);
-        float zx = Mathf.PerlinNoise(z, x);
-        float yx = Mathf.PerlinNoise(y, x);
-        float zy = Mathf.PerlinNoise(z, y);
-        float xz = Mathf.PerlinNoise(x, z);
+        if (deleted[x, y, z] == true)
+        {
+            return 0;
+        }
+        float newx = (float)x * (float)nosie;
+        float newy = (float)y * (float)nosie;
+        float newz = (float)z * (float)nosie;
+        float xy = Mathf.PerlinNoise(newx, newy);
+        float yz = Mathf.PerlinNoise(newy, newz);
+        float zx = Mathf.PerlinNoise(newz, newx);
+        float yx = Mathf.PerlinNoise(newy, newx);
+        float zy = Mathf.PerlinNoise(newz, newy);
+        float xz = Mathf.PerlinNoise(newx, newz);
         float average = (xy + yz + zx + yx + zy + xz) / 6f;
         return average;
     }
@@ -181,6 +187,29 @@ public class MarchingCubes : MonoBehaviour
                 }
             }
         }
+    }
+    public void digging(Vector3 position, float range)
+    {
+        position -= meshFilter.transform.position;
+
+        int i = 0;
+        for (int x = 0; x <= width; x++)
+        {
+            for (int y = 0; y <= height; y++)
+            {
+                for (int z = 0; z <= width; z++)
+                {
+                    if(Vector3.Distance(position, vertices[i]) < range)
+                    {
+                        deleted[x, y, z] = true;
+                    }
+                    i++;
+                }
+            }
+        }
+        setHeights();
+        MarchCubes();
+        SetMesh();
     }
 
 }

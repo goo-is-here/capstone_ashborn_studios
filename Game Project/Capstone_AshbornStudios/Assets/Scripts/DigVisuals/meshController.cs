@@ -36,7 +36,8 @@ public class meshController : MonoBehaviour
         RaycastHit hitInfo;
         if ( Physics.Raycast(ray, out hitInfo, cont.diggingRange, terrainLayer))
         {
-            terraform(hitInfo.point, cont.damageVal, cont.diggingRange);
+            //terraform(hitInfo.point, cont.damageVal, cont.diggingRange);
+            GetComponent<MarchingCubes>().digging(hitInfo.point, cont.diggingRange);
         }
         yield return new WaitForSeconds(cont.mineSpeed / 2);
         canMine = true;
