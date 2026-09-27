@@ -152,6 +152,8 @@ GameObject:
   - component: {fileID: 2487784127125196563}
   - component: {fileID: 7956555298906818836}
   - component: {fileID: 1231395987933563640}
+  - component: {fileID: 7312923648407534505}
+  - component: {fileID: 4792112225944482116}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Player
@@ -322,6 +324,7 @@ MonoBehaviour:
   toolBreak: {fileID: 8300000, guid: c94de1abee53d9346a36d2db1ee580a6, type: 3}
   walking: {fileID: 8300000, guid: 5fb2cfb7bb9b18349a87f1c5072b4fdb, type: 3}
   pos: {x: 0, y: 0, z: 0}
+  collectedGems: 000000000000000000
 --- !u!82 &1231395987933563640
 AudioSource:
   m_ObjectHideFlags: 0
@@ -419,6 +422,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7312923648407534505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234764343334364607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1345c4dcb499f42b263d3adadc34d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionHandler
+  interactDistance: 3
+  cam: {fileID: 6003821158861696665}
+  interactableLayermask:
+    serializedVersion: 2
+    m_Bits: 4096
+  canInteract: 1
+--- !u!114 &4792112225944482116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234764343334364607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237890f35b4779a4d9bed97af8b5fad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassivesManager
+  equippedPassives: []
+  maxPassives: 1
 --- !u!1 &252945196221614251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 7956555298906818836}
+  interactor: {fileID: 7312923648407534505}
   journal: {fileID: 6309798316046351945}
 --- !u!1 &3530017092417090856
 GameObject:
@@ -1227,6 +1263,7 @@ MonoBehaviour:
   journalDatabase: {fileID: 4291514836147181380}
   leftButton: {fileID: 4720888338201026476}
   rightButton: {fileID: 6289225100217004041}
+  playerController: {fileID: 7956555298906818836}
   isOpen: 0
 --- !u!1 &4019239125229406920
 GameObject:

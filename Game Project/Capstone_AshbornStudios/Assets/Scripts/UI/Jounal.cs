@@ -12,7 +12,7 @@ public class Jounal : MonoBehaviour
     [Header("Refrences")]
     public GameObject leftPage;
     public GameObject rightPage;
-    public Texture[] gemThumbnails;
+    public Sprite[] gemThumbnails;
     public Image leftImage;
     public Image rightImage;
     public TextMeshProUGUI rightGemNameText;
@@ -24,6 +24,7 @@ public class Jounal : MonoBehaviour
     public JournalDatabase journalDatabase;
     public Button leftButton;
     public Button rightButton;
+    public PlayerController playerController;
 
     //private variables
     int currentPage = 0;
@@ -70,18 +71,35 @@ public class Jounal : MonoBehaviour
 
     public void UpdateText()
     {
-
+        
         int gemIndex = (currentPage * 2) + 1;
-        leftGemNameText.text = journalDatabase.getGemName(gemIndex);
-        leftGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
-        leftGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+        if (playerController.collectedGems[gemIndex - 1])
+        {
+            leftPage.SetActive(true);
+            leftGemNameText.text = journalDatabase.getGemName(gemIndex);
+            leftGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
+            leftGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+            //leftImage.sprite = gemThumbnails[gemIndex - 1];
+        }
+        else
+        {
+            leftPage.SetActive(false);
+        }
         gemIndex += 1;
         if(!(gemIndex > numGems))
         {
-            rightPage.SetActive(true);
-            rightGemNameText.text = journalDatabase.getGemName(gemIndex);
-            rightGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
-            rightGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+            if (playerController.collectedGems[gemIndex - 1])
+            {
+                rightPage.SetActive(true);
+                rightGemNameText.text = journalDatabase.getGemName(gemIndex);
+                rightGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
+                rightGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
+                //rightImage.sprite = gemThumbnails[gemIndex - 1];
+            }
+            else
+            {
+                rightPage.SetActive(false);
+            }
         }
         else
         {

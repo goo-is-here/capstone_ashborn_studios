@@ -22,6 +22,7 @@ public class GameData
     public Vector3[] gemPositions;
     public bool[] collectedGems;
     public float hungerValue;
+    public List<GemPassive> equippedPassives;
     
     public GameData()
     {
@@ -42,6 +43,6 @@ public class GameData
         this.gemPositions = new Vector3[9];
         this.collectedGems = new bool[9];
         this.hungerValue = 100f;
-       
+        this.equippedPassives = new List<GemPassive>();
     }
 }
