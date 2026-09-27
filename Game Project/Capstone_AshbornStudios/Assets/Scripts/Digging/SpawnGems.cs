@@ -118,7 +118,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
-            newGem.GetComponent<gem>().gemID = biomeIndex * 10 + i;
+            newGem.GetComponent<gem>().gemID = biomeIndex * 3 + i;
             newGem.GetComponent<gem>().gemSpawner = this.gameObject;
 
 
@@ -129,9 +129,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //called from the gem script when a gem is picked up
     public void setGemAsCollected(int gemID)
     {
-        int horizontalCoord = gemID / 10;
-        int verticalCoord = gemID % 10;
-
-        collectedGems[horizontalCoord * 3 + verticalCoord] = true;
+        collectedGems[gemID] = true;
     }
 }

@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool playSound = true;
     bool tele = false;
     bool canMine = true;
+    [HideInInspector]
+    public bool[] collectedGems = new bool[9];
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -129,6 +132,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             pos = data.minePosition;
         }
 
+        collectedGems = data.collectedGems;
         damageVal = data.damageVal;
         durability = data.durability;
         maxDurability = data.maxDurability;
@@ -359,5 +363,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         yield return new WaitForSeconds(mineSpeed / 2);
         canMine = true;
+    }
+
+    public void CollectGem(int gemID)
+    {
+        collectedGems[gemID] = true;
     }
 }

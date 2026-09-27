@@ -7,9 +7,11 @@ public class gem : MonoBehaviour
     public GameObject gemSpawner;
     public int gemID;
 
+
     void OnTriggerEnter(Collider other)
     {
        gemSpawner.GetComponent<SpawnGems>().setGemAsCollected(gemID);
+        other.GetComponent<PlayerController>().CollectGem(gemID);
        Destroy(gameObject);
     }
 }

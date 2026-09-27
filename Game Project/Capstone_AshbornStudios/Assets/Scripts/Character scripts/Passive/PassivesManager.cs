@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassivesManager : MonoBehaviour
+public class PassivesManager : MonoBehaviour, IDataPersistence
 {
+    //refrences and settigns
     [Header("Passives")]
     public List<GemPassive> equippedPassives = new List<GemPassive>();
 
@@ -12,12 +13,13 @@ public class PassivesManager : MonoBehaviour
 
     private PlayerController player;
 
+    //gets the player controller
     private void Start()
     {
         player = GetComponent<PlayerController>();
     }
 
-
+    //handles checking wether or not a passive is already equipped and weather or not to equip it
     public void EquipPassive(GemPassive newPassive)
     {
         if (equippedPassives.Contains(newPassive))
@@ -30,6 +32,7 @@ public class PassivesManager : MonoBehaviour
         }
     }
 
+    //handles unequipping a passive
     public void UnequipPassive(GemPassive passiveToRemove)
     {
         print("Unequip");
@@ -37,4 +40,18 @@ public class PassivesManager : MonoBehaviour
         passiveToRemove.Unequip();
     }
 
+    //save and load
+    public void SaveData(ref GameData data)
+    {
+        data.equippedPassives = equippedPassives;
+    }
+
+    public void LoadData(GameData data)
+    {
+        equippedPassives = data.equippedPassives;
+        foreach(GemPassive passive in equippedPassives)
+        {
+            passive.Initialize(player);
+        }
+    }
 }

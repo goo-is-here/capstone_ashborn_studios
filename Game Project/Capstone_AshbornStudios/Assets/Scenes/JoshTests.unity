@@ -616,7 +616,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2a3bc7f4af387684eac1a4616132a21d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -676,6 +676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
   passive: {fileID: 11400000, guid: 51b41385658e82f40a74f4a7311aed51, type: 2}
+  activeMaterial: {fileID: 2100000, guid: 2a3bc7f4af387684eac1a4616132a21d, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
