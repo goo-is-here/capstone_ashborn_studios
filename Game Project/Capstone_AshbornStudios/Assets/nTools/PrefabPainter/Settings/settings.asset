@@ -2614,7 +2614,7 @@ MonoBehaviour:
       customPreviewImage: {fileID: 0}
     - name: Dirt 1
       settings:
-        brushRadius: 1.06
+        brushRadius: 0.27
         brushSpacing: 0.81
         brushOverlapCheckMode: 0
         brushOverlapDistance: 0.5
@@ -2632,8 +2632,8 @@ MonoBehaviour:
         randomizeOrientationZ: 14.1
         scaleTransformMode: 0
         scaleMode: 0
-        scaleUniformMin: 2
-        scaleUniformMax: 5
+        scaleUniformMin: 1
+        scaleUniformMax: 2
         scalePerAxisMin: {x: 1, y: 1, z: 1}
         scalePerAxisMax: {x: 1, y: 1, z: 1}
         pinFixedRotation: 0
