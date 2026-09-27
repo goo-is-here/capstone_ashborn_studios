@@ -2614,7 +2614,7 @@ MonoBehaviour:
       customPreviewImage: {fileID: 0}
     - name: Dirt 1
       settings:
-        brushRadius: 1.13
+        brushRadius: 0.54
         brushSpacing: 0.81
         brushOverlapCheckMode: 0
         brushOverlapDistance: 0.5
