@@ -226,7 +226,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -678,6 +678,70 @@ MonoBehaviour:
   passive: {fileID: 11400000, guid: 51b41385658e82f40a74f4a7311aed51, type: 2}
   activeMaterial: {fileID: 2100000, guid: 2a3bc7f4af387684eac1a4616132a21d, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
+--- !u!1 &1831348057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1831348059}
+  - component: {fileID: 1831348058}
+  m_Layer: 0
+  m_Name: GemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1831348058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831348057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065ca08760ee2ff4ab93f4dcc29530ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnGems
+  minSpawnRadius: 0
+  maxSpawnRadius: 10
+  maxVerticleOffset: 0
+  biomeOrigins:
+  - {x: 0, y: 2, z: 0}
+  - {x: 0, y: 2, z: 0}
+  - {x: 0, y: 2, z: 0}
+  biomeOneGems:
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  biomeTwoGems:
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  biomeThreeGems:
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  forceSpawnGems: 1
+--- !u!4 &1831348059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831348057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.87214, y: 2.02344, z: -3.89248}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -687,3 +751,4 @@ SceneRoots:
   - {fileID: 1693824959}
   - {fileID: 761518546}
   - {fileID: 1719372091}
+  - {fileID: 1831348059}

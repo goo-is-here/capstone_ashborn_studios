@@ -11,7 +11,7 @@ public class gem : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        gemSpawner.GetComponent<SpawnGems>().setGemAsCollected(gemID);
-        other.GetComponent<PlayerController>().CollectGem(gemID);
+       other.GetComponent<PlayerController>().CollectGem(gemID);
        Destroy(gameObject);
     }
 }

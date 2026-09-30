@@ -26,6 +26,18 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
     private bool[] collectedGems = new bool[9];
 
+    public bool forceSpawnGems = false;
+
+    void Start()
+    {
+        if (forceSpawnGems)
+        {
+            spawnNewGems(1);
+            spawnNewGems(2);
+            spawnNewGems(3);
+        }
+    }
+
     //loads gems positions and created gems
     public void LoadData(GameData data)
     {
@@ -108,7 +120,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
             var point = biomeOrigins[biomeIndex - 1] + finalDirection * randomDistance;
 
-            Vector3 finalSpawnLocation = new Vector3(point.x, verticleOffset, point.z);
+            Vector3 finalSpawnLocation = new Vector3(point.x, point.y + verticleOffset, point.z);
 
             GameObject newGem = Instantiate(gemReferences[biomeIndex - 1,i]);
 
@@ -118,7 +130,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
-            newGem.GetComponent<gem>().gemID = biomeIndex * 3 + i;
+            newGem.GetComponent<gem>().gemID = (biomeIndex - 1) * 3 + i;
             newGem.GetComponent<gem>().gemSpawner = this.gameObject;
 
 
