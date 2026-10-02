@@ -12,7 +12,7 @@ public class storeScript : MonoBehaviour
     public int currentObject;
     public int currentInventory;
     Vector3 startPosition;
-    [SerializeField] float swingAmount;
+    [SerializeField] Transform swingAmount;
     public GameObject recipeHolder;
     Vector3 endPosition;
     [SerializeField] float swingSpeed; 
@@ -24,7 +24,7 @@ public class storeScript : MonoBehaviour
     void Start()
     {
         startPosition = recipeHolder.transform.position;
-        endPosition = new Vector3(startPosition.x - swingAmount, startPosition.y, startPosition.z);
+        endPosition = swingAmount.position;
         for(int i = 0; i < objectsToUnlock.Count; i++)
         {
             objectsToUnlock[i].SetActive(false);
