@@ -6,10 +6,11 @@ public class Recipe : ScriptableObject
     //recipe vairables
     public Node[] recipe;
     public string madeName;
-    public string description;
+    public string moleComment;
     public Sprite icon;
-    public int makeCount;
-    public GameObject worldPrefab;
+    public int objectToShow;
+    public float rangeIncrease;
+    public int slotsToAdd;
     public ItemEnum itemEnum;
     
 }

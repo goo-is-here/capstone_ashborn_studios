@@ -7,7 +7,7 @@ public class characterInventory : MonoBehaviour
     public Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
     [SerializeField] int hotBarSlots = 6;
-    [SerializeField] int numSlots = 12;
+    public int numSlots = 12;
     [SerializeField] int numSlotsPerRow = 6;
     [SerializeField] float spawnDistance = 5f;
     [SerializeField] float throwSpeed = 2f;

@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258b444cd877a234ca6296c9a479c3e8, type: 3}
-  m_Name: ToolUpgrade
+  m_Name: ObjectReveal2
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 4
-    Name: Crumbstone
-    count: 10
-  - enu: 6
-    Name: Rootstone
-    count: 15
-  madeName: Inventory Upgrade
-  moleComment: teehee
-  icon: {fileID: 21300000, guid: 4cd3f13931ad1204192d063f88947201, type: 3}
-  objectToShow: {fileID: 0}
+  - enu: 9
+    Name: Coal
+    count: 2
+  madeName: 'Object Upgrade 2 '
+  moleComment: Unlocks second cube
+  icon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
+  objectToShow: 2
   rangeIncrease: 0
-  slotsToAdd: 4
-  itemEnum: 14
+  slotsToAdd: 0
+  itemEnum: 15
