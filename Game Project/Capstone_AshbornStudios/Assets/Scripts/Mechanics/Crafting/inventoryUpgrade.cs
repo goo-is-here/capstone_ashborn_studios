@@ -21,6 +21,7 @@ public class inventoryUpgrade : MonoBehaviour
         store.currentInventory++;
         if (store.currentInventory < store.inventoryUpgrade.Count)
         {
+            store.removeItems(store.inventoryUpgrade[store.currentInventory]);
             player.numSlots += store.inventoryUpgrade[store.currentInventory - 1].slotsToAdd;
             hideRecipe();
             showRecipe();

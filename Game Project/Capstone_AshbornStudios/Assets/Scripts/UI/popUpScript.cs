@@ -4,33 +4,27 @@ using System.Collections;
 
 public class popUpScript : MonoBehaviour
 {
-    TMP_Text text;
+    public GameObject text;
     GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        text = GameObject.FindGameObjectWithTag("Interact").GetComponent<TMP_Text>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        text.transform.rotation.SetLookRotation(-player.transform.position);
         if (Vector3.Distance(player.transform.position, transform.position) > 2)
         {
-            text.enabled = false;
+            text.SetActive(false);
             
         }
         else
         {
-            text.enabled = true;
+            text.SetActive(true);
         }
-    }
-    IEnumerator flash()
-    {
-        text.outlineWidth = 1;
-        yield return new WaitForSeconds(1f);
-        text.outlineWidth = 0;
     }
 }

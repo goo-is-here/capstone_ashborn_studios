@@ -18,7 +18,7 @@ MonoBehaviour:
     count: 1
   madeName: 'Object Upgrade 1 '
   moleComment: Unlocks first cube
-  icon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
+  icon: {fileID: 21300000, guid: 0223f62a8e59ff9408f329f103449328, type: 3}
   objectToShow: 1
   rangeIncrease: 0
   slotsToAdd: 0

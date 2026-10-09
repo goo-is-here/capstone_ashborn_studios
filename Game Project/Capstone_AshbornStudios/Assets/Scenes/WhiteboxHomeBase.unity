@@ -994,6 +994,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 480817726253761544, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 480817726253761544, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.53297436
+      objectReference: {fileID: 0}
+    - target: {fileID: 480817726253761544, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.53297436
+      objectReference: {fileID: 0}
+    - target: {fileID: 480817726253761544, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.5566038
+      objectReference: {fileID: 0}
     - target: {fileID: 877617879043404128, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: player
       value: 
@@ -1245,6 +1261,22 @@ PrefabInstance:
     - target: {fileID: 4097517864498317330, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309201826734109885, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309201826734109885, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.53297436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309201826734109885, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.53297436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309201826734109885, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.5566038
       objectReference: {fileID: 0}
     - target: {fileID: 4545734082122912269, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_fontAsset
@@ -1549,15 +1581,15 @@ PrefabInstance:
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'inventoryUpgrade.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: a1cc747b6e15be44a908d74b4db786d5, type: 2}
+      objectReference: {fileID: 11400000, guid: dfa15ba6953a90d43b4f8ed0e66d35d4, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'inventoryUpgrade.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: debf1b98d14e87049ad5ce481d8c5d34, type: 2}
+      objectReference: {fileID: 11400000, guid: faacd62a7e33fd14990e30c7d0381238, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'inventoryUpgrade.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 564486b9cfabf77449f3eaed580d36e5, type: 2}
+      objectReference: {fileID: 11400000, guid: 8a6d054aa787acb45817321c597f6716, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: objectsToUnlockRecipe.Array.size
       value: 3
@@ -1565,15 +1597,15 @@ PrefabInstance:
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlockRecipe.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: dfa15ba6953a90d43b4f8ed0e66d35d4, type: 2}
+      objectReference: {fileID: 11400000, guid: a1cc747b6e15be44a908d74b4db786d5, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlockRecipe.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: faacd62a7e33fd14990e30c7d0381238, type: 2}
+      objectReference: {fileID: 11400000, guid: debf1b98d14e87049ad5ce481d8c5d34, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlockRecipe.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8a6d054aa787acb45817321c597f6716, type: 2}
+      objectReference: {fileID: 11400000, guid: 564486b9cfabf77449f3eaed580d36e5, type: 2}
     - target: {fileID: 8766960645349105212, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1591,6 +1623,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1949292774582869044, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
     - {fileID: 2787135233482383975, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+    - {fileID: 7567449808217072100, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5903481086444870199, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       insertIndex: 0
@@ -3498,6 +3531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d3e1f37e901794d80a0cf3c05fa7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::popUpScript
+  text: {fileID: 0}
 --- !u!114 &302792300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5370,7 +5404,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.5566038, g: 0.53297436, b: 0.53297436, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

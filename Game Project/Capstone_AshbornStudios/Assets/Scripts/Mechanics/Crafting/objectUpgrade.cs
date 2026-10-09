@@ -15,6 +15,7 @@ public class objectUpgrade : MonoBehaviour
         store.currentObject++;
         if(store.currentObject < store.objectsToUnlock.Count)
         {
+            store.removeItems(store.objectsToUnlockRecipe[store.currentObject]);
             store.objectsToUnlock[store.currentObject - 1].SetActive(true);
             hideRecipe();
             showRecipe();
@@ -25,8 +26,8 @@ public class objectUpgrade : MonoBehaviour
     {
         if (store.currentObject < store.objectsToUnlock.Count)
         {
-            StartCoroutine(talkingMole(store.inventoryUpgrade[store.currentInventory].moleComment));
-            slots = new GameObject[store.inventoryUpgrade[store.currentInventory].recipe.Length];
+            StartCoroutine(talkingMole(store.objectsToUnlockRecipe[store.currentObject].moleComment));
+            slots = new GameObject[store.objectsToUnlockRecipe[store.currentObject].recipe.Length];
             for (int i = 0; i < store.objectsToUnlockRecipe[store.currentObject].recipe.Length; i++)
             {
                 GameObject slot = Instantiate(store.recipeIngredient, store.recipeHolder.transform);
@@ -34,6 +35,7 @@ public class objectUpgrade : MonoBehaviour
                 string text = store.objectsToUnlockRecipe[store.currentObject].recipe[i].Name + " " + store.objectsToUnlockRecipe[store.currentObject].recipe[i].count;
                 slot.GetComponent<recipeHolder>().setText(text);
                 slot.GetComponent<recipeHolder>().setImage(store.objectsToUnlockRecipe[store.currentObject].icon);
+                
             }
         }
 

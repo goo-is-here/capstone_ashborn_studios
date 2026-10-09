@@ -68,7 +68,7 @@ public class storeScript : MonoBehaviour
         }
         else
         {
-            objectHolder.GetComponent<Button>().interactable = false;
+            inventoryHolder.GetComponent<Button>().interactable = false;
         }
     }
     public void swingOut()
@@ -120,7 +120,7 @@ public class storeScript : MonoBehaviour
         }
         return tempBool;
     }
-    void removeItems(Recipe recipe)
+    public void removeItems(Recipe recipe)
     {
         for (int i = 0; i < recipe.recipe.Length; i++)
         {
