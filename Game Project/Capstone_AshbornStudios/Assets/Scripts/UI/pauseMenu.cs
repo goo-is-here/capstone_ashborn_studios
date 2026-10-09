@@ -16,6 +16,10 @@ public class pauseMenu : MonoBehaviour
     public CanvasRenderer elementToFade;
     public float resetVal;
     public GameObject crafting;
+
+    public GameObject settingsMenu;
+    private bool inSettings;
+
     [SerializeField] GameObject stuckbag;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +41,7 @@ public class pauseMenu : MonoBehaviour
             print("press");
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
+            if (settingsMenu.activeSelf) settingsMenu.SetActive(false);
             if(cont.canMove)
             {
                 Cursor.lockState = CursorLockMode.Locked;
@@ -95,5 +100,15 @@ public class pauseMenu : MonoBehaviour
         }
         elementToFade.SetAlpha(endValue);
         elementToFade.gameObject.SetActive(false);
+    }
+
+    public void OpenSettignsMenu()
+    {
+        settingsMenu.SetActive(true);
+    }
+
+    public void CloseSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
     }
 }

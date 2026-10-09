@@ -1,21 +1,26 @@
-using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
 
 public class Settings : MonoBehaviour
 {
     [Header("UI Refrences")]
-    public AudioMixer mixer;
     public Slider masterVolumeSlider;
     public Slider sfxVolumeSlider;
     public Slider musicVolumeSlider;
     public TMP_Dropdown resolutionDropdown;
     public TMP_Dropdown fullscreenModeDropdown;
+    public Slider FOVslider;
+    public TMP_InputField FOVText;
+    public Slider SensitivitySlider;
 
     [Header("Other Refrences")]
+    public AudioMixer mixer;
+    public Camera cam;
 
     private List<Resolution> resolutions = new List<Resolution>();
 
@@ -30,6 +35,8 @@ public class Settings : MonoBehaviour
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
         fullscreenModeDropdown.onValueChanged.AddListener(SetWindowMode);
+        FOVslider.onValueChanged.AddListener(AdjustFOV);
+        FOVText.onValueChanged.AddListener(AdjustFOV);
 
         LoadSettings();
     }
@@ -49,6 +56,14 @@ public class Settings : MonoBehaviour
         SetResolution(resolutionIndex);
         int screenModeIndex = PlayerPrefs.GetInt("FullscreenMode");
         SetWindowMode(screenModeIndex);
+        float fov = PlayerPrefs.GetFloat("FOV");
+        if(fov == 0)
+        {
+            fov = 75;
+        }
+        AdjustFOV(fov);
+        FOVslider.value = fov;
+        FOVText.text = System.MathF.Round(fov, 1).ToString();
     }
 
     void BuildResolutionDropdown()
@@ -156,5 +171,27 @@ public class Settings : MonoBehaviour
         int res = PlayerPrefs.GetInt("Resolution");
         SetResolution(res);
 
+    }
+
+    public void AdjustFOV(float newFOV)
+    {
+        cam.fieldOfView = newFOV;
+        FOVText.text = newFOV.ToString();
+        PlayerPrefs.SetFloat("FOV", newFOV);
+    }
+
+    public void AdjustFOV(string newFOV)
+    {
+        if (float.TryParse(newFOV, out float result))
+        {
+            cam.fieldOfView = result;
+        }
+        else
+        {
+            FOVText.text = PlayerPrefs.GetFloat("FOV").ToString();
+        }
+
+        FOVText.text = System.MathF.Round(result, 1).ToString();
+        PlayerPrefs.SetFloat("FOV", result);
     }
 }
