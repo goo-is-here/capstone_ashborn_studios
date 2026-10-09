@@ -1488,7 +1488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7724796452878400673, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7785538205610414576, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
@@ -1616,6 +1616,10 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8795431723012423640, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: crafting
+      value: 
+      objectReference: {fileID: 877362369}
+    - target: {fileID: 8795431723012423640, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: stuckbag
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:

@@ -18,7 +18,6 @@ public class molePopUp : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        store.SetActive(false);
         lowerPosition = transform.position;
         positionToMoveTo = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
         player = GameObject.FindGameObjectWithTag("Player");

@@ -25,13 +25,16 @@ public class pauseMenu : MonoBehaviour
         stuckPos = cont.transform.position;
         pause = GameObject.FindGameObjectWithTag("Pause");
         pause.SetActive(false);
+        crafting.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape) && crafting != null && !crafting.activeSelf)
         {
+            print("press");
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
             if(cont.canMove)

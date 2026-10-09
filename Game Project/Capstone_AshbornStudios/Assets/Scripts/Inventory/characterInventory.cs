@@ -138,7 +138,7 @@ public class characterInventory : MonoBehaviour
     }
     private void dropItem()
     {
-        if(selectedSlotNum >= 0 || selectedSlotNum < inventoryItemList.Length)
+        if(selectedSlotNum >= 0 && selectedSlotNum < inventoryItemList.Length)
         {
             print(player.gameObject);
             Vector3 pos = player.transform.TransformPoint(Vector3.forward * spawnDistance);
