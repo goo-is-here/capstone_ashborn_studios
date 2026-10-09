@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
-
+using UnityEngine.UI;
 public class storeScript : MonoBehaviour
 {
     public List<Recipe> toolUpgrades;
@@ -23,9 +23,11 @@ public class storeScript : MonoBehaviour
     public GameObject recipeIngredient;
     public Camera storeCamera;
     public TextMeshProUGUI moleText;
+    characterInventory playerInventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<characterInventory>();
         startPosition = recipeHolder.transform.position;
         endPosition = swingAmount.position;
         for(int i = 0; i < objectsToUnlock.Count; i++)
@@ -38,20 +40,35 @@ public class storeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTool >= toolUpgrades.Count)
+        if(currentTool >= toolUpgrades.Count && validateInventory(toolUpgrades[currentTool]))
         {
+            toolHolder.GetComponent<Button>().interactable = true;
             toolHolder.GetComponent<toolUpgrade>().hideRecipe();
             toolHolder.SetActive(false);
         }
-        if (currentObject >= objectsToUnlock.Count)
+        else
         {
+            toolHolder.GetComponent<Button>().interactable = false;
+        }
+        if (currentObject >= objectsToUnlock.Count && validateInventory(objectsToUnlockRecipe[currentObject]))
+        {
+            objectHolder.GetComponent<Button>().interactable = true;
             objectHolder.GetComponent<objectUpgrade>().hideRecipe();
             objectHolder.SetActive(false);
         }
-        if (currentInventory >= inventoryUpgrade.Count)
+        else
         {
+            objectHolder.GetComponent<Button>().interactable = false;
+        }
+        if (currentInventory >= inventoryUpgrade.Count && validateInventory(inventoryUpgrade[currentInventory]))
+        {
+            inventoryHolder.GetComponent<Button>().interactable = true;
             inventoryHolder.GetComponent<inventoryUpgrade>().hideRecipe();
             inventoryHolder.SetActive(false);
+        }
+        else
+        {
+            objectHolder.GetComponent<Button>().interactable = false;
         }
     }
     public void swingOut()
@@ -78,6 +95,37 @@ public class storeScript : MonoBehaviour
         }
         recipeHolder.transform.position = targetPosition;
     }
+    bool validateInventory(Recipe recipe)
+    {
+        bool[] canMake = new bool[recipe.recipe.Length];
 
+        for(int i = 0; i < recipe.recipe.Length; i++)
+        {
+            canMake[i] = false;
+            foreach(Item ite in playerInventory.inventoryItemList)
+            {
+                if(!canMake[i] && ite.count >= recipe.recipe[i].count)
+                {
+                    canMake[i] = true;
+                }
+            }
+        }
+        bool tempBool = true;
+        for(int i = 0; i < canMake.Length; i++)
+        {
+            if (!canMake[i])
+            {
+                tempBool = false;
+            }
+        }
+        return tempBool;
+    }
+    void removeItems(Recipe recipe)
+    {
+        for (int i = 0; i < recipe.recipe.Length; i++)
+        {
+            playerInventory.removeItem(recipe.recipe[i].enu, recipe.recipe[i].count);
+        }
+    }
     
 }

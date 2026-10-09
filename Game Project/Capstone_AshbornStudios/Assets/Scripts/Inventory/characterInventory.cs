@@ -262,11 +262,11 @@ public class characterInventory : MonoBehaviour
         }
         updateDisplayedInventory();
     }
-    public void removeItem(Item ite, int amount)
+    public void removeItem(ItemEnum ite, int amount)
     {
         for(int i = 0; i < inventoryItemList.Length; i++)
         {
-            if (inventoryItemList[i].enu == ite.enu && amount >= 0)
+            if (inventoryItemList[i].enu == ite && amount >= 0)
             {
                 if (amount >= inventoryItemList[i].count)
                 {
