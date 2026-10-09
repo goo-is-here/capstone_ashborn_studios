@@ -7,18 +7,35 @@ using System.Collections;
 
 public class Settings : MonoBehaviour
 {
+    [Header("UI Refrences")]
     public AudioMixer mixer;
     public Slider masterVolumeSlider;
     public Slider sfxVolumeSlider;
     public Slider musicVolumeSlider;
+    public TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown fullscreenModeDropdown;
 
+    [Header("Other Refrences")]
+
+    private List<Resolution> resolutions = new List<Resolution>();
+
+    FullScreenMode currentScreenMode = FullScreenMode.ExclusiveFullScreen;
 
     private void Start()
     {
+        BuildResolutionDropdown();
+
         masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        fullscreenModeDropdown.onValueChanged.AddListener(SetWindowMode);
 
+        LoadSettings();
+    }
+
+    void LoadSettings()
+    {
         float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
         SetMasterVolume(masterVolume);
         masterVolumeSlider.value = masterVolume;
@@ -28,6 +45,42 @@ public class Settings : MonoBehaviour
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume");
         SetMusicVolume(musicVolume);
         musicVolumeSlider.value = musicVolume;
+        int resolutionIndex = PlayerPrefs.GetInt("Resolution");
+        SetResolution(resolutionIndex);
+        int screenModeIndex = PlayerPrefs.GetInt("FullscreenMode");
+        SetWindowMode(screenModeIndex);
+    }
+
+    void BuildResolutionDropdown()
+    {
+        resolutions.Clear();
+        List<string> options = new List<string>();
+
+        foreach(Resolution res in Screen.resolutions)
+        {
+            if(resolutions.Exists(r => r.width == res.width && r.height == res.height)) continue;
+
+            resolutions.Add(res);
+        }
+
+        resolutions.Sort((a, b) =>
+        {
+            int areaA = a.width * a.height;
+            int areaB = b.width * b.height;
+
+            return areaB.CompareTo(areaA);
+        });
+        
+        foreach (Resolution res in resolutions)
+        {
+            options.Add(res.width + " x " + res.height);
+        }
+
+
+
+
+        resolutionDropdown.ClearOptions();
+        resolutionDropdown.AddOptions(options);
     }
 
     public void SetMasterVolume(float value)
@@ -48,4 +101,60 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", value);
     }
 
+    public void SetResolution(int index)
+    {
+        Resolution res = resolutions[index];
+        Screen.SetResolution(res.width, res.height, currentScreenMode);
+        resolutionDropdown.value = index;
+
+        PlayerPrefs.SetInt("Resolution", index);
+    }
+
+    public void SetWindowMode(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                setWindowed();
+                break;
+            case 1:
+                setBorderless();
+                break;
+            case 2:
+                setFullscreen();
+                break;
+
+        }
+        fullscreenModeDropdown.value = index;
+        PlayerPrefs.SetInt("FullscreenMode", index);
+    }
+
+    void setWindowed()
+    {
+        currentScreenMode = FullScreenMode.Windowed;
+        resolutionDropdown.interactable = true;
+        int res = PlayerPrefs.GetInt("Resolution");
+        SetResolution(res);
+
+    }
+
+    void setBorderless()
+    {
+        resolutionDropdown.interactable = false;
+        currentScreenMode = FullScreenMode.FullScreenWindow;
+        int nativeWidth = Display.main.systemWidth;
+        int nativeHeight = Display.main.systemHeight;
+        Screen.SetResolution(nativeWidth, nativeHeight, currentScreenMode);
+
+
+    }
+
+    void setFullscreen()
+    {
+        currentScreenMode = FullScreenMode.ExclusiveFullScreen;
+        resolutionDropdown.interactable = true;
+        int res = PlayerPrefs.GetInt("Resolution");
+        SetResolution(res);
+
+    }
 }
