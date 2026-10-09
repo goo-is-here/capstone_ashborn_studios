@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class storeScript : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class storeScript : MonoBehaviour
     [SerializeField] GameObject objectHolder;
     [SerializeField] GameObject inventoryHolder;
     public GameObject recipeIngredient;
+    public Camera storeCamera;
+    public TextMeshProUGUI moleText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,6 +61,7 @@ public class storeScript : MonoBehaviour
     public void swingIn()
     {
         StartCoroutine(LerpPosition(endPosition, startPosition, swingSpeed));
+        moleText.text = "";
     }
     IEnumerator LerpPosition(Vector3 targetPosition, Vector3 startPosition, float duration)
     {
@@ -74,4 +78,6 @@ public class storeScript : MonoBehaviour
         }
         recipeHolder.transform.position = targetPosition;
     }
+
+    
 }

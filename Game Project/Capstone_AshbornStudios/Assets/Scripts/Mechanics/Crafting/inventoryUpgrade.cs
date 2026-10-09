@@ -1,13 +1,17 @@
 using UnityEngine;
-
+using System.Collections;
+using TMPro;
 public class inventoryUpgrade : MonoBehaviour
 {
     [SerializeField] storeScript store;
     characterInventory player;
     GameObject[] slots;
+    TextMeshProUGUI moleText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        moleText = store.moleText;
         player = GameObject.FindGameObjectWithTag("Inventory").GetComponent<characterInventory>();
     }
 
@@ -28,6 +32,7 @@ public class inventoryUpgrade : MonoBehaviour
         print(store.inventoryUpgrade[store.currentInventory].recipe.Length);
         if (store.currentInventory < store.inventoryUpgrade.Count)
         {
+            StartCoroutine(talkingMole(store.inventoryUpgrade[store.currentInventory].moleComment));
             slots = new GameObject[store.inventoryUpgrade[store.currentInventory].recipe.Length];
             for (int i = 0; i < store.inventoryUpgrade[store.currentInventory].recipe.Length; i++)
             {
@@ -42,10 +47,18 @@ public class inventoryUpgrade : MonoBehaviour
     }
     public void hideRecipe()
     {
-        print("me");
+        StopAllCoroutines();
         for (int i = 0; i < slots.Length; i++)
         {
             Destroy(slots[i]);
+        }
+    }
+    IEnumerator talkingMole(string text)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            moleText.text = moleText.text + text[i];
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

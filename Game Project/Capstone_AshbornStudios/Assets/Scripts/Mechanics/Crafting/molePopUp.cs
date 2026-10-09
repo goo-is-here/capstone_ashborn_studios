@@ -12,6 +12,9 @@ public class molePopUp : MonoBehaviour
     bool notUp = true;
     [SerializeField] GameObject store;
     PlayerController cont;
+    public MeshRenderer[] playerObjects;
+    public SkinnedMeshRenderer[] hands;
+    public GameObject playerCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,24 +30,42 @@ public class molePopUp : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, player.transform.position) < distanceToMole)
         {
+            
             if (cont.canMove)
             {
+                playerCamera.gameObject.SetActive(false);
+                store.GetComponent<storeScript>().storeCamera.gameObject.SetActive(true);
+                foreach(MeshRenderer mesh in playerObjects)
+                {
+                    mesh.enabled = false;
+                }
+                foreach(SkinnedMeshRenderer mesh in hands)
+                {
+                    mesh.enabled = false;
+                }
                 cont.canMove = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 store.SetActive(true);
+                
             }
             else
             {
+                playerCamera.gameObject.SetActive(true);
+                store.GetComponent<storeScript>().storeCamera.gameObject.SetActive(false);
+                foreach (MeshRenderer mesh in playerObjects)
+                {
+                    mesh.enabled = true;
+                }
+                foreach (SkinnedMeshRenderer mesh in hands)
+                {
+                    mesh.enabled = true;
+                }
                 cont.canMove = true;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = false;
                 store.SetActive(false);
             }
-        }
-        if (store.activeSelf)
-        {
-            Camera.main.transform.LookAt(transform);
         }
         if (Vector3.Distance(transform.position, player.transform.position) < distanceToMole && notUp)
         {
