@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3915973251899410728, guid: 7ad0111106803264bb573db40079af50, type: 3}
+      propertyPath: m_Range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3915973251899410728, guid: 7ad0111106803264bb573db40079af50, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7606885292484998989, guid: 7ad0111106803264bb573db40079af50, type: 3}
       propertyPath: m_Name
       value: Torch Flame Prefab
