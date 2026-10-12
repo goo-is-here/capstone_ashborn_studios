@@ -148,9 +148,9 @@ MonoBehaviour:
   height: 10
   heightThreshold: 0.46
   noise: 0.4
-  airNoise: 0.3
-  airOffset: 6
-  airThreshold: 0.5
+  airNoise: 0.01
+  airOffset: 0
+  airThreshold: 1
   visualizeNoise: 0
   biomeOneSize: 10
   biomeOneHeight: 4
