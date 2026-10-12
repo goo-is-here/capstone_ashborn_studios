@@ -15,6 +15,7 @@ TagManager:
   - plant
   - DepthTracker
   - Inventory
+  - Gems
   layers:
   - Default
   - TransparentFX

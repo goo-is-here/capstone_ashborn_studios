@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AlternateFire",
+                    "type": "Button",
+                    "id": "ea9cc482-1ca0-4e9a-a4ec-3329c84e2ec0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -491,6 +500,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenJournal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13a50075-540f-4c48-9518-50c1c0b4b72f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AlternateFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
