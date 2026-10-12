@@ -34,6 +34,7 @@ public class MarchingCubes : MonoBehaviour
         meshFilter = GetComponent<MeshFilter>();
         setHeights();
         MarchCubes();
+        capEnds();
         SetMesh();
         //StartCoroutine(UpdateAll());
     }
@@ -43,6 +44,7 @@ public class MarchingCubes : MonoBehaviour
         {
             setHeights();
             MarchCubes();
+            capEnds();
             SetMesh();
             yield return new WaitForSeconds(1);
         }
@@ -96,6 +98,73 @@ public class MarchingCubes : MonoBehaviour
                 triangles.Add(vertices.Count - 1);
 
                 edgeIndex++;
+            }
+        }
+    }
+    private void capEnds()
+    {
+        float[,,] capHeights = new float[width + 1, height + 1, width + 1];
+        //x
+        for (int z = 0; z < width; z++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                capHeights[0, z, y] = heights[0, z, y];
+            }
+        }
+        for (int z = 0; z < width; z++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                capHeights[width, z, y] = heights[width, z, y];
+            }
+        }
+        //y
+        for (int z = 0; z < width; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                capHeights[x, z, 0] = heights[x, z, 0];
+            }
+        }
+        for (int z = 0; z < width; z++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                capHeights[x, z, height] = heights[x, z, height];
+            }
+        }
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                capHeights[x, 0, y] = heights[x, 0, y];
+            }
+        }
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                capHeights[x, width, y] = heights[x, width, y];
+            }
+        }
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                for (int z = 0; z < width; z++)
+                {
+                    float[] cubeCorners = new float[8];
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Vector3Int corner = new Vector3Int(x, y, z) + MarchingTable.Corners[i];
+                        cubeCorners[i] = capHeights[corner.x, corner.y, corner.z];
+
+                    }
+
+                    MarchCube(new Vector3(x, y, z), cubeCorners);
+                }
             }
         }
     }
@@ -191,8 +260,12 @@ public class MarchingCubes : MonoBehaviour
             {
                 for (int z = 0; z <= width; z++)
                 {
-                    Gizmos.color = new Color(heights[x, y, z], heights[x, y, z], heights[x, y, z]);
-                    Gizmos.DrawSphere(new Vector3(x, y, z), 0.2f);
+                    if(heights[x, y, z] > heightThreshold)
+                    {
+                        Gizmos.color = new Color(heights[x, y, z], heights[x, y, z], heights[x, y, z]);
+                        Gizmos.DrawSphere(new Vector3(x, y, z), 0.2f);
+                    }
+                    
                 }
             }
         }
@@ -218,6 +291,7 @@ public class MarchingCubes : MonoBehaviour
         }
         setHeights();
         MarchCubes();
+        capEnds();
         SetMesh();
     }
 
