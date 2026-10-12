@@ -272,27 +272,47 @@ public class MarchingCubes : MonoBehaviour
     }
     public void digging(Vector3 position, float range)
     {
-        position -= meshFilter.transform.position;
+        Vector3 localPosition = transform.InverseTransformPoint(position);
+        int minX = Mathf.Max(0, Mathf.FloorToInt(localPosition.x - range));
+        int maxX = Mathf.Min(width, Mathf.CeilToInt(localPosition.x + range));
 
-        int i = 0;
-        for (int x = 0; x <= width; x++)
+        int minY = Mathf.Max(0, Mathf.FloorToInt(localPosition.y - range));
+        int maxY = Mathf.Min(height, Mathf.CeilToInt(localPosition.y + range));
+
+        int minZ = Mathf.Max(0, Mathf.FloorToInt(localPosition.z - range));
+        int maxZ = Mathf.Min(width, Mathf.CeilToInt(localPosition.z + range));
+
+        bool changed = false;
+
+        for (int x = minX; x <= maxX; x++)
         {
-            for (int y = 0; y <= height; y++)
+            for (int y = minY; y <= maxY; y++)
             {
-                for (int z = 0; z <= width; z++)
+                for (int z = minZ; z <= maxZ; z++)
                 {
-                    if(i < vertices.Count && Vector3.Distance(position, vertices[i]) < range)
+                    Vector3 voxelPosition = transform.TransformPoint(
+                        new Vector3(x, y, z)
+                    );
+
+                    if (Vector3.Distance(position, voxelPosition) <= range)
                     {
-                        deleted[x, y, z] = true;
+                        if (!deleted[x, y, z])
+                        {
+                            deleted[x, y, z] = true;
+                            changed = true;
+                        }
                     }
-                    i++;
                 }
             }
         }
-        setHeights();
-        MarchCubes();
-        capEnds();
-        SetMesh();
-    }
+        if (changed)
+        {
+            setHeights();
+            vertices.Clear();
+            triangles.Clear();
 
+            MarchCubes();
+            SetMesh();
+        }
+    }
 }
