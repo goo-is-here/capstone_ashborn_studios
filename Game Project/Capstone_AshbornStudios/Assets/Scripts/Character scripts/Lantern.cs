@@ -14,11 +14,18 @@ public class Lantern : MonoBehaviour
 
     public float defaultBrightness = 0.5f;
 
+    public float minBrightness = 5f;
+    public float maxBrightness = 20f;
+    private Light pLight;
+    private float brightnessRange;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(DelayedStart());
+        pLight = GetComponent<Light>();
+        brightnessRange = maxBrightness - minBrightness; 
     }
 
     private IEnumerator DelayedStart()
@@ -58,9 +65,10 @@ public class Lantern : MonoBehaviour
 
             newMult = (distanceFromGem / -detectionDistanceModifier) + defaultDetectionDistance;
             newMult = Mathf.Clamp(newMult, 0, defaultDetectionDistance);
-            float finalValue = (newMult / defaultDetectionDistance) + defaultBrightness;
-
-            lanternMat.SetFloat("_Mult", finalValue);
+            float finalValue = (newMult / defaultDetectionDistance);
+            
+            lanternMat.SetFloat("_Mult", finalValue + defaultBrightness);
+            pLight.intensity = (finalValue * brightnessRange) + minBrightness;
         }
         else
         {
