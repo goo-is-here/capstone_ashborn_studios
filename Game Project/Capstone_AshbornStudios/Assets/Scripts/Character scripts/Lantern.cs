@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Lantern : MonoBehaviour
@@ -8,6 +10,9 @@ public class Lantern : MonoBehaviour
     public Material lanternMat;
     public float defaultDetectionDistance = 50f;
     public float detectionDistanceModifier = 1f;
+    public GameObject player;
+
+    public float defaultBrightness = 0.5f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,29 +23,50 @@ public class Lantern : MonoBehaviour
 
     private IEnumerator DelayedStart()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return null;
+        yield return null;
+        yield return null;
         gems = GameObject.FindGameObjectsWithTag("Gems");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gems[0] == null)
+        {
+            return;
+        }
         closestGem = gems[0];
         foreach(GameObject gem in gems)
         {
-            if(Vector3.Distance(transform.position, gem.transform.position) < Vector3.Distance(transform.position, closestGem.transform.position))
+            int index = 0;
+            if (Vector3.Distance(transform.position, gem.transform.position) < Vector3.Distance(transform.position, closestGem.transform.position) || closestGem.GetComponent<gem>().collected == true)
             {
                 closestGem = gem;
             }
+            index += 1;
+        }
+        
+        if(closestGem.GetComponent<gem>().collected != true)
+        {
+            float distanceFromGem = Vector3.Distance(transform.position, closestGem.transform.position);
+            if (distanceFromGem < defaultDetectionDistance * detectionDistanceModifier)
+            {
+                print("GemDetected");
+            }
+            float newMult = 0f;
+
+            newMult = (distanceFromGem / -detectionDistanceModifier) + defaultDetectionDistance;
+            newMult = Mathf.Clamp(newMult, 0, defaultDetectionDistance);
+            float finalValue = (newMult / defaultDetectionDistance) + defaultBrightness;
+
+            lanternMat.SetFloat("_Mult", finalValue);
+        }
+        else
+        {
+            lanternMat.SetFloat("_Mult", defaultBrightness);
         }
 
-        float distanceFromGem = Vector3.Distance(transform.position, closestGem.transform.position);
-        float newMult = 0f;
 
-        newMult = (distanceFromGem / -detectionDistanceModifier) + defaultDetectionDistance;
-        newMult = Mathf.Clamp(newMult, 0, defaultDetectionDistance);
-        float finalValue = newMult / defaultDetectionDistance;
-
-        lanternMat.SetFloat("_Mult", finalValue);
     }
 }

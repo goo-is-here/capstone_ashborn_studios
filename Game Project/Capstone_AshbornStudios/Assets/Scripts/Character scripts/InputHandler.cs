@@ -8,7 +8,10 @@ public class InputHandler : MonoBehaviour
     public InteractionHandler interactor;
     [Header("Journal Reference")]
     public Jounal journal;
-    private InputAction moveAction, lookAction, jumpAction, digAction, journalAction, interactAction;
+    [Header("Lantern Reference")]
+    public GameObject lantern;
+
+    private InputAction moveAction, lookAction, jumpAction, digAction, journalAction, interactAction, altFireAction;
     Vector2 movementVector;
     // Gets the actions to look for
     private void Awake()
@@ -19,6 +22,7 @@ public class InputHandler : MonoBehaviour
         digAction = InputSystem.actions.FindAction("Attack");
         journalAction = InputSystem.actions.FindAction("OpenJournal");
         interactAction = InputSystem.actions.FindAction("Interact");
+        altFireAction = InputSystem.actions.FindAction("AltFire");
     }
     void Start()
     {
@@ -59,6 +63,8 @@ public class InputHandler : MonoBehaviour
         jumpAction.performed += OnJumpPerformed;
         journalAction.performed += OnOpenJournalPerformed;
         interactAction.performed += OnInteractionPerformed;
+        altFireAction.performed += OnAltFirePerformed;
+        altFireAction.canceled += OnAltFireCanceled;
 
     }
     private void OnDisable()
@@ -99,5 +105,15 @@ public class InputHandler : MonoBehaviour
     private void OnInteractionPerformed(InputAction.CallbackContext context)
     {
         if (interactor.canInteract) interactor.Interact();
+    }
+
+    private void OnAltFirePerformed(InputAction.CallbackContext context)
+    {
+        lantern.GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    private void OnAltFireCanceled(InputAction.CallbackContext context)
+    {
+        lantern.GetComponent<MeshRenderer>().enabled = false;
     }
 }

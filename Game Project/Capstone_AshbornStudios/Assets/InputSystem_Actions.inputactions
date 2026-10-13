@@ -97,7 +97,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AlternateFire",
+                    "name": "AltFire",
                     "type": "Button",
                     "id": "ea9cc482-1ca0-4e9a-a4ec-3329c84e2ec0",
                     "expectedControlType": "",
@@ -506,11 +506,11 @@
                 {
                     "name": "",
                     "id": "13a50075-540f-4c48-9518-50c1c0b4b72f",
-                    "path": "",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AlternateFire",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

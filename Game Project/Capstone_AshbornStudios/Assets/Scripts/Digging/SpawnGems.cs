@@ -61,7 +61,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                 }
                 else
                 {
-                    Destroy(spawnedGems[i, j].gameObject);
+                    spawnedGems[i, j].GetComponent<gem>().Collect();
                     Debug.Log("Killing");
                 }
             }
