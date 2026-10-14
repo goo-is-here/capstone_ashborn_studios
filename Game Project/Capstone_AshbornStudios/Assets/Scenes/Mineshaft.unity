@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: bd510a1762ed9374d9c9f93ccfd13271, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4cf4970885e446745b0dde275e3e4cb7, type: 2}
+      objectReference: {fileID: 2100000, guid: 9418725997d96d7459d68fcd05cfd17e, type: 2}
     - target: {fileID: 919132149155446097, guid: bd510a1762ed9374d9c9f93ccfd13271, type: 3}
       propertyPath: m_Name
       value: Barrier Geometry V2
