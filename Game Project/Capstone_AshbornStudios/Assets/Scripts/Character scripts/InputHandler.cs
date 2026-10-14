@@ -109,8 +109,12 @@ public class InputHandler : MonoBehaviour
 
     private void OnAltFirePerformed(InputAction.CallbackContext context)
     {
-        lantern.GetComponent<MeshRenderer>().enabled = true;
-        lantern.GetComponent<Light>().enabled = true;
+        if (lantern.GetComponent<Lantern>().lanternUnlocked)
+        {
+            lantern.GetComponent<MeshRenderer>().enabled = true;
+            lantern.GetComponent<Light>().enabled = true;
+        }
+
     }
 
     private void OnAltFireCanceled(InputAction.CallbackContext context)

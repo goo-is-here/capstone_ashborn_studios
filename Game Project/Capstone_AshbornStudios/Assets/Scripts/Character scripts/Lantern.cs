@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Lantern : MonoBehaviour
+public class Lantern : MonoBehaviour, IDataPersistence
 {
     private GameObject[] gems;
     private GameObject closestGem;
@@ -18,7 +18,19 @@ public class Lantern : MonoBehaviour
     public float maxBrightness = 20f;
     private Light pLight;
     private float brightnessRange;
+    public bool lanternUnlocked = false;
+    private bool gemsArrayInitialized = false;
 
+
+    public void SaveData(ref GameData data)
+    {
+        data.lanternUnlocked = lanternUnlocked;
+    }
+
+    public void LoadData(GameData data)
+    {
+        lanternUnlocked = data.lanternUnlocked;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,15 +46,23 @@ public class Lantern : MonoBehaviour
         yield return null;
         yield return null;
         gems = GameObject.FindGameObjectsWithTag("Gems");
+        gemsArrayInitialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gems[0] == null)
+        if (!gemsArrayInitialized)
+        {
+            return;
+
+        }
+
+        if (gems.Length == 0)
         {
             return;
         }
+
         closestGem = gems[0];
         foreach(GameObject gem in gems)
         {

@@ -23,6 +23,7 @@ public class GameData
     public bool[] collectedGems;
     public float hungerValue;
     public List<GemPassive> equippedPassives;
+    public bool lanternUnlocked;
     
     public GameData()
     {
@@ -44,5 +45,6 @@ public class GameData
         this.collectedGems = new bool[9];
         this.hungerValue = 100f;
         this.equippedPassives = new List<GemPassive>();
+        this.lanternUnlocked = false;
     }
 }
