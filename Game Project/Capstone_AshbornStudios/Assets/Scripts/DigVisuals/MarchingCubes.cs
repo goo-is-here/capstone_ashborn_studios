@@ -272,6 +272,7 @@ public class MarchingCubes : MonoBehaviour
     }
     public void digging(Vector3 position, float range)
     {
+        print("here");
         Vector3 localPosition = transform.InverseTransformPoint(position);
         int minX = Mathf.Max(0, Mathf.FloorToInt(localPosition.x - range));
         int maxX = Mathf.Min(width, Mathf.CeilToInt(localPosition.x + range));

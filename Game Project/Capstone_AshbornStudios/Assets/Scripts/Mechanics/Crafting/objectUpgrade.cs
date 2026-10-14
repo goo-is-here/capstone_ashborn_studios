@@ -32,7 +32,7 @@ public class objectUpgrade : MonoBehaviour
             {
                 GameObject slot = Instantiate(store.recipeIngredient, store.recipeHolder.transform);
                 slots[i] = slot;
-                string text = store.objectsToUnlockRecipe[store.currentObject].recipe[i].Name + " " + store.objectsToUnlockRecipe[store.currentObject].recipe[i].count;
+                string text = "" + store.objectsToUnlockRecipe[store.currentObject].recipe[i].count;
                 slot.GetComponent<recipeHolder>().setText(text);
                 slot.GetComponent<recipeHolder>().setImage(store.objectsToUnlockRecipe[store.currentObject].icon);
                 

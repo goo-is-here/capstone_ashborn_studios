@@ -38,7 +38,7 @@ public class inventoryUpgrade : MonoBehaviour
             for (int i = 0; i < store.inventoryUpgrade[store.currentInventory].recipe.Length; i++)
             {
                 GameObject slot = Instantiate(store.recipeIngredient, store.recipeHolder.transform);
-                string text = store.inventoryUpgrade[store.currentInventory].recipe[i].Name + " " + store.inventoryUpgrade[store.currentInventory].recipe[i].count;
+                string text = "" + store.inventoryUpgrade[store.currentInventory].recipe[i].count;
                 slots[i] = slot;
                 slot.GetComponent<recipeHolder>().setText(text);
                 slot.GetComponent<recipeHolder>().setImage(store.inventoryUpgrade[store.currentInventory].icon);
