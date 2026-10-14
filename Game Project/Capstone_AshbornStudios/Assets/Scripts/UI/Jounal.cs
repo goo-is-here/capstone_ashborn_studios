@@ -24,7 +24,6 @@ public class Jounal : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
     public PlayerController playerController;
-
     public Sprite[] gemThumbnails;
 
     //private variables

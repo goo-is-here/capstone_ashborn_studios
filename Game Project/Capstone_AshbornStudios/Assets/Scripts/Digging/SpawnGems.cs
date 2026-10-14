@@ -113,13 +113,15 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
             Vector3 finalDirection = new Vector3(initialDirection.x, 0, initialDirection.y);
 
-            float randomDistance = Random.Range(minSpawnRadius * 3, maxSpawnRadius * 3);
+            float randomDistance = Random.Range(minSpawnRadius, maxSpawnRadius);
 
             float verticleOffset = Random.Range(-maxVerticleOffset, maxVerticleOffset);
 
-            var point = biomeOrigins[biomeIndex - 1] + finalDirection * randomDistance;
+            var point = biomeOrigins[biomeIndex - 1] + (finalDirection * randomDistance);
 
             Vector3 finalSpawnLocation = new Vector3(point.x, point.y + verticleOffset, point.z);
+
+            Debug.Log(finalSpawnLocation);
 
             GameObject newGem = Instantiate(gemReferences[biomeIndex - 1,i]);
 
