@@ -37,7 +37,7 @@ public class toolUpgrade : MonoBehaviour
             for (int i = 0; i < store.toolUpgrades[store.currentTool].recipe.Length; i++)
             {
                 GameObject slot = Instantiate(store.recipeIngredient, store.recipeHolder.transform);
-                string text = store.toolUpgrades[store.currentTool].recipe[i].Name + " " + store.toolUpgrades[store.currentTool].recipe[i].count;
+                string text = "" + store.toolUpgrades[store.currentTool].recipe[i].count;
                 slots[i] = slot;
                 slot.GetComponent<recipeHolder>().setText(text);
                 slot.GetComponent<recipeHolder>().setImage(store.toolUpgrades[store.currentTool].icon);

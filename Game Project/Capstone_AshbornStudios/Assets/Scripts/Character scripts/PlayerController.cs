@@ -249,11 +249,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
         if (bar != null)
             bar.fillAmount = durability / maxDurability;
-        if (Input.GetMouseButton(0) && canMine && canMove)
-        {
-            StartCoroutine(mineCooldown());
-        }
     }
+
     //late update for movement to assist with camera stuttering
     private void LateUpdate()
     {
