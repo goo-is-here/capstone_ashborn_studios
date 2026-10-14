@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1215,7 +1215,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3769642915917417210}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1287,7 +1287,6 @@ MonoBehaviour:
   numGems: 9
   leftPage: {fileID: 4711493313250548560}
   rightPage: {fileID: 2880170031331253528}
-  gemThumbnails: []
   leftImage: {fileID: 2326312695173783844}
   rightImage: {fileID: 4107499952116148722}
   rightGemNameText: {fileID: 6749215797560585569}
@@ -1300,6 +1299,16 @@ MonoBehaviour:
   leftButton: {fileID: 4720888338201026476}
   rightButton: {fileID: 6289225100217004041}
   playerController: {fileID: 7956555298906818836}
+  gemThumbnails:
+  - {fileID: 21300000, guid: caa9a0f4227d16b4ba9e4e297d474764, type: 3}
+  - {fileID: 21300000, guid: 727b7ebecd294484ab0e9d6313001ca3, type: 3}
+  - {fileID: 21300000, guid: 78094363813566740b47d24f4a869ae8, type: 3}
+  - {fileID: 21300000, guid: 2be9e4a6831d5544d8d2f5ef54181f32, type: 3}
+  - {fileID: 21300000, guid: 76d18c5840c2f6c4b8c3908f4a5b3253, type: 3}
+  - {fileID: 21300000, guid: 7dcf16a70461de04c8e837ae35a84089, type: 3}
+  - {fileID: 21300000, guid: caa9a0f4227d16b4ba9e4e297d474764, type: 3}
+  - {fileID: 21300000, guid: caa9a0f4227d16b4ba9e4e297d474764, type: 3}
+  - {fileID: 21300000, guid: caa9a0f4227d16b4ba9e4e297d474764, type: 3}
   isOpen: 0
 --- !u!1 &4019239125229406920
 GameObject:
@@ -2112,7 +2121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

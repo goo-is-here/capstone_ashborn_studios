@@ -12,7 +12,6 @@ public class Jounal : MonoBehaviour
     [Header("Refrences")]
     public GameObject leftPage;
     public GameObject rightPage;
-    public Sprite[] gemThumbnails;
     public Image leftImage;
     public Image rightImage;
     public TextMeshProUGUI rightGemNameText;
@@ -25,6 +24,8 @@ public class Jounal : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
     public PlayerController playerController;
+
+    public Sprite[] gemThumbnails;
 
     //private variables
     int currentPage = 0;
@@ -79,7 +80,7 @@ public class Jounal : MonoBehaviour
             leftGemNameText.text = journalDatabase.getGemName(gemIndex);
             leftGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
             leftGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
-            //leftImage.sprite = gemThumbnails[gemIndex - 1];
+            leftImage.sprite = gemThumbnails[gemIndex - 1];
         }
         else
         {
@@ -94,7 +95,7 @@ public class Jounal : MonoBehaviour
                 rightGemNameText.text = journalDatabase.getGemName(gemIndex);
                 rightGemDescriptionText.text = journalDatabase.getGemDescription(gemIndex);
                 rightGemAbilityText.text = journalDatabase.getGemAbilityDescription(gemIndex);
-                //rightImage.sprite = gemThumbnails[gemIndex - 1];
+                rightImage.sprite = gemThumbnails[gemIndex - 1];
             }
             else
             {
