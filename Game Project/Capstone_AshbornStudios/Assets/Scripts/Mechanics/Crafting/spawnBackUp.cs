@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using System.Collections;
 public class spawnBackUp : MonoBehaviour
 {
     [Header("Terrain")]
@@ -17,9 +17,6 @@ public class spawnBackUp : MonoBehaviour
 
     [Header("Destruction")]
     [SerializeField] private Camera playerCamera;
-    [SerializeField] private float breakRadius = 4f;
-    [SerializeField] private float breakRange = 100f;
-    [SerializeField] private KeyCode breakKey = KeyCode.Mouse0;
 
     private GameObject terrainObject;
     private Mesh terrainMesh;
@@ -31,7 +28,8 @@ public class spawnBackUp : MonoBehaviour
     private List<Vector3> vertices;
     private List<int> triangles;
     private Dictionary<EdgeKey, int> edgeCache;
-
+    bool canMine = true;
+    PlayerController cont;
     private static readonly Vector3Int[] Corners =
     {
         new Vector3Int(0, 0, 0),
@@ -81,17 +79,24 @@ public class spawnBackUp : MonoBehaviour
     }
     private void Start()
     {
+        cont = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Generate();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            Generate();
-
-        if (Input.GetKeyDown(breakKey))
-            BreakTerrain();
+        if(Input.GetKeyDown(KeyCode.Mouse0) && canMine && cont.canMove)
+        {
+            StartCoroutine(mineCooldown());
+        }
     }
-
+    private IEnumerator mineCooldown()
+    {
+        canMine = false;
+        yield return new WaitForSeconds(cont.mineSpeed / 2);
+        BreakTerrain();
+        yield return new WaitForSeconds(cont.mineSpeed / 2);
+        canMine = true;
+    }
     private void Generate()
     {
         float startTime = Time.realtimeSinceStartup;
@@ -103,8 +108,6 @@ public class spawnBackUp : MonoBehaviour
 
         gridSize = chunkSize + 1;
         density = new float[gridSize, gridSize, gridSize];
-
-        // Sample the terrain density.
         for (int x = 0; x < gridSize; x++)
         {
             for (int y = 0; y < gridSize; y++)
@@ -115,11 +118,7 @@ public class spawnBackUp : MonoBehaviour
                         new Vector3(x, y, z)
                     );
 
-                    float value = Perlin3D(
-                        worldPosition.x * noiseScale,
-                        worldPosition.y * noiseScale,
-                        worldPosition.z * noiseScale
-                    );
+                    float value = Perlin3D(worldPosition.x * noiseScale,worldPosition.y * noiseScale,worldPosition.z * noiseScale);
 
                     density[x, y, z] = value;
                 }
@@ -127,11 +126,6 @@ public class spawnBackUp : MonoBehaviour
         }
 
         RebuildMesh();
-
-        Debug.Log(
-            $"Terrain generated in " +
-            $"{Time.realtimeSinceStartup - startTime:F2} seconds."
-        );
     }
 
     private void BreakTerrain()
@@ -145,24 +139,19 @@ public class spawnBackUp : MonoBehaviour
 
         if (cam == null)
         {
-            Debug.LogWarning("Assign a player camera in the Inspector.");
             return;
         }
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, breakRange))
+        if (!Physics.Raycast(ray, out RaycastHit hit, cont.diggingRange))
             return;
 
         if (hit.collider.gameObject != terrainObject)
             return;
-
-        // Convert the hit into terrain-local grid coordinates.
         Vector3 localHit =
             terrainObject.transform.InverseTransformPoint(hit.point);
-
-        // Clamp the radius to a sensible positive value.
-        float radius = Mathf.Max(0.1f, breakRadius);
+        float radius = Mathf.Max(0.1f, cont.diggingReach);
 
         int minX = Mathf.Max(0, Mathf.FloorToInt(localHit.x - radius));
         int maxX = Mathf.Min(chunkSize, Mathf.CeilToInt(localHit.x + radius));
@@ -176,7 +165,6 @@ public class spawnBackUp : MonoBehaviour
         float radiusSquared = radius * radius;
         bool changed = false;
 
-        // Remove density samples inside the destruction sphere.
         for (int x = minX; x <= maxX; x++)
         {
             for (int y = minY; y <= maxY; y++)
@@ -203,7 +191,6 @@ public class spawnBackUp : MonoBehaviour
         triangles = new List<int>();
         edgeCache = new Dictionary<EdgeKey, int>();
 
-        // Polygonize all grid cells from the current density.
         for (int x = 0; x < chunkSize; x++)
         {
             for (int y = 0; y < chunkSize; y++)
@@ -215,10 +202,9 @@ public class spawnBackUp : MonoBehaviour
             }
         }
 
-        // Create the terrain object once and reuse it.
         if (terrainObject == null)
         {
-            terrainObject = new GameObject("MarchingTerrain");
+            terrainObject = new GameObject("ChunkTerrain");
             terrainObject.transform.SetParent(transform, false);
 
             terrainObject.AddComponent<MeshFilter>();
@@ -236,7 +222,7 @@ public class spawnBackUp : MonoBehaviour
         MeshFilter filter = terrainObject.GetComponent<MeshFilter>();
 
         Mesh newMesh = new Mesh();
-        newMesh.name = "Breakable Terrain";
+        newMesh.name = "Chunk";
 
         if (vertices.Count > 65535)
             newMesh.indexFormat = IndexFormat.UInt32;
@@ -246,7 +232,6 @@ public class spawnBackUp : MonoBehaviour
         newMesh.RecalculateNormals();
         newMesh.RecalculateBounds();
 
-        // Detach the old mesh before replacing it.
         terrainCollider.sharedMesh = null;
         filter.sharedMesh = newMesh;
         terrainCollider.sharedMesh = newMesh;
@@ -340,8 +325,7 @@ public class spawnBackUp : MonoBehaviour
         }
     }
 
-    private int GetEdgeVertex(
-        int a, int b, Vector3[] p, float[] v, int[] ids)
+    private int GetEdgeVertex(int a, int b, Vector3[] p, float[] v, int[] ids)
     {
         EdgeKey key = new EdgeKey(ids[a], ids[b]);
 
@@ -388,7 +372,6 @@ public class spawnBackUp : MonoBehaviour
     {
         return x + gridSize * (y + gridSize * z);
     }
-
 
     public static float Perlin3D(float x, float y, float z)
     {
