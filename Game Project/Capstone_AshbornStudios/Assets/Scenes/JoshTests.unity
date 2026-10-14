@@ -659,13 +659,13 @@ MonoBehaviour:
   - {x: 0, y: 2, z: 0}
   - {x: 0, y: 2, z: 0}
   biomeOneGems:
+  - {fileID: 2543811510062714198, guid: 7e63fa3c57ca9c84d8f8d6730701d68e, type: 3}
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: db435e93b1fcfee4fa602b16a797e790, type: 3}
   biomeTwoGems:
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 2543811510062714198, guid: e84a0bcedb9ee164ea24d0a37692a052, type: 3}
+  - {fileID: 2543811510062714198, guid: f3fbe7df769678640bf2dc25f564088d, type: 3}
+  - {fileID: 2543811510062714198, guid: 016bbda21825c524686c01cb183b7cae, type: 3}
   biomeThreeGems:
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
