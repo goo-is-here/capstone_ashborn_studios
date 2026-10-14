@@ -45,12 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   chunkSize: 10
-  noiseScale: 0.6
+  noiseScale: 0.4
   threshold: 0.42
   material: {fileID: 2100000, guid: 58a1cb230d35ce8438b6c2e0ecad8bd3, type: 2}
-  a: 3
-  b: 2
-  c: 0.5
   interpolationBlend: 1
   playerCamera: {fileID: 0}
   breakRadius: 1

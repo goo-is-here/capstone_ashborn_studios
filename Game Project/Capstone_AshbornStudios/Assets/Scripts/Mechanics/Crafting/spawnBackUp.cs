@@ -10,10 +10,6 @@ public class spawnBackUp : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float threshold = 0.5f;
     [SerializeField] private Material material;
 
-    [Header("Noise")]
-    [SerializeField, Range(1, 8)] private int a = 3;
-    [SerializeField, Range(1f, 4f)] private float b = 2f;
-    [SerializeField, Range(0f, 1f)] private float c = 0.5f;
 
     [Header("Surface Interpolation")]
     [SerializeField, Range(0f, 1f)]
@@ -119,7 +115,7 @@ public class spawnBackUp : MonoBehaviour
                         new Vector3(x, y, z)
                     );
 
-                    float value = FractalNoise(
+                    float value = Perlin3D(
                         worldPosition.x * noiseScale,
                         worldPosition.y * noiseScale,
                         worldPosition.z * noiseScale
@@ -393,28 +389,6 @@ public class spawnBackUp : MonoBehaviour
         return x + gridSize * (y + gridSize * z);
     }
 
-    private float FractalNoise(float x, float y, float z)
-    {
-        float amplitude = 1f;
-        float frequency = 1f;
-        float total = 0f;
-        float amplitudeTotal = 0f;
-
-        for (int i = 0; i < a; i++)
-        {
-            total += Perlin3D(
-                x * frequency,
-                y * frequency,
-                z * frequency
-            ) * amplitude;
-
-            amplitudeTotal += amplitude;
-            amplitude *= c;
-            frequency *= b;
-        }
-
-        return total / amplitudeTotal;
-    }
 
     public static float Perlin3D(float x, float y, float z)
     {
