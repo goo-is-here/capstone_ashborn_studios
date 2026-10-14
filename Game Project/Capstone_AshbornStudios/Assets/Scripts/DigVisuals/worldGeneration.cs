@@ -16,8 +16,6 @@ public class worldGeneration : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        width = chunkPrefab.GetComponent<MarchingCubes>().width;
-        height = chunkPrefab.GetComponent<MarchingCubes>().height;
         chunks = new GameObject[biomeOneHeight, biomeOneSize, biomeOneSize];
         for (int i = 0; i < biomeOneHeight; i++)
         {

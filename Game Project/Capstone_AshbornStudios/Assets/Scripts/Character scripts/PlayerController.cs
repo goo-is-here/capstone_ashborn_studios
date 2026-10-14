@@ -350,6 +350,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, diggingRange))
         {
+            print("hit");
             Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
             foreach(Collider col in intersecting)
             {

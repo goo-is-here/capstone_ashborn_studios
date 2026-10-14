@@ -59,7 +59,7 @@ public class Lantern : MonoBehaviour
             float distanceFromGem = Vector3.Distance(transform.position, closestGem.transform.position);
             if (distanceFromGem < defaultDetectionDistance * detectionDistanceModifier)
             {
-                print("GemDetected");
+                //print("GemDetected");
             }
             float newMult = 0f;
 
