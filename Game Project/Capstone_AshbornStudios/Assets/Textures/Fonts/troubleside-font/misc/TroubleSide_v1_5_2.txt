@@ -1,0 +1,51 @@
+﻿_|___|___|___|___|___|___|___|___|___|___|___|___|___|___|____|
+___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___
+_|___|___|___|___|___|___|___|___|___|___|___|___|___|___|____|
+___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___
+_|___|___|___|___|___|___             ___|___|___|___|___|____|
+___|___|___|___|___|___|  TROUBLESIDE  |___|___|___|___|___|___
+_|___|___|___|___|___|___    FONT     ___|___|___|___|___|____|
+___|___|___|___|___|___|___|___ ___|___|___|___|___|___|___|___
+_|___|___|___|___|___|___|___|___|___|___|___|___|___|___|____|
+___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___
+_|___|___|___|___|___|___|___|___|___|___|___|___|___|___|____|
+___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___
+_|___|___|___|___|___|___|___|___|___|___|___|___|___|___|____|
+___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___
+
+
+Free font for personal and commercial use.
+
+Made by Evgeny Koroletov, Ukraine (koroletov@gmail.com)
+
+The typeface was created to support independent comic and manga artists working with Cyrillic-based languages.
+Originally designed for the comic series TroubleSide by Lugansk Contemporary Diaspora (a community of displaced artists from Donbass, Ukraine), instagram.com/lkd_dragon.
+
+Inspired by Comicraft fonts and classic American comic book aesthetics.
+TroubleSide supports over 35 Latin- and Cyrillic-based languages, including English, Ukrainian, Bulgarian, Russian, Polish, Romanian, French, German, Spanish, and many more. The font includes uppercase and alternate uppercase characters, diacritics, punctuation, and essential symbols. It also features custom kerning for smoother, more balanced text composition.
+
+License: SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+
+The newest version of the font will always be available on the font page on Fontspace: https://www.fontspace.com/troubleside-font-f58132
+
+=========================================================================
+
+
+V1.5 [26.04.2021]
+Added stylistic alternatives with accents (acute and grave accents) for all Cyrillic and Latin vowels. Also, accented vowels can now be entered through ligatures ("vowel"+"accent" without space).
+
+V1.4 [16.04.2021] 
+Fixed
+- ! and $
+Added
+- ѝ,Ѝ (за български)
+- cyrillic ѐ,Ѐ
+- ellipsis kerning(
+- breath marks "cat whiskers/fireflies/crow's feet" for some emotions. Use "{","}"
+- "Combining Acute Accent" and "Combining Grave Accent" with zero space for quickly adding stress to vowels.
+- money symbols ¥, ¢, £ 
+- inverted punctuation marks "¡", "¿" for Spanish
+Благодаря за помощта на Petar Tasev.
+
+V1.3: added 10920 kerning pairs for all letters and some punctuation. Because the kerning settings for lowercase letters are tied to uppercase letters, their rhythm can "walk". I find this to be acceptable for a handwritten font. If this moment is critical - use only capital letters.
+I took the letter combinations here: http://serpentype.ru/kerning.txt
