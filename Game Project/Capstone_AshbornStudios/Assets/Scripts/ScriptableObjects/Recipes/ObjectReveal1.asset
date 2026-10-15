@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: ObjectReveal1
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 1
+  - icon: {fileID: 21300000, guid: 9459ee2a6b9d38b4394e0eae894a4e64, type: 3}
+    enu: 1
+    Name: Coal
+    count: 1
+  - icon: {fileID: 21300000, guid: 32962a87414ccca4eb3398ea749d61a0, type: 3}
+    enu: 3
     Name: Coal
     count: 1
   madeName: 'Object Upgrade 1 '
@@ -22,4 +27,4 @@ MonoBehaviour:
   objectToShow: 1
   rangeIncrease: 0
   slotsToAdd: 0
-  itemEnum: 15
+  itemEnum: 1
