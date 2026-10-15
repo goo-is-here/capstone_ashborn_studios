@@ -355,7 +355,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             {
                 if (col.CompareTag("Dirt"))
                 {
-                    Destroy(col.gameObject);
+                    col.gameObject.GetComponent<dirt>().breakObject();
                 }
             }
             

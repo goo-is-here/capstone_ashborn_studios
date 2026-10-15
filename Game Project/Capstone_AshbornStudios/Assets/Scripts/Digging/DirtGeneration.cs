@@ -7,12 +7,13 @@ public class DirtGeneration : MonoBehaviour
     GameObject[,,] dirtParticles;
     [HideInInspector] public float dirtSize;
     ChunkGeneration chunk;
-    public int chunkBreak = -1;
+    public bool[] chunkBreak;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         dirtSize = dirtPrefab.GetComponent<MeshRenderer>().bounds.size.x;
         dirtParticles = new GameObject[size, size, size];
+        chunkBreak = new bool[size * size * size];
     }
     public void generateDirt(float noise, float heightThreshold)
     {
@@ -26,12 +27,17 @@ public class DirtGeneration : MonoBehaviour
                     if(perlinNoise(noise, dirtPos.x, dirtPos.y, dirtPos.z) > heightThreshold)
                     {
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
+                        newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
                     }
                 }
             }
         }
-        if(chunkBreak != -1)
+            
+    }
+    public void breakBlocks()
+    {
+        if (chunkBreak != null)
         {
             for (int i = 0; i < size; i++)
             {
@@ -39,39 +45,18 @@ public class DirtGeneration : MonoBehaviour
                 {
                     for (int k = 0; k < size; k++)
                     {
-                        if((chunkBreak & 1) != 1)
+                        if (chunkBreak[i * size * size + j * size + k])
                         {
                             Destroy(dirtParticles[i, j, k]);
                         }
                     }
                 }
             }
-        }    }
-    public void sendChunk()
+        }
+    }
+    public void receiveBreak(int x, int y, int z)
     {
-        chunkBreak = 0;
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                for (int k = 0; k < size; k++)
-                {
-                    if(dirtParticles[i,j,k] != null)
-                    {
-                        chunkBreak = chunkBreak << 1;
-                        chunkBreak |= 1;
-                    }
-                    else
-                    {
-                        chunkBreak = chunkBreak << 1;
-                    }
-                }
-            }
-        }
-        if(chunkBreak == 0)
-        {
-            chunkBreak = -1;
-        }
+        chunkBreak[x * size * size + y * size + z] = true;
     }
     float perlinNoise(float noise, float x, float y, float z)
     {
