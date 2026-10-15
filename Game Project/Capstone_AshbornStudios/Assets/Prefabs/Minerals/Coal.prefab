@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Coal
   description: A deep dark material
-  icon: {fileID: 21300000, guid: 7a636181751caae419449a1569b64868, type: 3}
+  icon: {fileID: 21300000, guid: 9459ee2a6b9d38b4394e0eae894a4e64, type: 3}
   count: 1
   enu: 1
   worldPrefab: {fileID: 11400000, guid: 78d3769164892f149985ee8222d951a2, type: 2}

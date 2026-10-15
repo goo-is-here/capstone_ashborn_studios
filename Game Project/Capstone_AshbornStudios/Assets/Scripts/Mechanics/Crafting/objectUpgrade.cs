@@ -12,15 +12,16 @@ public class objectUpgrade : MonoBehaviour
     }
     public void objectUnlockAction()
     {
-        store.currentObject++;
+        
         if(store.currentObject < store.objectsToUnlock.Count)
         {
             store.removeItems(store.objectsToUnlockRecipe[store.currentObject]);
-            store.objectsToUnlock[store.currentObject - 1].SetActive(true);
+            store.objectsToUnlock[store.currentObject].SetActive(true);
             hideRecipe();
             showRecipe();
             store.clearText();
         }
+        store.currentObject++;
     }
     GameObject[] slots;
     public void showRecipe()
@@ -35,7 +36,7 @@ public class objectUpgrade : MonoBehaviour
                 slots[i] = slot;
                 string text = "" + store.objectsToUnlockRecipe[store.currentObject].recipe[i].count;
                 slot.GetComponent<recipeHolder>().setText(text);
-                slot.GetComponent<recipeHolder>().setImage(store.objectsToUnlockRecipe[store.currentObject].icon);
+                slot.GetComponent<recipeHolder>().setImage(store.objectsToUnlockRecipe[store.currentObject].recipe[i].icon);
                 
             }
         }

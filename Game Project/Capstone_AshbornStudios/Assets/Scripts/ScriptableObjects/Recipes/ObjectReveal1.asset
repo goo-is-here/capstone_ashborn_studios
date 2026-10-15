@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObjectReveal1
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 9
+  - enu: 1
     Name: Coal
     count: 1
   madeName: 'Object Upgrade 1 '

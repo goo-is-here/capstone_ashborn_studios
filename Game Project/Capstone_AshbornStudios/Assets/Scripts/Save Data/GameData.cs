@@ -25,7 +25,9 @@ public class GameData
     public List<GemPassive> equippedPassives;
     public bool lanternUnlocked;
     public List<chunkData> chunkArray;
-    
+    public int tool;
+    public int objectNum;
+    public int invent;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -48,5 +50,8 @@ public class GameData
         this.equippedPassives = new List<GemPassive>();
         this.lanternUnlocked = false;
         this.chunkArray = new List<chunkData>();
+        this.tool = 0;
+        this.objectNum = 0;
+        this.invent = 0;
     }
 }

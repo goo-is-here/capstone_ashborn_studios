@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
-public class storeScript : MonoBehaviour
+public class storeScript : MonoBehaviour, IDataPersistence
 {
     public List<Recipe> toolUpgrades;
     public List<GameObject> objectsToUnlock;
@@ -126,5 +126,22 @@ public class storeScript : MonoBehaviour
             playerInventory.removeItem(recipe.recipe[i].enu, recipe.recipe[i].count);
         }
     }
-    
+    public void LoadData(GameData data)
+    {
+        currentTool = data.tool;
+        currentObject = data.objectNum;
+        currentInventory = data.invent;
+    }
+    //save variables into game data
+    //Currently saving current scene, position per scene, damage of tool, durability of tool, max durability
+    public void SaveData(ref GameData data)
+    {
+        if (data != null)
+        {
+            data.tool = currentTool;
+            data.objectNum = currentObject;
+            data.invent = currentInventory;
+        }
+
+    }
 }

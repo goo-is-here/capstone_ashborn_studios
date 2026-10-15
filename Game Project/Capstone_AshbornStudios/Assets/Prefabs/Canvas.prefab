@@ -923,9 +923,9 @@ GameObject:
   - component: {fileID: 8627490588279247787}
   - component: {fileID: 1280124354835636965}
   - component: {fileID: 4309201826734109885}
-  - component: {fileID: 3325600465288357941}
+  - component: {fileID: 3724321015669042504}
   m_Layer: 5
-  m_Name: Inventory Upgrade
+  m_Name: Object Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,8 +1018,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3325600465288357941}
-          m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
+        - m_Target: {fileID: 3724321015669042504}
+          m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
           m_MethodName: showRecipe
           m_Mode: 1
           m_Arguments:
@@ -1046,8 +1046,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3325600465288357941}
-          m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
+        - m_Target: {fileID: 3724321015669042504}
+          m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
           m_MethodName: hideRecipe
           m_Mode: 1
           m_Arguments:
@@ -1083,7 +1083,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1102,9 +1102,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3325600465288357941}
-        m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
-        m_MethodName: inventoryUpgradeAction
+      - m_Target: {fileID: 3724321015669042504}
+        m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
+        m_MethodName: objectUnlockAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1114,7 +1114,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3325600465288357941
+--- !u!114 &3724321015669042504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1123,9 +1123,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2422383714842189018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329be695601d11b46b14fac01b3ed668, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a234308dff8af14a8334f3b30cf4f9c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::objectUpgrade
   store: {fileID: 8766147971767374896}
 --- !u!1 &2466453166197183745
 GameObject:
@@ -1441,9 +1441,9 @@ GameObject:
   - component: {fileID: 7215561059969904322}
   - component: {fileID: 6115714049463018031}
   - component: {fileID: 2775598034730959661}
-  - component: {fileID: 2835206610329153292}
+  - component: {fileID: 10890011373981625}
   m_Layer: 5
-  m_Name: ObjectUpgrade
+  m_Name: Inventory Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1536,8 +1536,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2835206610329153292}
-          m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
+        - m_Target: {fileID: 10890011373981625}
+          m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
           m_MethodName: showRecipe
           m_Mode: 1
           m_Arguments:
@@ -1564,8 +1564,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2835206610329153292}
-          m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
+        - m_Target: {fileID: 10890011373981625}
+          m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
           m_MethodName: hideRecipe
           m_Mode: 1
           m_Arguments:
@@ -1601,7 +1601,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1620,9 +1620,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2835206610329153292}
-        m_TargetAssemblyTypeName: objectUpgrade, Assembly-CSharp
-        m_MethodName: objectUnlockAction
+      - m_Target: {fileID: 10890011373981625}
+        m_TargetAssemblyTypeName: inventoryUpgrade, Assembly-CSharp
+        m_MethodName: inventoryUpgradeAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1632,7 +1632,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2835206610329153292
+--- !u!114 &10890011373981625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1641,9 +1641,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3485887612408772777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a234308dff8af14a8334f3b30cf4f9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 329be695601d11b46b14fac01b3ed668, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::inventoryUpgrade
   store: {fileID: 8766147971767374896}
 --- !u!1 &3994730812170322373
 GameObject:
@@ -2974,7 +2974,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

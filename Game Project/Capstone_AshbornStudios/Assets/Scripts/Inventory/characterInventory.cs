@@ -270,22 +270,39 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     }
     public void removeItem(ItemEnum ite, int amount)
     {
-        for(int i = 0; i < inventoryItemList.Length; i++)
+        if (amount <= 0)
+            return;
+        int totalCount = 0;
+        for (int i = 0; i < inventoryItemList.Length; i++)
         {
-            if (inventoryItemList[i] != null && inventoryItemList[i].enu == ite && amount >= 0)
+            if (inventoryItemList[i] != null && inventoryItemList[i].enu == ite)
             {
-                if (amount >= inventoryItemList[i].count)
-                {
-                    amount -= inventoryItemList[i].count;
-                    inventoryItemList[i] = null;
-                }
-                else
-                {
-                    inventoryItemList[i].count -= amount;
-                    amount = -1;
-                }
+                totalCount += inventoryItemList[i].count;
             }
         }
+        if (totalCount < amount)
+            return;
+        for (int i = 0; i < inventoryItemList.Length && amount > 0; i++)
+        {
+            Item item = inventoryItemList[i];
+
+            if (item == null || item.enu != ite)
+                continue;
+            print("here 3");
+            if (item.count <= amount)
+            {
+                print("bleh");
+                amount -= item.count;
+                inventoryItemList[i] = null;
+            }
+            else
+            {
+                print("bleh2");
+                item.count -= amount;
+                amount = 0;
+            }
+        }
+
         updateDisplayedInventory();
     }
     private int countInventory()
@@ -302,7 +319,6 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     }
     private void updateDisplayedInventory()
     {
-        print(inventorySlotArray.Count);
         for(int i = 0; i < inventorySlotArray.Count; i++)
         {
             if(inventoryItemList[i] == null || inventoryItemList[i].enu == ItemEnum.NULL)

@@ -18,6 +18,7 @@ public class Recipe : ScriptableObject
 [System.Serializable]
 public class Node
 {
+    public Sprite icon;
     public ItemEnum enu;
     public string Name;
     public int count;

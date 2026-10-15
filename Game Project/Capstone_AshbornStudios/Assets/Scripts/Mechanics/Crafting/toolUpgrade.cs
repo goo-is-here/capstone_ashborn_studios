@@ -17,16 +17,16 @@ public class toolUpgrade : MonoBehaviour
     // Update is called once per frame
     public void toolUpgradeAction()
     {
-        store.currentTool++;
+        
         if(store.currentTool < store.toolUpgrades.Count)
         {
             store.removeItems(store.toolUpgrades[store.currentTool]);
-            player.diggingRange += store.toolUpgrades[store.currentTool - 1].rangeIncrease;
+            player.diggingRange += store.toolUpgrades[store.currentTool].rangeIncrease;
             hideRecipe();
             showRecipe();
             store.clearText();
         }
-        
+        store.currentTool++;
     }
     GameObject[] slots;
     public void showRecipe()
@@ -41,7 +41,7 @@ public class toolUpgrade : MonoBehaviour
                 string text = "" + store.toolUpgrades[store.currentTool].recipe[i].count;
                 slots[i] = slot;
                 slot.GetComponent<recipeHolder>().setText(text);
-                slot.GetComponent<recipeHolder>().setImage(store.toolUpgrades[store.currentTool].icon);
+                slot.GetComponent<recipeHolder>().setImage(store.toolUpgrades[store.currentTool].recipe[i].icon);
             }
         }
         

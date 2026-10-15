@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Lemstone
   description: idk
-  icon: {fileID: 21300000, guid: a61626dee93baff41a4cc779cba2597e, type: 3}
+  icon: {fileID: 21300000, guid: 36bd5b3f17b5bd548bb2c853e0c9265a, type: 3}
   count: 1
   enu: 4
   worldPrefab: {fileID: 11400000, guid: 9e3a50c41e01dda4ca453d860ae472a7, type: 2}

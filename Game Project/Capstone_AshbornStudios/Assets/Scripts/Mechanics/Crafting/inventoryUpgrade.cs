@@ -18,20 +18,19 @@ public class inventoryUpgrade : MonoBehaviour
     // Update is called once per frame
     public void inventoryUpgradeAction()
     {
-        store.currentInventory++;
+        
         if (store.currentInventory < store.inventoryUpgrade.Count)
         {
             store.removeItems(store.inventoryUpgrade[store.currentInventory]);
-            player.numSlots += store.inventoryUpgrade[store.currentInventory - 1].slotsToAdd;
+            player.numSlots += store.inventoryUpgrade[store.currentInventory].slotsToAdd;
             hideRecipe();
-            showRecipe();
             store.clearText();
+            showRecipe();
         }
-
+        store.currentInventory++;
     }
     public void showRecipe()
     {
-        print(store.inventoryUpgrade[store.currentInventory].recipe.Length);
         if (store.currentInventory < store.inventoryUpgrade.Count)
         {
             StartCoroutine(talkingMole(store.inventoryUpgrade[store.currentInventory].moleComment));
@@ -42,7 +41,7 @@ public class inventoryUpgrade : MonoBehaviour
                 string text = "" + store.inventoryUpgrade[store.currentInventory].recipe[i].count;
                 slots[i] = slot;
                 slot.GetComponent<recipeHolder>().setText(text);
-                slot.GetComponent<recipeHolder>().setImage(store.inventoryUpgrade[store.currentInventory].icon);
+                slot.GetComponent<recipeHolder>().setImage(store.inventoryUpgrade[store.currentInventory].recipe[i].icon);
             }
         }
 

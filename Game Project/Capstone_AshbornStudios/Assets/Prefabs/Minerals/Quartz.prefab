@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Quartz
   description: Pretty
-  icon: {fileID: 21300000, guid: ab7fc866992346d438e5052f35588f21, type: 3}
+  icon: {fileID: 21300000, guid: 5104bf576199c3e49933e8dc69fdeb27, type: 3}
   count: 1
   enu: 5
   worldPrefab: {fileID: 11400000, guid: c8558eb5192a9bd4daa73754bd3fe65a, type: 2}
