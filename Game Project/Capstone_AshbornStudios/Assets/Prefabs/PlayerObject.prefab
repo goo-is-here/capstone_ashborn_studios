@@ -2533,7 +2533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6570210844068470863, guid: 01876ac576c37e840a912027ce19c59e, type: 3}
       propertyPath: defaultDetectionDistance
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8338528555955262944, guid: 01876ac576c37e840a912027ce19c59e, type: 3}
       propertyPath: m_LocalScale.x

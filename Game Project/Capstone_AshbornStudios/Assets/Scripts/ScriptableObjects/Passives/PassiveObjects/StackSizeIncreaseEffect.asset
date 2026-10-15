@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56e0e30c24056448bbe0d02fff7320f, type: 3}
-  m_Name: SpeedUpEffect
-  m_EditorClassIdentifier: Assembly-CSharp::SpeedUpEffect
-  moveSpeedMultiplier: 2
+  m_Script: {fileID: 11500000, guid: 7486dbb9b354c864e877090351bc3730, type: 3}
+  m_Name: StackSizeIncreaseEffect
+  m_EditorClassIdentifier: Assembly-CSharp::StackSizeIncreaseEffect
+  stackSizeIncreaseAmount: 2

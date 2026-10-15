@@ -121,8 +121,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
             Vector3 finalSpawnLocation = new Vector3(point.x, point.y + verticleOffset, point.z);
 
-            Debug.Log(finalSpawnLocation);
-
             GameObject newGem = Instantiate(gemReferences[biomeIndex - 1,i]);
 
             newGem.transform.position = finalSpawnLocation;
