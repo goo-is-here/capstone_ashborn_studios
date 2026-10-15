@@ -52,26 +52,19 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
             int x = dat.chunkPositionx;
             int y = dat.chunkPositiony;
             int z = dat.chunkPositionz;
+            if (chunks[x, y, z] == null)
+                continue;
+
+            DirtGeneration dirt = chunks[x, y, z].GetComponent<DirtGeneration>();
+
+            if (dirt == null)
+                continue;
+
+            dirt.chunkBreak = dat.chunkBreakData;
+            dirt.breakBlocks();
         }
 
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                for (int z = 0; z < width; z++)
-                {
-                    if (chunks[x, y, z] == null)
-                        continue;
-
-                    DirtGeneration dirt = chunks[x, y, z].GetComponent<DirtGeneration>();
-
-                    if (dirt == null)
-                        continue;
-
-                    dirt.chunkBreak = chunkData[x, y, z] != 0 ? chunkData[x, y, z] : -1;
-                }
-            }
-        }
+        
     }
 
     public void SaveData(ref GameData data)
@@ -91,20 +84,27 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
                         continue;
 
                     DirtGeneration dirt = chunks[x, y, z].GetComponent<DirtGeneration>();
-
+                    
                     if (dirt == null)
                         continue;
+                    bool[] breakData = dirt.chunkBreak;
+                    bool changed = false;
+                    for (int i = 0; i < breakData.Length; i++)
+                    {
+                        if (breakData[i])
+                        {
+                            changed = true;
+                        }
+                    }
+                    if (changed)
+                    {
+                        chunkData newData = new chunkData(dirt.chunkBreak, x, y, z);
 
-                    int breakData = dirt.chunkBreak;
-
-                    chunkData newData = new chunkData(breakData, x, y, z);
-
-                    data.chunkArray.Add(newData);
+                        data.chunkArray.Add(newData);
+                    }
                 }
             }
         }
-        Debug.Log("Chunks saved in memory: " + data.chunkArray.Count);
-        Debug.Log(JsonUtility.ToJson(data, true));
     }
     // Update is called once per frame
     void Update()
