@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4792112225944482116}
   - component: {fileID: 9108465039881312296}
   - component: {fileID: 1964794104139775636}
-  - component: {fileID: 7717976783024742005}
+  - component: {fileID: 1083433809782252995}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Player
@@ -259,9 +259,9 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.05
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7956555298906818836
 MonoBehaviour:
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassivesManager
   equippedPassives: []
   maxPassives: 1
---- !u!65 &7717976783024742005
+--- !u!65 &1083433809782252995
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,8 +484,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.25, y: 2.06, z: 1.25}
-  m_Center: {x: 0, y: 0, z: -0.037647963}
+  m_Size: {x: 1.12, y: 2.05, z: 1.12}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &252945196221614251
 GameObject:
   m_ObjectHideFlags: 0
