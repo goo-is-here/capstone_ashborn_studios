@@ -16,6 +16,7 @@ TagManager:
   - DepthTracker
   - Inventory
   - Gems
+  - Dirt
   layers:
   - Default
   - TransparentFX

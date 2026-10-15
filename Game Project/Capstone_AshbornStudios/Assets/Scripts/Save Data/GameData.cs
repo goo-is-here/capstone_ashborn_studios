@@ -24,6 +24,7 @@ public class GameData
     public float hungerValue;
     public List<GemPassive> equippedPassives;
     public bool lanternUnlocked;
+    public List<chunkData> chunkArray;
     
     public GameData()
     {
@@ -46,5 +47,6 @@ public class GameData
         this.hungerValue = 100f;
         this.equippedPassives = new List<GemPassive>();
         this.lanternUnlocked = false;
+        this.chunkArray = new List<chunkData>();
     }
 }

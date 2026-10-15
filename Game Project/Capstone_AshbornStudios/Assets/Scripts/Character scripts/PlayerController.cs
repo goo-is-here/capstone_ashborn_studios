@@ -249,8 +249,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
         if (bar != null)
             bar.fillAmount = durability / maxDurability;
+        if (Input.GetMouseButton(0) && canMine && canMove)
+        {
+            StartCoroutine(mineCooldown());
+        }
     }
-
     //late update for movement to assist with camera stuttering
     private void LateUpdate()
     {
@@ -339,7 +342,27 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     
     private Mesh mesh;
     private Vector3[] vertices;
-    
+    private IEnumerator mineCooldown()
+    {
+        canMine = false;
+        yield return new WaitForSeconds(mineSpeed / 2);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, diggingRange, blocksToDig))
+        {
+            Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
+            foreach(Collider col in intersecting)
+            {
+                if (col.CompareTag("Dirt"))
+                {
+                    Destroy(col.gameObject);
+                }
+            }
+            
+        }
+        yield return new WaitForSeconds(mineSpeed / 2);
+        canMine = true;
+    }
 
     public void CollectGem(int gemID)
     {
