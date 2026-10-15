@@ -9,7 +9,7 @@ public class PassivesManager : MonoBehaviour, IDataPersistence
     [Header("Passives")]
     public List<GemPassive> equippedPassives = new List<GemPassive>();
 
-    public float maxPassives = 1;
+    public int maxPassives = 1;
 
     private PlayerController player;
 
@@ -44,14 +44,17 @@ public class PassivesManager : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.equippedPassives = equippedPassives;
+        data.maxPassives = maxPassives;
     }
 
     public void LoadData(GameData data)
     {
+        maxPassives = data.maxPassives;
         equippedPassives = data.equippedPassives;
         foreach(GemPassive passive in equippedPassives)
         {
             passive.Initialize(player);
+
         }
     }
 }

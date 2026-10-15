@@ -23,6 +23,7 @@ public class GameData
     public bool[] collectedGems;
     public float hungerValue;
     public List<GemPassive> equippedPassives;
+    public int maxPassives;
     public bool lanternUnlocked;
     public List<chunkData> chunkArray;
     public int tool;
@@ -53,5 +54,6 @@ public class GameData
         this.tool = 0;
         this.objectNum = 0;
         this.invent = 0;
+        this.maxPassives = 1;
     }
 }

@@ -365,4 +365,9 @@ public class characterInventory : MonoBehaviour, IDataPersistence
         }
 
     }
+
+    public void increaseStackSizeAmount(int increaseAmount)
+    {
+        maxItem += increaseAmount;
+    }
 }

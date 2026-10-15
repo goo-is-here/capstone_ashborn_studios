@@ -153,8 +153,6 @@ GameObject:
   - component: {fileID: 1231395987933563640}
   - component: {fileID: 7312923648407534505}
   - component: {fileID: 4792112225944482116}
-  - component: {fileID: 9108465039881312296}
-  - component: {fileID: 1964794104139775636}
   - component: {fileID: 1083433809782252995}
   m_Layer: 3
   m_Name: Capsule
@@ -420,38 +418,6 @@ MonoBehaviour:
     m_Bits: 4096
   canInteract: 1
 --- !u!114 &4792112225944482116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234764343334364607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 237890f35b4779a4d9bed97af8b5fad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PassivesManager
-  equippedPassives: []
-  maxPassives: 1
---- !u!114 &9108465039881312296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234764343334364607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1345c4dcb499f42b263d3adadc34d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionHandler
-  interactDistance: 3
-  cam: {fileID: 6003821158861696665}
-  interactableLayermask:
-    serializedVersion: 2
-    m_Bits: 4096
-  canInteract: 1
---- !u!114 &1964794104139775636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1084,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 7956555298906818836}
-  interactor: {fileID: 9108465039881312296}
+  interactor: {fileID: 7312923648407534505}
   journal: {fileID: 6309798316046351945}
   lantern: {fileID: 7986315151202680301}
 --- !u!1 &3530017092417090856
