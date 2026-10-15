@@ -10,7 +10,8 @@ public class DirtGeneration : MonoBehaviour
     ChunkGeneration chunk;
     [HideInInspector] public bool[] chunkBreak;
 
-    [SerializeField] List<int> rarityTiers;
+    [Range(1,10000)]
+    [SerializeField] List<float> rarityTiers;
     [SerializeField] List<GameObject> objectToSpawn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -33,7 +34,7 @@ public class DirtGeneration : MonoBehaviour
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
-                        oreCheck(dirtPos);
+                        
                     }
                 }
             }
@@ -54,6 +55,11 @@ public class DirtGeneration : MonoBehaviour
                         {
                             Destroy(dirtParticles[i, j, k]);
                         }
+                        else
+                        {
+                            Vector3 dirtPos = new Vector3(transform.position.x + (i * dirtSize), transform.position.y + (j * dirtSize), transform.position.z + (k * dirtSize));
+                            oreCheck(dirtPos);
+                        }
                     }
                 }
             }
@@ -65,7 +71,7 @@ public class DirtGeneration : MonoBehaviour
         bool notSpawned = true;
         foreach (GameObject obj in objectToSpawn)
         {
-            int random = Random.Range(1, 100);
+            float random = Random.Range(1, 10000);
             if (i < rarityTiers.Count && random > rarityTiers[i] && notSpawned)
             {
                 notSpawned = false;
