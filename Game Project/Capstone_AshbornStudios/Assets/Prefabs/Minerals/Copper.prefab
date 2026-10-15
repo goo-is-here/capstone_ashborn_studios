@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.334
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -62,15 +78,36 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1569427430859552995}
+      addedObject: {fileID: -5463139088559659145}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2005871826359547249}
   m_SourcePrefab: {fileID: 100100000, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
 --- !u!1 &733924324999184329 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
   m_PrefabInstance: {fileID: 499342763902698136}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1569427430859552995
-MeshCollider:
+--- !u!114 &-5463139088559659145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733924324999184329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
+  itemName: Copper
+  description: A brownish material
+  icon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
+  count: 1
+  enu: 2
+  worldPrefab: {fileID: 11400000, guid: f640b5617d523b242a73b35dd6ebbe1a, type: 2}
+--- !u!135 &2005871826359547249
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,10 +121,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2930184177208560141, guid: 554f546b6c7936c44b36fdb46d1eb4ba, type: 3}
+  serializedVersion: 3
+  m_Radius: 0.63962585
+  m_Center: {x: -0.03563527, y: 0.00072158873, z: -0.026492884}

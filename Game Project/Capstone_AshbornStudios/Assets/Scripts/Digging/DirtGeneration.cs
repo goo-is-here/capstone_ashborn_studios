@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 public class DirtGeneration : MonoBehaviour
 {
     public int size;
@@ -7,7 +8,10 @@ public class DirtGeneration : MonoBehaviour
     GameObject[,,] dirtParticles;
     [HideInInspector] public float dirtSize;
     ChunkGeneration chunk;
-    public bool[] chunkBreak;
+    [HideInInspector] public bool[] chunkBreak;
+
+    [SerializeField] List<int> rarityTiers;
+    [SerializeField] List<GameObject> objectToSpawn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -29,6 +33,7 @@ public class DirtGeneration : MonoBehaviour
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
+                        oreCheck(dirtPos);
                     }
                 }
             }
@@ -51,6 +56,20 @@ public class DirtGeneration : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
+    private void oreCheck(Vector3 pos)
+    {
+        int i = 0;
+        bool notSpawned = true;
+        foreach (GameObject obj in objectToSpawn)
+        {
+            int random = Random.Range(1, 100);
+            if (i < rarityTiers.Count && random > rarityTiers[i] && notSpawned)
+            {
+                notSpawned = false;
+                GameObject ore = Instantiate(obj, pos, transform.rotation, transform);
             }
         }
     }

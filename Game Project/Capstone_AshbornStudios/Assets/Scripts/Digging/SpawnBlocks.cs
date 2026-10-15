@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using TMPro;
 [RequireComponent(typeof(diggableBlock))]
@@ -212,3 +212,4 @@ public class SpawnBlocks : MonoBehaviour
         Destroy(gameObject);
     }
 }
+*/

@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.19999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.558679
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -62,15 +78,36 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4588377058348866355}
+      addedObject: {fileID: 1798692737197306483}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6816726148344922553}
   m_SourcePrefab: {fileID: 100100000, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
 --- !u!1 &2747128655188077454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
   m_PrefabInstance: {fileID: 3089094570240448223}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &4588377058348866355
-MeshCollider:
+--- !u!114 &1798692737197306483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2747128655188077454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22b1295a5b52a3409f63595dc2b06f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
+  itemName: Quartz
+  description: Pretty
+  icon: {fileID: 21300000, guid: ab7fc866992346d438e5052f35588f21, type: 3}
+  count: 1
+  enu: 5
+  worldPrefab: {fileID: 11400000, guid: c8558eb5192a9bd4daa73754bd3fe65a, type: 2}
+--- !u!135 &-6816726148344922553
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,10 +121,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1453391643641891581, guid: efaa20d2353bc8f4ca870180755682ee, type: 3}
+  serializedVersion: 3
+  m_Radius: 0.4657815
+  m_Center: {x: 0.043947604, y: 0.010546297, z: -0.013881136}

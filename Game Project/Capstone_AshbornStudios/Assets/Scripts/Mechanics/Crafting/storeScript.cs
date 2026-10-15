@@ -23,11 +23,10 @@ public class storeScript : MonoBehaviour
     public GameObject recipeIngredient;
     public Camera storeCamera;
     public TextMeshProUGUI moleText;
-    characterInventory playerInventory;
+    public characterInventory playerInventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<characterInventory>();
         startPosition = recipeHolder.transform.position;
         endPosition = swingAmount.position;
         for(int i = 0; i < objectsToUnlock.Count; i++)
@@ -40,31 +39,26 @@ public class storeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTool >= toolUpgrades.Count && validateInventory(toolUpgrades[currentTool]))
+        if (currentTool >= 0 && currentTool < toolUpgrades.Count && validateInventory(toolUpgrades[currentTool]))
         {
             toolHolder.GetComponent<Button>().interactable = true;
-            toolHolder.GetComponent<toolUpgrade>().hideRecipe();
-            toolHolder.SetActive(false);
         }
         else
         {
             toolHolder.GetComponent<Button>().interactable = false;
         }
-        if (currentObject >= objectsToUnlock.Count && validateInventory(objectsToUnlockRecipe[currentObject]))
+        if (currentObject >= 0 && currentObject < objectsToUnlockRecipe.Count && validateInventory(objectsToUnlockRecipe[currentObject]))
         {
             objectHolder.GetComponent<Button>().interactable = true;
-            objectHolder.GetComponent<objectUpgrade>().hideRecipe();
-            objectHolder.SetActive(false);
         }
         else
         {
             objectHolder.GetComponent<Button>().interactable = false;
         }
-        if (currentInventory >= inventoryUpgrade.Count && validateInventory(inventoryUpgrade[currentInventory]))
+
+        if (currentInventory >= 0 && currentInventory < inventoryUpgrade.Count && validateInventory(inventoryUpgrade[currentInventory]))
         {
             inventoryHolder.GetComponent<Button>().interactable = true;
-            inventoryHolder.GetComponent<inventoryUpgrade>().hideRecipe();
-            inventoryHolder.SetActive(false);
         }
         else
         {
@@ -78,6 +72,10 @@ public class storeScript : MonoBehaviour
     public void swingIn()
     {
         StartCoroutine(LerpPosition(endPosition, startPosition, swingSpeed));
+        moleText.text = "";
+    }
+    public void clearText()
+    {
         moleText.text = "";
     }
     IEnumerator LerpPosition(Vector3 targetPosition, Vector3 startPosition, float duration)
@@ -97,28 +95,29 @@ public class storeScript : MonoBehaviour
     }
     bool validateInventory(Recipe recipe)
     {
-        bool[] canMake = new bool[recipe.recipe.Length];
+        if (recipe == null || recipe.recipe == null)
+            return false;
 
-        for(int i = 0; i < recipe.recipe.Length; i++)
+        foreach (Node requiredItem in recipe.recipe)
         {
-            canMake[i] = false;
-            foreach(Item ite in playerInventory.inventoryItemList)
+            if (requiredItem == null)
+                return false;
+
+            int totalCount = 0;
+
+            foreach (Item inventoryItem in playerInventory.inventoryItemList)
             {
-                if(!canMake[i] && ite.count >= recipe.recipe[i].count)
+                if (inventoryItem != null && inventoryItem.enu == requiredItem.enu)
                 {
-                    canMake[i] = true;
+                    totalCount += inventoryItem.count;
                 }
             }
+
+            if (totalCount < requiredItem.count)
+                return false;
         }
-        bool tempBool = true;
-        for(int i = 0; i < canMake.Length; i++)
-        {
-            if (!canMake[i])
-            {
-                tempBool = false;
-            }
-        }
-        return tempBool;
+
+        return true;
     }
     public void removeItems(Recipe recipe)
     {

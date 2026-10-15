@@ -19,6 +19,7 @@ public class objectUpgrade : MonoBehaviour
             store.objectsToUnlock[store.currentObject - 1].SetActive(true);
             hideRecipe();
             showRecipe();
+            store.clearText();
         }
     }
     GameObject[] slots;

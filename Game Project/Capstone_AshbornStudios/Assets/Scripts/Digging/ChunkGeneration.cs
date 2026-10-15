@@ -42,6 +42,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
             }
         }
     }
+    
     public void LoadData(GameData data)
     {
         if (data == null || data.chunkArray == null)

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class characterInventory : MonoBehaviour
+public class characterInventory : MonoBehaviour, IDataPersistence
 {
     public Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
@@ -18,6 +18,7 @@ public class characterInventory : MonoBehaviour
     bool showingInventory = false;
     [SerializeField] int maxItem = 99;
     public int selectedSlotNum = -1;
+    List<Item> tempList;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,8 +33,13 @@ public class characterInventory : MonoBehaviour
             GameObject slot = Instantiate(slotPrefab, hotBarSlotParent.transform);
             inventorySlotArray.Add(slot);
         }
+        foreach(Item ite in tempList)
+        {
+            addItem(ite);
+        }
         updateSlotNumber();
         updateDisplayedInventory();
+
     }
 
     // Update is called once per frame
@@ -266,7 +272,7 @@ public class characterInventory : MonoBehaviour
     {
         for(int i = 0; i < inventoryItemList.Length; i++)
         {
-            if (inventoryItemList[i].enu == ite && amount >= 0)
+            if (inventoryItemList[i] != null && inventoryItemList[i].enu == ite && amount >= 0)
             {
                 if (amount >= inventoryItemList[i].count)
                 {
@@ -296,9 +302,9 @@ public class characterInventory : MonoBehaviour
     }
     private void updateDisplayedInventory()
     {
+        print(inventorySlotArray.Count);
         for(int i = 0; i < inventorySlotArray.Count; i++)
         {
-            
             if(inventoryItemList[i] == null || inventoryItemList[i].enu == ItemEnum.NULL)
             {
                 inventorySlotArray[i].GetComponent<InventorySlot>().emptySlot();
@@ -324,5 +330,23 @@ public class characterInventory : MonoBehaviour
         inventorySlotArray[selectedSlotNum].GetComponent<InventorySlot>().selectedSlot.SetActive(false);
         selectedSlotNum = -1;
         updateDisplayedInventory();
+    }
+    //Load data. Read variables from game data into variables here
+    public void LoadData(GameData data)
+    {
+        tempList = data.inventory;
+    }
+    //save variables into game data
+    public void SaveData(ref GameData data)
+    {
+        if (data != null)
+        {
+            data.inventory.Clear();
+            foreach(Item ite in inventoryItemList)
+            {
+                data.inventory.Add(ite);
+            }
+        }
+
     }
 }

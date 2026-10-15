@@ -24,6 +24,7 @@ public class toolUpgrade : MonoBehaviour
             player.diggingRange += store.toolUpgrades[store.currentTool - 1].rangeIncrease;
             hideRecipe();
             showRecipe();
+            store.clearText();
         }
         
     }

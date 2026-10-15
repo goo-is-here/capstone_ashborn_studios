@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 
 public class growPlant : MonoBehaviour
@@ -67,3 +67,4 @@ public class growPlant : MonoBehaviour
         scaleModifier = endValue;
     }
 }
+*/

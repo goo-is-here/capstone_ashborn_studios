@@ -25,6 +25,7 @@ public class inventoryUpgrade : MonoBehaviour
             player.numSlots += store.inventoryUpgrade[store.currentInventory - 1].slotsToAdd;
             hideRecipe();
             showRecipe();
+            store.clearText();
         }
 
     }

@@ -46,3 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   size: 10
   dirtPrefab: {fileID: 6209171191992898400, guid: 763dd30e02bd3ec4491ec09e4c649e96, type: 3}
+  dirtSize: 0
+  chunkBreak: 
+  rarityTiers: 5f0000005c0000005a0000005a00000059000000
+  objectToSpawn:
+  - {fileID: 2747128655188077454, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
+  - {fileID: 4375421341906615117, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}
+  - {fileID: 733924324999184329, guid: a3f64b4d0efc2e842a88917872542366, type: 3}
+  - {fileID: 5580466884739795233, guid: d32cd01629769014e9141e51b2ef0760, type: 3}
+  - {fileID: 6573522551506473397, guid: a63e5038837ac834d9bca4907c46eaaf, type: 3}

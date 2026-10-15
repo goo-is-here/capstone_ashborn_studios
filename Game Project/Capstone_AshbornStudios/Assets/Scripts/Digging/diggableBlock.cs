@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using TMPro;
 
@@ -105,3 +105,4 @@ public class diggableBlock : MonoBehaviour
         broke = broke2;
     }
 }
+*/

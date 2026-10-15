@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8aec078cb514b5499aded49c0c1845c, type: 3}
+  m_Name: IronScriptableObject
+  m_EditorClassIdentifier: Assembly-CSharp::BlockObject
+  mat: {fileID: 2100000, guid: 681d18488a9111d459977f762bc07610, type: 2}
+  particles: {fileID: 0}
+  dropped: {fileID: 4375421341906615117, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}
+  blockHealth: 0
+  minDamage: 0
+  type: 3
+  breaking: {fileID: 0}
+  broke: {fileID: 0}
