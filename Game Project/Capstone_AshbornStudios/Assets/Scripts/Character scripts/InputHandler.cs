@@ -23,6 +23,7 @@ public class InputHandler : MonoBehaviour
         journalAction = InputSystem.actions.FindAction("OpenJournal");
         interactAction = InputSystem.actions.FindAction("Interact");
         altFireAction = InputSystem.actions.FindAction("AltFire");
+        //journal.CloseJournal();
     }
     void Start()
     {

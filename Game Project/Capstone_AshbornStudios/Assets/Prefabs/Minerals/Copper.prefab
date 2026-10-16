@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::pickUpItem
   itemName: Copper
   description: A brownish material
-  icon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
+  icon: {fileID: 21300000, guid: 9af2f49c2b0fe834b92204373e62cdac, type: 3}
   count: 1
   enu: 2
   worldPrefab: {fileID: 11400000, guid: f640b5617d523b242a73b35dd6ebbe1a, type: 2}
