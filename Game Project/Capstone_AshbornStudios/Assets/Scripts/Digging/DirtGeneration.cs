@@ -10,9 +10,11 @@ public class DirtGeneration : MonoBehaviour
     ChunkGeneration chunk;
     [HideInInspector] public bool[] chunkBreak;
 
-    [Range(1,10000)]
+    [Range(1,100)]
     [SerializeField] List<float> rarityTiers;
     [SerializeField] List<GameObject> objectToSpawn;
+    [SerializeField] int oreLimit;
+    int numOre = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -69,13 +71,17 @@ public class DirtGeneration : MonoBehaviour
     {
         int i = 0;
         bool notSpawned = true;
-        foreach (GameObject obj in objectToSpawn)
+        if(numOre < oreLimit)
         {
-            float random = Random.Range(1, 10000);
-            if (i < rarityTiers.Count && random > rarityTiers[i] && notSpawned)
+            foreach (GameObject obj in objectToSpawn)
             {
-                notSpawned = false;
-                GameObject ore = Instantiate(obj, pos, transform.rotation, transform);
+                float random = Random.Range(1f, 100f);
+                if (i < rarityTiers.Count && random > rarityTiers[i] && notSpawned)
+                {
+                    notSpawned = false;
+                    GameObject ore = Instantiate(obj, pos, transform.rotation, transform);
+                    numOre++;
+                }
             }
         }
     }

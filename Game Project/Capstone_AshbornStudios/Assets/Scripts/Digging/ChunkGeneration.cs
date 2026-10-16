@@ -17,6 +17,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
     void Awake()
     {
         cont = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        cont.canMove = false;
         chunks = new GameObject[width, height, width];
         generatedChunks = new bool[width, height, width];
         chunkData = new int[width, height, width];
@@ -41,6 +42,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
                 }
             }
         }
+        cont.canMove = true;
     }
     
     public void LoadData(GameData data)
