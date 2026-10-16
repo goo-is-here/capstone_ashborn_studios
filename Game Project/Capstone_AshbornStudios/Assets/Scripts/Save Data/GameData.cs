@@ -30,6 +30,7 @@ public class GameData
     public int objectNum;
     public int invent;
     public bool tutorial;
+    public int clawIndex;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -57,5 +58,6 @@ public class GameData
         this.invent = 0;
         this.maxPassives = 1;
         this.tutorial = false;
+        this.clawIndex = 0;
     }
 }

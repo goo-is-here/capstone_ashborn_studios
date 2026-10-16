@@ -72,7 +72,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public bool[] collectedGems = new bool[9];
     public float additionalOreChance = 0f;
     private Animator anim;
-
+    [SerializeField] GameObject[] clawsLeft;
+    [SerializeField] GameObject[] clawsRight;
+    int clawIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -116,7 +118,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         //gets the audio source component from the player object
         audioSource = this.gameObject.GetComponent<AudioSource>();
-
         anim = GetComponentInChildren<Animator>();
     }
     //gets the durability
@@ -142,10 +143,20 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         durability = data.durability;
         maxDurability = data.maxDurability;
         StartCoroutine(ApplyLoadedPosition());
+        clawIndex = data.clawIndex;
     }
-    //save variables into game data
-    //Currently saving current scene, position per scene, damage of tool, durability of tool, max durability
-    public void SaveData(ref GameData data)
+    public void upgradeClaws()
+    {
+        clawsLeft[clawIndex].SetActive(false);
+        clawsRight[clawIndex].SetActive(false);
+        clawIndex++;
+        Mathf.Clamp(clawIndex, 0, clawsLeft.Length - 1);
+        clawsLeft[clawIndex].SetActive(true);
+        clawsRight[clawIndex].SetActive(true);
+    }
+        //save variables into game data
+        //Currently saving current scene, position per scene, damage of tool, durability of tool, max durability
+        public void SaveData(ref GameData data)
     {
         if(data != null)
         {
@@ -162,6 +173,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             {
                 data.minePosition = pos;
             }
+            data.clawIndex = clawIndex;
         }
         
     }

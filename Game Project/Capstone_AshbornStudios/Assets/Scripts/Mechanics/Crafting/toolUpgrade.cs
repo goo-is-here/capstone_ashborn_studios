@@ -22,6 +22,7 @@ public class toolUpgrade : MonoBehaviour
         {
             store.removeItems(store.toolUpgrades[store.currentTool]);
             player.diggingRange += store.toolUpgrades[store.currentTool].rangeIncrease;
+            player.upgradeClaws();
             hideRecipe();
             showRecipe();
             store.clearText();
