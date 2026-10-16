@@ -26,7 +26,9 @@ public class storeScript : MonoBehaviour, IDataPersistence
     public characterInventory playerInventory;
     [SerializeField] AudioClip invalidBuy;
     [SerializeField] AudioClip[] buySounds;
+    [SerializeField] AudioClip[] moleSounds;
     [SerializeField] AudioSource source;
+    [SerializeField] AudioSource mole;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -72,24 +74,39 @@ public class storeScript : MonoBehaviour, IDataPersistence
     {
         if (!source.isPlaying)
         {
+            print("here");
             source.PlayOneShot(invalidBuy);
         }
     }
     public void buyItem()
     {
-        int sound = Random.Range(0, 1);
+        int sound = Random.Range(0, 2);
+        int moleInt = Random.Range(0, 2);
         if (!source.isPlaying)
         {
             source.PlayOneShot(buySounds[sound]);
+        }
+        if (!mole.isPlaying)
+        {
+            mole.PlayOneShot(moleSounds[moleInt]);
         }
     }
     public void swingOut()
     {
         StartCoroutine(LerpPosition(startPosition, endPosition, swingSpeed));
+        int moleInt = Random.Range(0, 2);
+        if (!mole.isPlaying)
+        {
+            mole.PlayOneShot(moleSounds[moleInt]);
+        }
     }
     public void swingIn()
     {
         StartCoroutine(LerpPosition(endPosition, startPosition, swingSpeed));
+        if (mole.isPlaying)
+        {
+            mole.Stop();
+        }
         moleText.text = "";
     }
     public void clearText()
