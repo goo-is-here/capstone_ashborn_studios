@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 public class objectUpgrade : MonoBehaviour
 {
     [SerializeField] storeScript store;
@@ -20,6 +21,7 @@ public class objectUpgrade : MonoBehaviour
             hideRecipe();
             showRecipe();
             store.clearText();
+            store.buyItem();
         }
         store.currentObject++;
     }
@@ -39,6 +41,10 @@ public class objectUpgrade : MonoBehaviour
                 slot.GetComponent<recipeHolder>().setImage(store.objectsToUnlockRecipe[store.currentObject].recipe[i].icon);
                 
             }
+        }
+        if (!gameObject.GetComponent<Button>().interactable)
+        {
+            store.invalidAction();
         }
 
     }

@@ -24,6 +24,9 @@ public class storeScript : MonoBehaviour, IDataPersistence
     public Camera storeCamera;
     public TextMeshProUGUI moleText;
     public characterInventory playerInventory;
+    [SerializeField] AudioClip invalidBuy;
+    [SerializeField] AudioClip[] buySounds;
+    [SerializeField] AudioSource source;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -63,6 +66,21 @@ public class storeScript : MonoBehaviour, IDataPersistence
         else
         {
             inventoryHolder.GetComponent<Button>().interactable = false;
+        }
+    }
+    public void invalidAction()
+    {
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(invalidBuy);
+        }
+    }
+    public void buyItem()
+    {
+        int sound = Random.Range(0, 1);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(buySounds[sound]);
         }
     }
     public void swingOut()
