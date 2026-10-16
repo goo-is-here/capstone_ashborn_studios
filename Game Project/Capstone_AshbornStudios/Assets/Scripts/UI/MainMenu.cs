@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour, IDataPersistence
         disableButtons();
         DataPersistenceManager.instance.NewGame();
         source.PlayOneShot(playGame);
-        StartCoroutine(waitForAudio(playGame.length, false));
+        StartCoroutine(waitForAudioNew(playGame.length, false));
     }
     public void LoadData(GameData data)
     {
@@ -63,6 +63,18 @@ public class MainMenu : MonoBehaviour, IDataPersistence
         else
         {
             SceneManager.LoadSceneAsync(indexToLoad);
+        }
+    }
+    IEnumerator waitForAudioNew(float length, bool quit)
+    {
+        yield return new WaitForSeconds(length);
+        if (quit)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(1);
         }
     }
 }
