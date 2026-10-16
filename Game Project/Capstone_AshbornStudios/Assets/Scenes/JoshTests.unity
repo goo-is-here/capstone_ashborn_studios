@@ -837,13 +837,13 @@ MonoBehaviour:
   - {x: 0, y: 2, z: 0}
   - {x: 0, y: 2, z: 0}
   biomeOneGems:
-  - {fileID: 2543811510062714198, guid: 7e63fa3c57ca9c84d8f8d6730701d68e, type: 3}
+  - {fileID: 696500477156163802, guid: b168c014cea43ab49831697c8c112464, type: 3}
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: db435e93b1fcfee4fa602b16a797e790, type: 3}
+  - {fileID: 6861261679599805170, guid: db435e93b1fcfee4fa602b16a797e790, type: 3}
   biomeTwoGems:
-  - {fileID: 2543811510062714198, guid: e84a0bcedb9ee164ea24d0a37692a052, type: 3}
-  - {fileID: 2543811510062714198, guid: f3fbe7df769678640bf2dc25f564088d, type: 3}
-  - {fileID: 2543811510062714198, guid: 016bbda21825c524686c01cb183b7cae, type: 3}
+  - {fileID: 3788539029883126699, guid: e84a0bcedb9ee164ea24d0a37692a052, type: 3}
+  - {fileID: 7056030598220829989, guid: 655cba5b24c31ab4595d3a886f45c12c, type: 3}
+  - {fileID: 6529734464561373479, guid: 016bbda21825c524686c01cb183b7cae, type: 3}
   biomeThreeGems:
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
@@ -872,6 +872,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2772418476970958560, guid: e05b3852330ec8e4a935d8d26cc73cc1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38cc3305c4d59c741ade9ecef63cea60, type: 2}
     - target: {fileID: 3057171294826419135, guid: e05b3852330ec8e4a935d8d26cc73cc1, type: 3}
       propertyPath: m_Name
       value: GemCase
@@ -888,6 +892,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1535210562}
+    - target: {fileID: 4593179656646991345, guid: e05b3852330ec8e4a935d8d26cc73cc1, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8689022541396438822, guid: 227af58b389e32d48a73a657934a38f8, type: 3}
     - target: {fileID: 6103433717682444468, guid: e05b3852330ec8e4a935d8d26cc73cc1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.57

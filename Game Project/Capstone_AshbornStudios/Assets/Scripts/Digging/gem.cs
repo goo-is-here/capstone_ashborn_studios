@@ -9,11 +9,14 @@ public class gem : MonoBehaviour
     [HideInInspector] public bool collected = false;
     private MeshRenderer mesh;
     private BoxCollider collision;
+    private AudioSource audioSource;
+    public AudioClip audioClip;
 
     private void Start()
     {
         mesh = GetComponent<MeshRenderer>();
         collision = GetComponent<BoxCollider>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -22,6 +25,7 @@ public class gem : MonoBehaviour
         {
             gemSpawner.GetComponent<SpawnGems>().setGemAsCollected(gemID);
             other.GetComponent<PlayerController>().CollectGem(gemID);
+            audioSource.PlayOneShot(audioClip);
             Collect();
         }
     }
