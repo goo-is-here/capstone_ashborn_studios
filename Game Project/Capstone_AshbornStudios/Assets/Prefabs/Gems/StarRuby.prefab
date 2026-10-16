@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 6068939316862658, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 3392645416149090924, guid: 34fb189f07dc44a4b89ac486e683f5ce, type: 3}
+      objectReference: {fileID: 3392645416149090924, guid: 17ef3e7032d6a554e833809081ad6c40, type: 3}
     - target: {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
       propertyPath: m_Name
       value: StarRuby

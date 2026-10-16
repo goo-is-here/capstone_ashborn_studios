@@ -357,6 +357,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private IEnumerator mineCooldown()
     {
         canMine = false;
+        //anim.SetTrigger("");
         yield return new WaitForSeconds(mineSpeed / 2);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;

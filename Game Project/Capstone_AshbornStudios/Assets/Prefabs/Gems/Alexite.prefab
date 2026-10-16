@@ -129,6 +129,7 @@ MonoBehaviour:
   gemSpawner: {fileID: 0}
   gemID: 11
   collected: 0
+  audioClip: {fileID: 8300000, guid: c27a11cd0fdcba748b4e63bdddaa9cad, type: 3}
 --- !u!82 &7295649672192183310
 AudioSource:
   m_ObjectHideFlags: 0
