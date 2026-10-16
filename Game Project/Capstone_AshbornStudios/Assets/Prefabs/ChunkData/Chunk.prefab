@@ -49,11 +49,11 @@ MonoBehaviour:
   dirtSize: 0
   chunkBreak: 
   rarityTiers:
-  - 99.95
-  - 99.8
-  - 99.75
-  - 99.75
-  - 99.5
+  - 90
+  - 85
+  - 75
+  - 75
+  - 60
   objectToSpawn:
   - {fileID: 2747128655188077454, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
   - {fileID: 4375421341906615117, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}

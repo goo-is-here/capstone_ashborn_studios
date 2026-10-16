@@ -36,6 +36,7 @@ public class DirtGeneration : MonoBehaviour
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
+                        oreCheck(dirtPos);
                         
                     }
                 }
