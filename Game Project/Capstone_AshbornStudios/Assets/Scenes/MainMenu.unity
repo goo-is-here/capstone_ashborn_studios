@@ -278,7 +278,7 @@ MonoBehaviour:
   contine: {fileID: 1166429245}
   quit: {fileID: 1756783886}
   quitGame: {fileID: 8300000, guid: 888bfb9957f7dfb478bfdf46e5f00484, type: 3}
-  playGame: {fileID: 8300000, guid: 5c7de4e33f92d844e96e3cc7ce68bd39, type: 3}
+  playGame: {fileID: 8300000, guid: 1e0e83d5f8e207047acc97c188ce4259, type: 3}
 --- !u!114 &162870432
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1069,11 +1069,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc09683041ba364882e89df3635c0f9, type: 3}
---- !u!137 &67175417 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8900769518433231785, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-  m_PrefabInstance: {fileID: 1102696347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &67622653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1920,11 +1915,11 @@ MonoBehaviour:
   store: {fileID: 877362369}
   playerObjects:
   - {fileID: 1955343359}
-  - {fileID: 916557841}
-  - {fileID: 557434242}
+  - {fileID: 0}
+  - {fileID: 0}
   hands:
-  - {fileID: 67175417}
-  - {fileID: 498152627}
+  - {fileID: 0}
+  - {fileID: 0}
   playerCamera: {fileID: 117839226}
 --- !u!23 &112097326
 MeshRenderer:
@@ -5487,11 +5482,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2987222595557143779, guid: a8515697fc510c44da152e08149811db, type: 3}
---- !u!137 &498152627 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4161113775301922534, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-  m_PrefabInstance: {fileID: 1102696347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501344262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ebde27bdbecfd9945abfa1ec926e628a, type: 3}
@@ -5940,11 +5930,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2788403891777176793, guid: 65de33543710ab44f8559d7fc0fec564, type: 3}
   m_PrefabInstance: {fileID: 543898306}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &557434242 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 772421694647507494, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-  m_PrefabInstance: {fileID: 1102696347}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &562561082
 PrefabInstance:
@@ -10446,11 +10431,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6962676459523201546, guid: 71d1f9d98dc55aa4f8b7beb802c940cd, type: 3}
   m_PrefabInstance: {fileID: 914331100}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &916557841 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1013843779210884357, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-  m_PrefabInstance: {fileID: 1102696347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &928019100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12420,14 +12400,6 @@ PrefabInstance:
       propertyPath: pause
       value: 
       objectReference: {fileID: 579177790}
-    - target: {fileID: 6887156794704709927, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.327
-      objectReference: {fileID: 0}
-    - target: {fileID: 6887156794704709927, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12.938
-      objectReference: {fileID: 0}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: inventory
       value: 
