@@ -33,10 +33,14 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             GameObject slot = Instantiate(slotPrefab, hotBarSlotParent.transform);
             inventorySlotArray.Add(slot);
         }
-        foreach(Item ite in tempList)
+        if(tempList != null)
         {
-            addItem(ite);
+            foreach (Item ite in tempList)
+            {
+                addItem(ite);
+            }
         }
+        
         updateSlotNumber();
         updateDisplayedInventory();
 
