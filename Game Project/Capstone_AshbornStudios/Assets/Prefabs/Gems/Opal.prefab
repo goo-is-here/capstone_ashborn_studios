@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 50151640086733180}
   - component: {fileID: -8179174631996270567}
   m_Layer: 11
-  m_Name: MoonStone
+  m_Name: Opal
   m_TagString: Gems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

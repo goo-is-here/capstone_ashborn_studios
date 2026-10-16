@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Alexite_Dirt_M
+  m_Name: Opal_Dirt_M
   m_Shader: {fileID: -6465566751694194690, guid: 8b77c90587a2c294b97227d811c917db, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -99,7 +99,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BottomLine: 1
+    - _BottomLine: 0.568
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -132,12 +132,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
-    - _BottomColor: {r: 1.4980391, g: 0, b: 0.2735884, a: 1}
+    - _BottomColor: {r: 2.6082373, g: 2.3162146, b: 1.8651357, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Dirt_Color: {r: 0.4716981, g: 0.3014121, b: 0.21626909, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TopColor: {r: 1.5924528, g: 0.42966172, b: 0.47340986, a: 1}
+    - _TopColor: {r: 0.14545326, g: 1.2417772, b: 1.9766755, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7904011764873428024
