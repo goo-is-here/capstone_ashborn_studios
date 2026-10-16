@@ -510,6 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   inventoryHold: []
   active: 0
+  invent: {fileID: 1085251757}
 --- !u!135 &399061727
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1892,12 +1893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4b9b1c62a0e1b4493cd80936fab7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  height: 20
+  height: 21
   width: 20
   chunkPrefab: {fileID: 5037227404674520170, guid: 7239a994c3f9f2243862df7c5ba48ec7, type: 3}
   renderDistance: 15
   noise: 0.3
-  heightThreshold: 0.35
+  heightThreshold: 0.4
   chunkSize: 5
 --- !u!4 &1593779575
 Transform:

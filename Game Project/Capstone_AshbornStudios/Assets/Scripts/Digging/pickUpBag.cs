@@ -9,7 +9,7 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
     //if the bag is present on the level
     public bool active;
     //the player inventory
-    //public Inventory invent;
+    public characterInventory invent;
     //position of the bag
     Vector3 pos;
     
@@ -46,22 +46,20 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
     //adds item to the bag
     public void addItems()
     {
-        /*
+
         //for each item in the inventory
-        for(int i = 0; i < invent.Items.Count; i++)
+        for (int i = 0; i < invent.inventoryItemList.Length; i++)
         {
-            //gets the item from inventory
-            //Item ite = invent.GetItemAtIndex(i);
             //if not null
-            if(ite != null)
+            if (invent.inventoryItemList[i] != null)
             {
                 //add the item to this list and remove it from the player inventory
-                Item itemToAdd = new Item(ite.name, ite.description, ite.icon, ite.count, ite.enu, ite.worldPrefab);
+                Item itemToAdd = new Item(invent.inventoryItemList[i].itemName, invent.inventoryItemList[i].description, invent.inventoryItemList[i].icon, invent.inventoryItemList[i].count, invent.inventoryItemList[i].enu, invent.inventoryItemList[i].worldPrefab);
                 inventoryHold.Add(itemToAdd);
-                //invent.RemoveItemAtIndex(i, ite.count);
+                invent.removeItem(invent.inventoryItemList[i].enu, invent.inventoryItemList[i].count);
             }
         }
-        */
+
         //activate it and record the position
         active = true;
         pos = transform.position;

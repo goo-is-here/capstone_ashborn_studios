@@ -69,7 +69,6 @@ public class DirtGeneration : MonoBehaviour
     }
     private void oreCheck()
     {
-        print("called");
         int i = 0;
         while(numOre < oreLimit)
         {
@@ -78,14 +77,12 @@ public class DirtGeneration : MonoBehaviour
             int z = Random.Range(0, size - 1);
             foreach (GameObject obj in objectToSpawn)
             {
-                print("hi");
                 float random = Random.Range(1f, 100f);
                 if (i < rarityTiers.Count && random > rarityTiers[i])
                 {
                     
                     if(dirtParticles[x, y, z] != null)
                     {
-                        print("adding");
                         GameObject ore = Instantiate(obj, dirtParticles[x, y, z].transform.position, transform.rotation, transform);
                     }
                     
