@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class pauseMenu : MonoBehaviour
+public class pauseMenu : MonoBehaviour, IDataPersistence
 {
     PlayerController cont;
     GameObject pause;
@@ -19,7 +19,8 @@ public class pauseMenu : MonoBehaviour
 
     public GameObject settingsMenu;
     private bool inSettings;
-
+    bool seenTutorial;
+    [SerializeField] GameObject tutorialObject;
     [SerializeField] GameObject stuckbag;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,12 +31,15 @@ public class pauseMenu : MonoBehaviour
         pause = GameObject.FindGameObjectWithTag("Pause");
         pause.SetActive(false);
         crafting.SetActive(false);
+        if (seenTutorial)
+        {
+            tutorialObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Escape) && crafting != null && !crafting.activeSelf)
         {
             print("press");
@@ -59,6 +63,23 @@ public class pauseMenu : MonoBehaviour
             else
             {
                 stuck.SetActive(false);
+            }
+        }
+        if (!seenTutorial)
+        {
+            if (tutorialObject.activeSelf)
+            {
+                cont.canMove = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                cont.canMove = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                tutorialObject.SetActive(false);
+                seenTutorial = true;
             }
         }
     }
@@ -110,5 +131,23 @@ public class pauseMenu : MonoBehaviour
     public void CloseSettingsMenu()
     {
         settingsMenu.SetActive(false);
+    }
+    public void LoadData(GameData data)
+    {
+        seenTutorial = data.tutorial;
+    }
+    //save variables into game data
+    //Currently saving current scene, position per scene, damage of tool, durability of tool, max durability
+    public void SaveData(ref GameData data)
+    {
+        if (data != null)
+        {
+            data.tutorial = seenTutorial;
+        }
+
+    }
+    public void tutorialMenu()
+    {
+        tutorialObject.SetActive(true);
     }
 }

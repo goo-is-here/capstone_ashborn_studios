@@ -29,6 +29,7 @@ public class GameData
     public int tool;
     public int objectNum;
     public int invent;
+    public bool tutorial;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -55,5 +56,6 @@ public class GameData
         this.objectNum = 0;
         this.invent = 0;
         this.maxPassives = 1;
+        this.tutorial = false;
     }
 }
