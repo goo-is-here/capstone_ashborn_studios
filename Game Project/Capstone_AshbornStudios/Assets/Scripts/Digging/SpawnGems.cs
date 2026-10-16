@@ -22,6 +22,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //the above arrays get added to the gems array
     public GameObject[,] gemReferences = new GameObject[3,3];
     public GameObject[,] spawnedGems = new GameObject[3,3];
+    private Vector3[,] gemPositions = new Vector3[3, 3];
 
     private bool[] collectedGems = new bool[9];
 
@@ -56,17 +57,14 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                     if (data.gemPositions[i * 3 + j] != Vector3.zero)
                     {
                         spawnedGems[i, j].transform.position = data.gemPositions[i * 3 + j];
-                        Debug.Log("Changing local");
                     }
                 }
                 else
                 {
                     spawnedGems[i, j].GetComponent<gem>().Collect();
-                    Debug.Log("Killing");
                 }
             }
         }
-        Debug.Log("Ran");
     }
 
     //save gems positions
@@ -77,7 +75,8 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
-                data.gemPositions[i * 3 + j] = spawnedGems[i, j].transform.position;
+                print(spawnedGems[i,j]);
+                if (!collectedGems[i * 3 + j]) data.gemPositions[i * 3 + j] = gemPositions[i,j];
             }
         }
     }
@@ -126,20 +125,22 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
             newGem.transform.position = finalSpawnLocation;
             spawnedGems[biomeIndex - 1, i] = newGem;
 
-
             //set the reference variables for the gem script
             //Gem ID is just x and y location of the gem in the 2d array here in the gem spawner. Used for referencing it in the collected gems 2d array.
             newGem.GetComponent<gem>().gemID = (biomeIndex - 1) * 3 + i;
             newGem.GetComponent<gem>().gemSpawner = this.gameObject;
 
+            gemPositions[biomeIndex - 1, i] = newGem.transform.position;
 
-
+            Debug.Log(spawnedGems[biomeIndex - 1, i]);
         }
+
     }
 
     //called from the gem script when a gem is picked up
     public void setGemAsCollected(int gemID)
     {
+        Debug.Log(gemID);
         collectedGems[gemID] = true;
     }
 }
