@@ -2503,9 +2503,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   height: 42
   width: 20
-  chunkPrefab: {fileID: 5037227404674520170, guid: 7239a994c3f9f2243862df7c5ba48ec7, type: 3}
-  chunkPrefabTwo: {fileID: 0}
-  biomeTrans1: 0
+  chunkPrefab: {fileID: 5037227404674520170, guid: af2afc118c677ef4fb2fd006220fb301, type: 3}
+  chunkPrefabTwo: {fileID: 5037227404674520170, guid: 7239a994c3f9f2243862df7c5ba48ec7, type: 3}
+  biomeTrans1: 75
   renderDistance: 15
   noise: 0.3
   heightThreshold: 0.4

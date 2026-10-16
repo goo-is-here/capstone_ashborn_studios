@@ -7,6 +7,7 @@ public class toolUpgrade : MonoBehaviour
     [SerializeField] storeScript store;
     PlayerController player;
     TextMeshProUGUI moleText;
+    GameObject[] slots;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,15 +31,17 @@ public class toolUpgrade : MonoBehaviour
         }
         store.currentTool++;
     }
-    GameObject[] slots;
+    
     public void showRecipe()
     {
+        
         if (store.currentTool < store.toolUpgrades.Count)
         {
             StartCoroutine(talkingMole(store.toolUpgrades[store.currentTool].moleComment));
             slots = new GameObject[store.inventoryUpgrade[store.currentInventory].recipe.Length];
             for (int i = 0; i < store.toolUpgrades[store.currentTool].recipe.Length; i++)
             {
+                print(store.toolUpgrades[store.currentTool].recipe.Length);
                 GameObject slot = Instantiate(store.recipeIngredient, store.recipeHolder.transform);
                 string text = "" + store.toolUpgrades[store.currentTool].recipe[i].count;
                 slots[i] = slot;
