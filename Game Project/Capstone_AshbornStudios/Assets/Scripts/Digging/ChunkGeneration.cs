@@ -6,6 +6,8 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
     [SerializeField] int height;
     [SerializeField] int width;
     [SerializeField] GameObject chunkPrefab;
+    [SerializeField] GameObject chunkPrefabTwo;
+    [SerializeField] int biomeTrans1; 
     GameObject[,,] chunks;
     bool[,,] generatedChunks;
     int[,,] chunkData;
@@ -27,7 +29,15 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
             {
                 for (int z = 0; z < width; z++)
                 {
-                    GameObject newChunk = Instantiate(chunkPrefab, new Vector3(transform.position.x + (x * chunkSize), transform.position.y - (y * chunkSize), transform.position.z + (z * chunkSize)), transform.rotation, transform);
+                    GameObject newChunk;
+                    if(cont.gameObject.transform.position.y >= biomeTrans1)
+                    {
+                        newChunk = Instantiate(chunkPrefab, new Vector3(transform.position.x + (x * chunkSize), transform.position.y - (y * chunkSize), transform.position.z + (z * chunkSize)), transform.rotation, transform);
+                    }
+                    else
+                    {
+                        newChunk = Instantiate(chunkPrefabTwo, new Vector3(transform.position.x + (x * chunkSize), transform.position.y - (y * chunkSize), transform.position.z + (z * chunkSize)), transform.rotation, transform);
+                    }
                     chunks[x, y, z] = newChunk;
                     if (Vector3.Distance(newChunk.transform.position, cont.transform.position) > renderDistance)
                     {

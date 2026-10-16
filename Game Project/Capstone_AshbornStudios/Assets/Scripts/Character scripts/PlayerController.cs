@@ -370,7 +370,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         yield return new WaitForSeconds(mineSpeed / 2);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, diggingRange, blocksToDig))
+        if (Physics.Raycast(ray, out hitInfo, diggingReach, blocksToDig))
         {
             Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
             foreach(Collider col in intersecting)
