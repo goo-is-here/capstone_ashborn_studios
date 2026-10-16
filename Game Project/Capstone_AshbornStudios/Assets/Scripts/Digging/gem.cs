@@ -9,6 +9,7 @@ public class gem : MonoBehaviour
     [HideInInspector] public bool collected = false;
     private MeshRenderer mesh;
     private BoxCollider collision;
+    private AudioSource audio;
 
     private void Start()
     {
