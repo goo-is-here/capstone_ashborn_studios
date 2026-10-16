@@ -302,6 +302,7 @@ MonoBehaviour:
   walking: {fileID: 8300000, guid: 5fb2cfb7bb9b18349a87f1c5072b4fdb, type: 3}
   pos: {x: 0, y: 0, z: 0}
   collectedGems: 000000000000000000
+  additionalOreChance: 0
 --- !u!82 &1231395987933563640
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1052,7 +1053,7 @@ MonoBehaviour:
   controller: {fileID: 7956555298906818836}
   interactor: {fileID: 7312923648407534505}
   journal: {fileID: 6309798316046351945}
-  lantern: {fileID: 7986315151202680301}
+  lantern: {fileID: 5550883922436805368}
 --- !u!1 &3530017092417090856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2604,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6224543111076442124}
   m_SourcePrefab: {fileID: 100100000, guid: 01876ac576c37e840a912027ce19c59e, type: 3}
+--- !u!114 &5550883922436805368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6570210844068470863, guid: 01876ac576c37e840a912027ce19c59e, type: 3}
+  m_PrefabInstance: {fileID: 1596139552091353783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986315151202680301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276abffcad29e9147b273ff9e08f8c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lantern
 --- !u!4 &7322509935897552727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8338528555955262944, guid: 01876ac576c37e840a912027ce19c59e, type: 3}

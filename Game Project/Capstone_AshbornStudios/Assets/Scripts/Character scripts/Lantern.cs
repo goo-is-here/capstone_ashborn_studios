@@ -52,6 +52,11 @@ public class Lantern : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
+        if (!lanternUnlocked)
+        {
+            return;
+        }
+
         if (!gemsArrayInitialized)
         {
             return;

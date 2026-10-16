@@ -13450,10 +13450,6 @@ PrefabInstance:
       propertyPath: climbingObject
       value: 
       objectReference: {fileID: 1156324141}
-    - target: {fileID: 8511496000363268880, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8900769518433231785, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_Enabled
       value: 1

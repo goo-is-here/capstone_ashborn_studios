@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour
     [Header("Journal Reference")]
     public Jounal journal;
     [Header("Lantern Reference")]
-    public GameObject lantern;
+    public Lantern lantern;
 
     private InputAction moveAction, lookAction, jumpAction, digAction, journalAction, interactAction, altFireAction;
     Vector2 movementVector;
@@ -74,6 +74,7 @@ public class InputHandler : MonoBehaviour
         jumpAction.performed -= OnJumpPerformed;
         journalAction.performed -= OnOpenJournalPerformed;
         interactAction.performed -= OnInteractionPerformed;
+        altFireAction.canceled -= OnAltFireCanceled;
     }
     public float getForward()
     {
@@ -110,7 +111,7 @@ public class InputHandler : MonoBehaviour
 
     private void OnAltFirePerformed(InputAction.CallbackContext context)
     {
-        if (lantern.GetComponent<Lantern>().lanternUnlocked)
+        if (lantern.lanternUnlocked)
         {
             lantern.GetComponent<MeshRenderer>().enabled = true;
             lantern.GetComponent<Light>().enabled = true;
@@ -122,5 +123,6 @@ public class InputHandler : MonoBehaviour
     {
         lantern.GetComponent<MeshRenderer>().enabled = false;
         lantern.GetComponent<Light>().enabled = false;
+
     }
 }
