@@ -75,7 +75,7 @@ public class pickUpBag : MonoBehaviour, IDataPersistence
             //adds each item to the player inventory
             foreach (Item ite in inventoryHold)
             {
-                //invent.AddItem(ite);
+                invent.addItem(ite);
             }
         }
         //clears the bag inventory and set to false
