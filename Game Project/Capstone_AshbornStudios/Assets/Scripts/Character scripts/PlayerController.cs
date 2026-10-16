@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [HideInInspector]
     public bool[] collectedGems = new bool[9];
     public float additionalOreChance = 0f;
+    private Animator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -114,6 +115,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         //gets the audio source component from the player object
         audioSource = this.gameObject.GetComponent<AudioSource>();
+
+        anim = GetComponentInChildren<Animator>();
     }
     //gets the durability
     public int GetUsesLeft()
@@ -265,6 +268,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         
     }
+
     //updates the tool durability
     public void durabilityChange(float dur)
     {
