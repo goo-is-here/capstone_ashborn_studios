@@ -149,7 +149,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             print(player.gameObject);
             Vector3 pos = player.transform.TransformPoint(Vector3.forward * spawnDistance);
             GameObject drop = Instantiate(inventoryItemList[selectedSlotNum].worldPrefab, pos, player.transform.rotation);
-            drop.GetComponent<Rigidbody>().AddForce(player.transform.forward * throwSpeed);
+            //drop.GetComponent<Rigidbody>().AddForce(player.transform.forward * throwSpeed);
             pickUpItem dropVariables = drop.GetComponent<pickUpItem>();
             dropVariables.count = inventoryItemList[selectedSlotNum].count;
             inventoryItemList[selectedSlotNum] = null;

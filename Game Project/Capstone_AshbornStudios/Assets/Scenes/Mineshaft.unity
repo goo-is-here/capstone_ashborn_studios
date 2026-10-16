@@ -1887,13 +1887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4b9b1c62a0e1b4493cd80936fab7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  height: 12
-  width: 30
+  height: 20
+  width: 20
   chunkPrefab: {fileID: 5037227404674520170, guid: 7239a994c3f9f2243862df7c5ba48ec7, type: 3}
-  renderDistance: 10
+  renderDistance: 15
   noise: 0.3
-  heightThreshold: 0.2
-  chunkSize: 3.3333333
+  heightThreshold: 0.35
+  chunkSize: 5
 --- !u!4 &1593779575
 Transform:
   m_ObjectHideFlags: 0
@@ -2404,6 +2404,11 @@ Skybox:
   m_GameObject: {fileID: 1816862749}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 3e26bd602971e734293e51a62b68113d, type: 2}
+--- !u!20 &1816862760 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7738791531071856979, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 4218721442534786265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1822919723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,7 +2939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2942,7 +2947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2954,7 +2959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3345,7 +3350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: numSlots
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: throwSpeed
@@ -3361,7 +3366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: numSlotsPerRow
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1048728210573436511, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: inventorySlotParent.Array.size
@@ -4143,6 +4148,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6405761471666435349, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1816862760}
     - target: {fileID: 6417588967868995168, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4365,7 +4374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366255446133173368, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8393419095024316370, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_AnchorMax.y
