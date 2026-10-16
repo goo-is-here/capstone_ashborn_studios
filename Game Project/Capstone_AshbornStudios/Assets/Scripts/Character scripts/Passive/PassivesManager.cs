@@ -14,6 +14,9 @@ public class PassivesManager : MonoBehaviour, IDataPersistence
 
     private PlayerController player;
 
+    public AudioSource audioSource;
+    public AudioClip gemEquipSound;
+
     //gets the player controller
     private void Start()
     {
@@ -28,6 +31,7 @@ public class PassivesManager : MonoBehaviour, IDataPersistence
 
         else if (!(equippedPassives.Count >= maxPassives))
         {
+            audioSource.PlayOneShot(gemEquipSound);
             equippedPassives.Add(newPassive);
             newPassive.Initialize(player);
         }
