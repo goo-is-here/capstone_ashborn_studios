@@ -3,6 +3,30 @@
 --- !u!1001 &8590445934992662849
 PrefabInstance:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8208736645611549798}
+  - component: {fileID: 6068939316862658}
+  - component: {fileID: 2861489528268817988}
+  - component: {fileID: 50151640086733180}
+  - component: {fileID: -8179174631996270567}
+  m_Layer: 11
+  m_Name: Opal
+  m_TagString: Gems
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8208736645611549798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543811510062714198}
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
