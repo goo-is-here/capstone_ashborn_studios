@@ -51,7 +51,9 @@ MonoBehaviour:
   rarityTiers:
   - 90
   - 85
+  - 85
   objectToSpawn:
   - {fileID: 5580466884739795233, guid: d32cd01629769014e9141e51b2ef0760, type: 3}
   - {fileID: 6573522551506473397, guid: a63e5038837ac834d9bca4907c46eaaf, type: 3}
+  - {fileID: 733924324999184329, guid: a3f64b4d0efc2e842a88917872542366, type: 3}
   oreLimit: 5

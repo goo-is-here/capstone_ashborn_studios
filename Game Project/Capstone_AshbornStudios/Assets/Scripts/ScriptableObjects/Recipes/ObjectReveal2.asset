@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: ObjectReveal2
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   recipe:
-  - enu: 9
-    Name: Coal
-    count: 2
+  - icon: {fileID: 21300000, guid: 5104bf576199c3e49933e8dc69fdeb27, type: 3}
+    enu: 5
+    Name: Quartz
+    count: 15
+  - icon: {fileID: 21300000, guid: 32962a87414ccca4eb3398ea749d61a0, type: 3}
+    enu: 3
+    Name: Iron
+    count: 5
   madeName: 'Object Upgrade 2 '
-  moleComment: Unlocks second cube
+  moleComment: And a carpet to keep your feet off the cold ground?
   icon: {fileID: 21300000, guid: 0c4a06b4ee06a2b4ab1b85075857b797, type: 3}
   objectToShow: 2
   rangeIncrease: 0
