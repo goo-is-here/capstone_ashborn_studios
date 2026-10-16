@@ -22,6 +22,8 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     bool seenTutorial;
     [SerializeField] GameObject tutorialObject;
     [SerializeField] GameObject stuckbag;
+    [SerializeField] AudioClip select;
+    [SerializeField] AudioSource source;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -87,6 +89,10 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     {
         StartCoroutine(enter(1, 3));
         elementToFade.gameObject.SetActive(true);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(select);
+        }
     }
     IEnumerator enter(float endValue, float duration)
     {
@@ -126,11 +132,19 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     public void OpenSettignsMenu()
     {
         settingsMenu.SetActive(true);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(select);
+        }
     }
 
     public void CloseSettingsMenu()
     {
         settingsMenu.SetActive(false);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(select);
+        }
     }
     public void LoadData(GameData data)
     {
@@ -149,5 +163,9 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     public void tutorialMenu()
     {
         tutorialObject.SetActive(true);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(select);
+        }
     }
 }
