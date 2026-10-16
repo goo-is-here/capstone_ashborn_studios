@@ -8,8 +8,6 @@ public class InputHandler : MonoBehaviour
     public InteractionHandler interactor;
     [Header("Journal Reference")]
     public Jounal journal;
-    [Header("Lantern Reference")]
-    public Lantern lantern;
 
     private InputAction moveAction, lookAction, jumpAction, digAction, journalAction, interactAction, altFireAction;
     Vector2 movementVector;
@@ -111,18 +109,13 @@ public class InputHandler : MonoBehaviour
 
     private void OnAltFirePerformed(InputAction.CallbackContext context)
     {
-        if (lantern.lanternUnlocked)
-        {
-            lantern.GetComponent<MeshRenderer>().enabled = true;
-            lantern.GetComponent<Light>().enabled = true;
-        }
+        controller.EquipLantern();
 
     }
 
     private void OnAltFireCanceled(InputAction.CallbackContext context)
     {
-        lantern.GetComponent<MeshRenderer>().enabled = false;
-        lantern.GetComponent<Light>().enabled = false;
+        controller.UnequipLantern();
 
     }
 }

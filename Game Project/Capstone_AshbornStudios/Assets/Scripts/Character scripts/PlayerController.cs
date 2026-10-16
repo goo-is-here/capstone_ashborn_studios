@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [SerializeField] AudioClip defaultDig;
     [SerializeField] AudioClip toolBreak;
     [SerializeField] AudioClip walking;
+    [SerializeField] AudioClip mineralPickup;
+    [SerializeField] AudioClip lanternEquip;
+    [SerializeField] AudioClip lanternUnequip;
     AudioSource audioSource;
     enum sceneType { HUB, MINE};
     sceneType thisEnum = sceneType.HUB;
@@ -75,6 +78,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject[] clawsLeft;
     [SerializeField] GameObject[] clawsRight;
     int clawIndex = 0;
+
+    [Header("Lantern Reference")]
+    public Lantern lantern;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -322,12 +329,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         float rand = Random.Range(0f, 1f);
 
-        if(rand < additionalOreChance)
+        if(rand < additionalOreChance/100)
         {
             inventory.addItem(ite, obj);
         }
 
         inventory.addItem(ite, obj);
+        audioSource.PlayOneShot(mineralPickup);
     }
     //a set wait time for functions, default time is 5 seconds
     IEnumerator wait(float time = 5)
@@ -401,5 +409,25 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public void CollectGem(int gemID)
     {
         collectedGems[gemID] = true;
+    }
+
+    public void EquipLantern()
+    {
+        if (lantern.lanternUnlocked)
+        {
+            lantern.GetComponent<MeshRenderer>().enabled = true;
+            lantern.GetComponent<Light>().enabled = true;
+            audioSource.PlayOneShot(lanternEquip);
+        }
+    }
+
+    public void UnequipLantern()
+    {
+        lantern.GetComponent<MeshRenderer>().enabled = false;
+        lantern.GetComponent<Light>().enabled = false;
+        if (lantern.lanternUnlocked)
+        {
+            audioSource.PlayOneShot(lanternUnequip);
+        }
     }
 }

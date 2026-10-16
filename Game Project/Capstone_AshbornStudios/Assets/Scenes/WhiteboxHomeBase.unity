@@ -12352,6 +12352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1231395987933563640, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1671749090078448131, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.89
@@ -12401,9 +12405,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 579177790}
     - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: lantern
+      value: 
+      objectReference: {fileID: 1739090052}
+    - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 227736314}
+    - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: lanternEquip
+      value: 
+      objectReference: {fileID: 8300000, guid: f52e3f5e66597f74aaa1760ebd25c371, type: 3}
+    - target: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: lanternUnequip
+      value: 
+      objectReference: {fileID: 8300000, guid: f6fe5ac54ba7e9b488b0c4335ae23b4e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18196,6 +18212,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd8689d5a9ab96449b623e7cc2b7cb5d, type: 3}
   m_PrefabInstance: {fileID: 1730993327}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739090052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5550883922436805368, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 1102696347}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276abffcad29e9147b273ff9e08f8c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lantern
 --- !u!1001 &1758871366
 PrefabInstance:
   m_ObjectHideFlags: 0

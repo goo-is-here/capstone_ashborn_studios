@@ -300,6 +300,9 @@ MonoBehaviour:
   defaultDig: {fileID: 8300000, guid: bc3a4d95533fd4f4a8bbaa01b868ebd4, type: 3}
   toolBreak: {fileID: 8300000, guid: c94de1abee53d9346a36d2db1ee580a6, type: 3}
   walking: {fileID: 8300000, guid: 5fb2cfb7bb9b18349a87f1c5072b4fdb, type: 3}
+  mineralPickup: {fileID: 8300000, guid: 649e244c50decc9499dcb5e44ce8cd8a, type: 3}
+  lanternEquip: {fileID: 8300000, guid: f52e3f5e66597f74aaa1760ebd25c371, type: 3}
+  lanternUnequip: {fileID: 8300000, guid: f6fe5ac54ba7e9b488b0c4335ae23b4e, type: 3}
   pos: {x: 0, y: 0, z: 0}
   collectedGems: 000000000000000000
   additionalOreChance: 0
@@ -309,6 +312,7 @@ MonoBehaviour:
   clawsRight:
   - {fileID: 2739357447857101397}
   - {fileID: 921410322653500295}
+  lantern: {fileID: 5550883922436805368}
 --- !u!82 &1231395987933563640
 AudioSource:
   m_ObjectHideFlags: 0
@@ -321,7 +325,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1017404988649402764, guid: 9d8c8ef105d227c4f8f0e86b20c3b14a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1061,7 +1065,6 @@ MonoBehaviour:
   controller: {fileID: 7956555298906818836}
   interactor: {fileID: 7312923648407534505}
   journal: {fileID: 6309798316046351945}
-  lantern: {fileID: 5550883922436805368}
 --- !u!1 &3530017092417090856
 GameObject:
   m_ObjectHideFlags: 0
