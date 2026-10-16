@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool canMine = true;
     [HideInInspector]
     public bool[] collectedGems = new bool[9];
+    public float additionalOreChance = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -295,6 +296,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void addItemInventory(Item ite, pickUpItem obj = null)
     {
+        float rand = Random.Range(0f, 1f);
+
+        if(rand < additionalOreChance)
+        {
+            inventory.addItem(ite, obj);
+        }
+
         inventory.addItem(ite, obj);
     }
     //a set wait time for functions, default time is 5 seconds

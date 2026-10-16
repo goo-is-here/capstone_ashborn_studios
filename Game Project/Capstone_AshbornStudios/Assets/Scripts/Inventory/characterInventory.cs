@@ -191,6 +191,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
         }
         inventorySlotArray.RemoveRange(hotBarSlots, numSlots-hotBarSlots);
     }
+
     //to be rewritten and condensed
     public void addItem(Item ite, pickUpItem obj = null)
     {
