@@ -62,7 +62,10 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [SerializeField] AudioClip mineralPickup;
     [SerializeField] AudioClip lanternEquip;
     [SerializeField] AudioClip lanternUnequip;
-    AudioSource audioSource;
+    [SerializeField] AudioSource sfxAudioSource;
+    [SerializeField] AudioSource bagAudioSource;
+
+    
     enum sceneType { HUB, MINE};
     sceneType thisEnum = sceneType.HUB;
     public Vector3 pos;
@@ -123,8 +126,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             this.thisEnum = sceneType.MINE;
         }
-        //gets the audio source component from the player object
-        audioSource = this.gameObject.GetComponent<AudioSource>();
+        //gets the animator in children
         anim = GetComponentInChildren<Animator>();
     }
     //gets the durability
@@ -202,7 +204,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             {
                 playSound = true;
             }
-
+            bagAudioSource.loop = false;
+            bagAudioSource.Stop();
         }
         else
         {
@@ -211,9 +214,14 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             {
                 playSound = false;
                 isPlayingSound = true;
-                audioSource.PlayOneShot(walking);
+                
+                sfxAudioSource.PlayOneShot(walking);
                 StartCoroutine(soundRepeat(walking.length));
-
+                if (!bagAudioSource.isPlaying)
+                {
+                    bagAudioSource.loop = true;
+                    bagAudioSource.Play();
+                }
             }
             
             isMoving = true;
@@ -304,7 +312,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         durability = Mathf.Clamp(durability, 0f, maxDurability);
         if(durability == 0)
         {
-            audioSource.PlayOneShot(toolBreak);
+            sfxAudioSource.PlayOneShot(toolBreak);
         }
     }
 
@@ -335,7 +343,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
 
         inventory.addItem(ite, obj);
-        audioSource.PlayOneShot(mineralPickup);
+        sfxAudioSource.PlayOneShot(mineralPickup);
     }
     //a set wait time for functions, default time is 5 seconds
     IEnumerator wait(float time = 5)
@@ -417,7 +425,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             lantern.GetComponent<MeshRenderer>().enabled = true;
             lantern.GetComponent<Light>().enabled = true;
-            audioSource.PlayOneShot(lanternEquip);
+            sfxAudioSource.PlayOneShot(lanternEquip);
         }
     }
 
@@ -427,7 +435,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         lantern.GetComponent<Light>().enabled = false;
         if (lantern.lanternUnlocked)
         {
-            audioSource.PlayOneShot(lanternUnequip);
+            sfxAudioSource.PlayOneShot(lanternUnequip);
         }
     }
 }
