@@ -36,13 +36,13 @@ public class DirtGeneration : MonoBehaviour
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
-                        oreCheck();
+                        
                         
                     }
                 }
             }
         }
-            
+        oreCheck();
     }
     public void breakBlocks()
     {
@@ -61,7 +61,6 @@ public class DirtGeneration : MonoBehaviour
                         else
                         {
                             Vector3 dirtPos = new Vector3(transform.position.x + (i * dirtSize), transform.position.y + (j * dirtSize), transform.position.z + (k * dirtSize));
-                            oreCheck();
                         }
                     }
                 }
@@ -70,20 +69,31 @@ public class DirtGeneration : MonoBehaviour
     }
     private void oreCheck()
     {
-        for (int i = 0; i < numOre; i++)
+        print("called");
+        int i = 0;
+        while(numOre < oreLimit)
         {
             int x = Random.Range(0, size - 1);
             int y = Random.Range(0, size - 1);
             int z = Random.Range(0, size - 1);
             foreach (GameObject obj in objectToSpawn)
             {
+                print("hi");
                 float random = Random.Range(1f, 100f);
                 if (i < rarityTiers.Count && random > rarityTiers[i])
                 {
-                    GameObject ore = Instantiate(obj, dirtParticles[x,y,z].transform.position, transform.rotation, transform);
-                    numOre++;
+                    
+                    if(dirtParticles[x, y, z] != null)
+                    {
+                        print("adding");
+                        GameObject ore = Instantiate(obj, dirtParticles[x, y, z].transform.position, transform.rotation, transform);
+                    }
+                    
                 }
+                i++;
+                
             }
+            numOre++;
         }
     }
     public void receiveBreak(int x, int y, int z)
