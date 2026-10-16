@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 4795995605332781340}
   - component: {fileID: 7025920452423209774}
   - component: {fileID: 434821214670601027}
+  - component: {fileID: 7695125617055767309}
   m_Layer: 12
   m_Name: RoseQuartz
   m_TagString: Untagged
@@ -225,6 +226,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7695125617055767309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698799212128321738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
+  passive: {fileID: 11400000, guid: 02b63aee4d5a2e64aa69569e892e5224, type: 2}
+  activeMaterial: {fileID: 2100000, guid: 4a8b0895bc04381469dc7422fc5c48f9, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1 &748669758712342930
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +945,7 @@ GameObject:
   - component: {fileID: 7803663261481219430}
   - component: {fileID: 2717034901795565354}
   - component: {fileID: 1076041709677030149}
+  - component: {fileID: 6003516575802174687}
   m_Layer: 0
   m_Name: Gem (1)
   m_TagString: Untagged
@@ -1029,6 +1046,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6003516575802174687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232989524922133344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
+  passive: {fileID: 11400000, guid: 13833a331058a354fb54a897289c70b4, type: 2}
+  activeMaterial: {fileID: 2100000, guid: 0574c5d8b3affd346a4bbb35a6fd095d, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1 &2308870557557535095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
-  passive: {fileID: 0}
+  passive: {fileID: 11400000, guid: ae916825a7c6fc542b75128737d0f764, type: 2}
   activeMaterial: {fileID: 2100000, guid: 96fced16ff93ab94aa3fef5439d2138a, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1 &2880774523884228789
@@ -2261,7 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
-  passive: {fileID: 11400000, guid: 13833a331058a354fb54a897289c70b4, type: 2}
+  passive: {fileID: 11400000, guid: 02b63aee4d5a2e64aa69569e892e5224, type: 2}
   activeMaterial: {fileID: 2100000, guid: 0574c5d8b3affd346a4bbb35a6fd095d, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1 &3761340479765629024
@@ -2517,6 +2549,7 @@ GameObject:
   - component: {fileID: 4737396052820713692}
   - component: {fileID: 6985257840638123548}
   - component: {fileID: 3085101034773827341}
+  - component: {fileID: 1298738240758094732}
   m_Layer: 0
   m_Name: Gem (1)
   m_TagString: Untagged
@@ -2617,6 +2650,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1298738240758094732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165857071730986083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe12268cdbab9646aa5eb5f9e3ed792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveHolder
+  passive: {fileID: 11400000, guid: 7f447775e1186634a8f678425ed3228f, type: 2}
+  activeMaterial: {fileID: 2100000, guid: 6b8bbcf3d10de4f45b1da532479363a1, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 38db7c670a9bb1a4c91674d130e54d65, type: 2}
 --- !u!1 &4293469265801150231
 GameObject:
   m_ObjectHideFlags: 0

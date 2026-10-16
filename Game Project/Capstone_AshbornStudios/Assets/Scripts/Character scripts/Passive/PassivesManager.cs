@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,14 +48,21 @@ public class PassivesManager : MonoBehaviour, IDataPersistence
         data.maxPassives = maxPassives;
     }
 
-    public void LoadData(GameData data)
+    private IEnumerator DelayedLoad()
     {
-        maxPassives = data.maxPassives;
-        equippedPassives = data.equippedPassives;
-        foreach(GemPassive passive in equippedPassives)
+        yield return null;
+
+        foreach (GemPassive passive in equippedPassives)
         {
             passive.Initialize(player);
 
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        maxPassives = data.maxPassives;
+        equippedPassives = data.equippedPassives;
+        StartCoroutine(DelayedLoad());
     }
 }
