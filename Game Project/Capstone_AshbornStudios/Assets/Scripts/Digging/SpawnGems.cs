@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.UI.Image;
@@ -61,10 +63,17 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                 }
                 else
                 {
-                    spawnedGems[i, j].GetComponent<gem>().Collect();
+                    StartCoroutine(SetGemAsCollectedAfterLoad(spawnedGems[i, j].GetComponent<gem>()));
                 }
             }
         }
+    }
+
+    private IEnumerator SetGemAsCollectedAfterLoad(gem gem)
+    {
+        yield return null;
+        yield return null;
+        gem.Collect();
     }
 
     //save gems positions

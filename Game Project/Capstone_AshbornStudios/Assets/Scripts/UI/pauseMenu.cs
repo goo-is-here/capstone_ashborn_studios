@@ -16,7 +16,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     public CanvasRenderer elementToFade;
     public float resetVal;
     public GameObject crafting;
-
+    public GameObject journal;
     public GameObject settingsMenu;
     private bool inSettings;
     bool seenTutorial;
@@ -40,7 +40,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && crafting != null && !crafting.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && crafting != null && !crafting.activeSelf && !journal.GetComponent<Canvas>().enabled)
         {
             print("press");
             cont.canMove = !cont.canMove;

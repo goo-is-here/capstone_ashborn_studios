@@ -1579,9 +1579,9 @@ MonoBehaviour:
   - {fileID: 7056030598220829989, guid: 655cba5b24c31ab4595d3a886f45c12c, type: 3}
   - {fileID: 6861261679599805170, guid: db435e93b1fcfee4fa602b16a797e790, type: 3}
   biomeThreeGems:
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
-  - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+  - {fileID: 8153618097435418682, guid: 156f0bdd93baf384c9196fa78ee045a2, type: 3}
+  - {fileID: 1771398808519609556, guid: f3fbe7df769678640bf2dc25f564088d, type: 3}
+  - {fileID: 3203766576803640943, guid: 9b2bdb6816a35a24c93f1b13d4fbdd9b, type: 3}
   forceSpawnGems: 0
 --- !u!4 &821335407
 Transform:
@@ -3307,6 +3307,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 6309798316046351945, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 8678092430102807405}
     - target: {fileID: 7738791531071856979, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3374,6 +3378,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1816862755}
   m_SourcePrefab: {fileID: 100100000, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+--- !u!1 &4218721442534786266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3769642915917417210, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 4218721442534786265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8678092430102807404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3405,6 +3414,22 @@ PrefabInstance:
     - target: {fileID: 346773822838753874, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 545820521971949500, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 545820521971949500, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 545820521971949500, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 545820521971949500, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 618840012358025025, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4587,6 +4612,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795431723012423640, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: journal
+      value: 
+      objectReference: {fileID: 4218721442534786266}
+    - target: {fileID: 8795431723012423640, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: crafting
       value: 
       objectReference: {fileID: 1955286607}
@@ -4626,6 +4655,11 @@ PrefabInstance:
       addedObject: {fileID: 688370316}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+--- !u!1 &8678092430102807405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4676436090687439585, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+  m_PrefabInstance: {fileID: 8678092430102807404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

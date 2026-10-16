@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public Vector3 pos;
     bool canDig = true;
     bool playSound = true;
+    bool isPlayingSound = false;
     bool tele = false;
     bool canMine = true;
     [HideInInspector]
@@ -177,7 +178,12 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         if(movementVector.x == 0f && movementVector.y == 0f)
         {
             isMoving = false;
-            playSound = true;
+
+            if (!isPlayingSound)
+            {
+                playSound = true;
+            }
+
         }
         else
         {
@@ -185,6 +191,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             if (playSound)
             {
                 playSound = false;
+                isPlayingSound = true;
                 audioSource.PlayOneShot(walking);
                 StartCoroutine(soundRepeat(walking.length));
 
@@ -255,6 +262,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             bar.fillAmount = durability / maxDurability;
         if (Input.GetMouseButton(0) && canMine && canMove)
         {
+            anim.SetTrigger("UseTool");
             StartCoroutine(mineCooldown());
         }
     }
@@ -327,6 +335,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         yield return new WaitForSeconds(length);
         playSound = true;
+        isPlayingSound = false;
     }
     //helps with loaded position when saving
     //TODO find a better way to do this
@@ -357,7 +366,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private IEnumerator mineCooldown()
     {
         canMine = false;
-        //anim.SetTrigger("");
+
         yield return new WaitForSeconds(mineSpeed / 2);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;

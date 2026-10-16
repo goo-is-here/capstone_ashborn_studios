@@ -26,6 +26,7 @@ public class Jounal : MonoBehaviour
     public PlayerController playerController;
     public Sprite[] gemThumbnails;
 
+    public GameObject pause;
     //private variables
     int currentPage = 0;
     [HideInInspector]
@@ -39,12 +40,15 @@ public class Jounal : MonoBehaviour
 
     public void OpenJournal()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (pause.activeSelf) return;
         currentPage = 0;
         canvas.enabled = true;
         isOpen = true;
         UpdateText();
         UpdateShowButtons();
-        Cursor.lockState = CursorLockMode.None;
+
     }
 
     public void FlipPageLeft()
@@ -67,6 +71,7 @@ public class Jounal : MonoBehaviour
         canvas.enabled = false;
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void UpdateText()
