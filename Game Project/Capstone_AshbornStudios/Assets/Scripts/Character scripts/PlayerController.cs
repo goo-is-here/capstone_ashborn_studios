@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [SerializeField] AudioClip mineralPickup;
     [SerializeField] AudioClip lanternEquip;
     [SerializeField] AudioClip lanternUnequip;
+    [SerializeField] AudioClip[] digSounds;
     [SerializeField] AudioSource sfxAudioSource;
     [SerializeField] AudioSource bagAudioSource;
 
@@ -393,11 +394,45 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private Vector3[] vertices;
     private IEnumerator mineCooldown()
     {
-        canMine = false;
-
-        yield return new WaitForSeconds(mineSpeed / 2);
+        //check to see if hit dirt this dig
+        bool hitDirt = false;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
+        if (Physics.Raycast(ray, out hitInfo, diggingReach, blocksToDig))
+        {
+            Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
+            foreach (Collider col in intersecting)
+            {
+                if (col.CompareTag("Dirt"))
+                {
+                    hitDirt = true;
+                }
+            }
+
+        }
+
+        //play dig sound 1
+        int rand = Random.Range(0, digSounds.Length - 1);
+        int lastSound = rand;
+        AudioClip soundToPlay = digSounds[rand];
+        if (hitDirt)sfxAudioSource.PlayOneShot(soundToPlay);
+
+        canMine = false;
+        yield return new WaitForSeconds(mineSpeed / 2);
+        
+        //play dig sound 2
+        rand = Random.Range(0, digSounds.Length - 1);
+        if (rand == lastSound)
+        {
+            if (rand == digSounds.Length - 1)
+                rand -= 1;
+            else
+                rand += 1;
+        }
+        AudioClip secondSoundToPlay = digSounds[rand];
+        if(hitDirt) sfxAudioSource.PlayOneShot(secondSoundToPlay);
+
+
         if (Physics.Raycast(ray, out hitInfo, diggingReach, blocksToDig))
         {
             Collider[] intersecting = Physics.OverlapSphere(hitInfo.point, diggingRange);
