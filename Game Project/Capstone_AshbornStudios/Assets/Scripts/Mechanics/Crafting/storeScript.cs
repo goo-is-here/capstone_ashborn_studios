@@ -34,10 +34,6 @@ public class storeScript : MonoBehaviour, IDataPersistence
     {
         startPosition = recipeHolder.transform.position;
         endPosition = swingAmount.position;
-        for(int i = 0; i < objectsToUnlock.Count; i++)
-        {
-            objectsToUnlock[i].SetActive(false);
-        }
         recipeHolder.transform.position = endPosition;
     }
 
@@ -166,6 +162,7 @@ public class storeScript : MonoBehaviour, IDataPersistence
         currentTool = data.tool;
         currentObject = data.objectNum;
         currentInventory = data.invent;
+        activateObjects();
     }
     //save variables into game data
     //Currently saving current scene, position per scene, damage of tool, durability of tool, max durability
@@ -178,5 +175,12 @@ public class storeScript : MonoBehaviour, IDataPersistence
             data.invent = currentInventory;
         }
 
+    }
+    void activateObjects()
+    {
+        for(int i = 0; i < currentObject; i++)
+        {
+            objectsToUnlock[i].SetActive(true);
+        }
     }
 }

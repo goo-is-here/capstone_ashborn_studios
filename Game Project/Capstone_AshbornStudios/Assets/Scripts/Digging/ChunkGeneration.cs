@@ -30,7 +30,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
                 for (int z = 0; z < width; z++)
                 {
                     GameObject newChunk;
-                    if(cont.gameObject.transform.position.y >= biomeTrans1)
+                    if(y <= biomeTrans1)
                     {
                         newChunk = Instantiate(chunkPrefab, new Vector3(transform.position.x + (x * chunkSize), transform.position.y - (y * chunkSize), transform.position.z + (z * chunkSize)), transform.rotation, transform);
                     }

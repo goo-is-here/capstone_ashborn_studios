@@ -6,6 +6,7 @@ public class DirtGeneration : MonoBehaviour
     public int size;
     [SerializeField] GameObject dirtPrefab;
     GameObject[,,] dirtParticles;
+    GameObject[,,] oreBits;
     [HideInInspector] public float dirtSize;
     ChunkGeneration chunk;
     [HideInInspector] public bool[] chunkBreak;
@@ -20,6 +21,7 @@ public class DirtGeneration : MonoBehaviour
     {
         dirtSize = dirtPrefab.GetComponent<MeshRenderer>().bounds.size.x;
         dirtParticles = new GameObject[size, size, size];
+        oreBits = new GameObject[size, size, size];
         chunkBreak = new bool[size * size * size];
     }
     public void generateDirt(float noise, float heightThreshold)
@@ -36,13 +38,16 @@ public class DirtGeneration : MonoBehaviour
                         GameObject newDirt = Instantiate(dirtPrefab, dirtPos, transform.rotation, transform);
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
-                        
-                        
+                        int randChance = Random.Range(0, 100);
+                        if(randChance > 90)
+                        {
+                            oreBits[i,j,k] = oreCheck(newDirt.transform.position);
+                        }
                     }
                 }
             }
         }
-        oreCheck();
+        
     }
     public void breakBlocks()
     {
@@ -57,6 +62,7 @@ public class DirtGeneration : MonoBehaviour
                         if (chunkBreak[i * size * size + j * size + k])
                         {
                             Destroy(dirtParticles[i, j, k]);
+                            Destroy(oreBits[i, j, k]);
                         }
                         else
                         {
@@ -67,31 +73,27 @@ public class DirtGeneration : MonoBehaviour
             }
         }
     }
-    private void oreCheck()
+    private GameObject oreCheck(Vector3 pos)
     {
-        int i = 0;
-        while(numOre < oreLimit)
+        if(numOre < oreLimit)
         {
-            int x = Random.Range(0, size - 1);
-            int y = Random.Range(0, size - 1);
-            int z = Random.Range(0, size - 1);
+            bool spawned = false;
             foreach (GameObject obj in objectToSpawn)
             {
+                int i = 0;
                 float random = Random.Range(1f, 100f);
-                if (i < rarityTiers.Count && random > rarityTiers[i])
+                if (i < rarityTiers.Count && random > rarityTiers[i] && !spawned)
                 {
-                    
-                    if(dirtParticles[x, y, z] != null)
-                    {
-                        GameObject ore = Instantiate(obj, dirtParticles[x, y, z].transform.position, transform.rotation, transform);
-                    }
-                    
+                    numOre++;
+                    GameObject ore = Instantiate(obj, pos, transform.rotation, transform);
+                    return ore;
+
                 }
                 i++;
-                
             }
-            numOre++;
+            
         }
+        return null;
     }
     public void receiveBreak(int x, int y, int z)
     {

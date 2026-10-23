@@ -267,7 +267,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 8366255446133173368}
   tutorialObject: {fileID: 7303797292994939264}
   stuckbag: {fileID: 0}
-  select: {fileID: 8300000, guid: 32bde7a127d767a4899097f6e67013ad, type: 3}
+  select: {fileID: 8300000, guid: 234173962492c1949a5827f7608265e7, type: 3}
   source: {fileID: 3673632456009516411}
 --- !u!1 &390707163740882181
 GameObject:
@@ -1892,6 +1892,12 @@ MonoBehaviour:
   - {fileID: 8938751040449889703}
   maxItem: 99
   selectedSlotNum: -1
+  obj:
+  - {fileID: 7893195239258670757, guid: a63e5038837ac834d9bca4907c46eaaf, type: 3}
+  - {fileID: -5463139088559659145, guid: a3f64b4d0efc2e842a88917872542366, type: 3}
+  - {fileID: -8007934190874476620, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}
+  - {fileID: 810175870960664244, guid: d32cd01629769014e9141e51b2ef0760, type: 3}
+  - {fileID: 1798692737197306483, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
 --- !u!1 &3005944744073491105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,7 +2183,7 @@ MonoBehaviour:
   isLeft: 1
   tut: {fileID: 9091539031448776294}
   source: {fileID: 803505951798443794}
-  select: {fileID: 8300000, guid: 32bde7a127d767a4899097f6e67013ad, type: 3}
+  select: {fileID: 8300000, guid: 234173962492c1949a5827f7608265e7, type: 3}
 --- !u!1 &3481813190823021385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,7 +3364,7 @@ MonoBehaviour:
   newGame: {fileID: 0}
   contine: {fileID: 0}
   quit: {fileID: 0}
-  quitGame: {fileID: 8300000, guid: 32bde7a127d767a4899097f6e67013ad, type: 3}
+  quitGame: {fileID: 8300000, guid: 234173962492c1949a5827f7608265e7, type: 3}
   playGame: {fileID: 0}
 --- !u!82 &5551082012420622468
 AudioSource:
@@ -4336,7 +4342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   tut: {fileID: 7303797292994939264}
   source: {fileID: 803505951798443794}
-  select: {fileID: 8300000, guid: 32bde7a127d767a4899097f6e67013ad, type: 3}
+  select: {fileID: 8300000, guid: 234173962492c1949a5827f7608265e7, type: 3}
 --- !u!1 &6761075526332470913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,6 +4806,8 @@ MonoBehaviour:
 
     Walk into the materials
     and gems to collect them! '
+  - 'Once you''re done, head back up to the tunnel or dig right through the stone
+    on that same wall. Do either by approaching them and press ''E''! '
   - "Once you're back try heading to that little alcove and meet Mr. Mole, interact
     with him and he'll trade you some things!\n "
   - 'Finally press quit when you''re done reading, if you ever need help again just
@@ -5603,7 +5611,7 @@ MonoBehaviour:
   isLeft: 0
   tut: {fileID: 9091539031448776294}
   source: {fileID: 803505951798443794}
-  select: {fileID: 8300000, guid: 32bde7a127d767a4899097f6e67013ad, type: 3}
+  select: {fileID: 8300000, guid: 234173962492c1949a5827f7608265e7, type: 3}
 --- !u!1 &9122731204734706182
 GameObject:
   m_ObjectHideFlags: 0

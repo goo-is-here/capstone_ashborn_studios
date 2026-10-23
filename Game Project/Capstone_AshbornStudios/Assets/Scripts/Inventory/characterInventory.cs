@@ -18,8 +18,8 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     bool showingInventory = false;
     [SerializeField] int maxItem = 99;
     public int selectedSlotNum = -1;
-    List<Item> tempList;
-
+    List<Item> tempList = new List<Item>();
+    public pickUpItem[] obj;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -355,7 +355,19 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     //Load data. Read variables from game data into variables here
     public void LoadData(GameData data)
     {
-        tempList = data.inventory;
+        foreach (Item ite in data.inventory)
+        {
+            for (int i = 0; i < obj.Length; i++)
+            {
+                if (obj[i].enu == ite.enu)
+                {
+                    Item newIte = new Item(ite.itemName, ite.description, obj[i].icon, ite.count, ite.enu, obj[i].worldPrefab.dropped);
+                    tempList.Add(newIte);
+                }
+            }
+            
+        }
+        
     }
     //save variables into game data
     public void SaveData(ref GameData data)
@@ -365,6 +377,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             data.inventory.Clear();
             foreach(Item ite in inventoryItemList)
             {
+                
                 data.inventory.Add(ite);
             }
         }
