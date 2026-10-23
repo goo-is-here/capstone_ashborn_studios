@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool tele = false;
     bool canMine = true;
     [HideInInspector]
-    public bool[] collectedGems = new bool[9];
+    public bool[] collectedGems = new bool[16];
     public float additionalOreChance = 0f;
     private Animator anim;
     [SerializeField] GameObject[] clawsLeft;

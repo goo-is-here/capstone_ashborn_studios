@@ -47,8 +47,8 @@ public class GameData
         this.ruinsLocation = -1;
         this.droppedInventory = false;
         this.growRoomEntered = false;
-        this.gemPositions = new Vector3[9];
-        this.collectedGems = new bool[9];
+        this.gemPositions = new Vector3[18];
+        this.collectedGems = new bool[16];
         this.hungerValue = 100f;
         this.equippedPassives = new List<GemPassive>();
         this.lanternUnlocked = false;

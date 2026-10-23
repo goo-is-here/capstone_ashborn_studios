@@ -13,20 +13,24 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public float maxSpawnRadius;
     public float maxVerticleOffset;
     [Tooltip("Center point of each Biome. # OF ORIGINS MUST BE EQUAL TO # OF BIOMES")]
-    public Vector3[] biomeOrigins = new Vector3[3];
+    public Vector3[] biomeOrigins = new Vector3[6];
 
 
     [Header("Gems")]
+    public List<Vector2> emptySlots = new List<Vector2>();
     public GameObject[] biomeOneGems = new GameObject[3];
     public GameObject[] biomeTwoGems = new GameObject[3];
     public GameObject[] biomeThreeGems = new GameObject[3];
+    public GameObject[] biomeFourGems = new GameObject[3];
+    public GameObject[] biomeFiveGems = new GameObject[3];
+    public GameObject[] biomeSixGems = new GameObject[3];
 
     //the above arrays get added to the gems array
-    public GameObject[,] gemReferences = new GameObject[3,3];
-    public GameObject[,] spawnedGems = new GameObject[3,3];
-    private Vector3[,] gemPositions = new Vector3[3, 3];
+    public GameObject[,] gemReferences = new GameObject[6,3];
+    public GameObject[,] spawnedGems = new GameObject[6,3];
+    private Vector3[,] gemPositions = new Vector3[6, 3];
 
-    private bool[] collectedGems = new bool[9];
+    private bool[] collectedGems = new bool[16];
 
     public bool forceSpawnGems = false;
 
@@ -34,6 +38,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     {
         if (forceSpawnGems)
         {
+            InitializeArrays();
             spawnNewGems(1);
             spawnNewGems(2);
             spawnNewGems(3);
@@ -43,18 +48,20 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //loads gems positions and created gems
     public void LoadData(GameData data)
     {
+        InitializeArrays();
         spawnNewGems(1);
         spawnNewGems(2);
         spawnNewGems(3);
 
         collectedGems = data.collectedGems;
+        int index = 0;
 
         for(int i = 0; i < gemReferences.GetLength(0); i++)
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 
-                if (!collectedGems[i * 3 + j])
+                if (!collectedGems[index])
                 {
                     if (data.gemPositions[i * 3 + j] != Vector3.zero)
                     {
@@ -64,6 +71,10 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                 else
                 {
                     StartCoroutine(SetGemAsCollectedAfterLoad(spawnedGems[i, j].GetComponent<gem>()));
+                }
+                if(!emptySlots.Contains(new Vector2(i, j)))
+                {
+                    index += 1;
                 }
             }
         }
@@ -90,10 +101,8 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         }
     }
 
-    //spawns in the gems
-    private void spawnNewGems(int biomeIndex)
+    public void InitializeArrays()
     {
-
         for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
@@ -113,6 +122,13 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                 collectedGems[i * 3 + j] = false;
             }
         }
+    }
+
+    //spawns in the gems
+    private void spawnNewGems(int biomeIndex)
+    {
+
+
 
         for (int i = 0; i < gemReferences.GetLength(1); i++)
         {
@@ -150,6 +166,18 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public void setGemAsCollected(int gemID)
     {
         Debug.Log(gemID);
-        collectedGems[gemID] = true;
+        
+        if(gemID >= 6)
+        {
+            collectedGems[gemID - 2] = true;
+        }
+        else if(gemID >= 3)
+        {
+            collectedGems[gemID - 1] = true;
+        }
+        else
+        {
+            collectedGems[gemID] = true;
+        }
     }
 }
