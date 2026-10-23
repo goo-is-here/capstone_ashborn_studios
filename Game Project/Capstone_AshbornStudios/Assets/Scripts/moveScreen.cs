@@ -8,7 +8,7 @@ public class moveScreen : MonoBehaviour
         Screen.fullScreenMode = FullScreenMode.Windowed;
         print(Screen.mainWindowDisplayInfo);
         Screen.MoveMainWindowTo(Screen.mainWindowDisplayInfo, Screen.mainWindowPosition);
-        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
     }
 
     
