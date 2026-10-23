@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     private Animator anim;
     [SerializeField] GameObject[] clawsLeft;
     [SerializeField] GameObject[] clawsRight;
-    int clawIndex = 0;
+    public int clawIndex = 0;
 
     [Header("Lantern Reference")]
     public Lantern lantern;
@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         //gets the animator in children
         anim = GetComponentInChildren<Animator>();
+        setClaw();
     }
     //gets the durability
     public int GetUsesLeft()
@@ -155,8 +156,19 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         StartCoroutine(ApplyLoadedPosition());
         clawIndex = data.clawIndex;
     }
+    void setClaw()
+    {
+        for(int i = 0; i < clawsLeft.Length; i++)
+        {
+            clawsLeft[i].SetActive(false);
+            clawsRight[i].SetActive(false);
+        }
+        clawsLeft[clawIndex].SetActive(true);
+        clawsRight[clawIndex].SetActive(true);
+    }
     public void upgradeClaws()
     {
+        print("here");
         clawsLeft[clawIndex].SetActive(false);
         clawsRight[clawIndex].SetActive(false);
         clawIndex++;

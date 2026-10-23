@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class dirt : MonoBehaviour
 {
-    public int x;
-    public int y;
-    public int z;
+    [HideInInspector] public int x;
+    [HideInInspector] public int y;
+    [HideInInspector] public int z;
     public void setThis(int x, int y, int z)
     {
         this.x = x;

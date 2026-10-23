@@ -60,7 +60,10 @@ public class toolUpgrade : MonoBehaviour
         StopAllCoroutines();
         for (int i = 0; i < slots.Length; i++)
         {
-            Destroy(slots[i]);
+            if(slots[i] != null)
+            {
+                Destroy(slots[i]);
+            }
         }
     }
     IEnumerator talkingMole(string text)
