@@ -128,3 +128,6 @@ MonoBehaviour:
   x: 0
   y: 0
   z: 0
+  open: 1
+  standMat: {fileID: 2100000, guid: 20bd479d438e1b142b55c738485debf8, type: 2}
+  hitMat: {fileID: 2100000, guid: efdf66d1d55036d46a19ea4278ac5a76, type: 2}

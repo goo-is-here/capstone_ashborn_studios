@@ -455,7 +455,14 @@ public class PlayerController : MonoBehaviour, IDataPersistence
                     col.gameObject.GetComponent<dirt>().breakObject();
                 }
             }
-            
+            Collider[] intersecting2 = Physics.OverlapBox(hitInfo.point, new Vector3(0.5f, 0.75f, 0.1f));
+            foreach (Collider col in intersecting2)
+            {
+                if (col.CompareTag("Dirt"))
+                {
+                    col.gameObject.GetComponent<dirt>().breakObject();
+                }
+            }
         }
         yield return new WaitForSeconds(mineSpeed / 2);
         canMine = true;

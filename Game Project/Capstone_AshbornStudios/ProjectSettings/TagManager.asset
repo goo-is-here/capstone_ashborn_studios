@@ -17,6 +17,7 @@ TagManager:
   - Inventory
   - Gems
   - Dirt
+  - DigRange
   layers:
   - Default
   - TransparentFX

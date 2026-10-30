@@ -93,10 +93,8 @@ public class DirtGeneration : MonoBehaviour
         }
         if (!open)
         {
-            print("not open");
             return;
         }
-        print("open!!");
         bool clear = true;
         for (int i = 0; i < selected.length; i++)
         {
