@@ -1688,6 +1688,7 @@ MonoBehaviour:
   - {x: 54, y: -40, z: 9}
   - {x: 54, y: -112, z: 9}
   - {x: 0, y: 364, z: 0}
+  emptySlots: []
   biomeOneGems:
   - {fileID: 696500477156163802, guid: b168c014cea43ab49831697c8c112464, type: 3}
   - {fileID: 2543811510062714198, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
@@ -1700,6 +1701,18 @@ MonoBehaviour:
   - {fileID: 8153618097435418682, guid: 156f0bdd93baf384c9196fa78ee045a2, type: 3}
   - {fileID: 1771398808519609556, guid: f3fbe7df769678640bf2dc25f564088d, type: 3}
   - {fileID: 3203766576803640943, guid: 9b2bdb6816a35a24c93f1b13d4fbdd9b, type: 3}
+  biomeFourGems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  biomeFiveGems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  biomeSixGems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   forceSpawnGems: 0
 --- !u!4 &821335407
 Transform:

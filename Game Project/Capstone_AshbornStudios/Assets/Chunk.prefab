@@ -57,3 +57,6 @@ MonoBehaviour:
   - {fileID: 6573522551506473397, guid: a63e5038837ac834d9bca4907c46eaaf, type: 3}
   - {fileID: 733924324999184329, guid: a3f64b4d0efc2e842a88917872542366, type: 3}
   oreLimit: 15
+  seed: 0
+  clutter:
+  - {fileID: 11400000, guid: 6e38f053869156a4d81feae2aa90fb9d, type: 2}

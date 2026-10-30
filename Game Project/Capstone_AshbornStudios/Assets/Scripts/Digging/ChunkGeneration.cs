@@ -15,6 +15,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
     [SerializeField] float noise;
     [SerializeField] float heightThreshold;
     [SerializeField] float chunkSize;
+    int seedValue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -72,7 +73,15 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
 
             if (dirt == null)
                 continue;
-
+            if(data.seed != 0)
+            {
+                dirt.seed = data.seed;
+            }
+            else
+            {
+                dirt.seed = Random.Range(1, 9999);
+            }
+            seedValue = dirt.seed;
             dirt.chunkBreak = dat.chunkBreakData;
             dirt.breakBlocks();
         }
@@ -86,7 +95,7 @@ public class ChunkGeneration : MonoBehaviour, IDataPersistence
             return;
 
         data.chunkArray.Clear();
-
+        data.seed = seedValue;
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
