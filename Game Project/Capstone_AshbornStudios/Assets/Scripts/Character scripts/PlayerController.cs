@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour, IDataPersistence
 {
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     [Header("Text Box Object")]
     public TextMeshProUGUI text;
     GameObject textBox;
-
+    public SpawnMineralPopup mineralPopupSpawner;
     GameObject durabilityBar;
     Image bar;
 
@@ -349,14 +350,25 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public void addItemInventory(Item ite, pickUpItem obj = null)
     {
         float rand = Random.Range(0f, 1f);
+        bool triggeredDoubleChance = false;
 
         if(rand < additionalOreChance/100)
         {
             inventory.addItem(ite, obj);
+            triggeredDoubleChance = true;
         }
 
         inventory.addItem(ite, obj);
         sfxAudioSource.PlayOneShot(mineralPickup);
+
+        if (triggeredDoubleChance)
+        {
+            mineralPopupSpawner.DisplayCollectible(ite.itemName, ite.icon, 2);
+        }
+        else
+        {
+            mineralPopupSpawner.DisplayCollectible(ite.itemName, ite.icon, 1);
+        }
     }
     //a set wait time for functions, default time is 5 seconds
     IEnumerator wait(float time = 5)
