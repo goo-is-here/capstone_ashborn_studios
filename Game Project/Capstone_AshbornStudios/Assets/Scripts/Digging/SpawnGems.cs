@@ -91,12 +91,14 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.collectedGems = collectedGems;
+        var index = 0;
         for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 print(spawnedGems[i,j]);
                 if (!collectedGems[i * 3 + j]) data.gemPositions[i * 3 + j] = gemPositions[i,j];
+                index += 1;
             }
         }
     }
@@ -117,6 +119,15 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                         break;
                     case 2:
                         gemReferences[i, j] = biomeThreeGems[j];
+                        break;
+                    case 3:
+                        gemReferences[i, j] = biomeFourGems[j];
+                        break;
+                    case 4:
+                        gemReferences[i, j] = biomeFiveGems[j];
+                        break;
+                    case 5:
+                        gemReferences[i, j] = biomeSixGems[j];
                         break;
                 }
                 collectedGems[i * 3 + j] = false;
