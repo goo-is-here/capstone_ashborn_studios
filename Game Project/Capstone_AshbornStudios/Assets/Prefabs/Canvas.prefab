@@ -796,7 +796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -58, y: 10.3}
+  m_AnchoredPosition: {x: -56, y: 10.100014}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &571634725455915675
@@ -1709,9 +1709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   toolUpgrades:
-  - {fileID: 11400000, guid: 73c5977c52ddbe540ab07efc3280f2c9, type: 2}
-  - {fileID: 11400000, guid: cc3d85fc10ba0ee48b0f08341b010c1d, type: 2}
-  - {fileID: 11400000, guid: c1d61d25322e55a44a9a47d611d2e076, type: 2}
+  - {fileID: 11400000, guid: c2b332789483cda4c9bac1cb057524aa, type: 2}
   objectsToUnlock:
   - {fileID: 0}
   - {fileID: 0}
@@ -1723,7 +1721,6 @@ MonoBehaviour:
   inventoryUpgrade:
   - {fileID: 11400000, guid: a1cc747b6e15be44a908d74b4db786d5, type: 2}
   - {fileID: 11400000, guid: debf1b98d14e87049ad5ce481d8c5d34, type: 2}
-  - {fileID: 11400000, guid: 564486b9cfabf77449f3eaed580d36e5, type: 2}
   currentTool: 0
   currentObject: 0
   currentInventory: 0
@@ -1978,7 +1975,8 @@ MonoBehaviour:
   - {fileID: -8007934190874476620, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}
   - {fileID: 810175870960664244, guid: d32cd01629769014e9141e51b2ef0760, type: 3}
   - {fileID: 1798692737197306483, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
-  furniture: []
+  furniture:
+  - {fileID: 11400000, guid: 30e5183f1d63e134da3e7ed481f617de, type: 2}
   placeItem: {fileID: 0}
   furnitureToDestroy: {fileID: 0}
 --- !u!1 &3005944744073491105
@@ -4170,7 +4168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: teehee
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 076fc234783784246a1a0f262cf7f34c, type: 2}
   m_sharedMaterial: {fileID: -385326754412394839, guid: 076fc234783784246a1a0f262cf7f34c, type: 2}
@@ -5596,7 +5594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 218, y: 11.8}
+  m_AnchoredPosition: {x: 218, y: 10.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1941866968498041878
@@ -6379,6 +6377,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2728448359358004328, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+      propertyPath: m_Name
+      value: FOV Input
+      objectReference: {fileID: 0}
     - target: {fileID: 3028886741408573788, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6443,6 +6445,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6012718064390848111, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+      propertyPath: m_Name
+      value: SensetivityInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126459994836676805, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+      propertyPath: SensitivtyText
+      value: 
+      objectReference: {fileID: 4752753176397445405}
+    - target: {fileID: 7126459994836676805, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+      propertyPath: SensitivitySlider
+      value: 
+      objectReference: {fileID: 6357909637629415622}
     - target: {fileID: 7399530652140199010, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6613,6 +6627,28 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4752753176397445405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8932529565353213133, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+  m_PrefabInstance: {fileID: 4180347078985778640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &6357909637629415622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7077484485140616470, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}
+  m_PrefabInstance: {fileID: 4180347078985778640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &6679958002837248434 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7399530652140199010, guid: 5c8b656ed6401c84191d18ff0fb582de, type: 3}

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     public float jumpForce = 10f;
     public float climbForce = .5f;
     public float Gravity = -30f;
+    public float sensitivity;
     
 
     [Header("Tool Stats")]
@@ -277,8 +278,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if (canMove)
         {
-            rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * Time.deltaTime;
-            rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * Time.deltaTime;
+            rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * sensitivity * Time.deltaTime;
+            rotationX -= Mathf.Clamp(rotationVector.y, -7, 7) * rotationSpeed * sensitivity * Time.deltaTime;
 
             transform.localRotation = Quaternion.Euler(0, rotationY, 0);
             cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);

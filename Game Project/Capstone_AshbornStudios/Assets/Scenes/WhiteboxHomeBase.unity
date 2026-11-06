@@ -1369,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4779988740891625585, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5903481086444870199, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1469,6 +1473,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 117839230}
+    - target: {fileID: 6405761471666435349, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1955343377}
     - target: {fileID: 7471792056044800471, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22023,6 +22031,17 @@ MonoBehaviour:
     m_Bits: 8192
   rotateAmount: 90
   placeItem: 0
+--- !u!114 &1955343377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7956555298906818836, guid: 4fcb3f7b45d726847ae808ae5b6b547b, type: 3}
+  m_PrefabInstance: {fileID: 1102696347}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363106196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39068c079f3cc1844a42db80f262f4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &1969582113
 PrefabInstance:
   m_ObjectHideFlags: 0

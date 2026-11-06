@@ -17,10 +17,12 @@ public class Settings : MonoBehaviour
     public Slider FOVslider;
     public TMP_InputField FOVText;
     public Slider SensitivitySlider;
+    public TMP_InputField SensitivtyText;
 
     [Header("Other Refrences")]
     public AudioMixer mixer;
     public Camera cam;
+    public PlayerController player;
 
     private List<Resolution> resolutions = new List<Resolution>();
 
@@ -37,6 +39,8 @@ public class Settings : MonoBehaviour
         fullscreenModeDropdown.onValueChanged.AddListener(SetWindowMode);
         FOVslider.onValueChanged.AddListener(AdjustFOV);
         FOVText.onValueChanged.AddListener(AdjustFOV);
+        SensitivitySlider.onValueChanged.AddListener(AdjustSensitivty);
+        SensitivtyText.onValueChanged.AddListener(AdjustSensitivty);
 
         LoadSettings();
     }
@@ -64,6 +68,10 @@ public class Settings : MonoBehaviour
         AdjustFOV(fov);
         FOVslider.value = fov;
         FOVText.text = System.MathF.Round(fov, 1).ToString();
+
+        float sensitivity = PlayerPrefs.GetFloat("Sensetivity");
+        SensitivitySlider.value = sensitivity;
+        SensitivtyText.text = System.MathF.Round(sensitivity, 1).ToString();
     }
 
     void BuildResolutionDropdown()
@@ -176,7 +184,7 @@ public class Settings : MonoBehaviour
     public void AdjustFOV(float newFOV)
     {
         cam.fieldOfView = newFOV;
-        FOVText.text = newFOV.ToString();
+        FOVText.text = System.MathF.Round(newFOV, 1).ToString();
         PlayerPrefs.SetFloat("FOV", newFOV);
     }
 
@@ -184,6 +192,7 @@ public class Settings : MonoBehaviour
     {
         if (float.TryParse(newFOV, out float result))
         {
+            result = Mathf.Clamp(result, FOVslider.minValue, FOVslider.maxValue);
             cam.fieldOfView = result;
         }
         else
@@ -192,6 +201,35 @@ public class Settings : MonoBehaviour
         }
 
         FOVText.text = System.MathF.Round(result, 1).ToString();
+        FOVslider.value = result;
         PlayerPrefs.SetFloat("FOV", result);
+    }
+
+    public void AdjustSensitivty(float newSense)
+    {
+        player.sensitivity = newSense;
+        SensitivtyText.SetTextWithoutNotify(System.MathF.Round(newSense, 1).ToString());
+        PlayerPrefs.SetFloat("Sensetivity", newSense);
+
+    }
+
+    public void AdjustSensitivty(string newSense)
+    {
+
+        if (float.TryParse(newSense, out float result))
+        {
+            result = Mathf.Clamp(result, SensitivitySlider.minValue, SensitivitySlider.maxValue);
+            player.sensitivity = result;
+        }
+        else
+        {
+            SensitivtyText.SetTextWithoutNotify(System.MathF.Round(PlayerPrefs.GetFloat("Sensetivity"), 1).ToString());
+        }
+
+        SensitivtyText.SetTextWithoutNotify(System.MathF.Round(result, 1).ToString());
+
+        SensitivitySlider.SetValueWithoutNotify(result);
+
+        PlayerPrefs.SetFloat("Sensetivity", result);
     }
 }
