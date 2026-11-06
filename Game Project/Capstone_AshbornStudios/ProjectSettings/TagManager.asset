@@ -18,6 +18,7 @@ TagManager:
   - Gems
   - Dirt
   - DigRange
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - SafeZone
   - Gems
   - Interactable
-  - 
+  - Ground
   - 
   - 
   - 

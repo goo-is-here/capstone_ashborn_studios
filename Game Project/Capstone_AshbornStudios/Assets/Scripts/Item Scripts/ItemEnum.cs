@@ -2,5 +2,5 @@ using UnityEngine;
 
 public enum ItemEnum
 {
-    NULL, COAL, COPPER, IRON, LEMSTONE, QUARTZ
+    NULL, COAL, COPPER, IRON, LEMSTONE, QUARTZ, FURNITURE
 };

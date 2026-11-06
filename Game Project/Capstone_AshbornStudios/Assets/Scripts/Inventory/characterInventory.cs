@@ -6,7 +6,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
 {
     public Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
-    [SerializeField] int hotBarSlots = 6;
+    public int hotBarSlots = 6;
     public int numSlots = 12;
     [SerializeField] int numSlotsPerRow = 6;
     [SerializeField] float spawnDistance = 5f;
@@ -20,6 +20,9 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     public int selectedSlotNum = -1;
     List<Item> tempList = new List<Item>();
     public pickUpItem[] obj;
+    [SerializeField] placeObject placeItem;
+    public GameObject furnitureToDestroy = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,9 +63,32 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             }
         }
         processSlot();
+        placeItemCheck();
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
+        }
+    }
+    private void placeItemCheck()
+    {
+        if(selectedSlotNum < hotBarSlots && selectedSlotNum >= 0 && placeItem != null && inventoryItemList[selectedSlotNum] != null && inventoryItemList[selectedSlotNum].enu == ItemEnum.FURNITURE && furnitureToDestroy == null)
+        {
+            placeItem.placeItem = true;
+            GameObject furniture = Instantiate(inventoryItemList[selectedSlotNum].worldPrefab);
+            furnitureToDestroy = furniture;
+            placeItem.furniture = furniture;
+        }
+        else if((selectedSlotNum > hotBarSlots || selectedSlotNum < 0 || inventoryItemList[selectedSlotNum].enu != ItemEnum.FURNITURE) && furnitureToDestroy != null)
+        {
+            Destroy(furnitureToDestroy);
+        }
+    }
+    public void removeCurrentFurniture()
+    {
+        if (selectedSlotNum >= 0 && selectedSlotNum < inventoryItemList.Length && inventoryItemList[selectedSlotNum] != null && inventoryItemList[selectedSlotNum].enu == ItemEnum.FURNITURE)
+        {
+            inventoryItemList[selectedSlotNum] = null;
+            updateDisplayedInventory();
         }
     }
     private void processSlot()
