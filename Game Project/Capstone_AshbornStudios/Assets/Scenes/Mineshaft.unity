@@ -458,7 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae069edb5fc0bf4694879e999303b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::changeMat
-  hitMat: {fileID: 2100000, guid: efdf66d1d55036d46a19ea4278ac5a76, type: 2}
+  hitMat: {r: 0.96862745, g: 0.8392157, b: 0.6509804, a: 0}
+  refreshRate: 0
 --- !u!4 &263550075
 Transform:
   m_ObjectHideFlags: 0
