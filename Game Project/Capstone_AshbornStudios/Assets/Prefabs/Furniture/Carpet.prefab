@@ -75,7 +75,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 865636705080563722}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -143572745606378545}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1204101520430567142}
   m_SourcePrefab: {fileID: 100100000, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
+--- !u!23 &5662173805930657095 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
+  m_PrefabInstance: {fileID: 6437192746093914563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6166810403363558546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
@@ -96,10 +107,55 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2052996276529254954, guid: 6bccd72d48177794f9ffe9bcb4d363a1, type: 3}
+--- !u!54 &-143572745606378545
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166810403363558546}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &-1204101520430567142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166810403363558546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571ac2acf64e3814e82fdc05ef5d3405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::collisionChecker
+  col: {fileID: 865636705080563722}
+  rend: {fileID: 5662173805930657095}
+  placingMaterial: {fileID: 2100000, guid: dcf49e284b2ec74419c08032ca09fb21, type: 2}
+  collisionMaterial: {fileID: 2100000, guid: 3d9e9216caa91c944a5d9504a9ef91d3, type: 2}
+  standardMaterial: {fileID: 2100000, guid: 7f7bca82fd1027a4c9a30ca7d0c0e831, type: 2}
+  placed: 0

@@ -9,6 +9,7 @@ public class placeObject : MonoBehaviour
     [SerializeField] float rotateAmount;
     bool refreshed = false;
     public bool placeItem;
+    int rotate = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,6 +29,11 @@ public class placeObject : MonoBehaviour
             {
                 Vector3 rotationToObject = new Vector3(0, 0, rotateAmount);
                 furniture.transform.Rotate(rotationToObject);
+                rotate++;
+                if(rotate > 3)
+                {
+                    rotate = 0;
+                }
             }
         }
     }

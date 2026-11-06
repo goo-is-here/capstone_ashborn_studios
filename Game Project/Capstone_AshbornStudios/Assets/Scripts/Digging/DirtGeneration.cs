@@ -73,61 +73,123 @@ public class DirtGeneration : MonoBehaviour
         int clutterIndex = Random.Range(0, clutter.Length);
         ClutterObject selected = clutter[clutterIndex];
         bool open = true;
-        for(int i = 0; i < selected.length; i++)
+        if(selected.height > 0)
         {
-            for (int j = 0; j < selected.width; j++)
-            {
-                if(x+i>= size || z + j >= size)
-                {
-                    return;
-                }
-                if(dirtParticles[x + i, y, z + j] != null)
-                {
-                    dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
-                    if (dt != null && !dt.open)
-                    {
-                        open = false;
-                    }
-                }
-            }
-        }
-        if (!open)
-        {
-            return;
-        }
-        bool clear = true;
-        for (int i = 0; i < selected.length; i++)
-        {
-            for (int j = 0; j < selected.width; j++)
-            {
-                for (int k = 1; k <= selected.height; k++)
-                {
-                    if(y+k >= size)
-                    {
-                        return;
-                    }
-                    if(dirtParticles[x+i, k+y, j+z] != null)
-                    {
-                        clear = false;
-                    }
-                }
-            }
-        }
-        if (clear)
-        {
-            Instantiate(selected.obj, pos, transform.rotation, dirtParticles[x, y, z].transform);
             for (int i = 0; i < selected.length; i++)
             {
                 for (int j = 0; j < selected.width; j++)
                 {
-                    dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
-                    if (dt != null && open)
+                    if (x + i >= size || z + j >= size)
                     {
-                        dt.open = false;
+                        return;
+                    }
+                    if (dirtParticles[x + i, y, z + j] != null)
+                    {
+                        dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
+                        if (dt != null && !dt.open)
+                        {
+                            open = false;
+                        }
+                    }
+                }
+            }
+            if (!open)
+            {
+                return;
+            }
+            bool clear = true;
+            for (int i = 0; i < selected.length; i++)
+            {
+                for (int j = 0; j < selected.width; j++)
+                {
+                    for (int k = 1; k <= selected.height; k++)
+                    {
+                        if (y + k >= size)
+                        {
+                            return;
+                        }
+                        if (dirtParticles[x + i, k + y, j + z] != null)
+                        {
+                            clear = false;
+                        }
+                    }
+                }
+            }
+            if (clear)
+            {
+                Instantiate(selected.obj, pos, transform.rotation, dirtParticles[x, y, z].transform);
+                for (int i = 0; i < selected.length; i++)
+                {
+                    for (int j = 0; j < selected.width; j++)
+                    {
+                        dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
+                        if (dt != null && open)
+                        {
+                            dt.open = false;
+                        }
                     }
                 }
             }
         }
+        else
+        {
+            for (int i = 0; i < selected.length; i++)
+            {
+                for (int j = 0; j < selected.width; j++)
+                {
+                    if (x + i >= size || z + j >= size)
+                    {
+                        return;
+                    }
+                    if (dirtParticles[x + i, y, z + j] != null)
+                    {
+                        dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
+                        if (dt != null && !dt.open)
+                        {
+                            open = false;
+                        }
+                    }
+                }
+            }
+            if (!open)
+            {
+                return;
+            }
+            bool clear = true;
+            for (int i = 0; i < selected.length; i++)
+            {
+                for (int j = 0; j < selected.width; j++)
+                {
+                    for (int k = 1; k <= selected.height; k--)
+                    {
+                        if (y - k >= size)
+                        {
+                            return;
+                        }
+                        if (dirtParticles[x + i, y-k, j + z] != null)
+                        {
+                            clear = false;
+                        }
+                    }
+                }
+            }
+            if (clear)
+            {
+                Instantiate(selected.obj, pos, transform.rotation, dirtParticles[x, y, z].transform);
+                for (int i = 0; i < selected.length; i++)
+                {
+                    for (int j = 0; j < selected.width; j++)
+                    {
+                        dirt dt = dirtParticles[x + i, y, z + j].GetComponent<dirt>();
+                        if (dt != null && open)
+                        {
+                            dt.open = false;
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     public void breakBlocks()
     {
