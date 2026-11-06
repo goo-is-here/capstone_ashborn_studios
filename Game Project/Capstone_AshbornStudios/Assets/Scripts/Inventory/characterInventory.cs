@@ -20,6 +20,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     public int selectedSlotNum = -1;
     List<Item> tempList = new List<Item>();
     public pickUpItem[] obj;
+    public FurnitureObject[] furniture;
     [SerializeField] placeObject placeItem;
     public GameObject furnitureToDestroy = null;
 
@@ -38,12 +39,19 @@ public class characterInventory : MonoBehaviour, IDataPersistence
         }
         if(tempList != null)
         {
+            print(tempList.Count);
             foreach (Item ite in tempList)
             {
-                addItem(ite);
+                if(ite.enu == ItemEnum.FURNITURE)
+                {
+                    addFurniture(ite);
+                }
+                else
+                {
+                    addItem(ite);
+                }
             }
         }
-        
         updateSlotNumber();
         updateDisplayedInventory();
 
@@ -78,7 +86,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             furnitureToDestroy = furniture;
             placeItem.furniture = furniture;
         }
-        else if((selectedSlotNum > hotBarSlots || selectedSlotNum < 0 || inventoryItemList[selectedSlotNum].enu != ItemEnum.FURNITURE) && furnitureToDestroy != null)
+        else if(furnitureToDestroy != null && (selectedSlotNum > hotBarSlots || selectedSlotNum < 0 || inventoryItemList[selectedSlotNum].enu != ItemEnum.FURNITURE))
         {
             Destroy(furnitureToDestroy);
         }
@@ -391,9 +399,31 @@ public class characterInventory : MonoBehaviour, IDataPersistence
                     tempList.Add(newIte);
                 }
             }
-            
+            for(int i = 0; i < furniture.Length; i++)
+            {
+                if (ite.enu == ItemEnum.FURNITURE)
+                {
+                    if (ite.itemName == furniture[i].itemName)
+                    {
+                        Item newFurniture = new Item(ite.itemName, ite.description, furniture[i].icon, 1, ItemEnum.FURNITURE, furniture[i].worldPrefab);
+                        tempList.Add(newFurniture);
+                    }
+                }
+            }
         }
-        
+    }
+    public void addFurniture(Item ite)
+    {
+        print("called");
+        bool added = false;
+        for(int i = 0; i < inventoryItemList.Length; i++)
+        {
+            if(inventoryItemList[i] == null && !added)
+            {
+                inventoryItemList[i] = ite;
+                added = true;
+            }
+        }
     }
     //save variables into game data
     public void SaveData(ref GameData data)
@@ -403,7 +433,6 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             data.inventory.Clear();
             foreach(Item ite in inventoryItemList)
             {
-                
                 data.inventory.Add(ite);
             }
         }
