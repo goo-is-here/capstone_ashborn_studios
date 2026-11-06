@@ -21,6 +21,8 @@ public class GemNotification : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J))
             {
                 GetComponent<Canvas>().enabled = false;
+                isActive = false;
+                player.canMove = true;
             }
         }
     }
@@ -31,6 +33,8 @@ public class GemNotification : MonoBehaviour
         gemText.text = name;
         GetComponent<Canvas>().enabled = true;
         journal.SetPage(gemID / 2);
+        isActive = true;
+        player.canMove = false;
     }
 
 }

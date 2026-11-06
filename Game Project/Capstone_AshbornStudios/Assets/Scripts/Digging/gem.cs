@@ -9,6 +9,7 @@ public class gem : MonoBehaviour
     public AudioClip audioClip;
     public Sprite icon;
     public GemNotification gemNotification;
+    public string gemName;
 
     //used for gemrefrences across seperate scripts
     public int gemID;
@@ -24,6 +25,7 @@ public class gem : MonoBehaviour
         mesh = GetComponent<MeshRenderer>();
         collision = GetComponent<BoxCollider>();
         audioSource = GetComponent<AudioSource>();
+        gemNotification = GameObject.FindGameObjectWithTag("GemNotification").GetComponent<GemNotification>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,6 +44,6 @@ public class gem : MonoBehaviour
         mesh.enabled = false;
         collision.enabled = false;
         collected = true;
-        gemNotification.SetupNotification(icon, name, gemID);
+        gemNotification.SetupNotification(icon, gemName, gemID);
     }
 }

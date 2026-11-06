@@ -1978,6 +1978,7 @@ MonoBehaviour:
   - {fileID: -8007934190874476620, guid: ea610af27e7becd4f98b1c0bbd456bf5, type: 3}
   - {fileID: 810175870960664244, guid: d32cd01629769014e9141e51b2ef0760, type: 3}
   - {fileID: 1798692737197306483, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
+  furniture: []
   placeItem: {fileID: 0}
   furnitureToDestroy: {fileID: 0}
 --- !u!1 &3005944744073491105
@@ -4251,9 +4252,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5438521563121445053}
   - component: {fileID: 2541363042916937497}
+  - component: {fileID: 991966968847533362}
   m_Layer: 5
   m_Name: GemNotification
-  m_TagString: Untagged
+  m_TagString: GemNotification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4285,7 +4287,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6029263990504309868}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -4301,6 +4303,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &991966968847533362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6029263990504309868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616fbff2cd8ae4d4c88c67c0eeffb7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GemNotification
+  player: {fileID: 0}
+  gemIcon: {fileID: 6597425136372477487}
+  gemText: {fileID: 5616091773104029121}
+  journal: {fileID: 0}
 --- !u!1 &6078708437665351590
 GameObject:
   m_ObjectHideFlags: 0
