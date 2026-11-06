@@ -47,8 +47,8 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
             print("press");
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
-            if (settingsMenu.activeSelf) settingsMenu.SetActive(false);
-            if(cont.canMove)
+            if (settingsMenu.GetComponent<Canvas>().enabled) settingsMenu.GetComponent<Canvas>().enabled = false;
+            if (cont.canMove)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -131,7 +131,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
 
     public void OpenSettignsMenu()
     {
-        settingsMenu.SetActive(true);
+        settingsMenu.GetComponent<Canvas>().enabled = true;
         if (!source.isPlaying)
         {
             source.PlayOneShot(select);
@@ -140,7 +140,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
 
     public void CloseSettingsMenu()
     {
-        settingsMenu.SetActive(false);
+        settingsMenu.GetComponent<Canvas>().enabled = true;
         if (!source.isPlaying)
         {
             source.PlayOneShot(select);
