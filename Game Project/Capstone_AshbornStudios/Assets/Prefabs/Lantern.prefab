@@ -44,8 +44,8 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 0.5529412, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 10
+  m_Intensity: 20
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -227,3 +227,8 @@ MonoBehaviour:
   lanternMat: {fileID: 2100000, guid: 5cb564fa82dfb294692bc97ef09683fa, type: 2}
   defaultDetectionDistance: 50
   detectionDistanceModifier: 1
+  player: {fileID: 0}
+  defaultBrightness: 0.5
+  minBrightness: 5
+  maxBrightness: 20
+  lanternUnlocked: 0
