@@ -38,17 +38,26 @@ public class Jounal : MonoBehaviour
         canvas = GetComponent<Canvas>();
     }
 
-    public void OpenJournal()
+    public void OpenJournal(int pageToOpen = -1)
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         if (pause.activeSelf) return;
-        currentPage = 0;
+        if(pageToOpen >= 0)
+        {
+            currentPage = pageToOpen;
+        }
+
         canvas.enabled = true;
         isOpen = true;
         UpdateText();
         UpdateShowButtons();
 
+    }
+
+    public void SetPage(int newPage)
+    {
+        currentPage = newPage;
     }
 
     public void FlipPageLeft()
@@ -67,7 +76,6 @@ public class Jounal : MonoBehaviour
 
     public void CloseJournal()
     {
-        currentPage = 0;
         canvas.enabled = false;
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;

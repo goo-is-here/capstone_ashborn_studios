@@ -4,13 +4,19 @@ using System.Collections;
 
 public class gem : MonoBehaviour
 {
+    //refrences
     public GameObject gemSpawner;
+    public AudioClip audioClip;
+    public Sprite icon;
+
+    //used for gemrefrences across seperate scripts
     public int gemID;
+
     [HideInInspector] public bool collected = false;
     private MeshRenderer mesh;
     private BoxCollider collision;
     private AudioSource audioSource;
-    public AudioClip audioClip;
+
 
     private void Start()
     {

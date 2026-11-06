@@ -4861,6 +4861,10 @@ PrefabInstance:
       propertyPath: toolTierText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2541363042916937497, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2670734393488881138, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: m_IsActive
       value: 1
