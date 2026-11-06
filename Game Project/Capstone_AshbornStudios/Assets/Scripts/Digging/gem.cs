@@ -8,6 +8,7 @@ public class gem : MonoBehaviour
     public GameObject gemSpawner;
     public AudioClip audioClip;
     public Sprite icon;
+    public GemNotification gemNotification;
 
     //used for gemrefrences across seperate scripts
     public int gemID;
@@ -41,5 +42,6 @@ public class gem : MonoBehaviour
         mesh.enabled = false;
         collision.enabled = false;
         collected = true;
+        gemNotification.SetupNotification(icon, name, gemID);
     }
 }

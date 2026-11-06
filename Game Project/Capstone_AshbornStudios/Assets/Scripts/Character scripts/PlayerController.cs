@@ -482,7 +482,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
     public void CollectGem(int gemID)
     {
-        collectedGems[gemID] = true;
+        if (gemID >= 6)
+        {
+            collectedGems[gemID - 2] = true;
+        }
+        else if (gemID >= 3)
+        {
+            collectedGems[gemID - 1] = true;
+        }
+        else
+        {
+            collectedGems[gemID] = true;
+        }
     }
 
     public void EquipLantern()
