@@ -19,6 +19,7 @@ TagManager:
   - Dirt
   - DigRange
   - Ground
+  - GemNotification
   layers:
   - Default
   - TransparentFX

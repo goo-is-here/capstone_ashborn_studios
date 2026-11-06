@@ -7,6 +7,8 @@ using static UnityEngine.UI.Image;
 
 public class SpawnGems : MonoBehaviour, IDataPersistence
 {
+
+    [Header("Spawn Settigns")]
     [Tooltip("Units in blocks")]
     public float minSpawnRadius;
     [Tooltip("Units in blocks")]
@@ -15,7 +17,8 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     [Tooltip("Center point of each Biome. # OF ORIGINS MUST BE EQUAL TO # OF BIOMES")]
     public Vector3[] biomeOrigins = new Vector3[6];
 
-
+    
+    //all the reference arrays to plug stuff in
     [Header("Gems")]
     public List<Vector2> emptySlots = new List<Vector2>();
     public GameObject[] biomeOneGems = new GameObject[3];
@@ -25,13 +28,20 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public GameObject[] biomeFiveGems = new GameObject[3];
     public GameObject[] biomeSixGems = new GameObject[3];
 
-    //the above arrays get added to the gems array
-    public GameObject[,] gemReferences = new GameObject[6,3];
-    public GameObject[,] spawnedGems = new GameObject[6,3];
-    private Vector3[,] gemPositions = new Vector3[6, 3];
+    //the above arrays get added to the refrences array to centralize everything
 
+    public GameObject[,] gemReferences = new GameObject[3,3];
+
+    //the spawned gems stores refrences to the gems that have already been spawned into the world
+    public GameObject[,] spawnedGems = new GameObject[3,3];
+
+    //purely used for saving and loading idk why but it only works but using a sperate array to store the positions for save and load
+    private Vector3[,] gemPositions = new Vector3[3, 3];
+
+    //Stores all the booleans for whether or not a gem is collected, referenced via gemID
     private bool[] collectedGems = new bool[16];
 
+    //for debugging
     public bool forceSpawnGems = false;
 
     void Start()
@@ -138,9 +148,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //spawns in the gems
     private void spawnNewGems(int biomeIndex)
     {
-
-
-
         for (int i = 0; i < gemReferences.GetLength(1); i++)
         {
            

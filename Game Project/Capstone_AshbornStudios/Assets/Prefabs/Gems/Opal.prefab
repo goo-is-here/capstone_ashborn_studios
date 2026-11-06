@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8179174631996270567, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
+      propertyPath: gemName
+      value: Opal
+      objectReference: {fileID: 0}
     - target: {fileID: 6068939316862658, guid: a5febb5a619d25d4b96874f9530d8913, type: 3}
       propertyPath: m_Mesh
       value: 
