@@ -6,7 +6,7 @@ public class characterInventory : MonoBehaviour, IDataPersistence
 {
     public Item[] inventoryItemList;
     List<GameObject> inventorySlotArray;
-    [SerializeField] int hotBarSlots = 6;
+    public int hotBarSlots = 6;
     public int numSlots = 12;
     [SerializeField] int numSlotsPerRow = 6;
     [SerializeField] float spawnDistance = 5f;
@@ -20,6 +20,10 @@ public class characterInventory : MonoBehaviour, IDataPersistence
     public int selectedSlotNum = -1;
     List<Item> tempList = new List<Item>();
     public pickUpItem[] obj;
+    public FurnitureObject[] furniture;
+    [SerializeField] placeObject placeItem;
+    public GameObject furnitureToDestroy = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,12 +39,19 @@ public class characterInventory : MonoBehaviour, IDataPersistence
         }
         if(tempList != null)
         {
+            print(tempList.Count);
             foreach (Item ite in tempList)
             {
-                addItem(ite);
+                if(ite.enu == ItemEnum.FURNITURE)
+                {
+                    addFurniture(ite);
+                }
+                else
+                {
+                    addItem(ite);
+                }
             }
         }
-        
         updateSlotNumber();
         updateDisplayedInventory();
 
@@ -60,9 +71,32 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             }
         }
         processSlot();
+        placeItemCheck();
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
+        }
+    }
+    private void placeItemCheck()
+    {
+        if(selectedSlotNum < hotBarSlots && selectedSlotNum >= 0 && placeItem != null && inventoryItemList[selectedSlotNum] != null && inventoryItemList[selectedSlotNum].enu == ItemEnum.FURNITURE && furnitureToDestroy == null)
+        {
+            placeItem.placeItem = true;
+            GameObject furniture = Instantiate(inventoryItemList[selectedSlotNum].worldPrefab);
+            furnitureToDestroy = furniture;
+            placeItem.furniture = furniture;
+        }
+        else if(furnitureToDestroy != null && (selectedSlotNum > hotBarSlots || selectedSlotNum < 0 || inventoryItemList[selectedSlotNum].enu != ItemEnum.FURNITURE))
+        {
+            Destroy(furnitureToDestroy);
+        }
+    }
+    public void removeCurrentFurniture()
+    {
+        if (selectedSlotNum >= 0 && selectedSlotNum < inventoryItemList.Length && inventoryItemList[selectedSlotNum] != null && inventoryItemList[selectedSlotNum].enu == ItemEnum.FURNITURE)
+        {
+            inventoryItemList[selectedSlotNum] = null;
+            updateDisplayedInventory();
         }
     }
     private void processSlot()
@@ -365,9 +399,31 @@ public class characterInventory : MonoBehaviour, IDataPersistence
                     tempList.Add(newIte);
                 }
             }
-            
+            for(int i = 0; i < furniture.Length; i++)
+            {
+                if (ite.enu == ItemEnum.FURNITURE)
+                {
+                    if (ite.itemName == furniture[i].itemName)
+                    {
+                        Item newFurniture = new Item(ite.itemName, ite.description, furniture[i].icon, 1, ItemEnum.FURNITURE, furniture[i].worldPrefab);
+                        tempList.Add(newFurniture);
+                    }
+                }
+            }
         }
-        
+    }
+    public void addFurniture(Item ite)
+    {
+        print("called");
+        bool added = false;
+        for(int i = 0; i < inventoryItemList.Length; i++)
+        {
+            if(inventoryItemList[i] == null && !added)
+            {
+                inventoryItemList[i] = ite;
+                added = true;
+            }
+        }
     }
     //save variables into game data
     public void SaveData(ref GameData data)
@@ -377,7 +433,6 @@ public class characterInventory : MonoBehaviour, IDataPersistence
             data.inventory.Clear();
             foreach(Item ite in inventoryItemList)
             {
-                
                 data.inventory.Add(ite);
             }
         }
