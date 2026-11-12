@@ -433,7 +433,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence
                     hitDirt = true;
                 }
             }
-
+        }
+        else
+        {
+            Vector3 position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * diggingRange;
+            Collider[] intersecting = Physics.OverlapSphere(position, diggingRange);
+            foreach (Collider col in intersecting)
+            {
+                if (col.CompareTag("Dirt"))
+                {
+                    hitDirt = true;
+                }
+            }
         }
 
         //play dig sound 1
@@ -470,6 +481,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             }
             Collider[] intersecting2 = Physics.OverlapBox(hitInfo.point, new Vector3(0.5f, 0.75f, 0.1f));
             foreach (Collider col in intersecting2)
+            {
+                if (col.CompareTag("Dirt"))
+                {
+                    col.gameObject.GetComponent<dirt>().breakObject();
+                }
+            }
+        }
+        else
+        {
+            Vector3 position = Camera.main.transform.position + Camera.main.transform.TransformDirection(Vector3.forward) * diggingRange;
+            Collider[] intersecting = Physics.OverlapSphere(position, diggingRange);
+            foreach (Collider col in intersecting)
             {
                 if (col.CompareTag("Dirt"))
                 {

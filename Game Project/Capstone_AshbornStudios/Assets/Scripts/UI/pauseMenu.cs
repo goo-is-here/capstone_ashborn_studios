@@ -47,7 +47,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
             print("press");
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
-            if (settingsMenu.GetComponent<Canvas>().enabled) settingsMenu.GetComponent<Canvas>().enabled = false;
+            //if (settingsMenu.GetComponent<Canvas>().enabled) settingsMenu.GetComponent<Canvas>().enabled = false;
             if (cont.canMove)
             {
                 Cursor.lockState = CursorLockMode.Locked;

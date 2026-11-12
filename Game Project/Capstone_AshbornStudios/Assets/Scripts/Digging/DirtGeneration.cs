@@ -18,6 +18,7 @@ public class DirtGeneration : MonoBehaviour
     int numOre = 0;
     public int seed;
     [SerializeField] ClutterObject[] clutter;
+    [SerializeField] int clutterChance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -41,7 +42,7 @@ public class DirtGeneration : MonoBehaviour
                         newDirt.GetComponent<dirt>().setThis(i, j, k);
                         dirtParticles[i, j, k] = newDirt;
                         int randChance = Random.Range(0, 100);
-                        if (randChance > 90)
+                        if (randChance > clutterChance)
                         {
                             oreBits[i, j, k] = oreCheck(newDirt.transform.position);
                         }
@@ -60,7 +61,7 @@ public class DirtGeneration : MonoBehaviour
                     {
                         if(dirtParticles[i, j, k] != null)
                         {
-                            addClutter(i, j, k, dirtParticles[i, j, k].transform.position);
+                            //addClutter(i, j, k, dirtParticles[i, j, k].transform.position);
                         }
                     }
                 }

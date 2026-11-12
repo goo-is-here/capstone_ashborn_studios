@@ -60,3 +60,7 @@ MonoBehaviour:
   seed: 0
   clutter:
   - {fileID: 11400000, guid: 6e38f053869156a4d81feae2aa90fb9d, type: 2}
+  - {fileID: 11400000, guid: 552e292ff14b4dd40be719dbe58fff02, type: 2}
+  - {fileID: 11400000, guid: efb8cc61fec06104890df7b8453acde0, type: 2}
+  - {fileID: 11400000, guid: 126c5e560e7405a49989b0f96e69753c, type: 2}
+  clutterChance: 95
