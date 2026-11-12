@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class storeScript : MonoBehaviour, IDataPersistence
 {
     public List<Recipe> toolUpgrades;
-    public List<GameObject> objectsToUnlock;
+    public List<FurnitureObject> objectsToUnlock;
     public List<Recipe> objectsToUnlockRecipe;
     public List<Recipe> inventoryUpgrade;
     public int currentTool;
@@ -157,6 +157,11 @@ public class storeScript : MonoBehaviour, IDataPersistence
             playerInventory.removeItem(recipe.recipe[i].enu, recipe.recipe[i].count);
         }
     }
+    public void addItem()
+    {
+        Item ite = new Item(objectsToUnlock[currentObject].itemName, "", objectsToUnlock[currentObject].icon, 1, ItemEnum.FURNITURE, objectsToUnlock[currentObject].worldPrefab);
+        playerInventory.addFurniture(ite);
+    }
     public void LoadData(GameData data)
     {
         currentTool = data.tool;
@@ -178,9 +183,6 @@ public class storeScript : MonoBehaviour, IDataPersistence
     }
     void activateObjects()
     {
-        for(int i = 0; i < currentObject; i++)
-        {
-            objectsToUnlock[i].SetActive(true);
-        }
+        
     }
 }

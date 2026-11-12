@@ -32,6 +32,10 @@ public class GameData
     public bool tutorial;
     public int clawIndex;
     public int seed;
+    public bool[] spawnedFurniture;
+    public Vector3[] spawnedFurniturePosition;
+    public int[] spawnedFurnitureRotation;
+    int numFurniture = 2;
     public GameData()
     {
         this.treasureHolder = new List<string>();
@@ -61,5 +65,8 @@ public class GameData
         this.tutorial = false;
         this.clawIndex = 0;
         this.seed = 0;
+        this.spawnedFurniture = new bool[numFurniture];
+        this.spawnedFurniturePosition = new Vector3[numFurniture];
+        this.spawnedFurnitureRotation = new int[numFurniture];
     }
 }

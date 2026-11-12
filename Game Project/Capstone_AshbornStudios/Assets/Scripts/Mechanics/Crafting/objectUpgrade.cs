@@ -17,7 +17,7 @@ public class objectUpgrade : MonoBehaviour
         if(store.currentObject < store.objectsToUnlock.Count)
         {
             store.removeItems(store.objectsToUnlockRecipe[store.currentObject]);
-            store.objectsToUnlock[store.currentObject].SetActive(true);
+            store.addItem();
             hideRecipe();
             showRecipe();
             store.clearText();

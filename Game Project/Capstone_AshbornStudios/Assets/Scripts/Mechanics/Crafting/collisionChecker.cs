@@ -10,10 +10,12 @@ public class collisionChecker : MonoBehaviour
     [SerializeField] Material standardMaterial;
     bool canPlace = true;
     public bool placed = false;
+    furnitureManager furnitureManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         invent = GameObject.FindGameObjectWithTag("Inventory").GetComponent<characterInventory>();
+        furnitureManager = GameObject.FindGameObjectWithTag("FurnitureManager").GetComponent<furnitureManager>();
         rend.material = placingMaterial;
     }
 
@@ -25,6 +27,7 @@ public class collisionChecker : MonoBehaviour
             placed = true;
             rend.material = standardMaterial;
             col.isTrigger = false;
+            furnitureManager.receivePosition(transform.position);
             invent.furnitureToDestroy = null;
             invent.removeCurrentFurniture();
         }

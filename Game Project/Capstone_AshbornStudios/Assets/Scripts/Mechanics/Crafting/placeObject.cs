@@ -10,9 +10,11 @@ public class placeObject : MonoBehaviour
     bool refreshed = false;
     public bool placeItem;
     int rotate = 0;
+    furnitureManager furnitureManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        furnitureManager = GameObject.FindGameObjectWithTag("FurnitureManager").GetComponent<furnitureManager>();
         StartCoroutine(moveObject());
     }
 
@@ -34,6 +36,7 @@ public class placeObject : MonoBehaviour
                 {
                     rotate = 0;
                 }
+                furnitureManager.receiveRotate(rotate);
             }
         }
     }
