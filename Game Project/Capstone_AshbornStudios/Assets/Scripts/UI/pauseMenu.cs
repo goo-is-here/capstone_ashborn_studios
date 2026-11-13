@@ -47,7 +47,11 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
             print("press");
             cont.canMove = !cont.canMove;
             pause.SetActive(!pause.activeSelf);
-            if (settingsMenu.GetComponent<Canvas>().enabled) settingsMenu.GetComponent<Canvas>().enabled = false;
+            if (settingsMenu.GetComponent<Canvas>().enabled)
+            {
+                settingsMenu.GetComponent<Canvas>().enabled = false;
+                settingsMenu.GetComponent<GraphicRaycaster>().enabled = false;
+            }
             if (cont.canMove)
             {
                 Cursor.lockState = CursorLockMode.Locked;
@@ -132,6 +136,8 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     public void OpenSettignsMenu()
     {
         settingsMenu.GetComponent<Canvas>().enabled = true;
+        settingsMenu.GetComponent<GraphicRaycaster>().enabled = true;
+
         if (!source.isPlaying)
         {
             source.PlayOneShot(select);
@@ -141,6 +147,7 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
     public void CloseSettingsMenu()
     {
         settingsMenu.GetComponent<Canvas>().enabled = true;
+        settingsMenu.GetComponent<GraphicRaycaster>().enabled = true;
         if (!source.isPlaying)
         {
             source.PlayOneShot(select);
