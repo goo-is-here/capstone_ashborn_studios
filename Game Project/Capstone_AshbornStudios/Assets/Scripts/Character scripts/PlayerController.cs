@@ -281,6 +281,8 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             rotationY += Mathf.Clamp(rotationVector.x, -50, 50) * rotationSpeed * sensitivity * Time.deltaTime;
             rotationX -= Mathf.Clamp(rotationVector.y, -50, 50) * rotationSpeed * sensitivity * Time.deltaTime;
 
+            rotationX = Mathf.Clamp(rotationX, -90, 90);
+
             transform.localRotation = Quaternion.Euler(0, rotationY, 0);
             cam.transform.localRotation = Quaternion.Euler(Mathf.Clamp(rotationX, -90f, 90f), 0, 0);
         }
