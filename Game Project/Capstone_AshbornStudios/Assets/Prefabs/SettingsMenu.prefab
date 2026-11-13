@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5342605939932476882}
   m_Direction: 0
   m_MinValue: 0.1
-  m_MaxValue: 10
+  m_MaxValue: 2
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -2714,6 +2714,8 @@ GameObject:
   - component: {fileID: 7399530652140199010}
   - component: {fileID: 7126459994836676805}
   - component: {fileID: 3018426291921908164}
+  - component: {fileID: 4849837344722305134}
+  - component: {fileID: 1072973193699818375}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -2788,6 +2790,31 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!222 &4849837344722305134
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627663922740586920}
+  m_CullTransparentMesh: 1
+--- !u!114 &1072973193699818375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627663922740586920}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &5821681032611988248
 GameObject:
   m_ObjectHideFlags: 0

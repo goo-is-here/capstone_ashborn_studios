@@ -38,9 +38,9 @@ public class Settings : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
         fullscreenModeDropdown.onValueChanged.AddListener(SetWindowMode);
         FOVslider.onValueChanged.AddListener(AdjustFOV);
-        FOVText.onValueChanged.AddListener(AdjustFOV);
+        FOVText.onSubmit.AddListener(AdjustFOV);
         SensitivitySlider.onValueChanged.AddListener(AdjustSensitivty);
-        SensitivtyText.onValueChanged.AddListener(AdjustSensitivty);
+        SensitivtyText.onSubmit.AddListener(AdjustSensitivty);
 
         LoadSettings();
     }

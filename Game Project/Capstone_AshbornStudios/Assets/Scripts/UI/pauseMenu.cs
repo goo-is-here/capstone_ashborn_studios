@@ -146,8 +146,8 @@ public class pauseMenu : MonoBehaviour, IDataPersistence
 
     public void CloseSettingsMenu()
     {
-        settingsMenu.GetComponent<Canvas>().enabled = true;
-        settingsMenu.GetComponent<GraphicRaycaster>().enabled = true;
+        settingsMenu.GetComponent<Canvas>().enabled = false;
+        settingsMenu.GetComponent<GraphicRaycaster>().enabled = false;
         if (!source.isPlaying)
         {
             source.PlayOneShot(select);
