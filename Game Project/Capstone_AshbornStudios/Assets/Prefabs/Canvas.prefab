@@ -1743,6 +1743,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a101a29749f262248a35cb7375058722, type: 3}
   source: {fileID: 5628887860244431063}
   mole: {fileID: 3405362182664044611}
+  moleAnimator: {fileID: 0}
 --- !u!82 &5628887860244431063
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1977,6 +1978,7 @@ MonoBehaviour:
   - {fileID: 1798692737197306483, guid: 985e9d5bf4582a94b88a4fc1c461c8a4, type: 3}
   furniture:
   - {fileID: 11400000, guid: 30e5183f1d63e134da3e7ed481f617de, type: 2}
+  - {fileID: 11400000, guid: 7b3399cad6364e94a8ff42d786490eb9, type: 2}
   placeItem: {fileID: 0}
   furnitureToDestroy: {fileID: 0}
 --- !u!1 &3005944744073491105

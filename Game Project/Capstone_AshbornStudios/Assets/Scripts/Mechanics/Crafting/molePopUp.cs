@@ -15,6 +15,9 @@ public class molePopUp : MonoBehaviour
     public MeshRenderer[] playerObjects;
     public SkinnedMeshRenderer[] hands;
     public GameObject playerCamera;
+    public float timeToWaitBeforeGoingDown = 0.5f;
+
+    private Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,11 +25,13 @@ public class molePopUp : MonoBehaviour
         positionToMoveTo = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
         player = GameObject.FindGameObjectWithTag("Player");
         cont = player.GetComponent<PlayerController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //opens and closes the store
         if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, player.transform.position) < distanceToMole)
         {
             
@@ -66,21 +71,30 @@ public class molePopUp : MonoBehaviour
                 store.SetActive(false);
             }
         }
+
+        //pop the mole up and down when moving to and from the mole
         if (Vector3.Distance(transform.position, player.transform.position) < distanceToMole && notUp)
         {
             notUp = false;
             StartCoroutine(LerpPosition(positionToMoveTo, lowerPosition, moleSpeed));
+            animator.SetTrigger("PopIn");
         }
         else if(Vector3.Distance(transform.position, player.transform.position) > distanceToMole && !notUp)
         {
             notUp = true;
             StartCoroutine(LerpPosition(lowerPosition, positionToMoveTo, moleSpeed));
+            animator.SetTrigger("PopOut");
         }
     }
     
     IEnumerator LerpPosition(Vector3 targetPosition, Vector3 startPosition, float duration)
     {
         float time = 0;
+
+        if (notUp)
+        {
+            yield return new WaitForSeconds(timeToWaitBeforeGoingDown);
+        }
 
         while (time < duration)
         {
