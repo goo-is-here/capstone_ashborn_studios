@@ -43,9 +43,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Mult: 1
+    - _PulseSpeedMultiplier: 1.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Step: 0.9089023
+    - _Step: 0.9662723
     m_Colors:
     - _Gem_Color: {r: 0.045283936, g: 0.9622642, b: 0, a: 1}
     - _Original_Color: {r: 1, g: 1, b: 1, a: 1}
