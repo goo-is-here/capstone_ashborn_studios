@@ -32,7 +32,7 @@ public class GemNotification : MonoBehaviour
         gemIcon.sprite = newIcon;
         gemText.text = name;
         GetComponent<Canvas>().enabled = true;
-        journal.SetPage(gemID / 2);
+        journal.SetPage(gemID);
         isActive = true;
         player.canMove = false;
     }

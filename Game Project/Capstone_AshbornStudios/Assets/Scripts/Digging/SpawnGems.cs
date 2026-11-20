@@ -65,7 +65,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 
-                if (!GemManager.collectedGems[index])
+                if (!data.collectedGems[i * 3 + j])
                 {
                     if (data.gemPositions[i * 3 + j] != Vector3.zero)
                     {
@@ -90,7 +90,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //save gems positions
     public void SaveData(ref GameData data)
     {
-        data.collectedGems = GemManager.collectedGems;
         var index = 0;
         for (int i = 0; i < gemReferences.GetLength(0); i++)
         {

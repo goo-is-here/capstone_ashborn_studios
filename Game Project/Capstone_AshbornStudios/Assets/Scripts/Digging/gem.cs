@@ -34,6 +34,7 @@ public class gem : MonoBehaviour
         {
             gemSpawner.GetComponent<SpawnGems>().setGemAsCollected(gemID);
             audioSource.PlayOneShot(audioClip);
+            gemNotification.SetupNotification(icon, gemName, gemID);
             Collect();
         }
     }
@@ -43,6 +44,6 @@ public class gem : MonoBehaviour
         mesh.enabled = false;
         collision.enabled = false;
         collected = true;
-        gemNotification.SetupNotification(icon, gemName, gemID);
+
     }
 }

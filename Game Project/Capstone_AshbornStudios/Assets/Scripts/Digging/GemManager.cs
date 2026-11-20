@@ -21,10 +21,21 @@ public class GemManager : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.collectedGems = collectedGems;
+        Debug.Log("saving gems");
     }
 
     public void LoadData(GameData data)
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
         collectedGems = data.collectedGems;
+
+        print(collectedGems);
+        Debug.Log("loading gems");
     }
 }
