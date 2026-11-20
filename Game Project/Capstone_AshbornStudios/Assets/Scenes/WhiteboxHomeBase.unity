@@ -1694,6 +1694,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: objectsToUnlock.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'toolUpgrades.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: c2b332789483cda4c9bac1cb057524aa, type: 2}
@@ -1704,15 +1708,31 @@ PrefabInstance:
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlock.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 30e5183f1d63e134da3e7ed481f617de, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlock.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 7b3399cad6364e94a8ff42d786490eb9, type: 2}
     - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: 'objectsToUnlock.Array.data[2]'
       value: 
       objectReference: {fileID: 1773583830}
+    - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: objectsToUnlockRecipe.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: 'objectsToUnlockRecipe.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dfa15ba6953a90d43b4f8ed0e66d35d4, type: 2}
+    - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: 'objectsToUnlockRecipe.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: faacd62a7e33fd14990e30c7d0381238, type: 2}
+    - target: {fileID: 8766147971767374896, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
+      propertyPath: 'objectsToUnlockRecipe.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3400474ed09698041b70ea5967b6b725, type: 2}
     - target: {fileID: 8795431723012423640, guid: 1d0a71ec2e68bce43a0df5e0d98fdcf7, type: 3}
       propertyPath: select
       value: 
@@ -4098,7 +4118,7 @@ GameObject:
   - component: {fileID: 341523627}
   m_Layer: 0
   m_Name: FurnitureManager
-  m_TagString: Untagged
+  m_TagString: FurnitureManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4115,7 +4135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd18082edfe439e40b65e6a6892e3d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  furnitureObjects: []
+  furnitureObjects:
+  - {fileID: 11400000, guid: 30e5183f1d63e134da3e7ed481f617de, type: 2}
+  - {fileID: 11400000, guid: 7b3399cad6364e94a8ff42d786490eb9, type: 2}
 --- !u!4 &341523628
 Transform:
   m_ObjectHideFlags: 0

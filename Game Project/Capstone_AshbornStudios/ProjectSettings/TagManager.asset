@@ -20,6 +20,7 @@ TagManager:
   - DigRange
   - Ground
   - GemNotification
+  - FurnitureManager
   layers:
   - Default
   - TransparentFX
