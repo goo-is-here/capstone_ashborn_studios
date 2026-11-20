@@ -91,8 +91,10 @@ public class Lantern : MonoBehaviour, IDataPersistence
             newMult = (distanceFromGem / -detectionDistanceModifier) + defaultDetectionDistance;
             newMult = Mathf.Clamp(newMult, 0, defaultDetectionDistance);
             float finalValue = (newMult / defaultDetectionDistance);
-            
-            lanternMat.SetFloat("_Mult", finalValue + defaultBrightness);
+
+            float directionalModifier = CalculateDirectionModifier(player.transform.forward, closestGem.transform.position - player.transform.position);
+            //lanternMat.SetFloat("_Mult", (finalValue * directionalModifier) + defaultBrightness);
+            lanternMat.SetFloat("_Step", (finalValue * directionalModifier));
             pLight.intensity = (finalValue * brightnessRange) + minBrightness;
         }
         else
@@ -100,6 +102,14 @@ public class Lantern : MonoBehaviour, IDataPersistence
             lanternMat.SetFloat("_Mult", defaultBrightness);
         }
 
+
+    }
+
+    public float CalculateDirectionModifier(Vector3 DirectionToTarget, Vector3 forward)
+    {
+        float dot = Vector3.Dot(forward.normalized, DirectionToTarget.normalized);
+        float finalModifier = (dot + 1.0f) * 0.5f;
+        return finalModifier;
 
     }
 }

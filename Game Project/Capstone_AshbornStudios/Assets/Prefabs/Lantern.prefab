@@ -231,4 +231,4 @@ MonoBehaviour:
   defaultBrightness: 0.5
   minBrightness: 5
   maxBrightness: 20
-  lanternUnlocked: 0
+  lanternUnlocked: 1

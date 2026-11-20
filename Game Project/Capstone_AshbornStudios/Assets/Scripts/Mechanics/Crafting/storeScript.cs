@@ -29,6 +29,8 @@ public class storeScript : MonoBehaviour, IDataPersistence
     [SerializeField] AudioClip[] moleSounds;
     [SerializeField] AudioSource source;
     [SerializeField] AudioSource mole;
+
+    [SerializeField] Animator moleAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,6 +70,7 @@ public class storeScript : MonoBehaviour, IDataPersistence
     }
     public void invalidAction()
     {
+        moleAnimator.SetTrigger("DeclineTrade");
         if (!source.isPlaying)
         {
             print("here");
@@ -76,6 +79,7 @@ public class storeScript : MonoBehaviour, IDataPersistence
     }
     public void buyItem()
     {
+        moleAnimator.SetTrigger("AcceptTrade");
         int sound = Random.Range(0, 2);
         int moleInt = Random.Range(0, 2);
         if (!source.isPlaying)
