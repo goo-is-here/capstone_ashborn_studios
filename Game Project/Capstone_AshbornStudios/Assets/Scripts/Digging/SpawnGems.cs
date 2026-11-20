@@ -20,7 +20,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     
     //all the reference arrays to plug stuff in
     [Header("Gems")]
-    public List<Vector2> emptySlots = new List<Vector2>();
     public GameObject[] biomeOneGems = new GameObject[3];
     public GameObject[] biomeTwoGems = new GameObject[3];
     public GameObject[] biomeThreeGems = new GameObject[3];
@@ -37,9 +36,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
 
     //purely used for saving and loading idk why but it only works but using a sperate array to store the positions for save and load
     private Vector3[,] gemPositions = new Vector3[3, 3];
-
-    //Stores all the booleans for whether or not a gem is collected, referenced via gemID
-    private bool[] collectedGems = new bool[16];
 
     //for debugging
     public bool forceSpawnGems = false;
@@ -62,8 +58,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
         spawnNewGems(1);
         spawnNewGems(2);
         spawnNewGems(3);
-
-        collectedGems = data.collectedGems;
         int index = 0;
 
         for(int i = 0; i < gemReferences.GetLength(0); i++)
@@ -71,7 +65,7 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 
-                if (!collectedGems[index])
+                if (!GemManager.collectedGems[index])
                 {
                     if (data.gemPositions[i * 3 + j] != Vector3.zero)
                     {
@@ -81,10 +75,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                 else
                 {
                     StartCoroutine(SetGemAsCollectedAfterLoad(spawnedGems[i, j].GetComponent<gem>()));
-                }
-                if(!emptySlots.Contains(new Vector2(i, j)))
-                {
-                    index += 1;
                 }
             }
         }
@@ -100,14 +90,14 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     //save gems positions
     public void SaveData(ref GameData data)
     {
-        data.collectedGems = collectedGems;
+        data.collectedGems = GemManager.collectedGems;
         var index = 0;
         for (int i = 0; i < gemReferences.GetLength(0); i++)
         {
             for (int j = 0; j < gemReferences.GetLength(1); j++)
             {
                 print(spawnedGems[i,j]);
-                if (!collectedGems[i * 3 + j]) data.gemPositions[i * 3 + j] = gemPositions[i,j];
+                if (!GemManager.collectedGems[i * 3 + j]) data.gemPositions[i * 3 + j] = gemPositions[i,j];
                 index += 1;
             }
         }
@@ -140,7 +130,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
                         gemReferences[i, j] = biomeSixGems[j];
                         break;
                 }
-                collectedGems[i * 3 + j] = false;
             }
         }
     }
@@ -184,18 +173,6 @@ public class SpawnGems : MonoBehaviour, IDataPersistence
     public void setGemAsCollected(int gemID)
     {
         Debug.Log(gemID);
-        
-        if(gemID >= 6)
-        {
-            collectedGems[gemID - 2] = true;
-        }
-        else if(gemID >= 3)
-        {
-            collectedGems[gemID - 1] = true;
-        }
-        else
-        {
-            collectedGems[gemID] = true;
-        }
+        GemManager.collectedGems[gemID] = true;
     }
 }

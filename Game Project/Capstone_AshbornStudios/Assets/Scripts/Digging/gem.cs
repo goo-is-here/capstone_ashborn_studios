@@ -33,7 +33,6 @@ public class gem : MonoBehaviour
         if(other.tag == "Player")
         {
             gemSpawner.GetComponent<SpawnGems>().setGemAsCollected(gemID);
-            other.GetComponent<PlayerController>().CollectGem(gemID);
             audioSource.PlayOneShot(audioClip);
             Collect();
         }

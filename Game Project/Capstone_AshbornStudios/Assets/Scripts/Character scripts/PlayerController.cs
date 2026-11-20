@@ -77,8 +77,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     bool isPlayingSound = false;
     bool tele = false;
     bool canMine = true;
-    [HideInInspector]
-    public bool[] collectedGems = new bool[16];
     public float additionalOreChance = 0f;
     private Animator anim;
     [SerializeField] GameObject[] clawsLeft;
@@ -151,7 +149,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
             pos = data.minePosition;
         }
 
-        collectedGems = data.collectedGems;
         damageVal = data.damageVal;
         durability = data.durability;
         maxDurability = data.maxDurability;
@@ -504,22 +501,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
         yield return new WaitForSeconds(mineSpeed / 2);
         canMine = true;
-    }
-
-    public void CollectGem(int gemID)
-    {
-        if (gemID >= 6)
-        {
-            collectedGems[gemID - 2] = true;
-        }
-        else if (gemID >= 3)
-        {
-            collectedGems[gemID - 1] = true;
-        }
-        else
-        {
-            collectedGems[gemID] = true;
-        }
     }
 
     public void EquipLantern()

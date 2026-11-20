@@ -55,9 +55,9 @@ public class Jounal : MonoBehaviour
 
     }
 
-    public void SetPage(int newPage)
+    public void SetPage(int gemID)
     {
-        currentPage = newPage;
+        currentPage = journalDatabase.getGemNumber(gemID) / 2;
     }
 
     public void FlipPageLeft()
@@ -86,7 +86,7 @@ public class Jounal : MonoBehaviour
     {
         
         int gemIndex = (currentPage * 2) + 1;
-        if (playerController.collectedGems[gemIndex - 1])
+        if (GemManager.collectedGems[gemIndex - 1])
         {
             leftPage.SetActive(true);
             leftGemNameText.text = journalDatabase.getGemName(gemIndex);
@@ -101,7 +101,7 @@ public class Jounal : MonoBehaviour
         gemIndex += 1;
         if(!(gemIndex > numGems))
         {
-            if (playerController.collectedGems[gemIndex - 1])
+            if (GemManager.collectedGems[gemIndex - 1])
             {
                 rightPage.SetActive(true);
                 rightGemNameText.text = journalDatabase.getGemName(gemIndex);
